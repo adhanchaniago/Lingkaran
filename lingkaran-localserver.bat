@@ -1,5 +1,6 @@
 @echo off
 cd C:\xampp\htdocs\lingkaran
-color A
+start %windir%\explorer.exe "C:\xampp\htdocs\lingkaran"
+code .
 cls
 php artisan serve
