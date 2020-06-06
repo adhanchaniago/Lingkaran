@@ -6,7 +6,7 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>Post List</h2>
-                <button type="button" class="btn btn-primary btn-sm float-right"><i class="fa fa-plus"></i> new
+                <button type="button" class="btn btn-outline-primary btn-sm float-right"><i class="fa fa-plus"></i> new
                     post</button>
                 <div class="clearfix"></div>
             </div>

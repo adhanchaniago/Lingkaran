@@ -17,18 +17,13 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->string('title')->uniqid();
             $table->string('slug');
-            $table->integer('category_id')->unsigned();
-            $table->string('image');
-            $table->text('content');
-            $table->integer('author')->unsigned();
-            $table->integer('editor')->nullable()->unsigned();
+            $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string('image')->nullable();
+            $table->foreignId('author')->constrained('users')->cascadeOnUpdate();
+            $table->foreignId('editor')->constrained('users')->nullable()->cascadeOnUpdate();
             $table->boolean('status');
             $table->integer('view');
             $table->timestamps();
-
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('CASCADE');
-            $table->foreign('author')->references('id')->on('users');
-            $table->foreign('editor')->references('id')->on('users');
         });
     }
 
