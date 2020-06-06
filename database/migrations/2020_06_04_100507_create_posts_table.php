@@ -19,7 +19,6 @@ class CreatePostsTable extends Migration
             $table->string('slug');
             $table->integer('category_id')->unsigned();
             $table->string('image');
-            $table->string('video')->nullable();
             $table->text('content');
             $table->integer('author')->unsigned();
             $table->integer('editor')->nullable()->unsigned();
