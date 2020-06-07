@@ -4,7 +4,9 @@
     </div>
     <div class="col-md-6 pr-md-0">
         <nav class="nav justify-content-center justify-content-md-end">
-            @if(! auth()->user())
+            @if (auth()->user())
+            <a class="nav-link" href="{{ route('logout') }}">Log out</a>
+            @else
             <a class="nav-link" href="{{ route('login') }}">Login</a>
             @endif
             <a class="nav-link" href="#">Advertise</a>

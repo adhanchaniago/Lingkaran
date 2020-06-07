@@ -9,17 +9,17 @@
                 <div id="carousel-text" class="carousel slide pl-3" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <a href="{{ Route('guest.post') }}">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit.
                                 Nihil,
                                 mollitia!</a>
                         </div>
                         <div class="carousel-item">
-                            <a href="{{ Route('guest.post') }}">Lorem ipsum, dolor sit amet consectetur adipisicing
+                            <a href="#">Lorem ipsum, dolor sit amet consectetur adipisicing
                                 elit.
                                 Earum, vero.</a>
                         </div>
                         <div class="carousel-item">
-                            <a href="{{ Route('guest.post') }}">Lorem ipsum, dolor sit amet consectetur adipisicing
+                            <a href="#">Lorem ipsum, dolor sit amet consectetur adipisicing
                                 elit.
                                 Culpa,
                                 cupiditate.</a>

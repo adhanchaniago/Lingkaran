@@ -42,7 +42,7 @@
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="{{ route('admin.home') }}" class="site_title">
+                        <a href="{{ route('dashboard.index') }}" class="site_title">
                             <span class="mx-5">{{ config('app.name', 'Laravel') }}</span></a>
                     </div>
                     <div class="clearfix"></div>

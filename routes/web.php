@@ -16,11 +16,10 @@ Auth::routes();
 
 //Guest Route
 Route::get('/', 'HomeController@index')->name('guest.home');
-Route::get('/post', 'HomeController@show')->name('guest.post');
 
 // CMS Route
-Route::middleware('auth')->namespace('cms')->group( function (){
-    Route::get('/admin', 'AdminController@index')->name('admin.home');
-    Route::get('/admin/post/index', 'PostController@index')->name('post.index');
-    Route::get('/admin/category/index', 'CategoryController@index')->name('category.index');
+Route::middleware('auth')->prefix('cms')->namespace('cms')->group( function (){
+    Route::get('/dashboard', 'AdminController@index')->name('dashboard.index');
+    Route::get('/post', 'PostController@index')->name('post.index');
+    Route::get('/category', 'CategoryController@index')->name('category.index');
 });
