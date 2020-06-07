@@ -26,8 +26,9 @@
 :root {
     --hijau: rgb(38, 158, 38);
     --merah: rgb(196, 51, 51);
+    --yellow: rgb(124, 90, 46);
     --abu: rgb(143, 143, 143);
-    --gradasi: linear-gradient(-225deg, var(--hijau) 0%, var(--merah) 67%, var(--merah) 100%);
+    --gradasi: linear-gradient(-225deg, var(--hijau) 0%, var(--yellow) 50%, var(--merah) 100%);
 }
 
 body {
