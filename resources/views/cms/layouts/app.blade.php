@@ -38,6 +38,7 @@
 <body class="nav-md">
     <div class="container body">
         <div class="main_container">
+
             @if(auth()->user())
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
