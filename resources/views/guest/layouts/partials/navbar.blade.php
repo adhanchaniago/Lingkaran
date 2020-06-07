@@ -1,9 +1,9 @@
 <nav id="nav-sticky" class="navbar navbar-expand-lg navbar-light shadow-sm">
     <div class="container pr-0 pl-md-2">
-        <a href="#">
+        <a href="{{ route('guest.home') }}">
             <img src="assets/logo/logo.png" alt="Logo Lingkaran" class="logo mr-2">
         </a>
-        <a class="navbar-brand" href="#">Lingkar<span>an</span></a>
+        <a class="navbar-brand" href="{{ route('guest.home') }}">Lingkar<span>an</span></a>
         <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
             aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
             <i class="fas fa-bars nav-icon"></i>
