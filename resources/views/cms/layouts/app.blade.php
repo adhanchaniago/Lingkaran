@@ -38,13 +38,12 @@
 <body class="nav-md">
     <div class="container body">
         <div class="main_container">
-
             @if(auth()->user())
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
-                    <div class="navbar nav_title ml-2" style="border: 0;">
+                    <div class="navbar nav_title pl-2" style="border: 0;">
                         <a href="{{ route('dashboard.index') }}" class="site_title">
-                            <img src="{{ asset('assets/logo/logo.png') }}" alt="Lingkaran Logo" style="width:30px" />
+                            <img src="{{ asset('assets/logo/logo.png') }}" alt="Lingkaran Logo" style="width:30px">
                             <span>{{ config('app.name', 'Laravel') }}</span>
                         </a>
                     </div>
@@ -56,7 +55,6 @@
                     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                         @include('cms.layouts.partials.sidenav')
                     </div>
-
                     <!-- /sidebar menu -->
                 </div>
             </div>

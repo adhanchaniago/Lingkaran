@@ -1,14 +1,11 @@
 @extends('cms.layouts.app')
 @section('content')
 
-<div class="row d-block">
-    <div class="col-sm-12 col-md-12">
+<div class="row">
+    <div class="col-md-6">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Category List</h2>
-                <button type="button" class="btn btn-primary btn-sm float-right"
-                    onclick="location.href='{{ route('category.create') }}'"><i class="fa fa-plus"></i> new
-                    category</button>
+                <h2>Category <small>all stored categories</small></h2>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -25,15 +22,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($categories as $category)
                                     <tr>
-                                        <th scope="row">1</th>
-                                        <td>Lifestyle</td>
-                                        <td>lifestyle</td>
+                                        <th scope="row">{{ $loop->index + 1 }}</th>
+                                        <td>{{ $category->title }}</td>
+                                        <td>{{ $category->slug }}</td>
                                         <td class="d-flex justify-content-center">
                                             <button class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></button>
                                             <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
                                         </td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -41,21 +40,43 @@
                 </div>
             </div>
         </div>
+
         <nav aria-label="...">
             <ul class="pagination pagination-sm">
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item active" aria-current="page">
-                    <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
                 <li class="page-item">
-                    <a class="page-link" href="#">Next</a>
+                    {{ $categories->links() }}
                 </li>
             </ul>
         </nav>
+    </div>
+
+    <!-- Form Input -->
+    <div class="col-md-6 ">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Category Form <small>add new category</small></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <form class="form-horizontal" action="{{ route('category.store') }}" method="POST">
+                    @csrf
+                    <div class="form-group row">
+                        <input id="title" name="title" type="text"
+                            class="form-control form-control-sm @error('title') is-invalid @enderror"
+                            placeholder="title Title">
+                        @error('title')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-sm pull-right">Save</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 @endsection

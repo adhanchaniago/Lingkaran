@@ -19,8 +19,7 @@ Route::get('/', 'HomeController@index')->name('guest.home');
 
 // CMS Route
 Route::middleware('auth')->prefix('cms')->namespace('cms')->group( function (){
-    Route::get('/dashboard', 'AdminController@index')->name('dashboard.index');
-    Route::get('/post', 'PostController@index')->name('post.index');
-    Route::get('/category', 'CategoryController@index')->name('category.index');
-    Route::get('/category/new', 'CategoryController@create')->name('category.create');
+    Route::resource('/dashboard', 'AdminController')->only('index');
+    Route::resource('/post', 'PostController')->except('show');
+    Route::resource('/category', 'CategoryController')->except('create', 'show');
 });

@@ -15,4 +15,15 @@ class HomeController extends Controller
     {
         return view('guest.home');
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
 }

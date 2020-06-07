@@ -4,6 +4,8 @@ namespace App\Http\Controllers\cms;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Category;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -14,7 +16,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('cms.category.index');
+        $categories = Category::Paginate(10);
+
+        return view('cms.category.index', compact('categories'));
     }
 
     /**
@@ -35,7 +39,17 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate(request(), [
+            'title' => 'required|min:3|unique:categories'
+        ]);
+
+        Category::create([
+            'title' => request('title'),
+            'slug' => Str::slug(request('title'))
+        ]);
+
+
+        return redirect(route('category.index'))->withSuccess('New category added');
     }
 
     /**
