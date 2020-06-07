@@ -10,7 +10,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link rel="icon" href="{{ asset('cms/images/favicon.ico') }}" type="image/ico" />
+    <link rel="icon" href="{{ asset('assets/logo/favicon.ico') }}" type="image/ico" />
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -41,9 +41,11 @@
             @if(auth()->user())
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
-                    <div class="navbar nav_title" style="border: 0;">
+                    <div class="navbar nav_title ml-2" style="border: 0;">
                         <a href="{{ route('dashboard.index') }}" class="site_title">
-                            <span class="mx-5">{{ config('app.name', 'Laravel') }}</span></a>
+                            <img src="{{ asset('assets/logo/logo.png') }}" alt="Lingkaran Logo" style="width:30px" />
+                            <span>{{ config('app.name', 'Laravel') }}</span>
+                        </a>
                     </div>
                     <div class="clearfix"></div>
                     <br />

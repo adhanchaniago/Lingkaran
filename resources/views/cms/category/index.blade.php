@@ -6,7 +6,8 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>Category List</h2>
-                <button type="button" class="btn btn-primary btn-sm float-right"><i class="fa fa-plus"></i> new
+                <button type="button" class="btn btn-primary btn-sm float-right"
+                    onclick="location.href='{{ route('category.create') }}'"><i class="fa fa-plus"></i> new
                     category</button>
                 <div class="clearfix"></div>
             </div>

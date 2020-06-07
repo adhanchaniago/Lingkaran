@@ -22,4 +22,5 @@ Route::middleware('auth')->prefix('cms')->namespace('cms')->group( function (){
     Route::get('/dashboard', 'AdminController@index')->name('dashboard.index');
     Route::get('/post', 'PostController@index')->name('post.index');
     Route::get('/category', 'CategoryController@index')->name('category.index');
+    Route::get('/category/new', 'CategoryController@create')->name('category.create');
 });
