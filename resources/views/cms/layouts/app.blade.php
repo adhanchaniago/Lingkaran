@@ -116,6 +116,9 @@
 
     <!-- Custom Theme Scripts -->
     <script src="{{ asset('cms/build/js/custom.min.js') }}"></script>
+    @section('script')
+
+    @show
 </body>
 
 </html>

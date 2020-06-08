@@ -44,12 +44,10 @@ class CategoryController extends Controller
         ]);
 
         Category::create([
-            'title' => request('title'),
+            'title' => Str::title(request('title')),
             'slug' => Str::slug(request('title'))
         ]);
-
-
-        return redirect(route('category.index'))->withSuccess('New category added');
+        return redirect(route('category.index'))->withSuccess('New category has been added');
     }
 
     /**
@@ -81,9 +79,17 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Category $category)
     {
-        //
+        $this->validate(request(), [
+            'title' => 'required|min:3|unique:categories'
+        ]);
+
+        $category->update([
+            'title' => Str::title(request('title')),
+            'slug' => Str::slug(request('title'))
+        ]);
+        return redirect(route('category.index'))->withSuccess('Category has been updated');
     }
 
     /**
@@ -92,8 +98,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect(route('category.index'))->withSuccess('Category has been deleted');
     }
 }
