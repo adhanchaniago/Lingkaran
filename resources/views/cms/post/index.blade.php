@@ -6,7 +6,8 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>Post List</h2>
-                <button type="button" class="btn btn-outline-primary btn-sm float-right"><i class="fa fa-plus"></i>
+                <button type="button" class="btn btn-outline-primary btn-sm float-right"
+                    onclick="location.href='{{ route('post.create') }}'"><i class="fa fa-plus"></i>
                     post</button>
                 <div class="clearfix"></div>
             </div>
@@ -18,6 +19,7 @@
                                 <tr>
                                     <th scope="col">No.</th>
                                     <th scope="col">Title</th>
+                                    <th scope="col">Content</th>
                                     <th scope="col">Category</th>
                                     <th scope="col">Image</th>
                                     <th scope="col">Author</th>
@@ -31,6 +33,7 @@
                                 <tr>
                                     <th scope="row">1</th>
                                     <td>Tetap produktif walau hanya dirumah saja dengan pengembangan diri</td>
+                                    <td><button class="btn btn-secondary btn-sm"><i class="fa fa-eye"></button></a></td>
                                     <td>Lifestyle</td>
                                     <td>Null</td>
                                     <td>Riyan Amanda</td>

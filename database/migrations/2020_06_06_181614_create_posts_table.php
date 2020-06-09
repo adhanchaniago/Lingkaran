@@ -19,6 +19,7 @@ class CreatePostsTable extends Migration
             $table->string('slug');
             $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('image')->nullable();
+            $table->text('content');
             $table->foreignId('author')->constrained('users')->cascadeOnUpdate();
             $table->foreignId('editor')->constrained('users')->nullable()->cascadeOnUpdate();
             $table->boolean('status');

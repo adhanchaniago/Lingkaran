@@ -33,13 +33,16 @@
 
     <!-- Custom Theme Style -->
     <link href="{{ asset('cms/build/css/custom.min.css')}}" rel="stylesheet">
+
+    <!-- CKeditor -->
+    <script src="{{ asset('cms/ckeditor/ckeditor.js') }}"></script>
 </head>
 
 <body class="nav-md">
     <div class="container body">
         <div class="main_container">
             @if(auth()->user())
-            <div class="col-md-3 left_col">
+            <div class="col-md-3 left_col menu_fixed">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title pl-2" style="border: 0;">
                         <a href="{{ route('dashboard.index') }}" class="site_title">
@@ -117,7 +120,6 @@
     <!-- Custom Theme Scripts -->
     <script src="{{ asset('cms/build/js/custom.min.js') }}"></script>
     @section('script')
-
     @show
 </body>
 

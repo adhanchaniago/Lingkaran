@@ -12,11 +12,6 @@
                 <li><a href="{{ route('category.index') }}">Category</a></li>
             </ul>
         </li>
-        <li><a><i class="fa fa-bar-chart-o"></i> Data Presentation <span class="fa fa-chevron-down"></span></a>
-            <ul class="nav child_menu">
-                <li><a href="chartjs.html">Chart JS</a></li>
-            </ul>
-        </li>
     </ul>
 </div>
 <div class="menu_section">
