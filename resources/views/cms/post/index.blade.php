@@ -40,7 +40,8 @@
                                 <tr>
                                     <th scope="row">{{ $loop->index + 1 }}</th>
                                     <td>{{ $post->title }}</td>
-                                    <td><button class="btn btn-light btn-sm"><i class="fa fa-newspaper-o"></i></button>
+                                    <td>
+                                        <button class="btn btn-light btn-sm"><i class="fa fa-newspaper-o"></i></button>
                                     </td>
                                     <td>{{ $post->category->title }}</td>
                                     <td>
@@ -66,12 +67,31 @@
                                         @endif</td>
                                     <td>{{ $post->view }}</td>
                                     <td class="d-flex justify-content-end">
-                                        <button class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></button>
-                                        <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                                        <button class="btn btn-sm btn-info"
+                                            onclick="location.href='{{ route('post.edit', $post) }}'"><i
+                                                class="fa fa-pencil"></i></button>
+                                        <button class="btn btn-sm btn-danger" data-toggle="modal"
+                                            data-target=".modal-delete" data-title="{{ $post->title }}"><i
+                                                class="fa fa-trash"></i></button>
+
                                         @if( $post->status == 0 )
-                                        <button class="btn btn-sm btn-success"><i class="fa fa-bullhorn"></i></button>
+                                        <button onclick="document.getElementById('publish-{{ $post->id }}').submit();"
+                                            type="button" class="btn btn-success btn-sm"><i
+                                                class="fa fa-bullhorn"></i></button>
+                                        <form style="display:none;" id="publish-{{ $post->id }}"
+                                            action="{{ route('post.publish', $post->id) }}" method="POST">
+                                            @csrf
+                                            @method('PATCH')
+                                        </form>
                                         @else
-                                        <button class="btn btn-sm btn-warning"><i class="fa fa-undo"></i></button>
+                                        <button onclick="document.getElementById('unpublish-{{ $post->id }}').submit();"
+                                            type="button" class="btn btn-warning btn-sm"><i
+                                                class="fa fa-undo"></i></button>
+                                        <form style="display:none;" id="unpublish-{{ $post->id }}"
+                                            action="{{ route('post.unpublish', $post->id) }}" method="POST">
+                                            @csrf
+                                            @method('PATCH')
+                                        </form>
                                         @endif
                                     </td>
                                 </tr>
@@ -106,6 +126,31 @@
         </div>
     </div>
     <!-- /modals -->
+
+    <!-- Delete modal -->
+    <div class="modal fade modal-delete" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title">Deleting post</h6>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure want to delete "<span class="title"></span>" ?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-sm"
+                        onclick="document.getElementById('delete-form').submit();">Delete</button>
+                    <form id="delete-form" action="{{ route('post.destroy', $post ?? '') }}" method="POST"
+                        style="display: none">
+                        @csrf
+                        @method('DELETE')
+                    </form>
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /modals -->
 </div>
 @endsection
 
@@ -116,6 +161,11 @@
         var title = $(e.relatedTarget).data('title');
         $('.modal-header .modal-title').text(title);
         $('.modal-body .img-fluid').attr('src', img);
+    });
+
+    $('.modal-delete').on('show.bs.modal', function(e){
+        var title = $(e.relatedTarget).data('title');
+        $('.modal-body .title').text(title);
     });
 </script>
 @endsection

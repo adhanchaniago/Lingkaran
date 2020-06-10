@@ -21,5 +21,7 @@ Route::get('/', 'HomeController@index')->name('guest.home');
 Route::middleware('auth')->prefix('cms')->namespace('cms')->group( function (){
     Route::resource('/dashboard', 'AdminController')->only('index');
     Route::resource('/post', 'PostController')->except('show');
+    Route::patch('/publish/{id}', 'PostController@publish')->name('post.publish');
+    Route::patch('/unpublish/{id}', 'PostController@unpublish')->name('post.unpublish');
     Route::resource('/category', 'CategoryController')->except('create', 'show');
 });

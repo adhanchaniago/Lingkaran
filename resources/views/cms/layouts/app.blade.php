@@ -22,6 +22,8 @@
     <link href="{{ asset('cms/vendors/nprogress/nprogress.css')}}" rel="stylesheet">
     <!-- iCheck -->
     <link href="{{ asset('cms/vendors/iCheck/skins/flat/green.css')}}" rel="stylesheet">
+    <!-- Switchery -->
+    <link href="{{ asset('cms/vendors/switchery/dist/switchery.min.css') }}" rel="stylesheet">
 
     <!-- bootstrap-progressbar -->
     <link href="{{ asset('cms/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css')}}"
@@ -101,6 +103,8 @@
     <script src="{{ asset('cms/vendors/Chart.js/dist/Chart.min.js') }}"></script>
     <!-- jQuery Sparklines -->
     <script src="{{ asset('cms/vendors/jquery-sparkline/dist/jquery.sparkline.min.js') }}"></script>
+    <!-- Switchery -->
+    <script src="{{ asset('cms/vendors/switchery/dist/switchery.min.js') }}"></script>
     <!-- Flot -->
     <script src="{{ asset('cms/vendors/Flot/jquery.flot.js') }}"></script>
     <script src="{{ asset('cms/vendors/Flot/jquery.flot.pie.js') }}"></script>

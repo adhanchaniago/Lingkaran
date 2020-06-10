@@ -19,7 +19,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::paginate(10);
+        $posts = Post::latest()->paginate(10);
         return view('cms.post.index', compact('posts'));
     }
 
@@ -45,7 +45,8 @@ class PostController extends Controller
         $this->validate(request(), [
             'title' => 'required|min:5|unique:posts',
             'category' => 'required',
-            'content' => 'required|min:100'
+            'content' => 'required|min:100',
+            'image' => 'image'
         ]);
 
         $post = Post::create([
@@ -64,7 +65,7 @@ class PostController extends Controller
             $image = $request->file('image');
             $filename = Str::slug($post->title) . '.' . $image->getClientOriginalExtension();
             $location = public_path('post_images/'. $filename);
-            Image::make($image)->resize(800, 400)->save($location);
+            Image::make($image)->resize(600, 400)->save($location);
 
             $post->update([
                 'image' => $filename
@@ -90,9 +91,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        $categories = Category::all();
+        return view('cms.post.edit', compact('post', 'categories'));
     }
 
     /**
@@ -102,9 +104,37 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        $this->validate(request(), [
+            'title' => 'required|min:5',
+            'category' => 'required',
+            'content' => 'required|min:100',
+            'image' => 'image'
+        ]);
+
+        $post->update([
+            'title' => Str::title(request('title')),
+            'slug' => Str::slug(request('title')),
+            'category_id' => request('category'),
+            'content' => request('content'),
+            'editor' => auth()->id()
+        ]);
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = Str::slug($post->title) . '-' . Str::random(10) . '.' . $image->getClientOriginalExtension();
+            $location = public_path('post_images/'. $filename);
+            Image::make($image)->resize(600, 400)->save($location);
+
+            $oldFilename = $post->image;
+
+            $post->update([
+                'image' => $filename
+            ]);
+            Storage::delete($oldFilename);
+        }
+        return redirect(route('post.index'))->withSuccess('The post has been updated');
     }
 
     /**
@@ -113,8 +143,43 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        //Delete current post image
+        Storage::delete($post->image);
+        //Delete current post
+        $post->delete();
+
+        return redirect(route('post.index'))->withSuccess('Post has been deleted');
+    }
+
+    /**
+     * Publish the specified post.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function publish($id)
+    {
+        $post = Post::findOrFail($id);
+        $post->update([
+            'status' => 1
+        ]);
+        return redirect(route('post.index'))->withSuccess('Post has been published');
+    }
+
+    /**
+     * Unpublish the specified post.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function unpublish($id)
+    {
+        $post = Post::findOrFail($id);
+        $post->update([
+            'status' => 0
+        ]);
+        return redirect(route('post.index'))->withSuccess('Post has been unpublished');
     }
 }
