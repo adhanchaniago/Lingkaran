@@ -16,15 +16,17 @@
                 <div class="clearfix"></div>
             </div>
             <div class="x_content mt-3">
-                <form data-parsley-validate class="form-horizontal form-label-left">
+                <form data-parsley-validate class="form-horizontal form-label-left" action="{{ route('post.store') }}"
+                    method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="item form-group">
                         <label class="col-form-label col-md-3 col-sm-3 label-align" for="title">Title <span
                                 class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 ">
-                            <input type="text" id="title" name="title" required="required"
-                                class="form-control form-control-sm @error('title') is-invalid @enderror">
+                            <input type="text" id="title" name="title"
+                                class="form-control form-control-sm @error('title') is-invalid @enderror"
+                                value="{{ old('title') }}">
                             @error('title')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -37,7 +39,7 @@
                                 class="required">*</span></label>
                         <div class="col-md-6 col-sm-6 ">
                             <select id="category" name="category"
-                                class="form-control form-control-sm @error('category') is-invalid @enderror" required>
+                                class="form-control form-control-sm @error('category') is-invalid @enderror">
                                 <option></option>
                                 @foreach ($categories as $category)
                                 <option value="{{ $category->id }}" @if (old('category')==$category->id)
@@ -55,7 +57,7 @@
                     <div class="item form-group">
                         <label for="image" class="col-form-label col-md-3 col-sm-3 label-align">Image</label>
                         <div class="col-md-6 col-sm-6 ">
-                            <input id="image" class="form-control-file" type="file" name="image">
+                            <input type="file" id="image" name="image" class="form-control-file col-md-6 col-sm-6">
                         </div>
                     </div>
                     <div class="item form-group">

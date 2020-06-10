@@ -102,7 +102,7 @@
             <div class="modal-header">
                 <h4 class="modal-title">Edit <span class="text-info text-title">data</span> category?</h4>
             </div>
-            <form action="{{ route('category.update', $category) }}" method="POST">
+            <form action="{{route('category.update', $category ?? $categories )}}" method="POST">
                 @csrf
                 @method('PATCH')
                 <div class="modal-body">
@@ -130,7 +130,7 @@
             <div class="modal-header">
                 <h4 class="modal-title">Delete <span class="text-danger text-title">data</span> category?</h4>
             </div>
-            <form action="{{ route('category.destroy', $category) }}" method="POST">
+            <form action="{{route('category.update', $category ?? $categories )}}" method="POST">
                 @csrf
                 @method('DELETE')
                 <div class="modal-body">
@@ -152,12 +152,6 @@
 
 @section('script')
 <script>
-    window.setTimeout(function() {
-        $(".alert").fadeTo(500, 0).slideUp(500, function(){
-            $(this).remove();
-        });
-    }, 1500);
-
     $('.modal-edit').on('show.bs.modal', function(e){
             var id = $(e.relatedTarget).data('id');
             var title = $(e.relatedTarget).data('title');

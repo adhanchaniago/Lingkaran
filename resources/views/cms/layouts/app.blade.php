@@ -119,6 +119,13 @@
 
     <!-- Custom Theme Scripts -->
     <script src="{{ asset('cms/build/js/custom.min.js') }}"></script>
+    <script>
+        window.setTimeout(function() {
+        $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove();
+        });
+        }, 1500);
+    </script>
     @section('script')
     @show
 </body>
