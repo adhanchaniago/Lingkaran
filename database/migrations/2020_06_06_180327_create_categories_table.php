@@ -17,6 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->id();
             $table->string('title')->uniqid();
             $table->string('slug');
+            $table->string('color')->uniqid();
             $table->timestamps();
         });
     }

@@ -24,7 +24,7 @@
                                     <tr>
                                         <th scope="col">No.</th>
                                         <th scope="col">Title</th>
-                                        <th scope="col">Slug</th>
+                                        <th scope="col">Color</th>
                                         <th scope="col" class="text-center">Action</th>
                                     </tr>
                                 </thead>
@@ -33,18 +33,19 @@
                                     <tr>
                                         <th scope="row">{{ $loop->index + 1 }}</th>
                                         <td>{{ $category->title }}</td>
-                                        <td>{{ $category->slug }}</td>
+                                        <td>{{ $category->color }}</td>
                                         <td class="d-flex justify-content-center">
 
-                                            <button class="btn btn-info btn-sm" id="btn-edit"
-                                                data-id="{{ $category->id }}" data-title="{{ $category->title }}"
-                                                data-toggle="modal" data-target=".modal-edit"><i
-                                                    class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-info btn-sm" id="btn-edit" data-toggle="modal"
+                                                data-target="#modal-edit" data-id="{{ $category->id }}"
+                                                data-title="{{ $category->title }}" data-color="{{ $category->color }}">
+                                                <i class="fa fa-pencil"></i></button>
 
-                                            <button class="btn btn-danger btn-sm" id="btn-delete"
-                                                data-id="{{ $category->id }}" data-title="{{ $category->title }}"
-                                                data-toggle="modal" data-target=".modal-delete"><i
-                                                    class="fa fa-trash"></i></button>
+                                            <button class="btn btn-danger btn-sm" id="btn-delete" data-toggle="modal"
+                                                data-target="#modal-delete" data-id="{{ $category->id }}"
+                                                data-title="{{ $category->title }}">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -76,17 +77,38 @@
                 <form class="form-horizontal" action="{{ route('category.store') }}" method="POST">
                     @csrf
                     <div class="form-group row">
-                        <input id="title" name="title" type="text"
-                            class="form-control form-control-sm @error('title') is-invalid @enderror"
-                            placeholder="Category Title" required>
-                        @error('title')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
+                        <label for="title" class="control-label col-md-3 col-sm-3  ">Title</label>
+                        <div class="col-md-9 col-sm-9">
+                            <input id="title" name="title" type="text" value="{{ old('title') }}"
+                                class="form-control form-control-sm @error('title') is-invalid @enderror"
+                                placeholder="Category Title" required>
+                            @error('title')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+                    </div>
+                    <div class="form-group row">
+                        <label for="color" class="control-label col-md-3 col-sm-3  ">Color</label>
+                        <div class="col-md-9 col-sm-9  ">
+                            <div class="input-group demo2">
+                                <input id="color" name="color" type="text" value="{{ old('color') }}"
+                                    class="form-control form-control-sm @error('color') is-invalid @enderror"
+                                    required />
+                                <span class="input-group-addon"><i></i></span>
+                                @error('color')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary btn-sm pull-right">Save</button>
+                        <button type="reset" class="btn btn-secondary btn-sm pull-right">Reset</button>
                     </div>
 
                 </form>
@@ -96,21 +118,47 @@
 </div>
 
 <!-- Edit modal -->
-<div class="modal fade modal-edit" data-backdrop="static" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-sm">
+<div class="modal fade" id="modal-edit" data-backdrop="static" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Edit <span class="text-info text-title">data</span> category?</h4>
+                <h4 class="modal-title">Ubah kategori <span class="category-title text-info"></span></h4>
             </div>
-            <form action="{{route('category.update', $category ?? $categories )}}" method="POST">
+            <form action="{{route('category.update', 'id' )}}" method="POST">
                 @csrf
                 @method('PATCH')
                 <div class="modal-body">
-                    <div class="form-group">
-                        <p>Note: Semua Postingan dengan category ini juga akan berubah.</p>
-                        <input type="hidden" class="form-control form-control-sm form-edit" disabled>
-                        <input type="text" name="title" class="form-control form-control-sm mt-3" placeholder="Title"
-                            required>
+                    <div class="form-group row">
+                        <p class="col-md-12 col-sm-12 text-danger text-center">Note: Semua Postingan dengan category ini
+                            juga akan berubah.</p>
+                        <input type="hidden" id="form-id" name="id">
+                        <label for="title" class="control-label col-md-2 col-sm-2">Title</label>
+                        <div class="col-md-10 col-sm-10">
+                            <input id="title" name="title" type="text" value="{{ old('title') }}"
+                                class="form-control form-control-sm @error('title') is-invalid @enderror"
+                                placeholder="Category Title" required>
+                            @error('title')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="color" class="control-label col-md-2 col-sm-2">Color</label>
+                        <div class="col-md-10 col-sm-10">
+                            <div class="input-group demo2">
+                                <input id="color" name="color" type="text" value="{{ old('color') }}"
+                                    class="form-control form-control-sm @error('color') is-invalid @enderror"
+                                    required />
+                                <span class="input-group-addon"><i></i></span>
+                                @error('color')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -124,23 +172,25 @@
 <!-- /modals -->
 
 <!-- Delete modal -->
-<div class="modal fade modal-delete" data-backdrop="static" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-sm">
+<div class="modal fade" id="modal-delete" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Delete <span class="text-danger text-title">data</span> category?</h4>
+                <h4 class="modal-title">Hapus kategori <span class="category-title text-danger"></span></h4>
             </div>
-            <form action="{{route('category.update', $category ?? $categories )}}" method="POST">
+            <form action="{{ route('category.destroy', 'id') }}" method="POST">
                 @csrf
                 @method('DELETE')
                 <div class="modal-body">
-                    <div class="form-group">
-                        <p>Note: Semua Postingan dengan category ini juga akan dihapus.</p>
-                        <input type="hidden" class="form-control form-control-sm form-delete" disabled>
+                    <div class="form-group row">
+                        <p class="col-md-12 col-sm-12 text-center text-danger">Menghapus kategori ini juga akan
+                            menghapus seluruh postingan yang menggunakan kategori ini. anda yakin?
+                        </p>
                     </div>
+                    <input type="hidden" id="form-id" name="id" value="" />
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                     <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
                 </div>
             </form>
@@ -148,21 +198,26 @@
     </div>
 </div>
 <!-- /modals -->
+
 @endsection
 
 @section('script')
 <script>
-    $('.modal-edit').on('show.bs.modal', function(e){
-            var id = $(e.relatedTarget).data('id');
-            var title = $(e.relatedTarget).data('title');
-            $('.modal-header .text-title').text(title);
-            $('.modal-body .form-edit').val(id);
-        });
-    $('.modal-delete').on('show.bs.modal', function(e){
+    $('#modal-edit').on('show.bs.modal', function(e){
         var id = $(e.relatedTarget).data('id');
         var title = $(e.relatedTarget).data('title');
-        $('.modal-header .text-title').text(title);
-        $('.modal-body .form-delete').val(id);
+        var color = $(e.relatedTarget).data('color');
+        $('.modal-header .category-title').text(title);
+        $('.modal-body #form-id').val(id);
+        $('.modal-body #title').val(title);
+        $('.modal-body #color').val(color);
+    });
+
+    $('#modal-delete').on('show.bs.modal', function(e){
+        var id = $(e.relatedTarget).data('id');
+        var title = $(e.relatedTarget).data('title');
+        $('.modal-header .category-title').text(title);
+        $('.modal-body #form-id').val(id);
     });
 </script>
 @endsection

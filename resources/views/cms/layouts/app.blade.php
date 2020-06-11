@@ -24,7 +24,6 @@
     <link href="{{ asset('cms/vendors/iCheck/skins/flat/green.css')}}" rel="stylesheet">
     <!-- Switchery -->
     <link href="{{ asset('cms/vendors/switchery/dist/switchery.min.css') }}" rel="stylesheet">
-
     <!-- bootstrap-progressbar -->
     <link href="{{ asset('cms/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css')}}"
         rel="stylesheet">
@@ -32,7 +31,9 @@
     <link href="{{ asset('cms/vendors/jqvmap/dist/jqvmap.min.css')}}" rel="stylesheet" />
     <!-- bootstrap-daterangepicker -->
     <link href="{{ asset('cms/vendors/bootstrap-daterangepicker/daterangepicker.css')}}" rel="stylesheet">
-
+    <!-- Bootstrap Colorpicker -->
+    <link href="{{ asset('cms/vendors/mjolnic-bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css') }}"
+        rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="{{ asset('cms/build/css/custom.min.css')}}" rel="stylesheet">
 
@@ -120,6 +121,9 @@
     <!-- bootstrap-daterangepicker -->
     <script src="{{ asset('cms/vendors/moment/min/moment.min.js') }}"></script>
     <script src="{{ asset('cms/vendors/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
+    <!-- Bootstrap Colorpicker -->
+    <script src="{{ asset('cms/vendors/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js') }}">
+    </script>
 
     <!-- Custom Theme Scripts -->
     <script src="{{ asset('cms/build/js/custom.min.js') }}"></script>

@@ -15,9 +15,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = Post::paginate(16);
         $categoriesNav = Category::all()->take(8);
-        return view('guest.home', compact('posts' ,'categoriesNav'));
+        $post_populer = Post::where('status', '=', 1)->orderBy('view', 'DESC')->take(5)->get();
+        $post_populer_category_all = Post::where('status', '=', 1)->orderBy('view', 'DESC')->take(5)->get();
+        $post_terbaru_category_all = Post::where('status', '=', 1)->latest()->take(5)->get();
+        $berita_terbaru = Post::where('status', '=', 1)->paginate(16);
+        return view('guest.home', compact('categoriesNav', 'post_populer', 'post_populer_category_all', 'post_terbaru_category_all','berita_terbaru'));
     }
 
     /**

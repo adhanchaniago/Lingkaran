@@ -14,43 +14,51 @@ class CategorySeeder extends Seeder
     public function run()
     {
         $categories = Category::create([
-            'name' => 'Fashion',
-            'slug' => Str::slug('Fashion')
+            'title' => 'Fashion',
+            'slug' => Str::slug('Fashion'),
+            'color' => '#800080'
         ]);
 
         $categories = Category::create([
-            'name' => 'Sains & Teknologi',
-            'slug' => Str::slug('Sains & Teknologi')
+            'title' => 'Sains & Teknologi',
+            'slug' => Str::slug('Sains & Teknologi'),
+            'color' => '#000080'
         ]);
         
         $categories = Category::create([
-            'name' => 'Olah Raga',
-            'slug' => Str::slug('Olah Raga')
+            'title' => 'Olah Raga',
+            'slug' => Str::slug('Olah Raga'),
+            'color' => '#008080'
         ]);
 
         $categories = Category::create([
-            'name' => 'Otomotif',
-            'slug' => Str::slug('Otomotif')
+            'title' => 'Otomotif',
+            'slug' => Str::slug('Otomotif'),
+            'color' => '#008000'
         ]);
 
         $categories = Category::create([
-            'name' => 'Properti',
-            'slug' => Str::slug('Properti')
+            'title' => 'Properti',
+            'slug' => Str::slug('Properti'),
+            'color' => '#808000'
         ]);
 
         $categories = Category::create([
-            'name' => 'Kesehatan',
-            'slug' => Str::slug('Kesehatan')
+            'title' => 'Kesehatan',
+            'slug' => Str::slug('Kesehatan'),
+            'color' => '#800000'
         ]);
 
         $categories = Category::create([
-            'name' => 'Akademi',
-            'slug' => Str::slug('Akademi')
+            'title' => 'Akademi',
+            'slug' => Str::slug('Akademi'),
+            'color' => '#00FFFF'
         ]);
 
         $categories = Category::create([
-            'name' => 'Media Social',
-            'slug' => Str::slug('Media Social')
+            'title' => 'Media Social',
+            'slug' => Str::slug('Media Social'),
+            'color' => '#808080'
         ]);
     }
 }

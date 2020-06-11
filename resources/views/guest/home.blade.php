@@ -8,22 +8,11 @@
                 <span class="trending-header p-2"><i class="fas fa-bolt"></i> Populer</span>
                 <div id="carousel-text" class="carousel slide pl-3" data-ride="carousel">
                     <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Nihil,
-                                mollitia!</a>
+                        @foreach ($post_populer as $key => $post)
+                        <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                            <a href="#">{{ $post->title }}</a>
                         </div>
-                        <div class="carousel-item">
-                            <a href="#">Lorem ipsum, dolor sit amet consectetur adipisicing
-                                elit.
-                                Earum, vero.</a>
-                        </div>
-                        <div class="carousel-item">
-                            <a href="#">Lorem ipsum, dolor sit amet consectetur adipisicing
-                                elit.
-                                Culpa,
-                                cupiditate.</a>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -156,30 +145,29 @@
                             <div class="col-md-6 mt-3">
                                 <span class="terkini-category">Berita Populer</span>
                                 <div class="terkini-body">
+                                    @foreach ($post_populer_category_all as $item)
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="card mt-3 rounded-0">
                                                 <div class="row no-gutters">
                                                     <div class="col-md-4">
-                                                        <a href="#"><img src="assets/images/1.png"
-                                                                class="card-img rounded-0" alt="sport"></a>
+                                                        <a href="#"><img src="{{ asset('post_images/'. $item->image) }}"
+                                                                class="card-img rounded-0" alt="{{ $item->title }}"></a>
                                                     </div>
                                                     <div class="col-md-8">
                                                         <div class="card-body">
                                                             <a href="#">
-                                                                <h5 class="card-title">Pria ini Melakukan Yoga
-                                                                    Setiap
-                                                                    Hari Diwaktu Pagi Dipercaya Dapat Membuat
-                                                                    Pikiran
-                                                                    Sehat</h5>
+                                                                <h5 class="card-title">{{ $item->title }}</h5>
                                                             </a>
                                                             <a href="#"><span
-                                                                    class="card-category bg-success">Sport</span></a>
+                                                                    class="card-category">{{ $item->category->title }}</span></a>
                                                             <p class="card-text">
-                                                                <span><i class="fas fa-user"></i> Riyan</span>
-                                                                <span><i class="far fa-clock"></i> 20 Maret
-                                                                    2020</span>
-                                                                <span><i class="far fa-eye"></i> 8K</span>
+                                                                <span><i class="fas fa-user"></i>
+                                                                    {{ $item->user_author->name }}</span>
+                                                                <span><i class="far fa-clock"></i>
+                                                                    {{ $item->created_at->diffForHumans() }}</span>
+                                                                <span><i class="far fa-eye"></i>
+                                                                    {{ $item->view }}</span>
                                                             </p>
                                                         </div>
                                                     </div>
@@ -187,62 +175,36 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="card mt-3 rounded-0">
-                                                <div class="row no-gutters">
-                                                    <div class="col-md-4">
-                                                        <a href="#"><img src="assets/images/3.png"
-                                                                class="card-img rounded-0" alt="Gaming"></a>
-                                                    </div>
-                                                    <div class="col-md-8">
-                                                        <div class="card-body">
-                                                            <a href="#">
-                                                                <h5 class="card-title">20 Open-Beta Game MMORPG
-                                                                    Terbaru 2020 yang Paling Ditunggu-tunggu para
-                                                                    Gamer Indonesia</h5>
-                                                            </a>
-                                                            <a href="#"><span
-                                                                    class="card-category bg-info">Gaming</span></a>
-                                                            <p class="card-text">
-                                                                <span><i class="fas fa-user"></i> Riyan</span>
-                                                                <span><i class="far fa-clock"></i> 20 Maret
-                                                                    2020</span>
-                                                                <span><i class="far fa-eye"></i> 8K</span>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                             <!-- Berita Terbaru -->
                             <div class="col-md-6 mt-3">
                                 <span class="terkini-category">Berita Terbaru</span>
                                 <div class="terkini-body">
+                                    @foreach ($post_terbaru_category_all as $item)
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="card mt-3 rounded-0">
                                                 <div class="row no-gutters">
                                                     <div class="col-md-4">
-                                                        <a href="#"><img src="assets/images/2.png"
-                                                                class="card-img rounded-0" alt="Fashion"></a>
+                                                        <a href="#"><img src="{{ asset('post_images/'.$item->image) }}"
+                                                                class="card-img rounded-0" alt="{{ $item->title }}"></a>
                                                     </div>
                                                     <div class="col-md-8">
                                                         <div class="card-body">
                                                             <a href="#">
-                                                                <h5 class="card-title">Gaya Rambut Saat Karnaval di
-                                                                    Sebuah Negara Bagian Selatan</h5>
+                                                                <h5 class="card-title">{{ $item->title }}</h5>
                                                             </a>
                                                             <a href="#"><span
-                                                                    class="card-category bg-danger">Fashion</span></a>
+                                                                    class="card-category">{{ $item->category->title }}</span></a>
                                                             <p class="card-text">
-                                                                <span><i class="fas fa-user"></i> Riyan</span>
-                                                                <span><i class="far fa-clock"></i> 20 Maret
-                                                                    2020</span>
-                                                                <span><i class="far fa-eye"></i> 8K</span>
+                                                                <span><i class="fas fa-user"></i>
+                                                                    {{ $item->user_author->name }}</span>
+                                                                <span><i class="far fa-clock"></i>
+                                                                    {{ $item->created_at->diffForHumans() }}</span>
+                                                                <span><i class="far fa-eye"></i>
+                                                                    {{ $item->view }}</span>
                                                             </p>
                                                         </div>
                                                     </div>
@@ -250,34 +212,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="card mt-3 rounded-0">
-                                                <div class="row no-gutters">
-                                                    <div class="col-md-4">
-                                                        <a href="#"><img src="assets/images/4.png"
-                                                                class="card-img rounded-0" alt="Politic"></a>
-                                                    </div>
-                                                    <div class="col-md-8">
-                                                        <div class="card-body">
-                                                            <a href="#">
-                                                                <h5 class="card-title">Aksi Demo ini Membuat Para
-                                                                    Polisi Turun Tangan Hingga Tengah Malam</h5>
-                                                            </a>
-                                                            <a href="#"><span
-                                                                    class="card-category bg-secondary">Politic</span></a>
-                                                            <p class="card-text">
-                                                                <span><i class="fas fa-user"></i> Riyan</span>
-                                                                <span><i class="far fa-clock"></i> 20 Maret
-                                                                    2020</span>
-                                                                <span><i class="far fa-eye"></i> 8K</span>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -312,7 +247,7 @@
             </div>
         </div>
         <div class="row">
-            @foreach ($posts as $post)
+            @foreach ($berita_terbaru as $post)
             <div class="col-md-3 pr-md-0">
                 <div class="card my-3">
                     <a href="#">
@@ -320,7 +255,8 @@
                             alt="{{ $post->title }}">
                     </a>
                     <div class="card-body">
-                        <a href="#" class="terbaru-category bg-success">{{ $post->category->title }}</a>
+                        <a href="#" class="terbaru-category"
+                            style="background-color:{{ $post->category->color }};">{{ $post->category->title }}</a>
                         <a href="#">
                             <h5 class="card-title text-capitalize">{{ $post->title }}</h5>
                         </a>
@@ -340,7 +276,7 @@
             <div class="col-sm-12">
                 <nav>
                     <ul class="pagination pagination-sm justify-content-center mt-4">
-                        {{ $posts->links() }}
+                        {{ $berita_terbaru->links() }}
                     </ul>
                 </nav>
             </div>

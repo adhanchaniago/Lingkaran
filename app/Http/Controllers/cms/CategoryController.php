@@ -16,8 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::Paginate(10);
-
+        $categories = Category::latest()->Paginate(5);
         return view('cms.category.index', compact('categories'));
     }
 
@@ -40,12 +39,14 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $this->validate(request(), [
-            'title' => 'required|min:3|unique:categories'
+            'title' => 'required|min:3|unique:categories',
+            'color' => 'required|min:3|unique:categories'
         ]);
 
         Category::create([
             'title' => Str::title(request('title')),
-            'slug' => Str::slug(request('title'))
+            'slug' => Str::slug(request('title')),
+            'color' => request('color')
         ]);
         return redirect(route('category.index'))->withSuccess('New category has been added');
     }
@@ -79,15 +80,18 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request)
     {
         $this->validate(request(), [
-            'title' => 'required|min:3|unique:categories'
+            'title' => 'required|min:3',
+            'color' => 'required|min:3'
         ]);
 
+        $category = Category::findOrFail($request->id);
         $category->update([
             'title' => Str::title(request('title')),
-            'slug' => Str::slug(request('title'))
+            'slug' => Str::slug(request('title')),
+            'color' => request('color')
         ]);
         return redirect(route('category.index'))->withSuccess('Category has been updated');
     }
@@ -98,8 +102,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(Request $request)
     {
+        $category = Category::findOrFail($request->id);
         $category->delete();
         return redirect(route('category.index'))->withSuccess('Category has been deleted');
     }
