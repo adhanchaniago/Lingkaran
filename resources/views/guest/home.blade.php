@@ -145,8 +145,8 @@
                         <span class="terkini-header">Berita Terkini</span>
                         <a class="nav-item nav-link ml-auto active" id="nav-all-tab" data-toggle="tab" href="#nav-all"
                             role="tab" aria-controls="nav-all" aria-selected="true">All</a>
-                        <a class="nav-item nav-link" id="nav-sport-tab" data-toggle="tab" href="#nav-sport" role="tab"
-                            aria-controls="nav-sport" aria-selected="true">Sport</a>
+
+                        <a href="#" class="nav-item nav-link">More</a>
                     </div>
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
@@ -282,13 +282,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade show" id="nav-sport" role="tabpanel" aria-labelledby="nav-sport-tab">
-                        <div class="row">
-                            <div class="col-12">
-                                Disini konten kategory sport
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -319,97 +312,35 @@
             </div>
         </div>
         <div class="row">
+            @foreach ($posts as $post)
             <div class="col-md-3 pr-md-0">
                 <div class="card my-3">
                     <a href="#">
-                        <img src="assets/images/sport.png" class="card-img-top" alt="Sport">
+                        <img src="{{ asset('post_images/'.$post->image) }}" class="card-img-top"
+                            alt="{{ $post->title }}">
                     </a>
                     <div class="card-body">
-                        <a href="#" class="terbaru-category bg-success">Sport</a>
+                        <a href="#" class="terbaru-category bg-success">{{ $post->category->title }}</a>
                         <a href="#">
-                            <h5 class="card-title text-capitalize">Wanita ini Melakukan Fitness Setiap Hari Diwaktu
-                                Pagi Dipercaya Dapat Membuat Pikiran Sehat</h5>
+                            <h5 class="card-title text-capitalize">{{ $post->title }}</h5>
                         </a>
                         <p class="card-text terbaru-info">
-                            <span><i class="fas fa-user"></i> Riyan</span>
-                            <span><i class="far fa-clock"></i> 20 Maret 2020</span>
-                            <span><i class="far fa-eye"></i> 8K</span>
+                            <span><i class="fas fa-user"></i> {{ $post->user_author->name }}</span>
+                            <span><i class="far fa-clock"></i> {{ $post->created_at->diffForHumans() }}</span>
+                            <span><i class="far fa-eye"></i> {{ $post->view }}</span>
                         </p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 pr-md-0">
-                <div class="card my-3">
-                    <a href="#">
-                        <img src="assets/images/fashion.png" class="card-img-top" alt="Sport">
-                    </a>
-                    <div class="card-body">
-                        <a href="#" class="terbaru-category bg-danger">Fashion</a>
-                        <a href="#">
-                            <h5 class="card-title text-capitalize">Mengisi Hari Libur Dengan Berbusana
-                                Moderen</h5>
-                        </a>
-                        <p class="card-text terbaru-info">
-                            <span><i class="fas fa-user"></i> Riyan</span>
-                            <span><i class="far fa-clock"></i> 20 Maret 2020</span>
-                            <span><i class="far fa-eye"></i> 8K</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 pr-md-0">
-                <div class="card my-3">
-                    <a href="#">
-                        <img src="assets/images/gaming.png" class="card-img-top" alt="Sport">
-                    </a>
-                    <div class="card-body">
-                        <a href="#" class="terbaru-category bg-info">Gaming</a>
-                        <a href="#">
-                            <h5 class="card-title text-capitalize">20 Open-Beta Game MMORPG Terbaru 2020 yang Paling
-                                Ditunggu-tunggu para Gamer Indonesia</h5>
-                        </a>
-                        <p class="card-text terbaru-info">
-                            <span><i class="fas fa-user"></i> Riyan</span>
-                            <span><i class="far fa-clock"></i> 20 Maret 2020</span>
-                            <span><i class="far fa-eye"></i> 8K</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 pr-md-0">
-                <div class="card my-3">
-                    <a href="#">
-                        <img src="assets/images/4.png" class="card-img-top" alt="Sport">
-                    </a>
-                    <div class="card-body">
-                        <a href="#" class="terbaru-category bg-secondary">Politic</a>
-                        <a href="#">
-                            <h5 class="card-title text-capitalize">Aksi Demo ini Membuat Para Polisi Turun
-                                Tangan Hingga Tengah Malam</h5>
-                        </a>
-                        <p class="card-text terbaru-info">
-                            <span><i class="fas fa-user"></i> Riyan</span>
-                            <span><i class="far fa-clock"></i> 20 Maret 2020</span>
-                            <span><i class="far fa-eye"></i> 8K</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
+
+        <!-- Pagination -->
         <div class="row">
             <div class="col-sm-12">
-                <!-- Pagination -->
                 <nav>
                     <ul class="pagination pagination-sm justify-content-center mt-4">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                        </li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">Next</a>
-                        </li>
+                        {{ $posts->links() }}
                     </ul>
                 </nav>
             </div>

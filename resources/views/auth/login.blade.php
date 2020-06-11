@@ -41,8 +41,9 @@
             <section class="login_content">
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
-                    <h1><img src="{{ asset('assets/logo/logo.png') }}" alt="Logo Lingkaran" style="width: 30px;">
-                        Lingkaran</h1>
+                    <h1><a href="{{ route('guest.home') }}" style="text-decoration: none;"><img
+                                src="{{ asset('assets/logo/logo.png') }}" alt="Logo Lingkaran" style="width: 30px;">
+                            Lingkaran</a></h1>
                     <div class="form-group row">
                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
                             name="email" value="{{ old('email') }}" required autocomplete="email" autofocus

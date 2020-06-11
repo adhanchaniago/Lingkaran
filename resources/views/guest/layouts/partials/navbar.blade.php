@@ -14,31 +14,25 @@
                     <a class="nav-link" href="#">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Sport</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="#">Fashion</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Lifestyle</a>
+                    <a class="nav-link" href="#">Sains & Teknologi</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Crime</a>
+                    <a class="nav-link" href="#">Olah Raga</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Social</a>
+                    <a class="nav-link" href="#">Otomotif</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Politic</a>
+                    <a class="nav-link" href="#">Properti</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Gaming</a>
+                    <a class="nav-link" href="#">Kesehatan</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Technology</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">News</a>
+                    <a class="nav-link" href="#">Media Social</a>
                 </li>
                 @if(auth()->user())
                 <li class="nav-item">
