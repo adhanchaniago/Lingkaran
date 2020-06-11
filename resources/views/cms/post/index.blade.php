@@ -68,11 +68,15 @@
                                     <td>{{ $post->view }}</td>
                                     <td class="d-flex justify-content-end">
                                         <button class="btn btn-sm btn-info"
-                                            onclick="location.href='{{ route('post.edit', $post) }}'"><i
-                                                class="fa fa-pencil"></i></button>
+                                            onclick="location.href='{{ route('post.edit', $post) }}'">
+                                            <i class="fa fa-pencil"></i>
+                                        </button>
+
                                         <button class="btn btn-sm btn-danger" data-toggle="modal"
-                                            data-target=".modal-delete" data-title="{{ $post->title }}"><i
-                                                class="fa fa-trash"></i></button>
+                                            data-target="#modal-delete" data-id="{{ $post->id }}"
+                                            data-title="{{ $post->title }}">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
 
                                         @if( $post->status == 0 )
                                         <button onclick="document.getElementById('publish-{{ $post->id }}').submit();"
@@ -128,25 +132,25 @@
     <!-- /modals -->
 
     <!-- Delete modal -->
-    <div class="modal fade modal-delete" tabindex="-1" role="dialog">
+    <div class="modal fade" id="modal-delete" tabindex="-1" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h6 class="modal-title">Deleting post</h6>
+                    <h4 class="modal-title">Menghapus post</h4>
                 </div>
-                <div class="modal-body">
-                    <p>Are you sure want to delete "<span class="title"></span>" ?</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger btn-sm"
-                        onclick="document.getElementById('delete-form').submit();">Delete</button>
-                    <form id="delete-form" action="{{ route('post.destroy', $post ?? '') }}" method="POST"
-                        style="display: none">
-                        @csrf
-                        @method('DELETE')
-                    </form>
-                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
-                </div>
+                <form action="{{ route('post.destroy', 'id') }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <div class="modal-body">
+                        <p class="text-center">Apa anda yakin ingin menghapus postingan "<span
+                                class="post-title text-danger"></span>" ?</p>
+                        <input type="hidden" id="form-delete" name="id">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -163,9 +167,11 @@
         $('.modal-body .img-fluid').attr('src', img);
     });
 
-    $('.modal-delete').on('show.bs.modal', function(e){
+    $('#modal-delete').on('show.bs.modal', function(e){
+        var id = $(e.relatedTarget).data('id');
         var title = $(e.relatedTarget).data('title');
-        $('.modal-body .title').text(title);
+        $('.modal-body .post-title').text(title);
+        $('.modal-body #form-delete').val(id);
     });
 </script>
 @endsection
