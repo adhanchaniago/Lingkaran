@@ -8,7 +8,7 @@ class Category extends Model
 {
     protected $fillable = ['title', 'slug', 'color'];
 
-    public function getRouteKeyName()
+    function getRouteKeyName()
     {
         return 'slug';
     }

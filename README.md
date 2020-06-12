@@ -11,6 +11,8 @@ Lingkaran adalah website untuk memberikan berita-berita terbaru yang ada di Indo
 
 List package Website Lingkaran, diantaranya adalah:
 
-- [Laravel](https://laravel.com/).
-- [Admin Bootstrap Gentelella](https://github.com/ColorlibHQ/gentelella).
-- [Spatie Laravel Permission](https://github.com/spatie/laravel-permission).
+- Framework [Laravel](https://laravel.com/).
+- Design website menggunakan Framework [Bootstrap](https://getbootstrap.com/).
+- Template CMS menggunakan [Admin Bootstrap Gentelella](https://github.com/ColorlibHQ/gentelella).
+- Hak akses dan Level User menggunakan [Spatie Laravel Permission](https://github.com/spatie/laravel-permission).
+- Manipulasi gambar pada website menggunakan [Image Intervension](http://image.intervention.io/).

@@ -8,7 +8,7 @@
                 <span class="trending-header p-2"><i class="fas fa-bolt"></i> Populer</span>
                 <div id="carousel-text" class="carousel slide pl-3" data-ride="carousel">
                     <div class="carousel-inner">
-                        @foreach ($post_populer as $key => $post)
+                        @foreach ($trending as $key => $post)
                         <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
                             <a href="#">{{ $post->title }}</a>
                         </div>
@@ -134,7 +134,6 @@
                         <span class="terkini-header">Berita Terkini</span>
                         <a class="nav-item nav-link ml-auto active" id="nav-all-tab" data-toggle="tab" href="#nav-all"
                             role="tab" aria-controls="nav-all" aria-selected="true">All</a>
-
                         <a href="#" class="nav-item nav-link">More</a>
                     </div>
                 </nav>
@@ -145,29 +144,28 @@
                             <div class="col-md-6 mt-3">
                                 <span class="terkini-category">Berita Populer</span>
                                 <div class="terkini-body">
-                                    @foreach ($post_populer_category_all as $item)
+                                    @foreach ($post_populer_category_all as $post)
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="card mt-3 rounded-0">
                                                 <div class="row no-gutters">
                                                     <div class="col-md-4">
-                                                        <a href="#"><img src="{{ asset('post_images/'. $item->image) }}"
-                                                                class="card-img rounded-0" alt="{{ $item->title }}"></a>
+                                                        <a href="#"><img src="{{ asset('post_images/'. $post->image) }}"
+                                                                class="card-img rounded-0" alt="{{ $post->title }}"></a>
                                                     </div>
                                                     <div class="col-md-8">
                                                         <div class="card-body">
                                                             <a href="#">
-                                                                <h5 class="card-title">{{ $item->title }}</h5>
+                                                                <h5 class="card-title">{{ $post->title }}</h5>
                                                             </a>
-                                                            <a href="#"><span
-                                                                    class="card-category">{{ $item->category->title }}</span></a>
+                                                            <a href="#"><span class="card-category"
+                                                                    style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
                                                             <p class="card-text">
-                                                                <span><i class="fas fa-user"></i>
-                                                                    {{ $item->user_author->name }}</span>
-                                                                <span><i class="far fa-clock"></i>
-                                                                    {{ $item->created_at->diffForHumans() }}</span>
-                                                                <span><i class="far fa-eye"></i>
-                                                                    {{ $item->view }}</span>
+                                                                <span><i
+                                                                        class="fas fa-user"></i>{{ $post->user_author->name }}</span>
+                                                                <span><i
+                                                                        class="far fa-clock"></i>{{ $post->created_at->diffForHumans() }}</span>
+                                                                <span><i class="far fa-eye"></i>{{ $post->view }}</span>
                                                             </p>
                                                         </div>
                                                     </div>
@@ -182,29 +180,28 @@
                             <div class="col-md-6 mt-3">
                                 <span class="terkini-category">Berita Terbaru</span>
                                 <div class="terkini-body">
-                                    @foreach ($post_terbaru_category_all as $item)
+                                    @foreach ($post_terbaru_category_all as $post)
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="card mt-3 rounded-0">
                                                 <div class="row no-gutters">
                                                     <div class="col-md-4">
-                                                        <a href="#"><img src="{{ asset('post_images/'.$item->image) }}"
-                                                                class="card-img rounded-0" alt="{{ $item->title }}"></a>
+                                                        <a href="#"><img src="{{ asset('post_images/'. $post->image) }}"
+                                                                class="card-img rounded-0" alt="{{ $post->title }}"></a>
                                                     </div>
                                                     <div class="col-md-8">
                                                         <div class="card-body">
                                                             <a href="#">
-                                                                <h5 class="card-title">{{ $item->title }}</h5>
+                                                                <h5 class="card-title">{{ $post->title }}</h5>
                                                             </a>
-                                                            <a href="#"><span
-                                                                    class="card-category">{{ $item->category->title }}</span></a>
+                                                            <a href="#"><span class="card-category"
+                                                                    style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
                                                             <p class="card-text">
-                                                                <span><i class="fas fa-user"></i>
-                                                                    {{ $item->user_author->name }}</span>
-                                                                <span><i class="far fa-clock"></i>
-                                                                    {{ $item->created_at->diffForHumans() }}</span>
-                                                                <span><i class="far fa-eye"></i>
-                                                                    {{ $item->view }}</span>
+                                                                <span><i
+                                                                        class="fas fa-user"></i>{{ $post->user_author->name }}</span>
+                                                                <span><i
+                                                                        class="far fa-clock"></i>{{ $post->created_at->diffForHumans() }}</span>
+                                                                <span><i class="far fa-eye"></i>{{ $post->view }}</span>
                                                             </p>
                                                         </div>
                                                     </div>
