@@ -1,10 +1,7 @@
-<p align="center" style="color:green;"><img src="https://lh3.googleusercontent.com/pw/ACtC-3dJokKcOHgi8DlDcN-L6GFnfPICA9aSJfsuFLlrSs7uVYbIw3PBtmprjTDPBwqqXM-PEyoRNuw0_BjvwEcj5EipMlBb8tzvmsrf9S1ztE4FCKexElCm1B6jkPy_rd5B7q0-RAXNu7KfN4nzpRyE7yN9=s450" width="400"> Lingkar<span style="color:red;">an</span></p>
+<p align="center"><img src="https://lh3.googleusercontent.com/oRTgfoibDcCNK4LCVpZp9rlyMyvyAJ92j1b5qoVcOKJ41QeVepZbuWiVHslaWBgfy-vlcUtpDeFH5MYsLwy6fC-DyRx3fBoj6qX8eJGEMiqCUPAbbBbaVJQW0iEYTSgT0xEIYDVE-II7MT_KK3r4fjRrO4wy9P-nv1J0JOLFzM5vFzPTpvgXOyNyV0Vh8WEZODYSGgE-xY6_LSwemTFiKlMG1bKy5iASchKIOMYYtkizdG0VkyHZ24LMHv6KowTtBUeK2gPS5ODMq9pi87vYMGStdMnbN9_3VATQxHlepIvVAhP4807yeFD5Hxy5fbvF3hQwixR2wBot9JH1vItJupl_ZBMNmx5thPVr5tzY667k4teXtfsfXkyetfsZx26PTQPh4wygv0GjpDKJoursbg-TV2O-PAPvCIgGE_fkENzE50I9zFCtKuaAsHREOpMzg01Yk5-8lJuKWJ09Oyo-VR8TQ7_D8R-6evJAme2plnMUVuipzxVRS0i0brermqia22j21JenEl_7QsERDTbGi4sUneyYhmS-WvGz8IdIuaIgjhvMWuctoTC6NBM34heGQFLqoZmerE30vV7h8CENhHGlh7wCK7nNdCfCR6ew_RCSZid-3IEzWxdcPsOSQ2cPqGFsglabT6Jhu7C6_HHI2Moev7KW7SBziVFrB0tyXmCsE68mxbgzojlE9Zzn=w350-h100" width="250"></p>
 
 <p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
+<hr/>
 </p>
 
 ## Tentang Lingkaran
@@ -16,5 +13,3 @@ List package Website Lingkaran, diantaranya adalah:
 - [Laravel](https://laravel.com/).
 - [Admin Bootstrap Gentelella](https://github.com/ColorlibHQ/gentelella).
 - [Spatie Laravel Permission](https://github.com/spatie/laravel-permission).
-
-Lingkaran masih dalam pengembangan.
