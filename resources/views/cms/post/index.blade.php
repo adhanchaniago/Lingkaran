@@ -79,23 +79,17 @@
                                         </button>
 
                                         @if( $post->status == 0 )
-                                        <button onclick="document.getElementById('publish-{{ $post->id }}').submit();"
-                                            type="button" class="btn btn-success btn-sm"><i
-                                                class="fa fa-bullhorn"></i></button>
-                                        <form style="display:none;" id="publish-{{ $post->id }}"
-                                            action="{{ route('post.publish', $post->id) }}" method="POST">
-                                            @csrf
-                                            @method('PATCH')
-                                        </form>
+                                        <button class="btn btn-success btn-sm" data-toggle="modal"
+                                            data-target="#modal-publish" data-id="{{ $post->id }}"
+                                            data-title="{{ $post->title }}">
+                                            <i class="fa fa-bullhorn"></i>
+                                        </button>
                                         @else
-                                        <button onclick="document.getElementById('unpublish-{{ $post->id }}').submit();"
-                                            type="button" class="btn btn-warning btn-sm"><i
-                                                class="fa fa-undo"></i></button>
-                                        <form style="display:none;" id="unpublish-{{ $post->id }}"
-                                            action="{{ route('post.unpublish', $post->id) }}" method="POST">
-                                            @csrf
-                                            @method('PATCH')
-                                        </form>
+                                        <button class="btn btn-warning btn-sm" data-toggle="modal"
+                                            data-target="#modal-unpublish" data-id="{{ $post->id }}"
+                                            data-title="{{ $post->title }}">
+                                            <i class="fa fa-undo"></i>
+                                        </button>
                                         @endif
                                     </td>
                                 </tr>
@@ -114,7 +108,7 @@
     </div>
 
     <!-- Image modal -->
-    <div class="modal fade modal-image" tabindex="-1" role="dialog">
+    <div class="modal fade modal-image" data-backdrop="static" tabindex="-1" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -155,6 +149,56 @@
         </div>
     </div>
     <!-- /modals -->
+
+    <!-- Publish Modal -->
+    <div class="modal fade" id="modal-publish" data-backdrop="static" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Publish post ke halaman utama</h4>
+                </div>
+                <form action="{{ route('post.publish', 'id') }}" method="POST">
+                    @csrf
+                    @method('PATCH')
+                    <div class="modal-body">
+                        <p class="text-center">Apa anda yakin ingin publish postingan "<span
+                                class="post-title text-success"></span>" ?</p>
+                        <input type="hidden" id="form-publish" name="id">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success btn-sm">Publish</button>
+                        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- /modals -->
+
+    <!-- Publish Modal -->
+    <div class="modal fade" id="modal-unpublish" data-backdrop="static" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Unpublish post dari halaman utama</h4>
+                </div>
+                <form action="{{ route('post.unpublish', 'id') }}" method="POST">
+                    @csrf
+                    @method('PATCH')
+                    <div class="modal-body">
+                        <p class="text-center">Apa anda yakin ingin unpublish postingan "<span
+                                class="post-title text-warning"></span>" ?</p>
+                        <input type="hidden" id="form-publish" name="id">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-warning btn-sm">unpublish</button>
+                        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- /modals -->
 </div>
 @endsection
 
@@ -172,6 +216,20 @@
         var title = $(e.relatedTarget).data('title');
         $('.modal-body .post-title').text(title);
         $('.modal-body #form-delete').val(id);
+    });
+
+    $('#modal-publish').on('show.bs.modal', function(e){
+        var id = $(e.relatedTarget).data('id');
+        var title = $(e.relatedTarget).data('title');
+        $('.modal-body .post-title').text(title);
+        $('.modal-body #form-publish').val(id);
+    });
+
+    $('#modal-unpublish').on('show.bs.modal', function(e){
+        var id = $(e.relatedTarget).data('id');
+        var title = $(e.relatedTarget).data('title');
+        $('.modal-body .post-title').text(title);
+        $('.modal-body #form-publish').val(id);
     });
 </script>
 @endsection

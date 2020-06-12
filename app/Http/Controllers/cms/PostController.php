@@ -161,9 +161,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function publish($id)
+    public function publish(Request $request)
     {
-        $post = Post::findOrFail($id);
+        $post = Post::findOrFail($request->id);
         $post->update([
             'status' => 1
         ]);
@@ -176,9 +176,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function unpublish($id)
+    public function unpublish(Request $request)
     {
-        $post = Post::findOrFail($id);
+        $post = Post::findOrFail($request->id);
         $post->update([
             'status' => 0
         ]);
