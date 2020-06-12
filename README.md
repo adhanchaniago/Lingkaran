@@ -1,4 +1,4 @@
-<p align="center" style="color:green;"><img src="https://lh3.googleusercontent.com/pw/ACtC-3dJokKcOHgi8DlDcN-L6GFnfPICA9aSJfsuFLlrSs7uVYbIw3PBtmprjTDPBwqqXM-PEyoRNuw0_BjvwEcj5EipMlBb8tzvmsrf9S1ztE4FCKexElCm1B6jkPy_rd5B7q0-RAXNu7KfN4nzpRyE7yN9=s450" width="400"> Lingkar<span style="color:red;">an</span></p>
+<p align="center" style="color:green;"><img src="https://lh3.googleusercontent.com/pw/ACtC-3dJokKcOHgi8DlDcN-L6GFnfPICA9aSJfsuFLlrSs7uVYbIw3PBtmprjTDPBwqqXM-PEyoRNuw0_BjvwEcj5EipMlBb8tzvmsrf9S1ztE4FCKexElCm1B6jkPy_rd5B7q0-RAXNu7KfN4nzpRyE7yN9=s450" width="50" height="50"> Lingkar<span style="color:red;">an</span></p>
 
 <p align="center">
 <a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
