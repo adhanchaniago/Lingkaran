@@ -4,6 +4,7 @@
 <hr/>
 </p>
 
+
 ## Tentang Lingkaran
 
 Lingkaran adalah website untuk memberikan berita-berita terbaru yang ada di Indonesia. Website ini dibangun menggunakan Framework Laravel dan terdapat beberapa package untuk mendukung jalannya website ini. List package yang terdapat pada website lingkaran dapat dilihat pada link dibawah.
