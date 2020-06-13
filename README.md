@@ -16,3 +16,26 @@ List package Website Lingkaran, diantaranya adalah:
 - Template CMS menggunakan [Admin Bootstrap Gentelella](https://github.com/ColorlibHQ/gentelella).
 - Hak akses dan Level User menggunakan [Spatie Laravel Permission](https://github.com/spatie/laravel-permission).
 - Manipulasi gambar pada website menggunakan [Image Intervension](http://image.intervention.io/).
+
+### Instalasi
+Jalankan artisan migration dan seeder pada terminal untuk membuat database dan default user.
+
+```javascript
+//Generate database baru
+php artisan migrate
+
+//Generate seluruh seeder
+php artisan db:seed
+```
+
+### User Default Akses
+
+```javascript
+//Email login
+superadmin@email.com
+
+//Pass login
+12345678
+```
+
+<p style="font-weight:bold;">NOTE: <span style="color:red;">Website ini masih belum selesai dan masih dalam pengembangan</span>. 2020</p>

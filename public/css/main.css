@@ -363,6 +363,11 @@ a:hover {
     margin-right: 10px;
 }
 
+.berita-terkini .card-text span i,
+.berita-side-right .card-text span i {
+    margin-right: 20px;
+}
+
 /* Iklan Tengah */
 .iklan-tengah img {
     width: 630px;
@@ -524,6 +529,11 @@ a:hover {
 /* Post Detail Content */
 .post-detail .detail-content {
     font-size: 14px;
+}
+
+.post-detail .detail-content .first-content-text {
+    font-weight: bold;
+    color: var(--hijau);
 }
 
 /* Post Detail Tags */

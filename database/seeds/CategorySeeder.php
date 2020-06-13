@@ -26,8 +26,8 @@ class CategorySeeder extends Seeder
         ]);
         
         $categories = Category::create([
-            'title' => 'Olah Raga',
-            'slug' => Str::slug('Olah Raga'),
+            'title' => 'Olahraga',
+            'slug' => Str::slug('Olahraga'),
             'color' => '#008080'
         ]);
 

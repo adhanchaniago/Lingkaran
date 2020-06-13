@@ -10,7 +10,8 @@
                     <div class="carousel-inner">
                         @foreach ($trending as $key => $post)
                         <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                            <a href="#">{{ $post->title }}</a>
+                            <a
+                                href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">{{ $post->title }}</a>
                         </div>
                         @endforeach
                     </div>
@@ -33,7 +34,7 @@
                                 <a href="singgle_post.html" class="headline-category px-2 bg-success">Sport</a>
                                 <h3 class="headline-title-wrap mt-2 mb-1">
                                     <a href="singgle_post.html" class="headline-title">20
-                                        Tips Hidup Sehat Untuk Para Gadis Usia Remaja Dengan Olah Raga Ala
+                                        Tips Hidup Sehat Untuk Para Gadis Usia Remaja Dengan Olahraga Ala
                                         Anak Milenial</a>
                                 </h3>
                                 <span class="headline-info">
@@ -134,28 +135,48 @@
                         <span class="terkini-header">Berita Terkini</span>
                         <a class="nav-item nav-link ml-auto active" id="nav-all-tab" data-toggle="tab" href="#nav-all"
                             role="tab" aria-controls="nav-all" aria-selected="true">All</a>
+                        <a class="nav-item nav-link" id="nav-fashion-tab" data-toggle="tab" href="#nav-fashion"
+                            role="tab" aria-controls="nav-fashion" aria-selected="true">Fashion</a>
+                        <a class="nav-item nav-link" id="nav-sains-teknologi-tab" data-toggle="tab"
+                            href="#nav-sains-teknologi" role="tab" aria-controls="nav-sains-teknologi"
+                            aria-selected="true">Sains & Teknologi</a>
+                        <a class="nav-item nav-link" id="nav-olahraga-tab" data-toggle="tab" href="#nav-olahraga"
+                            role="tab" aria-controls="nav-olahraga" aria-selected="true">Olahraga</a>
+                        <a class="nav-item nav-link" id="nav-otomotif-tab" data-toggle="tab" href="#nav-otomotif"
+                            role="tab" aria-controls="nav-otomotif" aria-selected="true">Otomotif</a>
+                        <a class="nav-item nav-link" id="nav-properti-tab" data-toggle="tab" href="#nav-properti"
+                            role="tab" aria-controls="nav-properti" aria-selected="true">Properti</a>
+                        <a class="nav-item nav-link" id="nav-kesehatan-tab" data-toggle="tab" href="#nav-kesehatan"
+                            role="tab" aria-controls="nav-kesehatan" aria-selected="true">Kesehatan</a>
+                        <a class="nav-item nav-link" id="nav-media-sosial-tab" data-toggle="tab"
+                            href="#nav-media-sosial" role="tab" aria-controls="nav-media-sosial"
+                            aria-selected="true">Media Sosial</a>
                         <a href="#" class="nav-item nav-link">More</a>
                     </div>
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
+                    {{-- Category all --}}
                     <div class="tab-pane fade show active" id="nav-all" role="tabpanel" aria-labelledby="nav-all-tab">
                         <div class="row">
                             <!-- Berita Populer -->
                             <div class="col-md-6 mt-3">
                                 <span class="terkini-category">Berita Populer</span>
                                 <div class="terkini-body">
-                                    @foreach ($post_populer_category_all as $post)
+                                    @foreach ($populer_category_all as $post)
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="card mt-3 rounded-0">
                                                 <div class="row no-gutters">
                                                     <div class="col-md-4">
-                                                        <a href="#"><img src="{{ asset('post_images/'. $post->image) }}"
+                                                        <a
+                                                            href="{{ route('guest.post.show', [$post->category->slug , $post]) }}"><img
+                                                                src="{{ asset('post_images/'. $post->image) }}"
                                                                 class="card-img rounded-0" alt="{{ $post->title }}"></a>
                                                     </div>
                                                     <div class="col-md-8">
                                                         <div class="card-body">
-                                                            <a href="#">
+                                                            <a
+                                                                href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
                                                                 <h5 class="card-title">{{ $post->title }}</h5>
                                                             </a>
                                                             <a href="#"><span class="card-category"
@@ -180,18 +201,608 @@
                             <div class="col-md-6 mt-3">
                                 <span class="terkini-category">Berita Terbaru</span>
                                 <div class="terkini-body">
-                                    @foreach ($post_terbaru_category_all as $post)
+                                    @foreach ($terbaru_category_all as $post)
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="card mt-3 rounded-0">
                                                 <div class="row no-gutters">
                                                     <div class="col-md-4">
-                                                        <a href="#"><img src="{{ asset('post_images/'. $post->image) }}"
+                                                        <a
+                                                            href="{{ route('guest.post.show', [$post->category->slug , $post]) }}"><img
+                                                                src="{{ asset('post_images/'. $post->image) }}"
                                                                 class="card-img rounded-0" alt="{{ $post->title }}"></a>
                                                     </div>
                                                     <div class="col-md-8">
                                                         <div class="card-body">
-                                                            <a href="#">
+                                                            <a
+                                                                href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
+                                                                <h5 class="card-title">{{ $post->title }}</h5>
+                                                            </a>
+                                                            <a href="#"><span class="card-category"
+                                                                    style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
+                                                            <p class="card-text">
+                                                                <span><i
+                                                                        class="fas fa-user"></i>{{ $post->user_author->name }}</span>
+                                                                <span><i
+                                                                        class="far fa-clock"></i>{{ $post->created_at->diffForHumans() }}</span>
+                                                                <span><i class="far fa-eye"></i>{{ $post->view }}</span>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- Category fashion --}}
+                    <div class="tab-pane fade show" id="nav-fashion" role="tabpanel" aria-labelledby="nav-fashion-tab">
+                        <div class="row">
+                            <!-- Berita Populer -->
+                            <div class="col-md-6 mt-3">
+                                <span class="terkini-category">Berita Populer</span>
+                                <div class="terkini-body">
+                                    @foreach ($populer_category_fashion as $post)
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="card mt-3 rounded-0">
+                                                <div class="row no-gutters">
+                                                    <div class="col-md-4">
+                                                        <a
+                                                            href="{{ route('guest.post.show', [$post->category->slug , $post]) }}"><img
+                                                                src="{{ asset('post_images/'. $post->image) }}"
+                                                                class="card-img rounded-0" alt="{{ $post->title }}"></a>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <div class="card-body">
+                                                            <a
+                                                                href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
+                                                                <h5 class="card-title">{{ $post->title }}</h5>
+                                                            </a>
+                                                            <a href="#"><span class="card-category"
+                                                                    style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
+                                                            <p class="card-text">
+                                                                <span><i
+                                                                        class="fas fa-user"></i>{{ $post->user_author->name }}</span>
+                                                                <span><i
+                                                                        class="far fa-clock"></i>{{ $post->created_at->diffForHumans() }}</span>
+                                                                <span><i class="far fa-eye"></i>{{ $post->view }}</span>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                            <!-- Berita Terbaru -->
+                            <div class="col-md-6 mt-3">
+                                <span class="terkini-category">Berita Terbaru</span>
+                                <div class="terkini-body">
+                                    @foreach ($terbaru_category_fashion as $post)
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="card mt-3 rounded-0">
+                                                <div class="row no-gutters">
+                                                    <div class="col-md-4">
+                                                        <a
+                                                            href="{{ route('guest.post.show', [$post->category->slug , $post]) }}"><img
+                                                                src="{{ asset('post_images/'. $post->image) }}"
+                                                                class="card-img rounded-0" alt="{{ $post->title }}"></a>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <div class="card-body">
+                                                            <a
+                                                                href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
+                                                                <h5 class="card-title">{{ $post->title }}</h5>
+                                                            </a>
+                                                            <a href="#"><span class="card-category"
+                                                                    style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
+                                                            <p class="card-text">
+                                                                <span><i
+                                                                        class="fas fa-user"></i>{{ $post->user_author->name }}</span>
+                                                                <span><i
+                                                                        class="far fa-clock"></i>{{ $post->created_at->diffForHumans() }}</span>
+                                                                <span><i class="far fa-eye"></i>{{ $post->view }}</span>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- Category sains-teknologi --}}
+                    <div class="tab-pane fade show" id="nav-sains-teknologi" role="tabpanel"
+                        aria-labelledby="nav-sains-teknologi-tab">
+                        <div class="row">
+                            <!-- Berita Populer -->
+                            <div class="col-md-6 mt-3">
+                                <span class="terkini-category">Berita Populer</span>
+                                <div class="terkini-body">
+                                    @foreach ($populer_category_sains as $post)
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="card mt-3 rounded-0">
+                                                <div class="row no-gutters">
+                                                    <div class="col-md-4">
+                                                        <a
+                                                            href="{{ route('guest.post.show', [$post->category->slug , $post]) }}"><img
+                                                                src="{{ asset('post_images/'. $post->image) }}"
+                                                                class="card-img rounded-0" alt="{{ $post->title }}"></a>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <div class="card-body">
+                                                            <a
+                                                                href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
+                                                                <h5 class="card-title">{{ $post->title }}</h5>
+                                                            </a>
+                                                            <a href="#"><span class="card-category"
+                                                                    style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
+                                                            <p class="card-text">
+                                                                <span><i
+                                                                        class="fas fa-user"></i>{{ $post->user_author->name }}</span>
+                                                                <span><i
+                                                                        class="far fa-clock"></i>{{ $post->created_at->diffForHumans() }}</span>
+                                                                <span><i class="far fa-eye"></i>{{ $post->view }}</span>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                            <!-- Berita Terbaru -->
+                            <div class="col-md-6 mt-3">
+                                <span class="terkini-category">Berita Terbaru</span>
+                                <div class="terkini-body">
+                                    @foreach ($terbaru_category_sains as $post)
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="card mt-3 rounded-0">
+                                                <div class="row no-gutters">
+                                                    <div class="col-md-4">
+                                                        <a
+                                                            href="{{ route('guest.post.show', [$post->category->slug , $post]) }}"><img
+                                                                src="{{ asset('post_images/'. $post->image) }}"
+                                                                class="card-img rounded-0" alt="{{ $post->title }}"></a>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <div class="card-body">
+                                                            <a
+                                                                href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
+                                                                <h5 class="card-title">{{ $post->title }}</h5>
+                                                            </a>
+                                                            <a href="#"><span class="card-category"
+                                                                    style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
+                                                            <p class="card-text">
+                                                                <span><i
+                                                                        class="fas fa-user"></i>{{ $post->user_author->name }}</span>
+                                                                <span><i
+                                                                        class="far fa-clock"></i>{{ $post->created_at->diffForHumans() }}</span>
+                                                                <span><i class="far fa-eye"></i>{{ $post->view }}</span>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- Category olahraga --}}
+                    <div class="tab-pane fade show" id="nav-olahraga" role="tabpanel"
+                        aria-labelledby="nav-olahraga-tab">
+                        <div class="row">
+                            <!-- Berita Populer -->
+                            <div class="col-md-6 mt-3">
+                                <span class="terkini-category">Berita Populer</span>
+                                <div class="terkini-body">
+                                    @foreach ($populer_category_olahraga as $post)
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="card mt-3 rounded-0">
+                                                <div class="row no-gutters">
+                                                    <div class="col-md-4">
+                                                        <a
+                                                            href="{{ route('guest.post.show', [$post->category->slug , $post]) }}"><img
+                                                                src="{{ asset('post_images/'. $post->image) }}"
+                                                                class="card-img rounded-0" alt="{{ $post->title }}"></a>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <div class="card-body">
+                                                            <a
+                                                                href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
+                                                                <h5 class="card-title">{{ $post->title }}</h5>
+                                                            </a>
+                                                            <a href="#"><span class="card-category"
+                                                                    style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
+                                                            <p class="card-text">
+                                                                <span><i
+                                                                        class="fas fa-user"></i>{{ $post->user_author->name }}</span>
+                                                                <span><i
+                                                                        class="far fa-clock"></i>{{ $post->created_at->diffForHumans() }}</span>
+                                                                <span><i class="far fa-eye"></i>{{ $post->view }}</span>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                            <!-- Berita Terbaru -->
+                            <div class="col-md-6 mt-3">
+                                <span class="terkini-category">Berita Terbaru</span>
+                                <div class="terkini-body">
+                                    @foreach ($terbaru_category_olahraga as $post)
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="card mt-3 rounded-0">
+                                                <div class="row no-gutters">
+                                                    <div class="col-md-4">
+                                                        <a
+                                                            href="{{ route('guest.post.show', [$post->category->slug , $post]) }}"><img
+                                                                src="{{ asset('post_images/'. $post->image) }}"
+                                                                class="card-img rounded-0" alt="{{ $post->title }}"></a>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <div class="card-body">
+                                                            <a
+                                                                href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
+                                                                <h5 class="card-title">{{ $post->title }}</h5>
+                                                            </a>
+                                                            <a href="#"><span class="card-category"
+                                                                    style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
+                                                            <p class="card-text">
+                                                                <span><i
+                                                                        class="fas fa-user"></i>{{ $post->user_author->name }}</span>
+                                                                <span><i
+                                                                        class="far fa-clock"></i>{{ $post->created_at->diffForHumans() }}</span>
+                                                                <span><i class="far fa-eye"></i>{{ $post->view }}</span>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- Category otomotif --}}
+                    <div class="tab-pane fade show" id="nav-otomotif" role="tabpanel"
+                        aria-labelledby="nav-otomotif-tab">
+                        <div class="row">
+                            <!-- Berita Populer -->
+                            <div class="col-md-6 mt-3">
+                                <span class="terkini-category">Berita Populer</span>
+                                <div class="terkini-body">
+                                    @foreach ($populer_category_otomotif as $post)
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="card mt-3 rounded-0">
+                                                <div class="row no-gutters">
+                                                    <div class="col-md-4">
+                                                        <a
+                                                            href="{{ route('guest.post.show', [$post->category->slug , $post]) }}"><img
+                                                                src="{{ asset('post_images/'. $post->image) }}"
+                                                                class="card-img rounded-0" alt="{{ $post->title }}"></a>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <div class="card-body">
+                                                            <a
+                                                                href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
+                                                                <h5 class="card-title">{{ $post->title }}</h5>
+                                                            </a>
+                                                            <a href="#"><span class="card-category"
+                                                                    style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
+                                                            <p class="card-text">
+                                                                <span><i
+                                                                        class="fas fa-user"></i>{{ $post->user_author->name }}</span>
+                                                                <span><i
+                                                                        class="far fa-clock"></i>{{ $post->created_at->diffForHumans() }}</span>
+                                                                <span><i class="far fa-eye"></i>{{ $post->view }}</span>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                            <!-- Berita Terbaru -->
+                            <div class="col-md-6 mt-3">
+                                <span class="terkini-category">Berita Terbaru</span>
+                                <div class="terkini-body">
+                                    @foreach ($terbaru_category_otomotif as $post)
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="card mt-3 rounded-0">
+                                                <div class="row no-gutters">
+                                                    <div class="col-md-4">
+                                                        <a
+                                                            href="{{ route('guest.post.show', [$post->category->slug , $post]) }}"><img
+                                                                src="{{ asset('post_images/'. $post->image) }}"
+                                                                class="card-img rounded-0" alt="{{ $post->title }}"></a>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <div class="card-body">
+                                                            <a
+                                                                href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
+                                                                <h5 class="card-title">{{ $post->title }}</h5>
+                                                            </a>
+                                                            <a href="#"><span class="card-category"
+                                                                    style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
+                                                            <p class="card-text">
+                                                                <span><i
+                                                                        class="fas fa-user"></i>{{ $post->user_author->name }}</span>
+                                                                <span><i
+                                                                        class="far fa-clock"></i>{{ $post->created_at->diffForHumans() }}</span>
+                                                                <span><i class="far fa-eye"></i>{{ $post->view }}</span>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- Category properti --}}
+                    <div class="tab-pane fade show" id="nav-properti" role="tabpanel"
+                        aria-labelledby="nav-properti-tab">
+                        <div class="row">
+                            <!-- Berita Populer -->
+                            <div class="col-md-6 mt-3">
+                                <span class="terkini-category">Berita Populer</span>
+                                <div class="terkini-body">
+                                    @foreach ($populer_category_properti as $post)
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="card mt-3 rounded-0">
+                                                <div class="row no-gutters">
+                                                    <div class="col-md-4">
+                                                        <a
+                                                            href="{{ route('guest.post.show', [$post->category->slug , $post]) }}"><img
+                                                                src="{{ asset('post_images/'. $post->image) }}"
+                                                                class="card-img rounded-0" alt="{{ $post->title }}"></a>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <div class="card-body">
+                                                            <a
+                                                                href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
+                                                                <h5 class="card-title">{{ $post->title }}</h5>
+                                                            </a>
+                                                            <a href="#"><span class="card-category"
+                                                                    style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
+                                                            <p class="card-text">
+                                                                <span><i
+                                                                        class="fas fa-user"></i>{{ $post->user_author->name }}</span>
+                                                                <span><i
+                                                                        class="far fa-clock"></i>{{ $post->created_at->diffForHumans() }}</span>
+                                                                <span><i class="far fa-eye"></i>{{ $post->view }}</span>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                            <!-- Berita Terbaru -->
+                            <div class="col-md-6 mt-3">
+                                <span class="terkini-category">Berita Terbaru</span>
+                                <div class="terkini-body">
+                                    @foreach ($terbaru_category_properti as $post)
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="card mt-3 rounded-0">
+                                                <div class="row no-gutters">
+                                                    <div class="col-md-4">
+                                                        <a
+                                                            href="{{ route('guest.post.show', [$post->category->slug , $post]) }}"><img
+                                                                src="{{ asset('post_images/'. $post->image) }}"
+                                                                class="card-img rounded-0" alt="{{ $post->title }}"></a>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <div class="card-body">
+                                                            <a
+                                                                href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
+                                                                <h5 class="card-title">{{ $post->title }}</h5>
+                                                            </a>
+                                                            <a href="#"><span class="card-category"
+                                                                    style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
+                                                            <p class="card-text">
+                                                                <span><i
+                                                                        class="fas fa-user"></i>{{ $post->user_author->name }}</span>
+                                                                <span><i
+                                                                        class="far fa-clock"></i>{{ $post->created_at->diffForHumans() }}</span>
+                                                                <span><i class="far fa-eye"></i>{{ $post->view }}</span>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- Category kesehatan --}}
+                    <div class="tab-pane fade show" id="nav-kesehatan" role="tabpanel"
+                        aria-labelledby="nav-kesehatan-tab">
+                        <div class="row">
+                            <!-- Berita Populer -->
+                            <div class="col-md-6 mt-3">
+                                <span class="terkini-category">Berita Populer</span>
+                                <div class="terkini-body">
+                                    @foreach ($populer_category_kesehatan as $post)
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="card mt-3 rounded-0">
+                                                <div class="row no-gutters">
+                                                    <div class="col-md-4">
+                                                        <a
+                                                            href="{{ route('guest.post.show', [$post->category->slug , $post]) }}"><img
+                                                                src="{{ asset('post_images/'. $post->image) }}"
+                                                                class="card-img rounded-0" alt="{{ $post->title }}"></a>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <div class="card-body">
+                                                            <a
+                                                                href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
+                                                                <h5 class="card-title">{{ $post->title }}</h5>
+                                                            </a>
+                                                            <a href="#"><span class="card-category"
+                                                                    style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
+                                                            <p class="card-text">
+                                                                <span><i
+                                                                        class="fas fa-user"></i>{{ $post->user_author->name }}</span>
+                                                                <span><i
+                                                                        class="far fa-clock"></i>{{ $post->created_at->diffForHumans() }}</span>
+                                                                <span><i class="far fa-eye"></i>{{ $post->view }}</span>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                            <!-- Berita Terbaru -->
+                            <div class="col-md-6 mt-3">
+                                <span class="terkini-category">Berita Terbaru</span>
+                                <div class="terkini-body">
+                                    @foreach ($terbaru_category_kesehatan as $post)
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="card mt-3 rounded-0">
+                                                <div class="row no-gutters">
+                                                    <div class="col-md-4">
+                                                        <a
+                                                            href="{{ route('guest.post.show', [$post->category->slug , $post]) }}"><img
+                                                                src="{{ asset('post_images/'. $post->image) }}"
+                                                                class="card-img rounded-0" alt="{{ $post->title }}"></a>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <div class="card-body">
+                                                            <a
+                                                                href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
+                                                                <h5 class="card-title">{{ $post->title }}</h5>
+                                                            </a>
+                                                            <a href="#"><span class="card-category"
+                                                                    style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
+                                                            <p class="card-text">
+                                                                <span><i
+                                                                        class="fas fa-user"></i>{{ $post->user_author->name }}</span>
+                                                                <span><i
+                                                                        class="far fa-clock"></i>{{ $post->created_at->diffForHumans() }}</span>
+                                                                <span><i class="far fa-eye"></i>{{ $post->view }}</span>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- Category media-sosial --}}
+                    <div class="tab-pane fade show" id="nav-media-sosial" role="tabpanel"
+                        aria-labelledby="nav-media-sosial-tab">
+                        <div class="row">
+                            <!-- Berita Populer -->
+                            <div class="col-md-6 mt-3">
+                                <span class="terkini-category">Berita Populer</span>
+                                <div class="terkini-body">
+                                    @foreach ($populer_category_mediasosial as $post)
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="card mt-3 rounded-0">
+                                                <div class="row no-gutters">
+                                                    <div class="col-md-4">
+                                                        <a
+                                                            href="{{ route('guest.post.show', [$post->category->slug , $post]) }}"><img
+                                                                src="{{ asset('post_images/'. $post->image) }}"
+                                                                class="card-img rounded-0" alt="{{ $post->title }}"></a>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <div class="card-body">
+                                                            <a
+                                                                href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
+                                                                <h5 class="card-title">{{ $post->title }}</h5>
+                                                            </a>
+                                                            <a href="#"><span class="card-category"
+                                                                    style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
+                                                            <p class="card-text">
+                                                                <span><i
+                                                                        class="fas fa-user"></i>{{ $post->user_author->name }}</span>
+                                                                <span><i
+                                                                        class="far fa-clock"></i>{{ $post->created_at->diffForHumans() }}</span>
+                                                                <span><i class="far fa-eye"></i>{{ $post->view }}</span>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                            <!-- Berita Terbaru -->
+                            <div class="col-md-6 mt-3">
+                                <span class="terkini-category">Berita Terbaru</span>
+                                <div class="terkini-body">
+                                    @foreach ($terbaru_category_mediasosial as $post)
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="card mt-3 rounded-0">
+                                                <div class="row no-gutters">
+                                                    <div class="col-md-4">
+                                                        <a
+                                                            href="{{ route('guest.post.show', [$post->category->slug , $post]) }}"><img
+                                                                src="{{ asset('post_images/'. $post->image) }}"
+                                                                class="card-img rounded-0" alt="{{ $post->title }}"></a>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <div class="card-body">
+                                                            <a
+                                                                href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
                                                                 <h5 class="card-title">{{ $post->title }}</h5>
                                                             </a>
                                                             <a href="#"><span class="card-category"
@@ -247,14 +858,14 @@
             @foreach ($berita_terbaru as $post)
             <div class="col-md-3 pr-md-0">
                 <div class="card my-3">
-                    <a href="#">
+                    <a href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
                         <img src="{{ asset('post_images/'.$post->image) }}" class="card-img-top"
                             alt="{{ $post->title }}">
                     </a>
                     <div class="card-body">
                         <a href="#" class="terbaru-category"
                             style="background-color:{{ $post->category->color }};">{{ $post->category->title }}</a>
-                        <a href="#">
+                        <a href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
                             <h5 class="card-title text-capitalize">{{ $post->title }}</h5>
                         </a>
                         <p class="card-text terbaru-info">

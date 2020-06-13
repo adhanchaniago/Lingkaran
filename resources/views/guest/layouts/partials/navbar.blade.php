@@ -1,7 +1,7 @@
 <nav id="nav-sticky" class="navbar navbar-expand-lg navbar-light shadow-sm">
     <div class="container pr-0 pl-md-2">
         <a href="{{ route('guest.home') }}">
-            <img src="assets/logo/logo.png" alt="Logo Lingkaran" class="logo mr-2">
+            <img src="{{ asset('assets/logo/logo.png') }}" alt="Logo Lingkaran" class="logo mr-2">
         </a>
         <a class="navbar-brand" href="{{ route('guest.home') }}">Lingkar<span>an</span></a>
         <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
@@ -20,7 +20,7 @@
                     <a class="nav-link" href="#">Sains & Teknologi</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Olah Raga</a>
+                    <a class="nav-link" href="#">Olahraga</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Otomotif</a>

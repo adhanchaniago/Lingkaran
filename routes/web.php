@@ -12,10 +12,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::routes();
-
-//Guest Route
-Route::get('/', 'HomeController@index')->name('guest.home');
 
 // CMS Route
 Route::middleware('auth')->prefix('cms')->namespace('cms')->group( function (){
@@ -25,3 +21,11 @@ Route::middleware('auth')->prefix('cms')->namespace('cms')->group( function (){
     Route::patch('/unpublish/{id}', 'PostController@unpublish')->name('post.unpublish');
     Route::resource('/category', 'CategoryController')->except('create', 'show');
 });
+
+//Guest Route
+Route::name('guest.')->group(function(){
+    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/{category}/{post}', 'HomeController@show')->name('post.show');
+});
+
+Auth::routes();
