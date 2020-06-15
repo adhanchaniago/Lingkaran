@@ -39,7 +39,7 @@
                                             <button class="btn btn-info btn-sm" id="btn-edit" data-toggle="modal"
                                                 data-target="#modal-edit" data-id="{{ $category->id }}"
                                                 data-title="{{ $category->title }}" data-color="{{ $category->color }}">
-                                                <i class="fa fa-pencil"></i></button>
+                                                <i class="fa fa-edit"></i></button>
 
                                             <button class="btn btn-danger btn-sm" id="btn-delete" data-toggle="modal"
                                                 data-target="#modal-delete" data-id="{{ $category->id }}"

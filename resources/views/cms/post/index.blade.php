@@ -41,7 +41,9 @@
                                     <th scope="row">{{ $loop->index + 1 }}</th>
                                     <td>{{ $post->title }}</td>
                                     <td>
-                                        <button class="btn btn-light btn-sm"><i class="fa fa-newspaper-o"></i></button>
+                                        <button class="btn btn-light btn-sm"
+                                            onclick="location.href='{{ route('guest.post.show', [$post->category->slug, $post]) }}'"><i
+                                                class="fa fa-newspaper-o"></i></button>
                                     </td>
                                     <td>{{ $post->category->title }}</td>
                                     <td>
@@ -65,11 +67,13 @@
                                         @else
                                         <span class="text-warning">unpublish</span>
                                         @endif</td>
-                                    <td>{{ $post->view }}</td>
+                                    <td>
+                                        {{ ($post->view >= 1000) ? floor($post->view / 1000) . 'k' : $post->view }}
+                                    </td>
                                     <td class="d-flex justify-content-end">
                                         <button class="btn btn-sm btn-info"
                                             onclick="location.href='{{ route('post.edit', $post) }}'">
-                                            <i class="fa fa-pencil"></i>
+                                            <i class="fa fa-edit"></i>
                                         </button>
 
                                         <button class="btn btn-sm btn-danger" data-toggle="modal"
@@ -86,7 +90,7 @@
                                         </button>
                                         @else
                                         <button class="btn btn-warning btn-sm" data-toggle="modal"
-                                            data-target="#modal-unpublish" data-id="{{ $post->id }}"
+                                            data-target="#modal-revoke" data-id="{{ $post->id }}"
                                             data-title="{{ $post->title }}">
                                             <i class="fa fa-undo"></i>
                                         </button>
@@ -176,22 +180,22 @@
     <!-- /modals -->
 
     <!-- Publish Modal -->
-    <div class="modal fade" id="modal-unpublish" data-backdrop="static" tabindex="-1" role="dialog">
+    <div class="modal fade" id="modal-revoke" data-backdrop="static" tabindex="-1" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Unpublish post dari halaman utama</h4>
+                    <h4 class="modal-title">Tarik post dari halaman utama</h4>
                 </div>
-                <form action="{{ route('post.unpublish', 'id') }}" method="POST">
+                <form action="{{ route('post.revoke', 'id') }}" method="POST">
                     @csrf
                     @method('PATCH')
                     <div class="modal-body">
-                        <p class="text-center">Apa anda yakin ingin unpublish postingan "<span
+                        <p class="text-center">Apa anda yakin ingin tarik postingan "<span
                                 class="post-title text-warning"></span>" ?</p>
                         <input type="hidden" id="form-publish" name="id">
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-warning btn-sm">unpublish</button>
+                        <button type="submit" class="btn btn-warning btn-sm">Revoke</button>
                         <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
                     </div>
                 </form>
@@ -225,7 +229,7 @@
         $('.modal-body #form-publish').val(id);
     });
 
-    $('#modal-unpublish').on('show.bs.modal', function(e){
+    $('#modal-revoke').on('show.bs.modal', function(e){
         var id = $(e.relatedTarget).data('id');
         var title = $(e.relatedTarget).data('title');
         $('.modal-body .post-title').text(title);

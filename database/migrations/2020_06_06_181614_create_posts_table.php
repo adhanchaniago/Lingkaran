@@ -20,8 +20,8 @@ class CreatePostsTable extends Migration
             $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('image')->nullable();
             $table->text('content');
-            $table->foreignId('author')->constrained('users')->cascadeOnUpdate();
-            $table->foreignId('editor')->nullable()->constrained('users')->cascadeOnUpdate();
+            $table->foreignId('author')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('editor')->nullable()->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->boolean('status');
             $table->integer('view');
             $table->timestamps();

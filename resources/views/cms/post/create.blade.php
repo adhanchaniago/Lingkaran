@@ -20,10 +20,10 @@
                     method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="item form-group">
-                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="title">Title <span
+                        <label class="col-form-label col-md-2 col-sm-2 label-align" for="title">Title <span
                                 class="required">*</span>
                         </label>
-                        <div class="col-md-6 col-sm-6 ">
+                        <div class="col-md-9 col-sm-9 ">
                             <input type="text" id="title" name="title"
                                 class="form-control form-control-sm @error('title') is-invalid @enderror"
                                 value="{{ old('title') }}">
@@ -35,9 +35,9 @@
                         </div>
                     </div>
                     <div class="item form-group">
-                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="category">Category <span
+                        <label class="col-form-label col-md-2 col-sm-2 label-align" for="category">Category <span
                                 class="required">*</span></label>
-                        <div class="col-md-6 col-sm-6 ">
+                        <div class="col-md-9 col-sm-9 ">
                             <select id="category" name="category"
                                 class="form-control form-control-sm @error('category') is-invalid @enderror">
                                 <option></option>
@@ -55,10 +55,10 @@
                         </div>
                     </div>
                     <div class="item form-group">
-                        <label class="col-form-label col-md-3 col-sm-3 label-align">Image</label>
-                        <div class="col-md-6 col-sm-6 d-flex align-items-center">
+                        <label class="col-form-label col-md-2 col-sm-2 label-align">Image</label>
+                        <div class="col-md-9 col-sm-9 d-flex align-items-center">
                             <input type="file" name="image"
-                                class="form-control-file col-md-6 col-sm-6 @error('image') is-invalid @enderror">
+                                class="form-control-file col-md-9 col-sm-9 @error('image') is-invalid @enderror">
                             @error('image')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -67,10 +67,10 @@
                         </div>
                     </div>
                     <div class="item form-group">
-                        <label for="content" class="col-form-label col-md-3 col-sm-3 label-align">Content <span
+                        <label for="content" class="col-form-label col-md-2 col-sm-2 label-align">Content <span
                                 class="required">*</span>
                         </label>
-                        <div class="col-md-6 col-sm-6 ">
+                        <div class="col-md-9 col-sm-9 ">
                             <textarea id="content" name="content"
                                 class="form-control @error('content') is-invalid @enderror">{{ old('content') }}</textarea>
                             @error('content')
@@ -82,7 +82,7 @@
                     </div>
                     <div class="ln_solid"></div>
                     <div class="item form-group">
-                        <div class="col-md-6 col-sm-6 offset-md-3">
+                        <div class="col-md-9 col-sm-9 offset-md-2">
                             <div class="pull-right">
                                 <button type="submit" class="btn btn-primary btn-sm">Create</button>
                                 <button class="btn btn-warning btn-sm" type="reset">Reset</button>

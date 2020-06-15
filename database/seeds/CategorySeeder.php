@@ -56,8 +56,8 @@ class CategorySeeder extends Seeder
         ]);
 
         $categories = Category::create([
-            'title' => 'Media Social',
-            'slug' => Str::slug('Media Social'),
+            'title' => 'Media Sosial',
+            'slug' => Str::slug('Media Sosial'),
             'color' => '#808080'
         ]);
     }

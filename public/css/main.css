@@ -363,11 +363,6 @@ a:hover {
     margin-right: 10px;
 }
 
-.berita-terkini .card-text span i,
-.berita-side-right .card-text span i {
-    margin-right: 20px;
-}
-
 /* Iklan Tengah */
 .iklan-tengah img {
     width: 630px;
@@ -652,10 +647,20 @@ footer a:hover {
     opacity: 1;
 }
 
+/* Tombol Admin */
+.admin-btn {
+    width: 100px;
+    background-color: #fff;
+    position: fixed;
+    font-size: 12px;
+    top: 80px;
+    left: 10px;
+}
+
 @media (max-width: 575px) {
     .btn-back-top {
         bottom: 0;
-        right: 125px;
+        right: 60px;
     }
 
     .btn-back-top.active {

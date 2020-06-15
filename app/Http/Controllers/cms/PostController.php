@@ -75,17 +75,6 @@ class PostController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -171,17 +160,17 @@ class PostController extends Controller
     }
 
     /**
-     * Unpublish the specified post.
+     * revoke the specified post.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function unpublish(Request $request)
+    public function revoke(Request $request)
     {
         $post = Post::findOrFail($request->id);
         $post->update([
             'status' => 0
         ]);
-        return redirect(route('post.index'))->withSuccess('Post has been unpublished');
+        return redirect(route('post.index'))->withSuccess('Post has been revoked');
     }
 }

@@ -17,9 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth')->prefix('cms')->namespace('cms')->group( function (){
     Route::resource('/dashboard', 'AdminController')->only('index');
     Route::resource('/post', 'PostController')->except('show');
-    Route::patch('/publish/{id}', 'PostController@publish')->name('post.publish');
-    Route::patch('/unpublish/{id}', 'PostController@unpublish')->name('post.unpublish');
     Route::resource('/category', 'CategoryController')->except('create', 'show');
+
+    
+    Route::patch('/publish/{id}', 'PostController@publish')->name('post.publish');
+    Route::patch('/revoke/{id}', 'PostController@revoke')->name('post.revoke');
 });
 
 //Guest Route
