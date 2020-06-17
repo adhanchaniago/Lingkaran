@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Post;
+use App\Headline;
 
 class HomeController extends Controller
 {
@@ -15,6 +16,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $headline_main = Headline::with('post')->firstWhere('type', 'main');
+        $headline_secondary = Headline::with('post')->where('type', 'secondary')->get();
+
         // Ambil id category berdasarkan nama kategori
         $fashion = Category::where('slug', '=', 'fashion')->get();
         $sains = Category::where('slug', '=', 'sains-teknologi')->get();
@@ -43,6 +47,7 @@ class HomeController extends Controller
         $terbaru_category_mediasosial = Post::where('category_id', '=', (!empty($mediasosial[0])) ? $mediasosial[0]->id : '' )->where('status', 1)->latest()->take(5)->get();
 
         $berita_terbaru = Post::where('status', 1)->paginate(16);
+
         return view('guest.home', compact('trending',
          'populer_category_all', 'terbaru_category_all',
          'populer_category_fashion', 'terbaru_category_fashion',
@@ -52,7 +57,7 @@ class HomeController extends Controller
          'populer_category_properti', 'terbaru_category_properti', 
          'populer_category_kesehatan', 'terbaru_category_kesehatan', 
          'populer_category_mediasosial', 'terbaru_category_mediasosial', 
-         'berita_terbaru'));
+         'berita_terbaru', 'headline_main', 'headline_secondary'));
     }
 
     /**
@@ -65,7 +70,7 @@ class HomeController extends Controller
         $relatedPosts = Post::where('category_id', $category->id)->where('id', '<>', $post->id)
         ->where('status', 1)->take(8)->get();
         $populerPosts = Post::where('status', 1)->where('view', '>=', 1)->orderBy('view', 'DESC')->take(4)->get();
-        $terbaruPosts = Post::where('status', 1)->latest()->take(10)->get();
+        $terbaruPosts = Post::where('status', 1)->latest()->take(5)->get();
         return view('guest.post', compact('post', 'relatedPosts', 'populerPosts', 'terbaruPosts'));
     }
 

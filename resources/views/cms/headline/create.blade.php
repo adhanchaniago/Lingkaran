@@ -2,19 +2,23 @@
 @section('content')
 
 <div class="row">
-
     <div class="col-md-12 col-sm-12 ">
-        @if (session('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Success!</strong> {{ session('success') }}.
+        @if (count($errors) > 0)
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Gagal!</strong> Check type atau judul post yang ingin dijadikan headline.
+        </div>
+        @endif
+        @if (session('danger'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Gagal!</strong> {{ session('danger') }}.
         </div>
         @endif
         <div class="x_panel">
             <div class="x_title">
-                <h2>Headline Post List</h2>
+                <h2>Posts List</h2>
                 <button type="button" class="btn btn-outline-primary btn-sm float-right"
-                    onclick="location.href='{{ route('headline.create') }}'"><i class="fa fa-plus"></i>
-                    Headline</button>
+                    onclick="location.href='{{ route('post.create') }}'"><i class="fa fa-plus"></i>
+                    post</button>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -27,40 +31,29 @@
                                     <th scope="col">Category</th>
                                     <th scope="col">Image</th>
                                     <th scope="col">Author</th>
-                                    <th scope="col">Type</th>
-                                    <th scope="col">Set at</th>
                                     <th scope="col" class="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($headlines as $headline)
+                                @foreach ($posts as $post)
                                 <tr>
-                                    <td scope="col">{{ $headline->post->title }}</td>
-                                    <td scope="col">{{ $headline->post->category->title }}</td>
+                                    <td>{{ $post->title }}</td>
+                                    <td>{{ $post->category->title }}</td>
                                     <td>
-                                        @if($headline->post->image == null)
+                                        @if($post->image == null)
                                         null
                                         @else
                                         <button class="btn btn-light btn-sm" data-toggle="modal"
-                                            data-target=".modal-image" data-title="{{ $headline->post->title }}"
-                                            data-image-url="{{ asset('post_images/'.$headline->post->image) }}"><i
+                                            data-target=".modal-image" data-title="{{ $post->title }}"
+                                            data-image-url="{{ asset('post_images/'.$post->image) }}"><i
                                                 class="fa fa-picture-o"></i></button>
                                         @endif
                                     </td>
-                                    <td scope="col">{{ $headline->post->user_author->name }}</td>
-                                    <td scope="col" class="text-bold text-info">
-                                        @if ( $headline->type == 'main')
-                                        Main
-                                        @else
-                                        Secondary
-                                        @endif
-                                    </td>
-                                    <td scope="col">{{ $headline->created_at->diffForHumans() }}</td>
-                                    <td scope="col" class="text-center">
-                                        <button class="btn btn-sm btn-danger" data-toggle="modal"
-                                            data-target="#modal-delete" data-id="{{ $headline->id }}"
-                                            data-title="{{ $headline->post->title }}">
-                                            <i class="fa fa-trash"></i>
+                                    <td>{{ $post->user_author->name }}</td>
+                                    <td class="d-flex justify-content-end">
+                                        <button id="btn-set" class="btn btn-sm btn-danger" data-toggle="modal"
+                                            data-target="#modal-headline" data-id="{{ $post->id }}"
+                                            data-title="{{ $post->title }}">Set
                                         </button>
                                     </td>
                                 </tr>
@@ -72,6 +65,7 @@
             </div>
         </div>
     </div>
+
     <!-- Image modal -->
     <div class="modal fade modal-image" data-backdrop="static" tabindex="-1" role="dialog">
         <div class="modal-dialog">
@@ -90,23 +84,39 @@
     </div>
     <!-- /modals -->
 
-    <!-- Delete modal -->
-    <div class="modal fade" id="modal-delete" tabindex="-1" role="dialog">
+    <!-- Headline modal -->
+    <div class="modal fade" id="modal-headline" data-backdrop="static" tabindex="-1" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Menghapus post dari Headline</h4>
+                    <h4 class="modal-title">Set a post as healine</h4>
                 </div>
-                <form action="{{ route('headline.destroy', 'id') }}" method="POST">
+                <form action="{{ route('headline.store') }}" method="POST">
                     @csrf
-                    @method('DELETE')
                     <div class="modal-body">
-                        <p class="text-center">Apa anda yakin ingin menghapus headline dari postingan "<span
-                                class="post-title text-danger"></span>" ?</p>
-                        <input type="hidden" id="form-delete" name="id">
+                        <p class="text-center">Apa anda ingin menjadikan postingan "<span
+                                class="post-title text-success"></span>" sebagai berita utama?</p>
+                        <input type="hidden" id="form-headline" name="post_id">
+                        <div class="item form-group">
+                            <label class="col-form-label col-md-2 col-sm-2 label-align" for="type">Type <span
+                                    class="required">*</span></label>
+                            <div class="col-md-9 col-sm-9 ">
+                                <select id="headline-type" name="type"
+                                    class="form-control form-control-sm @error('type') is-invalid @enderror">
+                                    <option value="{{ old('type') }}" selected>{{ old('type') }}</option>
+                                    <option value="main">Main</option>
+                                    <option value="secondary">Secondary</option>
+                                </select>
+                                @error('type')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        <button type="submit" class="btn btn-danger btn-sm">Set</button>
                         <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
                     </div>
                 </form>
@@ -119,6 +129,8 @@
 
 @section('script')
 <script>
+    $('.table').DataTable();
+
     $('.modal-image').on('show.bs.modal', function(e){
         var img = $(e.relatedTarget).data('image-url');
         var title = $(e.relatedTarget).data('title');
@@ -126,11 +138,11 @@
         $('.modal-body .img-fluid').attr('src', img);
     });
 
-    $('#modal-delete').on('show.bs.modal', function(e){
+    $('#modal-headline').on('show.bs.modal', function(e){
         var id = $(e.relatedTarget).data('id');
         var title = $(e.relatedTarget).data('title');
         $('.modal-body .post-title').text(title);
-        $('.modal-body #form-delete').val(id);
+        $('.modal-body #form-headline').val(id);
     });
 </script>
 @endsection

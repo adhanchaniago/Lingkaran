@@ -9,7 +9,7 @@
         </div>
         @endif
     </div>
-    <div class="col-md-6">
+    <div class="col-md-8">
         <div class="x_panel">
             <div class="x_title">
                 <h2>Category <small>all stored categories</small></h2>
@@ -56,18 +56,10 @@
                 </div>
             </div>
         </div>
-
-        <nav aria-label="...">
-            <ul class="pagination pagination-sm">
-                <li class="page-item">
-                    {{ $categories->links() }}
-                </li>
-            </ul>
-        </nav>
     </div>
 
     <!-- Form Input -->
-    <div class="col-md-6 ">
+    <div class="col-md-4 ">
         <div class="x_panel">
             <div class="x_title">
                 <h2>Category Form <small>add new category</small></h2>
@@ -203,6 +195,7 @@
 
 @section('script')
 <script>
+    $('.table').DataTable();
     $('#modal-edit').on('show.bs.modal', function(e){
         var id = $(e.relatedTarget).data('id');
         var title = $(e.relatedTarget).data('title');

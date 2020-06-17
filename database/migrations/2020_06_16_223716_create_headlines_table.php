@@ -15,7 +15,7 @@ class CreateHeadlinesTable extends Migration
     {
         Schema::create('headlines', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('post_id')->constrained('posts')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('post_id')->unsigned();
             $table->string('type');
             $table->timestamps();
         });

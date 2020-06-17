@@ -104,11 +104,6 @@
                 </div>
             </div>
         </div>
-        <nav aria-label="...">
-            <ul class="pagination pagination-sm">
-                {{ $posts->links() }}
-            </ul>
-        </nav>
     </div>
 
     <!-- Image modal -->
@@ -208,6 +203,7 @@
 
 @section('script')
 <script>
+    $('.table').DataTable();
     $('.modal-image').on('show.bs.modal', function(e){
         var img = $(e.relatedTarget).data('image-url');
         var title = $(e.relatedTarget).data('title');

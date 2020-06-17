@@ -28,93 +28,143 @@
             <div class="col-md-12 col-lg-10 px-0 pl-md-3">
                 <div class="row">
                     <div class="col-md-8 my-3 my-md-0">
-                        <div class="headline-wrapper h-3" style="background-image: url(assets/images/sport.png);">
-                            <a href="singgle_post.html" class="headline-link"></a>
+                        @if (!empty($headline_main))
+                        <div class="headline-wrapper h-3"
+                            style="background-image: url({{ asset('post_images/'. $headline_main->post->image) }});">
+                            <a href="{{ route('guest.post.show', [$headline_main->post->category->slug, $headline_main->post]) }}"
+                                class="headline-link"></a>
                             <div class="headline-body d-flex flex-column justify-content-end align-items-start">
-                                <a href="singgle_post.html" class="headline-category px-2 bg-success">Sport</a>
+                                <a href="#" class="headline-category px-2"
+                                    style="background-color: {{ $headline_main->post->category->color }};">{{ $headline_main->post->category->title }}</a>
                                 <h3 class="headline-title-wrap mt-2 mb-1">
-                                    <a href="singgle_post.html" class="headline-title">20
-                                        Tips Hidup Sehat Untuk Para Gadis Usia Remaja Dengan Olahraga Ala
-                                        Anak Milenial</a>
+                                    <a href="{{ route('guest.post.show', [$headline_main->post->category->slug, $headline_main->post]) }}"
+                                        class="headline-title">{{ $headline_main->post->title }}</a>
                                 </h3>
                                 <span class="headline-info">
-                                    <span><i class="fas fa-user"></i> Riyan</span>
-                                    <span><i class="far fa-clock"></i> 20 Maret 2020</span>
-                                    <span><i class="far fa-eye"></i> 8K</span>
+                                    <span><i class="fas fa-user"></i>
+                                        {{ $headline_main->post->user_author->name }}</span>
+                                    <span><i class="far fa-clock"></i>
+                                        {{ $headline_main->post->created_at->diffForHumans() }}</span>
+                                    <span><i class="far fa-eye"></i>
+                                        {{ ($headline_main->post->view >= 1000) ? floor($headline_main->post->view / 1000) . 'k' : $headline_main->post->view }}</span>
                                 </span>
                             </div>
                         </div>
+                        @else
+                        <div class="text-center text-warning">Null</div>
+                        @endif
                     </div>
                     <div class="col-md-4 pl-md-0 pr-lg-4">
-                        <div class="headline-wrapper h-3" style="background-image: url(assets/images/fashion.png);">
-                            <a href="index.html" class="headline-link"></a>
+                        @if (!empty($headline_secondary[0]))
+                        <div class="headline-wrapper h-3"
+                            style="background-image: url({{ asset('post_images/'. $headline_secondary[0]->post->image) }});">
+                            <a href="{{ route('guest.post.show', [$headline_secondary[0]->post->category->slug, $headline_secondary[0]->post]) }}"
+                                class="headline-link"></a>
                             <div class="headline-body d-flex flex-column justify-content-end align-items-start">
-                                <a href="index.html" class="headline-category px-2 bg-danger">Fashion</a>
+                                <a href="#" class="headline-category px-2"
+                                    style="background-color: {{ $headline_secondary[0]->post->category->color }};">{{ $headline_secondary[0]->post->category->title }}</a>
                                 <h3 class="headline-title-wrap mt-2 mb-1">
-                                    <a href="index.html" class="headline-title">Cara Berpakaian Anak Milenial Mulai
-                                        Membuat
-                                        Designer Untung</a>
+                                    <a href="{{ route('guest.post.show', [$headline_secondary[0]->post->category->slug, $headline_secondary[0]->post]) }}"
+                                        class="headline-title">{{ $headline_secondary[0]->post->title }}</a>
                                 </h3>
                                 <span class="headline-info">
-                                    <span><i class="fas fa-user"></i> Riyan</span>
-                                    <span><i class="far fa-clock"></i> 20 Maret 2020</span>
-                                    <span><i class="far fa-eye"></i> 8K</span>
+                                    <span><i class="fas fa-user"></i>
+                                        {{ $headline_secondary[0]->post->user_author->name }}</span>
+                                    <span><i class="far fa-clock"></i>
+                                        {{ $headline_secondary[0]->post->created_at->diffForHumans() }}</span>
+                                    <span><i class="far fa-eye"></i>
+                                        {{ ($headline_secondary[0]->post->view >= 1000) ? floor($headline_secondary[0]->post->view / 1000) . 'k' : $headline_secondary[0]->post->view }}</span>
                                 </span>
                             </div>
                         </div>
+                        @else
+                        <div class="text-center text-warning">Null</div>
+                        @endif
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4 mt-3">
-                        <div class="headline-wrapper h-2" style="background-image: url(assets/images/gaming.png);">
-                            <a href="index.html" class="headline-link"></a>
+                        @if (!empty($headline_secondary[1]))
+                        <div class="headline-wrapper h-2"
+                            style="background-image: url({{ asset('post_images/' . $headline_secondary[1]->post->image) }});">
+                            <a href="{{ route('guest.post.show', [$headline_secondary[1]->post->category->slug, $headline_secondary[1]->post]) }}"
+                                class="headline-link"></a>
                             <div class="headline-body d-flex flex-column justify-content-end align-items-start">
-                                <a href="index.html" class="headline-category px-2 bg-info">Gaming</a>
+                                <a href="index.html" class="headline-category px-2"
+                                    style="background-color: {{ $headline_secondary[1]->post->category->color }};">{{ $headline_secondary[1]->post->category->title }}</a>
                                 <h3 class="headline-title-wrap mt-2 mb-1">
-                                    <a href="index.html" class="headline-title">Bermain Game Pada Waktu Senggang
-                                        Dapat Meningkatkan Kreatifitas Otak</a>
+                                    <a href="{{ route('guest.post.show', [$headline_secondary[1]->post->category->slug, $headline_secondary[1]->post]) }}"
+                                        class="headline-title">{{ $headline_secondary[1]->post->title }}</a>
                                 </h3>
                                 <span class="headline-info">
-                                    <span><i class="fas fa-user"></i> Riyan</span>
-                                    <span><i class="far fa-clock"></i> 20 Maret 2020</span>
-                                    <span><i class="far fa-eye"></i> 8K</span>
+                                    <span><i class="fas fa-user"></i>
+                                        {{ $headline_secondary[1]->post->user_author->name }}</span>
+                                    <span><i class="far fa-clock"></i>
+                                        {{ $headline_secondary[1]->post->created_at->diffForHumans() }}</span>
+                                    <span><i class="far fa-eye"></i>
+                                        {{ ($headline_secondary[1]->post->view >= 1000) ? floor($headline_secondary[1]->post->view / 1000) . 'k' : $headline_secondary[1]->post->view }}</span>
                                 </span>
                             </div>
                         </div>
+                        @else
+                        <div class="text-center text-warning">Null</div>
+                        @endif
                     </div>
+
                     <div class="col-md-4 mt-3 pl-md-0">
-                        <div class="headline-wrapper h-2" style="background-image: url(assets/images/politic.png);">
-                            <a href="index.html" class="headline-link"></a>
+                        @if (!empty($headline_secondary[2]))
+                        <div class="headline-wrapper h-2"
+                            style="background-image: url({{ asset('post_images/' . $headline_secondary[2]->post->image) }});">
+                            <a href="{{ route('guest.post.show', [$headline_secondary[2]->post->category->slug, $headline_secondary[2]->post]) }}"
+                                class="headline-link"></a>
                             <div class="headline-body d-flex flex-column justify-content-end align-items-start">
-                                <a href="index.html" class="headline-category px-2 bg-secondary">Politic</a>
+                                <a href="index.html" class="headline-category px-2"
+                                    style="background-color: {{ $headline_secondary[2]->post->category->color }};">{{ $headline_secondary[2]->post->category->title }}</a>
                                 <h3 class="headline-title-wrap mt-2 mb-1">
-                                    <a href="index.html" class="headline-title">Rapat Para Petinggi Negara Mengenai
-                                        Virus Corona di Indonesia</a>
+                                    <a href="{{ route('guest.post.show', [$headline_secondary[2]->post->category->slug, $headline_secondary[2]->post]) }}"
+                                        class="headline-title">{{ $headline_secondary[2]->post->title }}</a>
                                 </h3>
                                 <span class="headline-info">
-                                    <span><i class="fas fa-user"></i> Riyan</span>
-                                    <span><i class="far fa-clock"></i> 20 Maret 2020</span>
-                                    <span><i class="far fa-eye"></i> 8K</span>
+                                    <span><i class="fas fa-user"></i>
+                                        {{ $headline_secondary[2]->post->user_author->name }}</span>
+                                    <span><i class="far fa-clock"></i>
+                                        {{ $headline_secondary[2]->post->created_at->diffForHumans() }}</span>
+                                    <span><i class="far fa-eye"></i>
+                                        {{ ($headline_secondary[2]->post->view >= 1000) ? floor($headline_secondary[2]->post->view / 1000) . 'k' : $headline_secondary[2]->post->view }}</span>
                                 </span>
                             </div>
                         </div>
+                        @else
+                        <div class="text-center text-warning">Null</div>
+                        @endif
                     </div>
+
                     <div class="col-md-4 mt-3 pl-md-0 pr-lg-4">
-                        <div class="headline-wrapper h-2" style="background-image: url(assets/images/tech.png);">
-                            <a href="index.html" class="headline-link"></a>
+                        @if (!empty($headline_secondary[3]))
+                        <div class="headline-wrapper h-2"
+                            style="background-image: url({{ asset('post_images/' . $headline_secondary[3]->post->image) }});">
+                            <a href="{{ route('guest.post.show', [$headline_secondary[3]->post->category->slug, $headline_secondary[3]->post]) }}"
+                                class="headline-link"></a>
                             <div class="headline-body d-flex flex-column justify-content-end align-items-start">
-                                <a href="index.html" class="headline-category px-2 bg-warning">Technology</a>
+                                <a href="index.html" class="headline-category px-2"
+                                    style="background-color: {{ $headline_secondary[3]->post->category->color }};">{{ $headline_secondary[3]->post->category->title }}</a>
                                 <h3 class="headline-title-wrap mt-2 mb-1">
-                                    <a href="index.html" class="headline-title">Perkembangan Teknology yang Pesat
-                                        Membuat Paradox</a>
+                                    <a href="{{ route('guest.post.show', [$headline_secondary[3]->post->category->slug, $headline_secondary[3]->post]) }}"
+                                        class="headline-title">{{ $headline_secondary[3]->post->title }}</a>
                                 </h3>
                                 <span class="headline-info">
-                                    <span><i class="fas fa-user"></i> Riyan</span>
-                                    <span><i class="far fa-clock"></i> 20 Maret 2020</span>
-                                    <span><i class="far fa-eye"></i> 8K</span>
+                                    <span><i class="fas fa-user"></i>
+                                        {{ $headline_secondary[3]->post->user_author->name }}</span>
+                                    <span><i class="far fa-clock"></i>
+                                        {{ $headline_secondary[3]->post->created_at->diffForHumans() }}</span>
+                                    <span><i class="far fa-eye"></i>
+                                        {{ ($headline_secondary[3]->post->view >= 1000) ? floor($headline_secondary[3]->post->view / 1000) . 'k' : $headline_secondary[3]->post->view }}</span>
                                 </span>
                             </div>
                         </div>
+                        @else
+                        <div class="text-center text-warning">Null</div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -135,6 +185,7 @@
                         <span class="terkini-header">Berita Terkini</span>
                         <a class="nav-item nav-link ml-auto active" id="nav-all-tab" data-toggle="tab" href="#nav-all"
                             role="tab" aria-controls="nav-all" aria-selected="true">All</a>
+
                         <a class="nav-item nav-link" id="nav-fashion-tab" data-toggle="tab" href="#nav-fashion"
                             role="tab" aria-controls="nav-fashion" aria-selected="true">Fashion</a>
                         <a class="nav-item nav-link" id="nav-sains-teknologi-tab" data-toggle="tab"
@@ -151,6 +202,7 @@
                         <a class="nav-item nav-link" id="nav-media-sosial-tab" data-toggle="tab"
                             href="#nav-media-sosial" role="tab" aria-controls="nav-media-sosial"
                             aria-selected="true">Media Sosial</a>
+
                         <a href="#" class="nav-item nav-link">More</a>
                     </div>
                 </nav>
@@ -242,6 +294,7 @@
                             </div>
                         </div>
                     </div>
+
                     {{-- Category fashion --}}
                     <div class="tab-pane fade show" id="nav-fashion" role="tabpanel" aria-labelledby="nav-fashion-tab">
                         <div class="row">
@@ -843,6 +896,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
