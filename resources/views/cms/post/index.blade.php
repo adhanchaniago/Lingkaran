@@ -63,12 +63,13 @@
                                         {{ $post->user_editor->name }}
                                         @endif</td>
                                     <td>@if ($post->status == 1)
-                                        <span class="text-success">published</span>
+                                        <span class="badge badge-success">published</span>
                                         @else
-                                        <span class="text-warning">unpublish</span>
+                                        <span class="badge badge-warning">unpublish</span>
                                         @endif</td>
                                     <td>
-                                        {{ ($post->view >= 1000) ? floor($post->view / 1000) . 'k' : $post->view }}
+                                        <span
+                                            class="badge badge-dark">{{ ($post->view >= 1000) ? floor($post->view / 1000) . 'k' : $post->view }}</span>
                                     </td>
                                     <td class="d-flex justify-content-end">
                                         <button class="btn btn-sm btn-info"

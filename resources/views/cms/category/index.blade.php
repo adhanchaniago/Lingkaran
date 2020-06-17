@@ -33,7 +33,9 @@
                                     <tr>
                                         <th scope="row">{{ $loop->index + 1 }}</th>
                                         <td>{{ $category->title }}</td>
-                                        <td>{{ $category->color }}</td>
+                                        <td><span class="badge"
+                                                style="background-color: {{ $category->color }};">{{ $category->color }}</span>
+                                        </td>
                                         <td class="d-flex justify-content-center">
 
                                             <button class="btn btn-info btn-sm" id="btn-edit" data-toggle="modal"

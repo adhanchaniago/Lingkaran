@@ -23,10 +23,8 @@ Jalankan artisan migration dan seeder pada terminal untuk membuat database dan d
 
 ```javascript
 //Generate database baru
-php artisan migrate
+php artisan migrate --seed
 
-//Generate seluruh seeder
-php artisan db:seed
 ```
 
 ### User Default Akses
@@ -39,4 +37,5 @@ superadmin@email.com
 12345678
 ```
 
-<p style="font-weight:bold;">NOTE: <span style="color:red;">Website ini masih belum selesai dan masih dalam pengembangan</span>. 2020</p>
+<hr/>
+<p align="center">NOTE: Website ini masih belum selesai dan masih dalam pengembangan. 2020</p>

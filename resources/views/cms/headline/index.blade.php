@@ -50,9 +50,9 @@
                                     <td scope="col">{{ $headline->post->user_author->name }}</td>
                                     <td scope="col" class="text-bold text-info">
                                         @if ( $headline->type == 'main')
-                                        Main
+                                        <span class="badge badge-pill badge-primary">Main</span>
                                         @else
-                                        Secondary
+                                        <span class="badge badge-pill badge-secondary">Secondary</span>
                                         @endif
                                     </td>
                                     <td scope="col">{{ $headline->created_at->diffForHumans() }}</td>

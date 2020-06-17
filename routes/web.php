@@ -16,11 +16,11 @@ use Illuminate\Support\Facades\Route;
 // CMS Route
 Route::middleware('auth')->prefix('cms')->namespace('cms')->group( function (){
     Route::resource('/dashboard', 'AdminController')->only('index');
+    
     Route::resource('/post', 'PostController')->except('show');
     Route::resource('/category', 'CategoryController')->except('create', 'show');
     Route::resource('/headline', 'HeadlineController');
 
-    
     Route::patch('/publish/{id}', 'PostController@publish')->name('post.publish');
     Route::patch('/revoke/{id}', 'PostController@revoke')->name('post.revoke');
 });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\cms;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Headline;
 use App\Category;
 use App\Post;
 use Illuminate\Support\Str;
@@ -166,11 +167,15 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function revoke(Request $request)
-    {
+    {        
         $post = Post::findOrFail($request->id);
         $post->update([
             'status' => 0
-        ]);
+        ]); 
+        $headline = Headline::where('post_id', $request->id)->get();
+        if (!empty($headline[0])) {
+            $headline[0]->delete();
+        }
         return redirect(route('post.index'))->withSuccess('Post has been revoked');
     }
 }
