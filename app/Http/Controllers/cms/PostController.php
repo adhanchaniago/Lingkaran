@@ -10,6 +10,7 @@ use App\Post;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Image;
+use File;
 
 class PostController extends Controller
 {
@@ -44,7 +45,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $this->validate(request(), [
-            'title' => 'required|min:5|unique:posts',
+            'title' => 'required|min:10|max:15|unique:posts',
             'category' => 'required',
             'content' => 'required|min:100',
             'image' => 'image'
@@ -65,8 +66,9 @@ class PostController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $filename = Str::slug($post->title) . '.' . $image->getClientOriginalExtension();
-            $location = public_path('post_images/'. $filename);
-            Image::make($image)->resize(600, 400)->save($location);
+            
+            $location = public_path('images/'. $filename);
+            Image::make($image->getRealPath())->resize(600, 400)->save($location);
 
             $post->update([
                 'image' => $filename
@@ -97,11 +99,11 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $this->validate(request(), [
-            'title' => 'required|min:5',
+            'title' => 'required|min:10|max:15',
             'category' => 'required',
             'content' => 'required|min:100',
             'image' => 'image'
-        ]);
+        ]);  
 
         $post->update([
             'title' => Str::title(request('title')),
@@ -113,10 +115,9 @@ class PostController extends Controller
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $filename = Str::slug($post->title) . '-' . Str::random(10) . '.' . $image->getClientOriginalExtension();
-            $location = public_path('post_images/'. $filename);
+            $filename = Str::slug($post->title) . '.' . $image->getClientOriginalExtension();
+            $location = public_path('images/'. $filename);
             Image::make($image)->resize(600, 400)->save($location);
-
             $oldFilename = $post->image;
 
             $post->update([

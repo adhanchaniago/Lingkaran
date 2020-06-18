@@ -931,8 +931,7 @@
             <div class="col-md-3 pr-md-0">
                 <div class="card my-3">
                     <a href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
-                        <img src="{{ asset('post_images/'.$post->image) }}" class="card-img-top"
-                            alt="{{ $post->title }}">
+                        <img src="{{ asset('images/'.$post->image) }}" class="card-img-top" alt="{{ $post->title }}">
                     </a>
                     <div class="card-body">
                         <a href="#" class="terbaru-category"

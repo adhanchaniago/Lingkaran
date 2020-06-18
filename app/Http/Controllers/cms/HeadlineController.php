@@ -16,7 +16,7 @@ class HeadlineController extends Controller
      */
     public function index()
     {
-        $headlines = Headline::with('post')->get();
+        $headlines = Headline::with('post')->orderBy('type', 'ASC')->get();
         return view('cms.headline.index', compact('headlines'));
     }
 
@@ -57,40 +57,6 @@ class HeadlineController extends Controller
 
             return redirect(route('headline.index'))->withSuccess('Post has been set as Headline');
         }
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
     }
 
     /**

@@ -19,7 +19,7 @@ Route::middleware('auth')->prefix('cms')->namespace('cms')->group( function (){
     
     Route::resource('/post', 'PostController')->except('show');
     Route::resource('/category', 'CategoryController')->except('create', 'show');
-    Route::resource('/headline', 'HeadlineController');
+    Route::resource('/headline', 'HeadlineController')->except('show', 'edit', 'update');
 
     Route::patch('/publish/{id}', 'PostController@publish')->name('post.publish');
     Route::patch('/revoke/{id}', 'PostController@revoke')->name('post.revoke');
