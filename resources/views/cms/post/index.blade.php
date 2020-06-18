@@ -52,7 +52,7 @@
                                         @else
                                         <button class="btn btn-light btn-sm" data-toggle="modal"
                                             data-target=".modal-image" data-title="{{ $post->title }}"
-                                            data-image-url="{{ asset('post_images/'.$post->image) }}"><i
+                                            data-image-url="{{ asset('images/'.$post->image) }}"><i
                                                 class="fa fa-picture-o"></i></button>
                                         @endif
                                     </td>
