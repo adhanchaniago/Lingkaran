@@ -6,7 +6,7 @@
             <div class="col-md-6">
                 <div class="berita-side-populer-content mt-3">
                     <a href="{{ route('guest.post.show', [$post->category->slug, $post]) }}"><img
-                            src="{{ asset('post_images/' . $post->image) }}" alt="{{ $post->title }}"
+                            src="{{ asset('images/' . $post->image) }}" alt="{{ $post->title }}"
                             class="berita-side-populer-img"></a>
                     <a href="{{ route('guest.post.show', [$post->category->slug, $post]) }}"
                         class="berita-side-populer-title">{{ $post->title }}</a>
@@ -32,7 +32,7 @@
                         <div class="row no-gutters">
                             <div class="col-md-4">
                                 <a href="{{ route('guest.post.show', [$post->category->slug, $post]) }}"><img
-                                        src="{{ asset('post_images/'. $post->image) }}" class="card-img rounded-0"
+                                        src="{{ asset('images/'. $post->image) }}" class="card-img rounded-0"
                                         alt="{{ $post->title }}"></a>
                             </div>
                             <div class="col-md-8">

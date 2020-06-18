@@ -45,7 +45,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $this->validate(request(), [
-            'title' => 'required|min:10|max:15|unique:posts',
+            'title' => 'required|min:10|unique:posts',
             'category' => 'required',
             'content' => 'required|min:100',
             'image' => 'image'
@@ -99,7 +99,7 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $this->validate(request(), [
-            'title' => 'required|min:10|max:15',
+            'title' => 'required|min:10',
             'category' => 'required',
             'content' => 'required|min:100',
             'image' => 'image'
