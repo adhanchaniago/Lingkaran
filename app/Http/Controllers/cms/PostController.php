@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Headline;
 use App\Category;
+use App\Tag;
 use App\Post;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
@@ -32,8 +33,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
-        return view('cms.post.create', compact('categories'));
+        $categories = Category::latest()->get();
+        $tags = Tag::latest()->get();
+        return view('cms.post.create', compact('categories', 'tags'));
     }
 
     /**
@@ -50,7 +52,6 @@ class PostController extends Controller
             'content' => 'required|min:100',
             'image' => 'image'
         ]);
-
         $post = Post::create([
             'title' => Str::title(request('title')),
             'slug' => Str::slug(request('title')),
@@ -62,7 +63,7 @@ class PostController extends Controller
             'status' => 0,
             'view' => 0
         ]);
-
+        $post->tags()->sync($request->tags, false);
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $filename = Str::slug($post->title) . '.' . $image->getClientOriginalExtension();
@@ -85,8 +86,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        $categories = Category::all();
-        return view('cms.post.edit', compact('post', 'categories'));
+        $categories = Category::latest()->get();
+        $tags = Tag::latest()->get();
+        return view('cms.post.edit', compact('post', 'categories', 'tags'));
     }
 
     /**
@@ -104,7 +106,6 @@ class PostController extends Controller
             'content' => 'required|min:100',
             'image' => 'image'
         ]);  
-
         $post->update([
             'title' => Str::title(request('title')),
             'slug' => Str::slug(request('title')),
@@ -112,7 +113,7 @@ class PostController extends Controller
             'content' => request('content'),
             'editor' => auth()->id()
         ]);
-
+        $post->tags()->sync($request->tags);
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $filename = Str::slug($post->title) . '.' . $image->getClientOriginalExtension();

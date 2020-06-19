@@ -23,6 +23,11 @@ class Post extends Model
         return $this->belongsTo(User::class, 'editor');
     }
 
+    function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
     function getRouteKeyName()
     {
         return 'slug';

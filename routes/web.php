@@ -18,7 +18,8 @@ Route::middleware('auth')->prefix('cms')->namespace('cms')->group( function (){
     Route::resource('/dashboard', 'AdminController')->only('index');
     
     Route::resource('/post', 'PostController')->except('show');
-    Route::resource('/category', 'CategoryController')->except('create', 'show');
+    Route::resource('/category', 'CategoryController')->except('create', 'show', 'edit');
+    Route::resource('/tag', 'TagController')->except('create','show', 'edit');
     Route::resource('/headline', 'HeadlineController')->except('show', 'edit', 'update');
 
     Route::patch('/publish/{id}', 'PostController@publish')->name('post.publish');

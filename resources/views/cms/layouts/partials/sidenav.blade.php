@@ -10,6 +10,7 @@
             <ul class="nav child_menu">
                 <li><a href="{{ route('post.index') }}">Post</a></li>
                 <li><a href="{{ route('category.index') }}">Category</a></li>
+                <li><a href="{{ route('tag.index') }}">Tag</a></li>
                 <li><a href="{{ route('headline.index') }}">Headline</a></li>
             </ul>
         </li>

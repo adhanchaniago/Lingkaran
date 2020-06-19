@@ -16,7 +16,7 @@ class HeadlineController extends Controller
      */
     public function index()
     {
-        $headlines = Headline::with('post')->orderBy('type', 'ASC')->get();
+        $headlines = Headline::with('post')->orderBy('type', 'ASC')->latest()->get();
         return view('cms.headline.index', compact('headlines'));
     }
 
@@ -27,7 +27,7 @@ class HeadlineController extends Controller
      */
     public function create()
     {
-        $posts = Post::with('category')->where('status', 1)->get();
+        $posts = Post::with('category')->where('status', 1)->latest()->get();
         return view('cms.headline.create', compact('posts'));
     }
 

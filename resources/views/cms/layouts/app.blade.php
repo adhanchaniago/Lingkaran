@@ -44,6 +44,8 @@
     <link href="{{ asset('cms/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css') }}" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="{{ asset('cms/build/css/custom.min.css')}}" rel="stylesheet">
+    <!-- Select2 -->
+    <link href="{{ asset('cms/select2/css/select2.min.css')}}" rel="stylesheet">
 
     <!-- CKeditor -->
     <script src="{{ asset('cms/ckeditor/ckeditor.js') }}"></script>
@@ -148,6 +150,9 @@
     <script src="{{ asset('cms/vendors/jszip/dist/jszip.min.js') }}"></script>
     <script src="{{ asset('cms/vendors/pdfmake/build/pdfmake.min.js') }}"></script>
     <script src="{{ asset('cms/vendors/pdfmake/build/vfs_fonts.js') }}"></script>
+
+    <!-- Select2 -->
+    <script src="{{ asset('cms/select2/js/select2.min.js') }}"></script>
 
     <!-- Custom Theme Scripts -->
     <script src="{{ asset('cms/build/js/custom.min.js') }}"></script>

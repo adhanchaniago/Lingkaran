@@ -68,6 +68,22 @@
                         </div>
                     </div>
                     <div class="item form-group">
+                        <label for="tag" class="col-form-label col-md-2 col-sm-2 label-align">Tag</label>
+                        <div class="col-md-9 col-sm-9 ">
+                            <select name="tags[]" class="form-control form-control-sm @error('tag') is-invalid @enderror select-tag"
+                                multiple>
+                                @foreach ($tags as $tag)
+                                <option value="{{ $tag->id }}">{{ $tag->title }}</option>
+                                @endforeach
+                            </select>
+                            @error('tag')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="item form-group">
                         <label for="content" class="col-form-label col-md-2 col-sm-2 label-align">Content <span
                                 class="required">*</span>
                         </label>
@@ -99,6 +115,10 @@
 @endsection
 @section('script')
 <script>
-    CKEDITOR.replace( 'content' );
+    $(document).ready(function(){
+        $('.select-tag').select2();
+        $('.select-tag').select2().val({!! json_encode($post->tags()->allRelatedIds()) !!}).trigger('change');
+        CKEDITOR.replace( 'content' );
+    });
 </script>
 @endsection

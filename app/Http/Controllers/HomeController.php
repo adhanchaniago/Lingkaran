@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Category;
 use App\Post;
 use App\Headline;
+use App\Tag;
 
 class HomeController extends Controller
 {
@@ -67,11 +68,12 @@ class HomeController extends Controller
      */
     public function show(Category $category, Post $post)
     {
+        $tags = Tag::all();
         $relatedPosts = Post::where('category_id', $category->id)->where('id', '<>', $post->id)
         ->where('status', 1)->take(8)->get();
         $populerPosts = Post::where('status', 1)->where('view', '>=', 1)->orderBy('view', 'DESC')->take(4)->get();
         $terbaruPosts = Post::where('status', 1)->latest()->take(5)->get();
-        return view('guest.post', compact('post', 'relatedPosts', 'populerPosts', 'terbaruPosts'));
+        return view('guest.post', compact('post', 'tags', 'relatedPosts', 'populerPosts', 'terbaruPosts'));
     }
 
 }

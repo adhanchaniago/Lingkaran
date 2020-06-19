@@ -41,9 +41,9 @@
                 </div>
                 <div class="detail-tag mt-3">
                     <span class="tag-header">Tags: </span>
-                    <a href="#">Bodyfit</a>
-                    <a href="#">Fitness</a>
-                    <a href="#">Sport</a>
+                    @foreach ($post->tags as $tag)
+                        <a href="#">{{ $tag->title }}</a>
+                    @endforeach
                 </div>
 
                 <div class="berita-lain mt-5">
