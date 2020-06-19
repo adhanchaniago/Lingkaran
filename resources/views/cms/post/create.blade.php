@@ -116,7 +116,9 @@
 @section('script')
 <script>
     $(document).ready(function(){
-        $('.select-tag').select2();
+        $('.select-tag').select2({
+            maximumSelectionLength: 5,
+        });
         CKEDITOR.replace( 'content' );
     });
 </script>

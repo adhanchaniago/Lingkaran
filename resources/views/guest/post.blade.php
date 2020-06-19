@@ -49,14 +49,14 @@
                 <div class="berita-lain mt-5">
                     <div class="berita-lain-header">Berita Lainnya</div>
                     <div class="row">
-                        @foreach ($relatedPosts as $post)
+                        @foreach ($relatedPosts as $related)
                         <div class="col-md-3">
                             <div class="berita-lain-content mt-3">
-                                <a href="{{ route('guest.post.show', [$post->category->slug, $post]) }}"><img
-                                        src="{{ asset('images/'.$post->image) }}" alt="{{ $post->title }}"
+                                <a href="{{ route('guest.post.show', [$related->category->slug, $related]) }}"><img
+                                        src="{{ asset('images/'.$related->image) }}" alt="{{ $related->title }}"
                                         class="berita-lain-img"></a>
-                                <a href="{{ route('guest.post.show', [$post->category->slug, $post]) }}"
-                                    class="berita-lain-title">{{ $post->title }}</a>
+                                <a href="{{ route('guest.post.show', [$related->category->slug, $related]) }}"
+                                    class="berita-lain-title">{{ $related->title }}</a>
                             </div>
                         </div>
                         @endforeach
