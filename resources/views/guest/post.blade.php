@@ -46,7 +46,7 @@
                     @endforeach
                 </div>
 
-                <div class="berita-lain mt-5">
+                <div class="berita-lain mt-3">
                     <div class="berita-lain-header">Berita Lainnya</div>
                     <div class="row">
                         @foreach ($relatedPosts as $related)
