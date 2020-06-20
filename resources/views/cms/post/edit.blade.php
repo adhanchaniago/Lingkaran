@@ -116,10 +116,10 @@
 @section('script')
 <script>
     $(document).ready(function(){
-        $('.select-tag').select2({
-            maximumSelectionLength: 5,
-        });
         $('.select-tag').select2().val({!! json_encode($post->tags()->allRelatedIds()) !!}).trigger('change');
+        $('.select-tag').select2({
+            maximumSelectionLength: 5
+        });
         CKEDITOR.replace( 'content' );
     });
 </script>

@@ -117,7 +117,7 @@
 <script>
     $(document).ready(function(){
         $('.select-tag').select2({
-            maximumSelectionLength: 5,
+            maximumSelectionLength: 5
         });
         CKEDITOR.replace( 'content' );
     });

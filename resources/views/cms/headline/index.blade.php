@@ -23,6 +23,7 @@
                         <table class="table table-borderless table-hover">
                             <thead>
                                 <tr>
+                                    <th scope="col">No.</th>
                                     <th scope="col">Title</th>
                                     <th scope="col">Category</th>
                                     <th scope="col">Image</th>
@@ -35,6 +36,7 @@
                             <tbody>
                                 @foreach ($headlines as $headline)
                                 <tr>
+                                    <th>{{ $loop->index + 1 }}</th>
                                     <td scope="col">{{ $headline->post->title }}</td>
                                     <td scope="col">{{ $headline->post->category->title }}</td>
                                     <td>

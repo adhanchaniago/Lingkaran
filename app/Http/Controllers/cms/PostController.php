@@ -32,7 +32,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::latest()->get();
+        $posts = Post::with(['category', 'user_author', 'user_editor'])->latest()->get();
         return view('cms.post.index', compact('posts'));
     }
 

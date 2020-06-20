@@ -17,9 +17,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $headline_main = Headline::with('post')->firstWhere('type', 'main');
-        $headline_secondary = Headline::with('post')->where('type', 'secondary')->get();
+        // Trending
+        $trending = Post::where('status', 1)->where('view', '>=', 1)->orderBy('view', 'DESC')->take(5)->get();
 
+        // Headline
+        $headline_main = Headline::with(['post.category', 'post.user_author'])->firstWhere('type', 'main');
+        $headline_secondary = Headline::with(['post.category', 'post.user_author'])->where('type', 'secondary')->get();
+
+        // Berita Terkini
         // Ambil id category berdasarkan nama kategori
         $fashion = Category::where('slug', '=', 'fashion')->get();
         $sains = Category::where('slug', '=', 'sains-teknologi')->get();
@@ -29,27 +34,27 @@ class HomeController extends Controller
         $kesehatan = Category::where('slug', '=', 'kesehatan')->get();
         $mediasosial = Category::where('slug', '=', 'media-sosial')->get();
 
-        $trending = Post::where('status', 1)->where('view', '>=', 1)->orderBy('view', 'DESC')->take(5)->get();
-        $populer_category_all = Post::where('status', 1)->where('view', '>=', 1)->orderBy('view', 'DESC')->take(5)->get();
-        $terbaru_category_all = Post::where('status', 1)->latest()->take(5)->get();
-        $populer_category_fashion = Post::where('category_id', '=', (!empty($fashion[0])) ? $fashion[0]->id : '' )->where('status', 1)->where('view', '>=', 1)->orderBy('view', 'DESC')->take(5)->get();
-        $terbaru_category_fashion = Post::where('category_id', '=', (!empty($fashion[0])) ? $fashion[0]->id : '' )->where('status', 1)->latest()->take(5)->get();
-        $populer_category_sains = Post::where('category_id', '=', (!empty($sains[0])) ? $sains[0]->id : '' )->where('status', 1)->where('view', '>=', 1)->orderBy('view', 'DESC')->take(5)->get();
-        $terbaru_category_sains = Post::where('category_id', '=', (!empty($sains[0])) ? $sains[0]->id : '' )->where('status', 1)->latest()->take(5)->get();
-        $populer_category_olahraga = Post::where('category_id', '=', (!empty($olahraga[0])) ? $olahraga[0]->id : '' )->where('status', 1)->where('view', '>=', 1)->orderBy('view', 'DESC')->take(5)->get();
-        $terbaru_category_olahraga = Post::where('category_id', '=', (!empty($olahraga[0])) ? $olahraga[0]->id : '' )->where('status', 1)->latest()->take(5)->get();
-        $populer_category_otomotif = Post::where('category_id', '=', (!empty($otomotif[0])) ? $otomotif[0]->id : '' )->where('status', 1)->where('view', '>=', 1)->orderBy('view', 'DESC')->take(5)->get();
-        $terbaru_category_otomotif = Post::where('category_id', '=', (!empty($otomotif[0])) ? $otomotif[0]->id : '' )->where('status', 1)->latest()->take(5)->get();
-        $populer_category_properti = Post::where('category_id', '=', (!empty($properti[0])) ? $properti[0]->id : '' )->where('status', 1)->where('view', '>=', 1)->orderBy('view', 'DESC')->take(5)->get();
-        $terbaru_category_properti = Post::where('category_id', '=', (!empty($properti[0])) ? $properti[0]->id : '' )->where('status', 1)->latest()->take(5)->get();
-        $populer_category_kesehatan = Post::where('category_id', '=', (!empty($kesehatan[0])) ? $kesehatan[0]->id : '' )->where('status', 1)->where('view', '>=', 1)->orderBy('view', 'DESC')->take(5)->get();
-        $terbaru_category_kesehatan = Post::where('category_id', '=', (!empty($kesehatan[0])) ? $kesehatan[0]->id : '' )->where('status', 1)->latest()->take(5)->get();
-        $populer_category_mediasosial = Post::where('category_id', '=', (!empty($mediasosial[0])) ? $mediasosial[0]->id : '' )->where('status', 1)->where('view', '>=', 1)->orderBy('view', 'DESC')->take(5)->get();
-        $terbaru_category_mediasosial = Post::where('category_id', '=', (!empty($mediasosial[0])) ? $mediasosial[0]->id : '' )->where('status', 1)->latest()->take(5)->get();
+        $populer_category_all = Post::with(['category', 'user_author'])->where('status', 1)->where('view', '>=', 1)->orderBy('view', 'DESC')->take(5)->get();
+        $terbaru_category_all = Post::with(['category', 'user_author'])->where('status', 1)->latest()->take(5)->get();
+        $populer_category_fashion = Post::with(['category', 'user_author'])->where('category_id', '=', (!empty($fashion[0])) ? $fashion[0]->id : '' )->where('status', 1)->where('view', '>=', 1)->orderBy('view', 'DESC')->take(5)->get();
+        $terbaru_category_fashion = Post::with(['category', 'user_author'])->where('category_id', '=', (!empty($fashion[0])) ? $fashion[0]->id : '' )->where('status', 1)->latest()->take(5)->get();
+        $populer_category_sains = Post::with(['category', 'user_author'])->where('category_id', '=', (!empty($sains[0])) ? $sains[0]->id : '' )->where('status', 1)->where('view', '>=', 1)->orderBy('view', 'DESC')->take(5)->get();
+        $terbaru_category_sains = Post::with(['category', 'user_author'])->where('category_id', '=', (!empty($sains[0])) ? $sains[0]->id : '' )->where('status', 1)->latest()->take(5)->get();
+        $populer_category_olahraga = Post::with(['category', 'user_author'])->where('category_id', '=', (!empty($olahraga[0])) ? $olahraga[0]->id : '' )->where('status', 1)->where('view', '>=', 1)->orderBy('view', 'DESC')->take(5)->get();
+        $terbaru_category_olahraga = Post::with(['category', 'user_author'])->where('category_id', '=', (!empty($olahraga[0])) ? $olahraga[0]->id : '' )->where('status', 1)->latest()->take(5)->get();
+        $populer_category_otomotif = Post::with(['category', 'user_author'])->where('category_id', '=', (!empty($otomotif[0])) ? $otomotif[0]->id : '' )->where('status', 1)->where('view', '>=', 1)->orderBy('view', 'DESC')->take(5)->get();
+        $terbaru_category_otomotif = Post::with(['category', 'user_author'])->where('category_id', '=', (!empty($otomotif[0])) ? $otomotif[0]->id : '' )->where('status', 1)->latest()->take(5)->get();
+        $populer_category_properti = Post::with(['category', 'user_author'])->where('category_id', '=', (!empty($properti[0])) ? $properti[0]->id : '' )->where('status', 1)->where('view', '>=', 1)->orderBy('view', 'DESC')->take(5)->get();
+        $terbaru_category_properti = Post::with(['category', 'user_author'])->where('category_id', '=', (!empty($properti[0])) ? $properti[0]->id : '' )->where('status', 1)->latest()->take(5)->get();
+        $populer_category_kesehatan = Post::with(['category', 'user_author'])->where('category_id', '=', (!empty($kesehatan[0])) ? $kesehatan[0]->id : '' )->where('status', 1)->where('view', '>=', 1)->orderBy('view', 'DESC')->take(5)->get();
+        $terbaru_category_kesehatan = Post::with(['category', 'user_author'])->where('category_id', '=', (!empty($kesehatan[0])) ? $kesehatan[0]->id : '' )->where('status', 1)->latest()->take(5)->get();
+        $populer_category_mediasosial = Post::with(['category', 'user_author'])->where('category_id', '=', (!empty($mediasosial[0])) ? $mediasosial[0]->id : '' )->where('status', 1)->where('view', '>=', 1)->orderBy('view', 'DESC')->take(5)->get();
+        $terbaru_category_mediasosial = Post::with(['category', 'user_author'])->where('category_id', '=', (!empty($mediasosial[0])) ? $mediasosial[0]->id : '' )->where('status', 1)->latest()->take(5)->get();
 
-        $berita_terbaru = Post::where('status', 1)->paginate(16);
+        // Berita Terbaru
+        $berita_terbaru = Post::with(['category', 'user_author'])->where('status', 1)->latest()->paginate(16);
 
-        return view('guest.home', compact('trending',
+        return view('guest.home', compact('trending', 'headline_main', 'headline_secondary',
          'populer_category_all', 'terbaru_category_all',
          'populer_category_fashion', 'terbaru_category_fashion',
          'populer_category_sains', 'terbaru_category_sains', 
@@ -58,7 +63,7 @@ class HomeController extends Controller
          'populer_category_properti', 'terbaru_category_properti', 
          'populer_category_kesehatan', 'terbaru_category_kesehatan', 
          'populer_category_mediasosial', 'terbaru_category_mediasosial', 
-         'berita_terbaru', 'headline_main', 'headline_secondary'));
+         'berita_terbaru'));
     }
 
     /**
@@ -68,12 +73,11 @@ class HomeController extends Controller
      */
     public function show(Category $category, Post $post)
     {
-        $tags = Tag::all();
+        $post = Post::with('tags')->find($post->id);
         $relatedPosts = Post::where('category_id', $category->id)->where('id', '<>', $post->id)
-        ->where('status', 1)->take(8)->get();
+        ->where('status', 1)->latest()->take(12)->get();
         $populerPosts = Post::where('status', 1)->where('view', '>=', 1)->orderBy('view', 'DESC')->take(4)->get();
-        $terbaruPosts = Post::where('status', 1)->latest()->take(5)->get();
-        return view('guest.post', compact('post', 'tags', 'relatedPosts', 'populerPosts', 'terbaruPosts'));
+        $terbaruPosts = Post::with('user_author')->where('status', 1)->latest()->take(5)->get();
+        return view('guest.post', compact('post', 'relatedPosts', 'populerPosts', 'terbaruPosts'));
     }
-
 }

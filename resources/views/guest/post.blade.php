@@ -45,7 +45,7 @@
                     @endif
                 </div>
                 <div class="detail-tag mt-3">
-                    <span class="tag-header">Tags: </span>
+                <span class="tag-header">Tags</span>
                     @foreach ($post->tags as $tag)
                         <a href="#">{{ $tag->title }}</a>
                     @endforeach
