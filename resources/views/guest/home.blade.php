@@ -1,4 +1,9 @@
 @extends('guest.layouts.app')
+
+@section('title')
+{{ config('app.name', 'Lingkaran')}}
+@endsection
+
 @section('content')
 <!-- Trending Text Slide -->
 <section class="trending my-4 d-none d-md-block">
