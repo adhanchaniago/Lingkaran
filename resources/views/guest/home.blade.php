@@ -1,7 +1,7 @@
 @extends('guest.layouts.app')
 
 @section('title')
-{{ config('app.name', 'Lingkaran')}}
+{{ config('app.name', 'Lingkaran') }}
 @endsection
 
 @section('content')
@@ -13,7 +13,7 @@
                 <span class="trending-header p-2"><i class="fas fa-bolt"></i> Populer</span>
                 <div id="carousel-text" class="carousel slide pl-3" data-ride="carousel">
                     <div class="carousel-inner">
-                        @foreach ($trending as $key => $post)
+                        @foreach($trending as $key => $post)
                         <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
                             <a
                                 href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">{{ $post->title }}</a>
@@ -33,13 +33,13 @@
             <div class="col-md-12 col-lg-10 px-0 pl-md-3">
                 <div class="row">
                     <div class="col-md-8 my-3 my-md-0">
-                        @if (!empty($headline_main))
+                        @if(!empty($headline_main))
                         <div class="headline-wrapper h-3"
                             style="background-image: url({{ asset('images/'. $headline_main->post->image) }});">
                             <a href="{{ route('guest.post.show', [$headline_main->post->category->slug, $headline_main->post]) }}"
                                 class="headline-link"></a>
                             <div class="headline-body d-flex flex-column justify-content-end align-items-start">
-                                <a href="#" class="headline-category px-2"
+                                <a href="{{ route('guest.category.show', $headline_main->post->category->slug) }}" class="headline-category px-2"
                                     style="background-color: {{ $headline_main->post->category->color }};">{{ $headline_main->post->category->title }}</a>
                                 <h3 class="headline-title-wrap mt-2 mb-1">
                                     <a href="{{ route('guest.post.show', [$headline_main->post->category->slug, $headline_main->post]) }}"
@@ -60,13 +60,13 @@
                         @endif
                     </div>
                     <div class="col-md-4 pl-md-0 pr-lg-4">
-                        @if (!empty($headline_secondary[0]))
+                        @if(!empty($headline_secondary[0]))
                         <div class="headline-wrapper h-3"
                             style="background-image: url({{ asset('images/'. $headline_secondary[0]->post->image) }});">
                             <a href="{{ route('guest.post.show', [$headline_secondary[0]->post->category->slug, $headline_secondary[0]->post]) }}"
                                 class="headline-link"></a>
                             <div class="headline-body d-flex flex-column justify-content-end align-items-start">
-                                <a href="#" class="headline-category px-2"
+                                <a href="{{ route('guest.category.show', $headline_secondary[0]->post->category->slug) }}" class="headline-category px-2"
                                     style="background-color: {{ $headline_secondary[0]->post->category->color }};">{{ $headline_secondary[0]->post->category->title }}</a>
                                 <h3 class="headline-title-wrap mt-2 mb-1">
                                     <a href="{{ route('guest.post.show', [$headline_secondary[0]->post->category->slug, $headline_secondary[0]->post]) }}"
@@ -89,13 +89,13 @@
                 </div>
                 <div class="row">
                     <div class="col-md-4 mt-3">
-                        @if (!empty($headline_secondary[1]))
+                        @if(!empty($headline_secondary[1]))
                         <div class="headline-wrapper h-2"
                             style="background-image: url({{ asset('images/' . $headline_secondary[1]->post->image) }});">
                             <a href="{{ route('guest.post.show', [$headline_secondary[1]->post->category->slug, $headline_secondary[1]->post]) }}"
                                 class="headline-link"></a>
                             <div class="headline-body d-flex flex-column justify-content-end align-items-start">
-                                <a href="index.html" class="headline-category px-2"
+                                <a href="{{ route('guest.category.show', $headline_secondary[1]->post->category->slug) }}" class="headline-category px-2"
                                     style="background-color: {{ $headline_secondary[1]->post->category->color }};">{{ $headline_secondary[1]->post->category->title }}</a>
                                 <h3 class="headline-title-wrap mt-2 mb-1">
                                     <a href="{{ route('guest.post.show', [$headline_secondary[1]->post->category->slug, $headline_secondary[1]->post]) }}"
@@ -117,13 +117,13 @@
                     </div>
 
                     <div class="col-md-4 mt-3 pl-md-0">
-                        @if (!empty($headline_secondary[2]))
+                        @if(!empty($headline_secondary[2]))
                         <div class="headline-wrapper h-2"
                             style="background-image: url({{ asset('images/' . $headline_secondary[2]->post->image) }});">
                             <a href="{{ route('guest.post.show', [$headline_secondary[2]->post->category->slug, $headline_secondary[2]->post]) }}"
                                 class="headline-link"></a>
                             <div class="headline-body d-flex flex-column justify-content-end align-items-start">
-                                <a href="index.html" class="headline-category px-2"
+                                <a href="{{ route('guest.category.show', $headline_secondary[2]->post->category->slug) }}" class="headline-category px-2"
                                     style="background-color: {{ $headline_secondary[2]->post->category->color }};">{{ $headline_secondary[2]->post->category->title }}</a>
                                 <h3 class="headline-title-wrap mt-2 mb-1">
                                     <a href="{{ route('guest.post.show', [$headline_secondary[2]->post->category->slug, $headline_secondary[2]->post]) }}"
@@ -145,13 +145,13 @@
                     </div>
 
                     <div class="col-md-4 mt-3 pl-md-0 pr-lg-4">
-                        @if (!empty($headline_secondary[3]))
+                        @if(!empty($headline_secondary[3]))
                         <div class="headline-wrapper h-2"
                             style="background-image: url({{ asset('images/' . $headline_secondary[3]->post->image) }});">
                             <a href="{{ route('guest.post.show', [$headline_secondary[3]->post->category->slug, $headline_secondary[3]->post]) }}"
                                 class="headline-link"></a>
                             <div class="headline-body d-flex flex-column justify-content-end align-items-start">
-                                <a href="index.html" class="headline-category px-2"
+                                <a href="{{ route('guest.category.show', $headline_secondary[3]->post->category->slug) }}" class="headline-category px-2"
                                     style="background-color: {{ $headline_secondary[3]->post->category->color }};">{{ $headline_secondary[3]->post->category->title }}</a>
                                 <h3 class="headline-title-wrap mt-2 mb-1">
                                     <a href="{{ route('guest.post.show', [$headline_secondary[3]->post->category->slug, $headline_secondary[3]->post]) }}"
@@ -174,7 +174,7 @@
                 </div>
             </div>
             <div class="col-lg-2 d-none d-lg-block pl-0">
-                <a href="index.html"><img src="assets/images/ads.png" alt="Iklan" style="height: 100%;"></a>
+                <a href="#"><img src="assets/images/ads.png" alt="Iklan" style="height: 100%;"></a>
             </div>
         </div>
     </div>
@@ -207,8 +207,7 @@
                         <a class="nav-item nav-link" id="nav-media-sosial-tab" data-toggle="tab"
                             href="#nav-media-sosial" role="tab" aria-controls="nav-media-sosial"
                             aria-selected="true">Media Sosial</a>
-
-                        <a href="#" class="nav-item nav-link">More</a>
+                        <a href="{{ route('guest.category.all') }}" class="nav-item nav-link">Lainnya</a>
                     </div>
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
@@ -219,7 +218,7 @@
                             <div class="col-md-6 mt-3">
                                 <span class="terkini-category">Berita Populer</span>
                                 <div class="terkini-body">
-                                    @foreach ($populer_category_all as $post)
+                                    @foreach($populer_category_all as $post)
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="card mt-3 rounded-0">
@@ -236,7 +235,7 @@
                                                                 href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
                                                                 <h5 class="card-title">{{ $post->title }}</h5>
                                                             </a>
-                                                            <a href="#"><span class="card-category"
+                                                            <a href="{{ route('guest.category.show', $post->category->slug) }}"><span class="card-category"
                                                                     style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
                                                             <p class="card-text">
                                                                 <span>
@@ -261,7 +260,7 @@
                             <div class="col-md-6 mt-3">
                                 <span class="terkini-category">Berita Terbaru</span>
                                 <div class="terkini-body">
-                                    @foreach ($terbaru_category_all as $post)
+                                    @foreach($terbaru_category_all as $post)
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="card mt-3 rounded-0">
@@ -278,7 +277,7 @@
                                                                 href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
                                                                 <h5 class="card-title">{{ $post->title }}</h5>
                                                             </a>
-                                                            <a href="#"><span class="card-category"
+                                                            <a href="{{ route('guest.category.show', $post->category->slug) }}"><span class="card-category"
                                                                     style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
                                                             <p class="card-text">
                                                                 <span><i class="fas fa-user"></i>
@@ -307,7 +306,7 @@
                             <div class="col-md-6 mt-3">
                                 <span class="terkini-category">Berita Populer</span>
                                 <div class="terkini-body">
-                                    @foreach ($populer_category_fashion as $post)
+                                    @foreach($populer_category_fashion as $post)
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="card mt-3 rounded-0">
@@ -324,7 +323,7 @@
                                                                 href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
                                                                 <h5 class="card-title">{{ $post->title }}</h5>
                                                             </a>
-                                                            <a href="#"><span class="card-category"
+                                                            <a href="{{ route('guest.category.show', $post->category->slug) }}"><span class="card-category"
                                                                     style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
                                                             <p class="card-text">
                                                                 <span><i class="fas fa-user"></i>
@@ -347,7 +346,7 @@
                             <div class="col-md-6 mt-3">
                                 <span class="terkini-category">Berita Terbaru</span>
                                 <div class="terkini-body">
-                                    @foreach ($terbaru_category_fashion as $post)
+                                    @foreach($terbaru_category_fashion as $post)
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="card mt-3 rounded-0">
@@ -364,7 +363,7 @@
                                                                 href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
                                                                 <h5 class="card-title">{{ $post->title }}</h5>
                                                             </a>
-                                                            <a href="#"><span class="card-category"
+                                                            <a href="{{ route('guest.category.show', $post->category->slug) }}"><span class="card-category"
                                                                     style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
                                                             <p class="card-text">
                                                                 <span><i class="fas fa-user"></i>
@@ -393,7 +392,7 @@
                             <div class="col-md-6 mt-3">
                                 <span class="terkini-category">Berita Populer</span>
                                 <div class="terkini-body">
-                                    @foreach ($populer_category_sains as $post)
+                                    @foreach($populer_category_sains as $post)
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="card mt-3 rounded-0">
@@ -410,7 +409,7 @@
                                                                 href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
                                                                 <h5 class="card-title">{{ $post->title }}</h5>
                                                             </a>
-                                                            <a href="#"><span class="card-category"
+                                                            <a href="{{ route('guest.category.show', $post->category->slug) }}"><span class="card-category"
                                                                     style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
                                                             <p class="card-text">
                                                                 <span><i class="fas fa-user"></i>
@@ -433,7 +432,7 @@
                             <div class="col-md-6 mt-3">
                                 <span class="terkini-category">Berita Terbaru</span>
                                 <div class="terkini-body">
-                                    @foreach ($terbaru_category_sains as $post)
+                                    @foreach($terbaru_category_sains as $post)
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="card mt-3 rounded-0">
@@ -450,7 +449,7 @@
                                                                 href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
                                                                 <h5 class="card-title">{{ $post->title }}</h5>
                                                             </a>
-                                                            <a href="#"><span class="card-category"
+                                                            <a href="{{ route('guest.category.show', $post->category->slug) }}"><span class="card-category"
                                                                     style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
                                                             <p class="card-text">
                                                                 <span><i class="fas fa-user"></i>
@@ -479,7 +478,7 @@
                             <div class="col-md-6 mt-3">
                                 <span class="terkini-category">Berita Populer</span>
                                 <div class="terkini-body">
-                                    @foreach ($populer_category_olahraga as $post)
+                                    @foreach($populer_category_olahraga as $post)
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="card mt-3 rounded-0">
@@ -496,7 +495,7 @@
                                                                 href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
                                                                 <h5 class="card-title">{{ $post->title }}</h5>
                                                             </a>
-                                                            <a href="#"><span class="card-category"
+                                                            <a href="{{ route('guest.category.show', $post->category->slug) }}"><span class="card-category"
                                                                     style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
                                                             <p class="card-text">
                                                                 <span><i class="fas fa-user"></i>
@@ -519,7 +518,7 @@
                             <div class="col-md-6 mt-3">
                                 <span class="terkini-category">Berita Terbaru</span>
                                 <div class="terkini-body">
-                                    @foreach ($terbaru_category_olahraga as $post)
+                                    @foreach($terbaru_category_olahraga as $post)
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="card mt-3 rounded-0">
@@ -536,7 +535,7 @@
                                                                 href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
                                                                 <h5 class="card-title">{{ $post->title }}</h5>
                                                             </a>
-                                                            <a href="#"><span class="card-category"
+                                                            <a href="{{ route('guest.category.show', $post->category->slug) }}"><span class="card-category"
                                                                     style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
                                                             <p class="card-text">
                                                                 <span><i class="fas fa-user"></i>
@@ -565,7 +564,7 @@
                             <div class="col-md-6 mt-3">
                                 <span class="terkini-category">Berita Populer</span>
                                 <div class="terkini-body">
-                                    @foreach ($populer_category_otomotif as $post)
+                                    @foreach($populer_category_otomotif as $post)
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="card mt-3 rounded-0">
@@ -582,7 +581,7 @@
                                                                 href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
                                                                 <h5 class="card-title">{{ $post->title }}</h5>
                                                             </a>
-                                                            <a href="#"><span class="card-category"
+                                                            <a href="{{ route('guest.category.show', $post->category->slug) }}"><span class="card-category"
                                                                     style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
                                                             <p class="card-text">
                                                                 <span><i class="fas fa-user"></i>
@@ -605,7 +604,7 @@
                             <div class="col-md-6 mt-3">
                                 <span class="terkini-category">Berita Terbaru</span>
                                 <div class="terkini-body">
-                                    @foreach ($terbaru_category_otomotif as $post)
+                                    @foreach($terbaru_category_otomotif as $post)
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="card mt-3 rounded-0">
@@ -622,7 +621,7 @@
                                                                 href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
                                                                 <h5 class="card-title">{{ $post->title }}</h5>
                                                             </a>
-                                                            <a href="#"><span class="card-category"
+                                                            <a href="{{ route('guest.category.show', $post->category->slug) }}"><span class="card-category"
                                                                     style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
                                                             <p class="card-text">
                                                                 <span><i class="fas fa-user"></i>
@@ -651,7 +650,7 @@
                             <div class="col-md-6 mt-3">
                                 <span class="terkini-category">Berita Populer</span>
                                 <div class="terkini-body">
-                                    @foreach ($populer_category_properti as $post)
+                                    @foreach($populer_category_properti as $post)
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="card mt-3 rounded-0">
@@ -668,7 +667,7 @@
                                                                 href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
                                                                 <h5 class="card-title">{{ $post->title }}</h5>
                                                             </a>
-                                                            <a href="#"><span class="card-category"
+                                                            <a href="{{ route('guest.category.show', $post->category->slug) }}"><span class="card-category"
                                                                     style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
                                                             <p class="card-text">
                                                                 <span><i class="fas fa-user"></i>
@@ -691,7 +690,7 @@
                             <div class="col-md-6 mt-3">
                                 <span class="terkini-category">Berita Terbaru</span>
                                 <div class="terkini-body">
-                                    @foreach ($terbaru_category_properti as $post)
+                                    @foreach($terbaru_category_properti as $post)
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="card mt-3 rounded-0">
@@ -708,7 +707,7 @@
                                                                 href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
                                                                 <h5 class="card-title">{{ $post->title }}</h5>
                                                             </a>
-                                                            <a href="#"><span class="card-category"
+                                                            <a href="{{ route('guest.category.show', $post->category->slug) }}"><span class="card-category"
                                                                     style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
                                                             <p class="card-text">
                                                                 <span><i class="fas fa-user"></i>
@@ -737,7 +736,7 @@
                             <div class="col-md-6 mt-3">
                                 <span class="terkini-category">Berita Populer</span>
                                 <div class="terkini-body">
-                                    @foreach ($populer_category_kesehatan as $post)
+                                    @foreach($populer_category_kesehatan as $post)
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="card mt-3 rounded-0">
@@ -754,7 +753,7 @@
                                                                 href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
                                                                 <h5 class="card-title">{{ $post->title }}</h5>
                                                             </a>
-                                                            <a href="#"><span class="card-category"
+                                                            <a href="{{ route('guest.category.show', $post->category->slug) }}"><span class="card-category"
                                                                     style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
                                                             <p class="card-text">
                                                                 <span><i class="fas fa-user"></i>
@@ -777,7 +776,7 @@
                             <div class="col-md-6 mt-3">
                                 <span class="terkini-category">Berita Terbaru</span>
                                 <div class="terkini-body">
-                                    @foreach ($terbaru_category_kesehatan as $post)
+                                    @foreach($terbaru_category_kesehatan as $post)
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="card mt-3 rounded-0">
@@ -794,7 +793,7 @@
                                                                 href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
                                                                 <h5 class="card-title">{{ $post->title }}</h5>
                                                             </a>
-                                                            <a href="#"><span class="card-category"
+                                                            <a href="{{ route('guest.category.show', $post->category->slug) }}"><span class="card-category"
                                                                     style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
                                                             <p class="card-text">
                                                                 <span><i class="fas fa-user"></i>
@@ -823,7 +822,7 @@
                             <div class="col-md-6 mt-3">
                                 <span class="terkini-category">Berita Populer</span>
                                 <div class="terkini-body">
-                                    @foreach ($populer_category_mediasosial as $post)
+                                    @foreach($populer_category_mediasosial as $post)
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="card mt-3 rounded-0">
@@ -840,7 +839,7 @@
                                                                 href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
                                                                 <h5 class="card-title">{{ $post->title }}</h5>
                                                             </a>
-                                                            <a href="#"><span class="card-category"
+                                                            <a href="{{ route('guest.category.show', $post->category->slug) }}"><span class="card-category"
                                                                     style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
                                                             <p class="card-text">
                                                                 <span><i class="fas fa-user"></i>
@@ -863,7 +862,7 @@
                             <div class="col-md-6 mt-3">
                                 <span class="terkini-category">Berita Terbaru</span>
                                 <div class="terkini-body">
-                                    @foreach ($terbaru_category_mediasosial as $post)
+                                    @foreach($terbaru_category_mediasosial as $post)
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="card mt-3 rounded-0">
@@ -880,7 +879,7 @@
                                                                 href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
                                                                 <h5 class="card-title">{{ $post->title }}</h5>
                                                             </a>
-                                                            <a href="#"><span class="card-category"
+                                                            <a href="{{ route('guest.category.show', $post->category->slug) }}"><span class="card-category"
                                                                     style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
                                                             <p class="card-text">
                                                                 <span><i class="fas fa-user"></i>
@@ -932,14 +931,14 @@
             </div>
         </div>
         <div class="row">
-            @foreach ($berita_terbaru as $post)
+            @foreach($berita_terbaru as $post)
             <div class="col-md-3 pr-md-0">
                 <div class="card my-3">
                     <a href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
                         <img src="{{ asset('images/'.$post->image) }}" class="card-img-top" alt="{{ $post->title }}">
                     </a>
                     <div class="card-body">
-                        <a href="#" class="terbaru-category"
+                        <a href="{{ route('guest.category.show', $post->category->slug) }}" class="terbaru-category"
                             style="background-color:{{ $post->category->color }};">{{ $post->category->title }}</a>
                         <a href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
                             <h5 class="card-title text-capitalize">{{ $post->title }}</h5>

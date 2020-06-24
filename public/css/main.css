@@ -26,9 +26,9 @@
 :root {
     --hijau: rgb(38, 158, 38);
     --merah: rgb(196, 51, 51);
-    --yellow: rgb(124, 90, 46);
     --abu: rgb(143, 143, 143);
-    --gradasi: linear-gradient(-225deg, var(--hijau) 0%, var(--yellow) 50%, var(--merah) 100%);
+    --hitam: #4D4D4D;
+    --gradasi: linear-gradient(-225deg, var(--hijau) 0%, var(--merah) 67%, var(--merah) 100%);
 }
 
 body {
@@ -76,16 +76,16 @@ a:hover {
     transition: all 0.3s;
 }
 
-.navbar .navbar-brand:hover {
-    color: var(--merah);
-}
-
 .navbar .navbar-brand span {
     color: var(--merah);
 }
 
+.navbar .navbar-brand:hover {
+    color: var(--merah);
+}
+
 .navbar-nav .nav-item .nav-link {
-    color: var(--abu);
+    color: var(--hitam);
     font-family: Roboto-Medium;
     font-size: 14px;
     transition: all 0.3s;
@@ -315,7 +315,8 @@ a:hover {
     object-position: center center;
 }
 
-.berita-terkini .card-title {
+.berita-terkini .card-title,
+.post-detail .category-body .post-title {
     color: #000;
     font-family: Barlow-Medium;
     font-size: 18px;
@@ -329,7 +330,8 @@ a:hover {
 }
 
 .berita-terkini .card-title:hover,
-.berita-side-right .side-body .card-title:hover {
+.berita-side-right .side-body .card-title:hover,
+.post-detail .category-body .post-title:hover {
     color: var(--hijau);
 }
 
@@ -352,14 +354,16 @@ a:hover {
 }
 
 .berita-terkini .card-text,
-.berita-side-right .card-text {
+.berita-side-right .card-text,
+.post-detail .post-info {
     color: var(--abu);
     font-size: 12px;
     margin-top: 10px;
 }
 
 .berita-terkini .card-text span,
-.berita-side-right .card-text span {
+.berita-side-right .card-text span,
+.post-detail .post-info span {
     margin-right: 10px;
 }
 
@@ -407,10 +411,9 @@ a:hover {
 }
 
 .berita-terbaru .terbaru-category:hover {
-    background-color: unset !important;
-    color: var(--hijau);
-    border-right: 1px solid var(--hijau);
-    border-bottom: 1px solid var(--hijau);
+    background-color: transparent !important;
+    border-right: 1px solid #fff;
+    border-bottom: 1px solid #fff;
 }
 
 .berita-terbaru .card-title {
@@ -541,16 +544,20 @@ a:hover {
     margin-right: 10px;
 }
 
-.post-detail .detail-tag a {
+.post-detail .detail-tag a,
+.post-tag .tag-item {
+    display: inline-block;
     color: var(--abu);
     font-size: 12px;
     padding: 5px 10px;
+    margin-bottom: 5px;
     border: 1px solid var(--abu);
     border-radius: 5px;
     transition: all 0.3s;
 }
 
-.post-detail .detail-tag a:hover {
+.post-detail .detail-tag a:hover,
+.post-tag .tag-item:hover {
     background-color: var(--merah);
     border-color: var(--merah);
     color: #fff;
@@ -606,6 +613,76 @@ a:hover {
     transition: all 0.3s;
 }
 
+/* Post Detail Category Page */
+.post-detail .category-header .category-title {
+    position: relative;
+    color: var(--abu);
+    padding: 5px 0 5px 10px;
+    font-weight: 600;
+    border-left: 2px solid var(--abu);
+}
+
+.post-detail .category-body .category-image img {
+    width: 100%;
+    height: 230px;
+    border-radius: 10px;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.post-detail .post-content {
+    color: var(--hitam);
+    font-size: 12px;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+.post-detail .post-readmore {
+    color: var(--hitam);
+    font-size: 12px;
+    transition: all 0.3s;
+}
+
+.post-detail .post-readmore:hover {
+    color: var(--merah);
+}
+
+.post-detail .load-more::before {
+    content: '';
+    display: block;
+    position: absolute;
+    border: 1px solid var(--merah);
+    width: 40%;
+    left: 0;
+    top: 15px;
+}
+
+.post-detail .load-more::after {
+    content: '';
+    display: block;
+    position: absolute;
+    border: 1px solid var(--merah);
+    width: 40%;
+    right: 0;
+    top: 15px;
+}
+
+.post-detail .load-more a {
+    color: var(--merah);
+    opacity: 0.6;
+    font-size: 12px;
+    border: 1px solid var(--merah);
+    padding: 5px;
+    transition: all 0.3s;
+}
+
+.post-detail .load-more a:hover {
+    opacity: 1;
+}
 
 /* Footer */
 footer {

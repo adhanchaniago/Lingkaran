@@ -2,7 +2,7 @@
 @section('content')
 <div class="row">
     <div class="col-md-12">
-        @if (session('success'))
+        @if(session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong>Success!</strong> {{ session('success') }}.
         </div>
@@ -41,7 +41,7 @@
                             <select id="category" name="category"
                                 class="form-control form-control-sm @error('category') is-invalid @enderror">
                                 <option></option>
-                                @foreach ($categories as $category)
+                                @foreach($categories as $category)
                                 <option value="{{ $category->id }}" @if (old('category')==$category->id)
                                     selected
                                     @endif>{{ $category->title }}</option>
@@ -70,8 +70,9 @@
                         <label for="tag" class="col-form-label col-md-2 col-sm-2 label-align">Tag</label>
                         <div class="col-md-9 col-sm-9 ">
                             <select name="tags[]"
-                                class="form-control form-control-sm @error('tag') is-invalid @enderror select-tag" multiple>
-                                @foreach ($tags as $tag)
+                                class="form-control form-control-sm @error('tag') is-invalid @enderror select-tag"
+                                multiple>
+                                @foreach($tags as $tag)
                                 <option value="{{ $tag->id }}">{{ $tag->title }}</option>
                                 @endforeach
                             </select>
@@ -115,11 +116,12 @@
 @endsection
 @section('script')
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
         $('.select-tag').select2({
             maximumSelectionLength: 5
         });
-        CKEDITOR.replace( 'content' );
+        CKEDITOR.replace('content');
     });
+
 </script>
 @endsection

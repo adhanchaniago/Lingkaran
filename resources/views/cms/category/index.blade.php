@@ -3,7 +3,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        @if (session('success'))
+        @if(session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong>Success!</strong> {{ session('success') }}.
         </div>
@@ -29,7 +29,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($categories as $category)
+                                    @foreach($categories as $category)
                                     <tr>
                                         <th scope="row">{{ $loop->index + 1 }}</th>
                                         <td>{{ $category->title }}</td>
@@ -118,7 +118,7 @@
             <div class="modal-header">
                 <h4 class="modal-title">Ubah kategori <span class="category-title text-info"></span></h4>
             </div>
-            <form action="{{route('category.update', 'id' )}}" method="POST">
+            <form action="{{ route('category.update', 'id' ) }}" method="POST">
                 @csrf
                 @method('PATCH')
                 <div class="modal-body">
@@ -198,7 +198,7 @@
 @section('script')
 <script>
     $('.table').DataTable();
-    $('#modal-edit').on('show.bs.modal', function(e){
+    $('#modal-edit').on('show.bs.modal', function (e) {
         var id = $(e.relatedTarget).data('id');
         var title = $(e.relatedTarget).data('title');
         var color = $(e.relatedTarget).data('color');
@@ -208,11 +208,12 @@
         $('.modal-body #color').val(color);
     });
 
-    $('#modal-delete').on('show.bs.modal', function(e){
+    $('#modal-delete').on('show.bs.modal', function (e) {
         var id = $(e.relatedTarget).data('id');
         var title = $(e.relatedTarget).data('title');
         $('.modal-header .category-title').text(title);
         $('.modal-body #form-id').val(id);
     });
+
 </script>
 @endsection

@@ -8,7 +8,12 @@ class Category extends Model
 {
     protected $fillable = ['title', 'slug', 'color'];
 
-    function getRouteKeyName()
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    public function getRouteKeyName()
     {
         return 'slug';
     }

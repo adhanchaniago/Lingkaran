@@ -4,7 +4,7 @@
 <div class="row">
 
     <div class="col-md-12 col-sm-12 ">
-        @if (session('success'))
+        @if(session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong>Success!</strong> {{ session('success') }}.
         </div>
@@ -23,7 +23,6 @@
                         <table class="table table-borderless table-hover">
                             <thead>
                                 <tr>
-                                    <th scope="col">No.</th>
                                     <th scope="col">Title</th>
                                     <th scope="col">Category</th>
                                     <th scope="col">Image</th>
@@ -34,9 +33,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($headlines as $headline)
+                                @foreach($headlines as $headline)
                                 <tr>
-                                    <th>{{ $loop->index + 1 }}</th>
                                     <td scope="col">{{ $headline->post->title }}</td>
                                     <td scope="col">{{ $headline->post->category->title }}</td>
                                     <td>
@@ -51,7 +49,7 @@
                                     </td>
                                     <td scope="col">{{ $headline->post->user_author->name }}</td>
                                     <td scope="col" class="text-bold text-info">
-                                        @if ( $headline->type == 'main')
+                                        @if ($headline->type == 'main')
                                         <span class="badge badge-pill badge-primary">Main</span>
                                         @else
                                         <span class="badge badge-pill badge-secondary">Secondary</span>
@@ -121,18 +119,19 @@
 
 @section('script')
 <script>
-    $('.modal-image').on('show.bs.modal', function(e){
+    $('.modal-image').on('show.bs.modal', function (e) {
         var img = $(e.relatedTarget).data('image-url');
         var title = $(e.relatedTarget).data('title');
         $('.modal-header .modal-title').text(title);
         $('.modal-body .img-fluid').attr('src', img);
     });
 
-    $('#modal-delete').on('show.bs.modal', function(e){
+    $('#modal-delete').on('show.bs.modal', function (e) {
         var id = $(e.relatedTarget).data('id');
         var title = $(e.relatedTarget).data('title');
         $('.modal-body .post-title').text(title);
         $('.modal-body #form-delete').val(id);
     });
+
 </script>
 @endsection

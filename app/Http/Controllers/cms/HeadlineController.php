@@ -18,7 +18,7 @@ class HeadlineController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -37,7 +37,8 @@ class HeadlineController extends Controller
      */
     public function create()
     {
-        $posts = Post::with(['category', 'user_author'])->where('status', 1)->latest()->get();
+        $headlines = Headline::get('post_id');
+        $posts = Post::with(['category', 'user_author'])->where('status', 1)->whereNotIn('id', $headlines)->latest()->get();
         return view('cms.headline.create', compact('posts'));
     }
 
@@ -53,16 +54,16 @@ class HeadlineController extends Controller
             'post_id' => 'required|unique:headlines',
             'type' => 'required'
         ]);
-        
+
         $check = Headline::where('type', $request->type)->count();
         if ($request->type == 'main' && $check > 0) {
             return redirect(route('headline.create'))->withDanger('Headline dengan type "Main" telah ada');
-        }elseif ($request->type == 'secondary' && $check >= 4) {
+        } elseif ($request->type == 'secondary' && $check >= 4) {
             return redirect(route('headline.create'))->withDanger('Headline dengan type "Secondary" tidak melebihi 4');
-        }else {
-            $headline = Headline::create([
-            'post_id' => $request->post_id,
-            'type' => $request->type
+        } else {
+            Headline::create([
+                'post_id' => $request->post_id,
+                'type' => $request->type
             ]);
 
             return redirect(route('headline.index'))->withSuccess('Post has been set as Headline');

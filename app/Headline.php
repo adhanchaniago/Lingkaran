@@ -8,7 +8,7 @@ class Headline extends Model
 {
     protected $fillable = ['post_id', 'type'];
 
-    function post()
+    public function post()
     {
         return $this->belongsTo(Post::class);
     }

@@ -8,27 +8,27 @@ class Post extends Model
 {
     protected $guarded = ['id'];
 
-    function category()
+    public function category()
     {
         return $this->belongsTo(Category::class);
     }
-    
-    function user_author()
+
+    public function user_author()
     {
         return $this->belongsTo(User::class, 'author');
     }
 
-    function user_editor()
+    public function user_editor()
     {
         return $this->belongsTo(User::class, 'editor');
     }
 
-    function tags()
+    public function tags()
     {
         return $this->belongsToMany(Tag::class);
     }
 
-    function getRouteKeyName()
+    public function getRouteKeyName()
     {
         return 'slug';
     }

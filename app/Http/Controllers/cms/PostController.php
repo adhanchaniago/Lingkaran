@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers\cms;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Headline;
-use App\Category;
+use Image;
 use App\Tag;
 use App\Post;
+use App\Category;
+use App\Headline;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
-use Image;
-use File;
 
 class PostController extends Controller
 {
@@ -24,7 +23,7 @@ class PostController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -77,7 +76,7 @@ class PostController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $filename = Str::slug($post->title) . '.' . $image->getClientOriginalExtension();
-            
+
             $location = public_path('images/'. $filename);
             Image::make($image->getRealPath())->resize(600, 400)->save($location);
 
@@ -115,7 +114,7 @@ class PostController extends Controller
             'category' => 'required',
             'content' => 'required|min:100',
             'image' => 'image'
-        ]);  
+        ]);
         $post->update([
             'title' => Str::title(request('title')),
             'slug' => Str::slug(request('title')),
@@ -148,7 +147,7 @@ class PostController extends Controller
     public function destroy(Request $request)
     {
         $post = Post::findOrFail($request->id);
-        
+
         //Delete current post image
         Storage::delete($post->image);
         //Delete current post
@@ -179,11 +178,11 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function revoke(Request $request)
-    {        
+    {
         $post = Post::findOrFail($request->id);
         $post->update([
             'status' => 0
-        ]); 
+        ]);
         $headline = Headline::where('post_id', $request->id)->get();
         if (!empty($headline[0])) {
             $headline[0]->delete();

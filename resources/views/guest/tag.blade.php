@@ -1,9 +1,9 @@
 @extends('guest.layouts.app')
 
 @section('title')
-    Nama Tag
+Nama Tag
 @endsection
 
 @section('content')
-    Disini Tag
+Disini Tag
 @endsection

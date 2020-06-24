@@ -10,30 +10,17 @@
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavId">
             <ul class="navbar-nav mt-2 mt-lg-0 ml-auto">
-                <li class="nav-item active">
-                <a class="nav-link" href="{{ route('guest.home') }}">Home</a>
+
+                <li class="nav-item {{ (request()->segment(1) == '') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('guest.home') }}">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Fashion</a>
+
+                @foreach($navbar as $nav)
+                <li class="nav-item {{ (request()->segment(1) == $nav->slug) ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('guest.category.show', $nav) }}">{{ $nav->title }}</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Sains & Teknologi</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Olahraga</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Otomotif</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Properti</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Kesehatan</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Media Social</a>
-                </li>
+                @endforeach
+
                 @if(auth()->user())
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('dashboard.index') }}" style="color: red">Admin Panel</a>

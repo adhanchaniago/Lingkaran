@@ -12,7 +12,6 @@ class PostSeeder extends Seeder
      */
     public function run()
     {
-        
         Post::create([
             'title' => 'Corona Telah Membuat Kita Sadar Akan Pentingnya Menjaga Kesehatan',
             'slug' => 'corona-telah-membuat-kita-sadar-akan-pentingnya-menjaga-kesehatan',
@@ -80,7 +79,7 @@ class PostSeeder extends Seeder
             'status' => 1,
             'view' => 100
         ]);
-        
+
         Post::create([
             'title' => 'Media Sosial Saat Ini Telah Menjadi Tempat Curhat Anak-Anak Remaja',
             'slug' => 'media-sosial-saat-ini-telah-menjadi-tempat-curhat-anak-anak-remaja',
@@ -114,7 +113,7 @@ class PostSeeder extends Seeder
             'status' => 1,
             'view' => 3000
         ]);
-        
+
         Post::create([
             'title' => 'Vr Terbukti Dapat Membantu Anak Belajar Lebih Efisien',
             'slug' => 'vr-terbukti-dapat-membantu-anak-belajar-lebih-efisien',
@@ -148,7 +147,7 @@ class PostSeeder extends Seeder
             'status' => 1,
             'view' => 69
         ]);
-        
+
         Post::create([
             'title' => 'Keluarga Baru Ini Mendapat Hadiah Design Ruang Keluarga, Lihat Keindahannya',
             'slug' => 'keluarga-baru-ini-mendapat-hadiah-design-ruang-keluarga-lihat-keindahannya',
@@ -284,7 +283,7 @@ class PostSeeder extends Seeder
             'status' => 1,
             'view' => 800
         ]);
-        
+
         Post::create([
             'title' => 'Gaya Punk Bukan Berarti Bodoh Dan Brandalan, Simak Beberapa Ulasan Ini',
             'slug' => 'gaya-punk-bukan-berarti-bodoh-dan-brandalan-simak-beberapa-ulasan-ini',
@@ -420,12 +419,12 @@ class PostSeeder extends Seeder
             'status' => 1,
             'view' => 400
         ]);
-        
+
         Post::create([
-            'title' => 'Menurutkan Beran Badan Lebih Efektif Dengan Angkat Beban',
-            'slug' => 'menurutkan-beran-badan-lebih-efektif-dengan-angkat-beban',
+            'title' => 'Menurunkan Beran Badan Lebih Efektif Dengan Angkat Beban',
+            'slug' => 'menurunkan-beran-badan-lebih-efektif-dengan-angkat-beban',
             'category_id' => 3,
-            'image' => 'menurutkan-beran-badan-lebih-efektif-dengan-angkat-beban.jpg',
+            'image' => 'menurunkan-beran-badan-lebih-efektif-dengan-angkat-beban.jpg',
             'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non venenatis odio. Nulla erat dui, auctor ac
                 malesuada non, hendrerit vel ex. Maecenas quis diam augue. Nam enim diam, sagittis non ante a, viverra dignissim urna. Nunc
                 ultricies, urna eu iaculis mollis, lectus sapien malesuada turpis, dapibus viverra elit urna vitae elit. Ut sollicitudin
@@ -488,7 +487,7 @@ class PostSeeder extends Seeder
             'status' => 1,
             'view' => 2100
         ]);
-        
+
         Post::create([
             'title' => 'Para Masyarakat Memulai New Normal Ditandai Dengan Padatnya Lalu Lintas',
             'slug' => 'para-masyarakat-memulai-new-normal-ditandai-dengan-padatnya-lalu-lintas',
@@ -590,7 +589,7 @@ class PostSeeder extends Seeder
             'status' => 1,
             'view' => 140
         ]);
-        
+
         Post::create([
             'title' => 'Mobil Lama Serasa Baru Ini Telah Dapat Penghargaan',
             'slug' => 'mobil-lama-serasa-baru-ini-telah-dapat-penghargaan',

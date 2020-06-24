@@ -2,7 +2,7 @@
     <div class="berita-side-right mb-5">
         <div class="berita-side-header">Berita Populer</div>
         <div class="row">
-            @foreach ($populerPosts as $post)
+            @foreach($populerPosts as $post)
             <div class="col-md-6">
                 <div class="berita-side-populer-content mt-3">
                     <a href="{{ route('guest.post.show', [$post->category->slug, $post]) }}"><img
@@ -25,7 +25,7 @@
     <div class="berita-side-right mb-5">
         <div class="berita-side-header">Berita Terbaru</div>
         <div class="side-body">
-            @foreach ($terbaruPosts as $post)
+            @foreach($terbaruPosts as $post)
             <div class="row">
                 <div class="col-12">
                     <div class="card mt-3 rounded-0">

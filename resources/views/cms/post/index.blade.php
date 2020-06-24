@@ -4,7 +4,7 @@
 <div class="row">
 
     <div class="col-md-12 col-sm-12 ">
-        @if (session('success'))
+        @if(session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong>Success!</strong> {{ session('success') }}.
         </div>
@@ -36,7 +36,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($posts as $post)
+                                @foreach($posts as $post)
                                 <tr>
                                     <th scope="row">{{ $loop->index + 1 }}</th>
                                     <td>{{ $post->title }}</td>
@@ -205,32 +205,33 @@
 @section('script')
 <script>
     $('.table').DataTable();
-    $('.modal-image').on('show.bs.modal', function(e){
+    $('.modal-image').on('show.bs.modal', function (e) {
         var img = $(e.relatedTarget).data('image-url');
         var title = $(e.relatedTarget).data('title');
         $('.modal-header .modal-title').text(title);
         $('.modal-body .img-fluid').attr('src', img);
     });
 
-    $('#modal-delete').on('show.bs.modal', function(e){
+    $('#modal-delete').on('show.bs.modal', function (e) {
         var id = $(e.relatedTarget).data('id');
         var title = $(e.relatedTarget).data('title');
         $('.modal-body .post-title').text(title);
         $('.modal-body #form-delete').val(id);
     });
 
-    $('#modal-publish').on('show.bs.modal', function(e){
+    $('#modal-publish').on('show.bs.modal', function (e) {
         var id = $(e.relatedTarget).data('id');
         var title = $(e.relatedTarget).data('title');
         $('.modal-body .post-title').text(title);
         $('.modal-body #form-publish').val(id);
     });
 
-    $('#modal-revoke').on('show.bs.modal', function(e){
+    $('#modal-revoke').on('show.bs.modal', function (e) {
         var id = $(e.relatedTarget).data('id');
         var title = $(e.relatedTarget).data('title');
         $('.modal-body .post-title').text(title);
         $('.modal-body #form-publish').val(id);
     });
+
 </script>
 @endsection

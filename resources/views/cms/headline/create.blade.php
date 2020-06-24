@@ -3,12 +3,12 @@
 
 <div class="row">
     <div class="col-md-12 col-sm-12 ">
-        @if (count($errors) > 0)
+        @if(count($errors) > 0)
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <strong>Gagal!</strong> Check type atau judul post yang ingin dijadikan headline.
         </div>
         @endif
-        @if (session('danger'))
+        @if(session('danger'))
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <strong>Gagal!</strong> {{ session('danger') }}.
         </div>
@@ -36,7 +36,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($posts as $post)
+                                @foreach($posts as $post)
                                 <tr>
                                     <th>{{ $loop->index + 1 }}</th>
                                     <td>{{ $post->title }}</td>
@@ -105,7 +105,8 @@
                             <div class="col-md-9 col-sm-9 ">
                                 <select id="headline-type" name="type"
                                     class="form-control form-control-sm @error('type') is-invalid @enderror">
-                                    <option value="{{ old('type') }}" selected>{{ old('type') }}</option>
+                                    <option value="{{ old('type') }}" selected>
+                                        {{ old('type') }}</option>
                                     <option value="main">Main</option>
                                     <option value="secondary">Secondary</option>
                                 </select>
@@ -133,18 +134,19 @@
 <script>
     $('.table').DataTable();
 
-    $('.modal-image').on('show.bs.modal', function(e){
+    $('.modal-image').on('show.bs.modal', function (e) {
         var img = $(e.relatedTarget).data('image-url');
         var title = $(e.relatedTarget).data('title');
         $('.modal-header .modal-title').text(title);
         $('.modal-body .img-fluid').attr('src', img);
     });
 
-    $('#modal-headline').on('show.bs.modal', function(e){
+    $('#modal-headline').on('show.bs.modal', function (e) {
         var id = $(e.relatedTarget).data('id');
         var title = $(e.relatedTarget).data('title');
         $('.modal-body .post-title').text(title);
         $('.modal-body #form-headline').val(id);
     });
+
 </script>
 @endsection

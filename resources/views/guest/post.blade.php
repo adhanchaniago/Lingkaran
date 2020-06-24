@@ -1,7 +1,7 @@
 @extends('guest.layouts.app')
 
 @section('title')
-{{$post->title}}
+{{ $post->title }}
 @endsection
 
 @section('content')
@@ -9,7 +9,8 @@
 <nav aria-label="breadcrumb">
     <div class="container p-0 mt-3">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('guest.home') }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('guest.home') }}"><i class="fa fa-home"></i>
+                    Home</a></li>
             <li class="breadcrumb-item"><a href="#">{{ $post->category->title }}</a></li>
             <li class="breadcrumb-item active" aria-current="page">{{ $post->title }}</li>
         </ol>
@@ -22,7 +23,7 @@
             <!-- Post Detail -->
             <div class="col-md-8">
                 <div class="detail-category">
-                    <a href="#" style="background-color: {{ $post->category->color }};">{{ $post->category->title}}</a>
+                    <a href="#" style="background-color: {{ $post->category->color }};">{{ $post->category->title }}</a>
                 </div>
                 <div class="detail-title mt-3">
                     <h3>{{ $post->title }}</h3>
@@ -38,23 +39,23 @@
                 <div class="detail-content">
                     <span class="first-content-text">Lingkaran.com - </span>
                     {!! $post->content !!}
-                    @if ($post->editor != 0)
+                    @if($post->editor != 0)
                     <div class="mt-3">
                         <span class="text-muted small">Editor: {{ $post->user_editor->name }}</span>
                     </div>
                     @endif
                 </div>
                 <div class="detail-tag mt-3">
-                <span class="tag-header">Tags</span>
-                    @foreach ($post->tags as $tag)
-                        <a href="#">{{ $tag->title }}</a>
+                    <span class="tag-header">Tags</span>
+                    @foreach($post->tags as $tag)
+                    <a href="#">{{ $tag->title }}</a>
                     @endforeach
                 </div>
 
                 <div class="berita-lain mt-3">
                     <div class="berita-lain-header">Berita Lainnya</div>
                     <div class="row">
-                        @foreach ($relatedPosts as $related)
+                        @foreach($relatedPosts as $related)
                         <div class="col-md-3">
                             <div class="berita-lain-content mt-3">
                                 <a href="{{ route('guest.post.show', [$related->category->slug, $related]) }}"><img
@@ -76,7 +77,7 @@
 </section>
 
 <!-- Admin Button -->
-@if (auth()->user())
+@if(auth()->user())
 <div class="admin-btn action shadow-lg p-2">
     <h6 class="text-center border-bottom pb-1">Action</h6>
     <button onclick="location.href='{{ route('post.index') }}'" class="btn btn-sm btn-block btn-secondary">
@@ -85,7 +86,7 @@
     <button onclick="location.href='{{ route('post.edit', $post) }}'" class="btn btn-sm btn-block btn-info">
         <i class="fas fa-edit"></i> Edit
     </button>
-    @if ($post->status != 1)
+    @if($post->status != 1)
     <button class="btn btn-sm btn-block btn-success" data-toggle="modal" data-target="#modal-confirm"
         data-key="publish">
         <i class="fa fa-bullhorn"></i> Publish
@@ -125,21 +126,22 @@
 
 @section('script')
 <script>
-    $('#modal-confirm').on('show.bs.modal', function(e){
+    $('#modal-confirm').on('show.bs.modal', function (e) {
         const key = $(e.relatedTarget).data('key');
         if (key !== 'revoke') {
             $('.modal-body #title').text('Apakah anda ingin publish post ini?');
-            $('.modal-body #form-confirm').val({{$post->id}});
+            $('.modal-body #form-confirm').val({{$post -> id}});
             $('.modal-footer #action').text('Publish');
             $('.modal-footer #action').attr('class', 'btn btn-success btn-sm');
             $('#url').attr('action', '{{ route("post.publish", "id") }}');
         } else {
             $('.modal-body #title').text('Apakah anda ingin tarik kembali post ini?');
-            $('.modal-body #form-confirm').val({{$post->id}});
+            $('.modal-body #form-confirm').val({{$post -> id}});
             $('.modal-footer #action').text('Revoke');
             $('.modal-footer #action').attr('class', 'btn btn-warning btn-sm');
             $('#url').attr('action', '{{ route("post.revoke", "id") }}');
         }
     })
+
 </script>
 @endsection

@@ -4,7 +4,7 @@
     </div>
     <div class="col-md-6 pr-md-0">
         <nav class="nav justify-content-center justify-content-md-end">
-            @if (auth()->user())
+            @if(auth()->user())
             <form id="logout-form" action="{{ route('logout') }}" method="post" style="display: none">
                 @csrf
             </form>

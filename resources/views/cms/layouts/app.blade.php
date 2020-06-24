@@ -15,22 +15,22 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Bootstrap -->
-    <link href="{{ asset('cms/vendors/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('cms/vendors/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="{{ asset('cms/vendors/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('cms/vendors/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
     <!-- NProgress -->
-    <link href="{{ asset('cms/vendors/nprogress/nprogress.css')}}" rel="stylesheet">
+    <link href="{{ asset('cms/vendors/nprogress/nprogress.css') }}" rel="stylesheet">
     <!-- iCheck -->
-    <link href="{{ asset('cms/vendors/iCheck/skins/flat/green.css')}}" rel="stylesheet">
+    <link href="{{ asset('cms/vendors/iCheck/skins/flat/green.css') }}" rel="stylesheet">
     <!-- Switchery -->
     <link href="{{ asset('cms/vendors/switchery/dist/switchery.min.css') }}" rel="stylesheet">
     <!-- bootstrap-progressbar -->
-    <link href="{{ asset('cms/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css')}}"
+    <link href="{{ asset('cms/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css') }}"
         rel="stylesheet">
     <!-- JQVMap -->
-    <link href="{{ asset('cms/vendors/jqvmap/dist/jqvmap.min.css')}}" rel="stylesheet" />
+    <link href="{{ asset('cms/vendors/jqvmap/dist/jqvmap.min.css') }}" rel="stylesheet" />
     <!-- bootstrap-daterangepicker -->
-    <link href="{{ asset('cms/vendors/bootstrap-daterangepicker/daterangepicker.css')}}" rel="stylesheet">
+    <link href="{{ asset('cms/vendors/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet">
     <!-- Bootstrap Colorpicker -->
     <link href="{{ asset('cms/vendors/mjolnic-bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css') }}"
         rel="stylesheet">
@@ -43,9 +43,9 @@
         rel="stylesheet">
     <link href="{{ asset('cms/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css') }}" rel="stylesheet">
     <!-- Custom Theme Style -->
-    <link href="{{ asset('cms/build/css/custom.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('cms/build/css/custom.min.css') }}" rel="stylesheet">
     <!-- Select2 -->
-    <link href="{{ asset('cms/select2/css/select2.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('cms/select2/css/select2.min.css') }}" rel="stylesheet">
 
     <!-- CKeditor -->
     <script src="{{ asset('cms/ckeditor/ckeditor.js') }}"></script>
@@ -105,7 +105,8 @@
     <!-- jQuery -->
     <script src="{{ asset('cms/vendors/jquery/dist/jquery.min.js') }}"></script>
     <!-- Bootstrap -->
-    <script src="{{ asset('cms/vendors/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('cms/vendors/bootstrap/dist/js/bootstrap.bundle.min.js') }}">
+    </script>
     <!-- FastClick -->
     <script src="{{ asset('cms/vendors/fastclick/lib/fastclick.js') }}"></script>
     <!-- NProgress -->
@@ -113,7 +114,8 @@
     <!-- Chart.js -->
     <script src="{{ asset('cms/vendors/Chart.js/dist/Chart.min.js') }}"></script>
     <!-- jQuery Sparklines -->
-    <script src="{{ asset('cms/vendors/jquery-sparkline/dist/jquery.sparkline.min.js') }}"></script>
+    <script src="{{ asset('cms/vendors/jquery-sparkline/dist/jquery.sparkline.min.js') }}">
+    </script>
     <!-- Switchery -->
     <script src="{{ asset('cms/vendors/switchery/dist/switchery.min.js') }}"></script>
     <!-- Flot -->
@@ -123,30 +125,45 @@
     <script src="{{ asset('cms/vendors/Flot/jquery.flot.stack.js') }}"></script>
     <script src="{{ asset('cms/vendors/Flot/jquery.flot.resize.js') }}"></script>
     <!-- Flot plugins -->
-    <script src="{{ asset('cms/vendors/flot.orderbars/js/jquery.flot.orderBars.js') }}"></script>
-    <script src="{{ asset('cms/vendors/flot-spline/js/jquery.flot.spline.min.js') }}"></script>
+    <script src="{{ asset('cms/vendors/flot.orderbars/js/jquery.flot.orderBars.js') }}">
+    </script>
+    <script src="{{ asset('cms/vendors/flot-spline/js/jquery.flot.spline.min.js') }}">
+    </script>
     <script src="{{ asset('cms/vendors/flot.curvedlines/curvedLines.js') }}"></script>
     <!-- DateJS -->
     <script src="{{ asset('cms/vendors/DateJS/build/date.js') }}"></script>
     <!-- bootstrap-daterangepicker -->
     <script src="{{ asset('cms/vendors/moment/min/moment.min.js') }}"></script>
-    <script src="{{ asset('cms/vendors/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
+    <script src="{{ asset('cms/vendors/bootstrap-daterangepicker/daterangepicker.js') }}">
+    </script>
     <!-- Bootstrap Colorpicker -->
     <script src="{{ asset('cms/vendors/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js') }}">
     </script>
     <!-- Datatables -->
-    <script src="{{ asset('cms/vendors/datatables.net/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('cms/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
-    <script src="{{ asset('cms/vendors/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>
-    <script src="{{ asset('cms/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js') }}"></script>
-    <script src="{{ asset('cms/vendors/datatables.net-buttons/js/buttons.flash.min.js') }}"></script>
-    <script src="{{ asset('cms/vendors/datatables.net-buttons/js/buttons.html5.min.js') }}"></script>
-    <script src="{{ asset('cms/vendors/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
-    <script src="{{ asset('cms/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js') }}"></script>
-    <script src="{{ asset('cms/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js') }}"></script>
-    <script src="{{ asset('cms/vendors/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
-    <script src="{{ asset('cms/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js') }}"></script>
-    <script src="{{ asset('cms/vendors/datatables.net-scroller/js/dataTables.scroller.min.js') }}"></script>
+    <script src="{{ asset('cms/vendors/datatables.net/js/jquery.dataTables.min.js') }}">
+    </script>
+    <script src="{{ asset('cms/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js') }}">
+    </script>
+    <script src="{{ asset('cms/vendors/datatables.net-buttons/js/dataTables.buttons.min.js') }}">
+    </script>
+    <script src="{{ asset('cms/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js') }}">
+    </script>
+    <script src="{{ asset('cms/vendors/datatables.net-buttons/js/buttons.flash.min.js') }}">
+    </script>
+    <script src="{{ asset('cms/vendors/datatables.net-buttons/js/buttons.html5.min.js') }}">
+    </script>
+    <script src="{{ asset('cms/vendors/datatables.net-buttons/js/buttons.print.min.js') }}">
+    </script>
+    <script src="{{ asset('cms/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js') }}">
+    </script>
+    <script src="{{ asset('cms/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js') }}">
+    </script>
+    <script src="{{ asset('cms/vendors/datatables.net-responsive/js/dataTables.responsive.min.js') }}">
+    </script>
+    <script src="{{ asset('cms/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js') }}">
+    </script>
+    <script src="{{ asset('cms/vendors/datatables.net-scroller/js/dataTables.scroller.min.js') }}">
+    </script>
     <script src="{{ asset('cms/vendors/jszip/dist/jszip.min.js') }}"></script>
     <script src="{{ asset('cms/vendors/pdfmake/build/pdfmake.min.js') }}"></script>
     <script src="{{ asset('cms/vendors/pdfmake/build/vfs_fonts.js') }}"></script>
@@ -157,11 +174,12 @@
     <!-- Custom Theme Scripts -->
     <script src="{{ asset('cms/build/js/custom.min.js') }}"></script>
     <script>
-        window.setTimeout(function() {
-        $(".alert").fadeTo(500, 0).slideUp(500, function(){
-        $(this).remove();
-        });
+        window.setTimeout(function () {
+            $(".alert").fadeTo(500, 0).slideUp(500, function () {
+                $(this).remove();
+            });
         }, 2000);
+
     </script>
     @section('script')
     @show
