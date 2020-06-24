@@ -11,7 +11,7 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('guest.home') }}"><i class="fa fa-home"></i>
                     Home</a></li>
-            <li class="breadcrumb-item"><a href="#">{{ $post->category->title }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('guest.category.show', $post->category->slug) }}">{{ $post->category->title }}</a></li>
             <li class="breadcrumb-item active" aria-current="page">{{ $post->title }}</li>
         </ol>
     </div>
@@ -23,7 +23,7 @@
             <!-- Post Detail -->
             <div class="col-md-8">
                 <div class="detail-category">
-                    <a href="#" style="background-color: {{ $post->category->color }};">{{ $post->category->title }}</a>
+                    <a href="{{ route('guest.category.show', $post->category->slug) }}" style="background-color: {{ $post->category->color }};">{{ $post->category->title }}</a>
                 </div>
                 <div class="detail-title mt-3">
                     <h3>{{ $post->title }}</h3>
@@ -48,7 +48,7 @@
                 <div class="detail-tag mt-3">
                     <span class="tag-header">Tags</span>
                     @foreach($post->tags as $tag)
-                    <a href="#">{{ $tag->title }}</a>
+                    <a href="{{ route('guest.tag.show', $tag->slug) }}">{{ $tag->title }}</a>
                     @endforeach
                 </div>
 

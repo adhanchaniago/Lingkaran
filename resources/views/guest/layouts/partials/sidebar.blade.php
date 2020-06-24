@@ -36,7 +36,7 @@
                                         alt="{{ $post->title }}"></a>
                             </div>
                             <div class="col-md-8">
-                                <div class="card-body">
+                                <div class="card-body p-2">
                                     <a href="{{ route('guest.post.show', [$post->category->slug, $post]) }}">
                                         <h5 class="card-title">{{ $post->title }}</h5>
                                     </a>

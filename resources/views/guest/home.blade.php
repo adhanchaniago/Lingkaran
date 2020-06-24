@@ -207,7 +207,7 @@
                         <a class="nav-item nav-link" id="nav-media-sosial-tab" data-toggle="tab"
                             href="#nav-media-sosial" role="tab" aria-controls="nav-media-sosial"
                             aria-selected="true">Media Sosial</a>
-                        <a href="{{ route('guest.category.all') }}" class="nav-item nav-link">Lainnya</a>
+                        <a href="#" class="nav-item nav-link">Lainnya</a>
                     </div>
                 </nav>
                 <div class="tab-content" id="nav-tabContent">

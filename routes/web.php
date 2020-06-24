@@ -30,12 +30,20 @@ Route::middleware('auth')->prefix('cms')->namespace('cms')->group(function () {
 //Guest Route
 Route::name('guest.')->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
-    Route::get('/{category}/{post}', 'HomeController@show')->name('post.show');
-    Route::get('/{category}', 'HomeController@category')->name('category.show');
-    Route::get('/categories', 'HomeController@category_show')->name('category.all');
-    Route::get('/{tag}', 'HomeController@tag')->name('tag.show');
-    Route::get('/tags', 'HomeController@tag_show')->name('tag.all');
+
+    route::prefix('post')->group(function () {
+        Route::get('/{category}/{post}', 'HomeController@show')->name('post.show');
+    });
+
+    route::prefix('category')->group(function () {
+        Route::get('/{category}', 'HomeController@category')->name('category.show');
+    });
+
+    route::prefix('tag')->group(function () {
+        Route::get('/{tag}', 'HomeController@tag')->name('tag.show');
+    });
 });
+
 
 // Return 404
 Route::fallback(function () {

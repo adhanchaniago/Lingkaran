@@ -37,7 +37,7 @@
                             <div class="col-md-6 mt-md-0 p-4 pt-md-3 pr-md-4">
                                 <div class="post-tag">
                                     @foreach ($post->tags as $tag)
-                                        <a href="#" class="tag-item">{{ $tag->title }}</a>
+                                        <a href="{{ route('guest.tag.show', $tag->slug) }}" class="tag-item">{{ $tag->title }}</a>
                                     @endforeach
                                 </div>
                                 <a href="{{ route('guest.post.show', [$post->category->slug, $post]) }}" class="post-title">{{ $post->title }}</a>
