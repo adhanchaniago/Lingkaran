@@ -17,8 +17,8 @@
     </div>
     <div class="berita-side-right mb-5">
         <div class="row">
-            <div class="col-md-6">
-                <img src="{{ asset('assets/images/ads-s.png') }}" alt="ads">
+            <div class="col-md-12">
+                <img src="{{ asset('assets/images/ads-s.png') }}" alt="ads" class="berita-side-ads img-fluid">
             </div>
         </div>
     </div>

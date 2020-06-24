@@ -27,14 +27,14 @@
                                 style="color: {{ (!empty($posts[0])) ? $posts[0]->category->color : '' }}">{{ (!empty($posts[0])) ? $posts[0]->category->title : 'Berita belum ada' }}</span></span>
                     </div>
                     @foreach ($posts as $post)
-                    <div class="category-body mt-4">
+                    <div class="category-body mt-4 shadow">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="category-image">
-                                    <a href="{{ route('guest.post.show', [$post->category->slug, $post]) }}"><img class="img-fluid" src="{{ asset('images/'. $post->image) }}" alt="{{ $post->title }}"></a>
+                                    <a href="{{ route('guest.post.show', [$post->category->slug, $post]) }}"><img src="{{ asset('images/'. $post->image) }}" alt="{{ $post->title }}"></a>
                                 </div>
                             </div>
-                            <div class="col-md-6 mt-3 mt-md-0">
+                            <div class="col-md-6 mt-md-0 p-4 pt-md-3 pr-md-4">
                                 <div class="post-tag">
                                     @foreach ($post->tags as $tag)
                                         <a href="#" class="tag-item">{{ $tag->title }}</a>
@@ -55,7 +55,7 @@
                     </div>
                     @endforeach
                 </div>
-                <div class="col-md-12 load-more pl-0 mt-3 mt-md-5 d-flex justify-content-center">
+                <div class="col-md-12 load-more px-0 mt-3 mt-md-5 d-flex justify-content-center">
                     <a href="#">Load More</a>
                 </div>
             </div>

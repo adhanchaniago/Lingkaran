@@ -1,9 +1,6 @@
-![Lingkaran Web News][logo]
-
-[logo]: https://github.com/riyan-amanda/lingkaran-web-news/blob/master/public/assets/logo/lingkaran.png?raw=true "Lingkaran Web News"
-
 <p align="center">
-<hr/>
+    <img src="https://github.com/riyan-amanda/lingkaran-web-news/blob/master/public/assets/logo/lingkaran.png?raw=true" alt="Lingkaran Web News" width="350px" height="100px">
+    <hr/>
 </p>
 
 ## Tentang Lingkaran
@@ -22,7 +19,7 @@ List package Website Lingkaran, diantaranya adalah:
 Jalankan artisan migration dan seeder pada terminal untuk membuat database dan default user.
 
 ```javascript
-//Generate database baru
+//Generate database baru dan user default
 php artisan migrate --seed
 
 ```

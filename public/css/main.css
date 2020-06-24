@@ -613,6 +613,11 @@ a:hover {
     transition: all 0.3s;
 }
 
+.berita-side-right .berita-side-ads {
+    width: 350px;
+    height: 250px;
+}
+
 /* Post Detail Category Page */
 .post-detail .category-header .category-title {
     position: relative;
@@ -622,10 +627,14 @@ a:hover {
     border-left: 2px solid var(--abu);
 }
 
+.post-detail .category-body {
+    border-radius: 10px;
+}
+
 .post-detail .category-body .category-image img {
     width: 100%;
-    height: 230px;
-    border-radius: 10px;
+    height: 270px;
+    border-radius: 10px 0 0 10px;
     object-fit: cover;
     object-position: center center;
 }
@@ -656,7 +665,7 @@ a:hover {
     display: block;
     position: absolute;
     border: 1px solid var(--merah);
-    width: 40%;
+    width: 45%;
     left: 0;
     top: 15px;
 }
@@ -666,7 +675,7 @@ a:hover {
     display: block;
     position: absolute;
     border: 1px solid var(--merah);
-    width: 40%;
+    width: 45%;
     right: 0;
     top: 15px;
 }
@@ -735,6 +744,16 @@ footer a:hover {
 }
 
 @media (max-width: 575px) {
+
+    .post-detail .detail-title h3{
+        font-size: 24px;
+    }
+
+    .post-detail .figure-img {
+        width: 100%;
+        height: 200px;
+    }
+
     .btn-back-top {
         bottom: 0;
         right: 60px;
@@ -742,5 +761,32 @@ footer a:hover {
 
     .btn-back-top.active {
         bottom: 70px;
+    }
+
+    .post-detail .category-body {
+        border-radius: 0;
+    }
+
+    .post-detail .category-body .category-image img {
+        border-radius: 0;
+        height: 150px;
+    }
+
+    .post-detail .category-body .post-tag .tag-item {
+        font-size: 9px;
+    }
+
+    .post-detail .category-body .post-title {
+        font-size: 14px;
+    }
+
+    .post-detail .category-body .post-info,
+    .post-detail .category-body .post-content {
+        font-size: 11px;
+    }
+
+    .post-detail .load-more::before,
+    .post-detail .load-more::after {
+        width: 35%;
     }
 }
