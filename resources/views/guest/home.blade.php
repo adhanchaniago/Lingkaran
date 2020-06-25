@@ -30,7 +30,7 @@
 <section class="headline">
     <div class="container">
         <div class="row">
-            <div class="col-md-12 col-lg-10 px-0 pl-md-3">
+            <div class="col-md-12 col-lg-10 pl-md-3">
                 <div class="row">
                     <div class="col-md-8 my-3 my-md-0">
                         @if(!empty($headline_main))
@@ -39,7 +39,8 @@
                             <a href="{{ route('guest.post.show', [$headline_main->post->category->slug, $headline_main->post]) }}"
                                 class="headline-link"></a>
                             <div class="headline-body d-flex flex-column justify-content-end align-items-start">
-                                <a href="{{ route('guest.category.show', $headline_main->post->category->slug) }}" class="headline-category px-2"
+                                <a href="{{ route('guest.category.show', $headline_main->post->category->slug) }}"
+                                    class="headline-category px-2"
                                     style="background-color: {{ $headline_main->post->category->color }};">{{ $headline_main->post->category->title }}</a>
                                 <h3 class="headline-title-wrap mt-2 mb-1">
                                     <a href="{{ route('guest.post.show', [$headline_main->post->category->slug, $headline_main->post]) }}"
@@ -66,7 +67,8 @@
                             <a href="{{ route('guest.post.show', [$headline_secondary[0]->post->category->slug, $headline_secondary[0]->post]) }}"
                                 class="headline-link"></a>
                             <div class="headline-body d-flex flex-column justify-content-end align-items-start">
-                                <a href="{{ route('guest.category.show', $headline_secondary[0]->post->category->slug) }}" class="headline-category px-2"
+                                <a href="{{ route('guest.category.show', $headline_secondary[0]->post->category->slug) }}"
+                                    class="headline-category px-2"
                                     style="background-color: {{ $headline_secondary[0]->post->category->color }};">{{ $headline_secondary[0]->post->category->title }}</a>
                                 <h3 class="headline-title-wrap mt-2 mb-1">
                                     <a href="{{ route('guest.post.show', [$headline_secondary[0]->post->category->slug, $headline_secondary[0]->post]) }}"
@@ -95,7 +97,8 @@
                             <a href="{{ route('guest.post.show', [$headline_secondary[1]->post->category->slug, $headline_secondary[1]->post]) }}"
                                 class="headline-link"></a>
                             <div class="headline-body d-flex flex-column justify-content-end align-items-start">
-                                <a href="{{ route('guest.category.show', $headline_secondary[1]->post->category->slug) }}" class="headline-category px-2"
+                                <a href="{{ route('guest.category.show', $headline_secondary[1]->post->category->slug) }}"
+                                    class="headline-category px-2"
                                     style="background-color: {{ $headline_secondary[1]->post->category->color }};">{{ $headline_secondary[1]->post->category->title }}</a>
                                 <h3 class="headline-title-wrap mt-2 mb-1">
                                     <a href="{{ route('guest.post.show', [$headline_secondary[1]->post->category->slug, $headline_secondary[1]->post]) }}"
@@ -123,7 +126,8 @@
                             <a href="{{ route('guest.post.show', [$headline_secondary[2]->post->category->slug, $headline_secondary[2]->post]) }}"
                                 class="headline-link"></a>
                             <div class="headline-body d-flex flex-column justify-content-end align-items-start">
-                                <a href="{{ route('guest.category.show', $headline_secondary[2]->post->category->slug) }}" class="headline-category px-2"
+                                <a href="{{ route('guest.category.show', $headline_secondary[2]->post->category->slug) }}"
+                                    class="headline-category px-2"
                                     style="background-color: {{ $headline_secondary[2]->post->category->color }};">{{ $headline_secondary[2]->post->category->title }}</a>
                                 <h3 class="headline-title-wrap mt-2 mb-1">
                                     <a href="{{ route('guest.post.show', [$headline_secondary[2]->post->category->slug, $headline_secondary[2]->post]) }}"
@@ -151,7 +155,8 @@
                             <a href="{{ route('guest.post.show', [$headline_secondary[3]->post->category->slug, $headline_secondary[3]->post]) }}"
                                 class="headline-link"></a>
                             <div class="headline-body d-flex flex-column justify-content-end align-items-start">
-                                <a href="{{ route('guest.category.show', $headline_secondary[3]->post->category->slug) }}" class="headline-category px-2"
+                                <a href="{{ route('guest.category.show', $headline_secondary[3]->post->category->slug) }}"
+                                    class="headline-category px-2"
                                     style="background-color: {{ $headline_secondary[3]->post->category->color }};">{{ $headline_secondary[3]->post->category->title }}</a>
                                 <h3 class="headline-title-wrap mt-2 mb-1">
                                     <a href="{{ route('guest.post.show', [$headline_secondary[3]->post->category->slug, $headline_secondary[3]->post]) }}"
@@ -235,7 +240,9 @@
                                                                 href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
                                                                 <h5 class="card-title">{{ $post->title }}</h5>
                                                             </a>
-                                                            <a href="{{ route('guest.category.show', $post->category->slug) }}"><span class="card-category"
+                                                            <a
+                                                                href="{{ route('guest.category.show', $post->category->slug) }}"><span
+                                                                    class="card-category"
                                                                     style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
                                                             <p class="card-text">
                                                                 <span>
@@ -277,7 +284,9 @@
                                                                 href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
                                                                 <h5 class="card-title">{{ $post->title }}</h5>
                                                             </a>
-                                                            <a href="{{ route('guest.category.show', $post->category->slug) }}"><span class="card-category"
+                                                            <a
+                                                                href="{{ route('guest.category.show', $post->category->slug) }}"><span
+                                                                    class="card-category"
                                                                     style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
                                                             <p class="card-text">
                                                                 <span><i class="fas fa-user"></i>
@@ -323,7 +332,9 @@
                                                                 href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
                                                                 <h5 class="card-title">{{ $post->title }}</h5>
                                                             </a>
-                                                            <a href="{{ route('guest.category.show', $post->category->slug) }}"><span class="card-category"
+                                                            <a
+                                                                href="{{ route('guest.category.show', $post->category->slug) }}"><span
+                                                                    class="card-category"
                                                                     style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
                                                             <p class="card-text">
                                                                 <span><i class="fas fa-user"></i>
@@ -363,7 +374,9 @@
                                                                 href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
                                                                 <h5 class="card-title">{{ $post->title }}</h5>
                                                             </a>
-                                                            <a href="{{ route('guest.category.show', $post->category->slug) }}"><span class="card-category"
+                                                            <a
+                                                                href="{{ route('guest.category.show', $post->category->slug) }}"><span
+                                                                    class="card-category"
                                                                     style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
                                                             <p class="card-text">
                                                                 <span><i class="fas fa-user"></i>
@@ -409,7 +422,9 @@
                                                                 href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
                                                                 <h5 class="card-title">{{ $post->title }}</h5>
                                                             </a>
-                                                            <a href="{{ route('guest.category.show', $post->category->slug) }}"><span class="card-category"
+                                                            <a
+                                                                href="{{ route('guest.category.show', $post->category->slug) }}"><span
+                                                                    class="card-category"
                                                                     style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
                                                             <p class="card-text">
                                                                 <span><i class="fas fa-user"></i>
@@ -449,7 +464,9 @@
                                                                 href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
                                                                 <h5 class="card-title">{{ $post->title }}</h5>
                                                             </a>
-                                                            <a href="{{ route('guest.category.show', $post->category->slug) }}"><span class="card-category"
+                                                            <a
+                                                                href="{{ route('guest.category.show', $post->category->slug) }}"><span
+                                                                    class="card-category"
                                                                     style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
                                                             <p class="card-text">
                                                                 <span><i class="fas fa-user"></i>
@@ -495,7 +512,9 @@
                                                                 href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
                                                                 <h5 class="card-title">{{ $post->title }}</h5>
                                                             </a>
-                                                            <a href="{{ route('guest.category.show', $post->category->slug) }}"><span class="card-category"
+                                                            <a
+                                                                href="{{ route('guest.category.show', $post->category->slug) }}"><span
+                                                                    class="card-category"
                                                                     style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
                                                             <p class="card-text">
                                                                 <span><i class="fas fa-user"></i>
@@ -535,7 +554,9 @@
                                                                 href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
                                                                 <h5 class="card-title">{{ $post->title }}</h5>
                                                             </a>
-                                                            <a href="{{ route('guest.category.show', $post->category->slug) }}"><span class="card-category"
+                                                            <a
+                                                                href="{{ route('guest.category.show', $post->category->slug) }}"><span
+                                                                    class="card-category"
                                                                     style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
                                                             <p class="card-text">
                                                                 <span><i class="fas fa-user"></i>
@@ -581,7 +602,9 @@
                                                                 href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
                                                                 <h5 class="card-title">{{ $post->title }}</h5>
                                                             </a>
-                                                            <a href="{{ route('guest.category.show', $post->category->slug) }}"><span class="card-category"
+                                                            <a
+                                                                href="{{ route('guest.category.show', $post->category->slug) }}"><span
+                                                                    class="card-category"
                                                                     style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
                                                             <p class="card-text">
                                                                 <span><i class="fas fa-user"></i>
@@ -621,7 +644,9 @@
                                                                 href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
                                                                 <h5 class="card-title">{{ $post->title }}</h5>
                                                             </a>
-                                                            <a href="{{ route('guest.category.show', $post->category->slug) }}"><span class="card-category"
+                                                            <a
+                                                                href="{{ route('guest.category.show', $post->category->slug) }}"><span
+                                                                    class="card-category"
                                                                     style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
                                                             <p class="card-text">
                                                                 <span><i class="fas fa-user"></i>
@@ -667,7 +692,9 @@
                                                                 href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
                                                                 <h5 class="card-title">{{ $post->title }}</h5>
                                                             </a>
-                                                            <a href="{{ route('guest.category.show', $post->category->slug) }}"><span class="card-category"
+                                                            <a
+                                                                href="{{ route('guest.category.show', $post->category->slug) }}"><span
+                                                                    class="card-category"
                                                                     style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
                                                             <p class="card-text">
                                                                 <span><i class="fas fa-user"></i>
@@ -707,7 +734,9 @@
                                                                 href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
                                                                 <h5 class="card-title">{{ $post->title }}</h5>
                                                             </a>
-                                                            <a href="{{ route('guest.category.show', $post->category->slug) }}"><span class="card-category"
+                                                            <a
+                                                                href="{{ route('guest.category.show', $post->category->slug) }}"><span
+                                                                    class="card-category"
                                                                     style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
                                                             <p class="card-text">
                                                                 <span><i class="fas fa-user"></i>
@@ -753,7 +782,9 @@
                                                                 href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
                                                                 <h5 class="card-title">{{ $post->title }}</h5>
                                                             </a>
-                                                            <a href="{{ route('guest.category.show', $post->category->slug) }}"><span class="card-category"
+                                                            <a
+                                                                href="{{ route('guest.category.show', $post->category->slug) }}"><span
+                                                                    class="card-category"
                                                                     style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
                                                             <p class="card-text">
                                                                 <span><i class="fas fa-user"></i>
@@ -793,7 +824,9 @@
                                                                 href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
                                                                 <h5 class="card-title">{{ $post->title }}</h5>
                                                             </a>
-                                                            <a href="{{ route('guest.category.show', $post->category->slug) }}"><span class="card-category"
+                                                            <a
+                                                                href="{{ route('guest.category.show', $post->category->slug) }}"><span
+                                                                    class="card-category"
                                                                     style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
                                                             <p class="card-text">
                                                                 <span><i class="fas fa-user"></i>
@@ -839,7 +872,9 @@
                                                                 href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
                                                                 <h5 class="card-title">{{ $post->title }}</h5>
                                                             </a>
-                                                            <a href="{{ route('guest.category.show', $post->category->slug) }}"><span class="card-category"
+                                                            <a
+                                                                href="{{ route('guest.category.show', $post->category->slug) }}"><span
+                                                                    class="card-category"
                                                                     style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
                                                             <p class="card-text">
                                                                 <span><i class="fas fa-user"></i>
@@ -879,7 +914,9 @@
                                                                 href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
                                                                 <h5 class="card-title">{{ $post->title }}</h5>
                                                             </a>
-                                                            <a href="{{ route('guest.category.show', $post->category->slug) }}"><span class="card-category"
+                                                            <a
+                                                                href="{{ route('guest.category.show', $post->category->slug) }}"><span
+                                                                    class="card-category"
                                                                     style="background-color: {{ $post->category->color }}">{{ $post->category->title }}</span></a>
                                                             <p class="card-text">
                                                                 <span><i class="fas fa-user"></i>
@@ -913,7 +950,7 @@
         <div class="row">
             <div class="col-12 d-flex justify-content-center">
                 <a href="#">
-                    <img src="assets/images/ads-w.png" alt="Iklan">
+                    <img src="assets/images/ads-w.png" alt="Iklan" class="img-fluid">
                 </a>
             </div>
         </div>
@@ -931,28 +968,31 @@
             </div>
         </div>
         <div class="row">
-            @foreach($berita_terbaru as $post)
-            <div class="col-md-3 pr-md-0">
-                <div class="card my-3">
-                    <a href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
-                        <img src="{{ asset('images/'.$post->image) }}" class="card-img-top" alt="{{ $post->title }}">
-                    </a>
-                    <div class="card-body">
-                        <a href="{{ route('guest.category.show', $post->category->slug) }}" class="terbaru-category"
-                            style="background-color:{{ $post->category->color }};">{{ $post->category->title }}</a>
+            <div class="card-columns my-3 p-3 pr-md-0 pl-md-3">
+                @foreach($berita_terbaru as $post)
+                {{-- <div class="col-md-3 pr-md-0"> --}}
+                    <div class="card">
                         <a href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
-                            <h5 class="card-title text-capitalize">{{ $post->title }}</h5>
+                            <img src="{{ asset('images/'.$post->image) }}" class="card-img-top"
+                                alt="{{ $post->title }}">
                         </a>
-                        <p class="card-text terbaru-info">
-                            <span><i class="fas fa-user"></i> {{ $post->user_author->name }}</span>
-                            <span><i class="far fa-clock"></i> {{ $post->created_at->diffForHumans() }}</span>
-                            <span><i class="far fa-eye"></i>
-                                {{ ($post->view >= 1000) ? floor($post->view / 1000) . 'k' : $post->view }}</span>
-                        </p>
+                        <div class="card-body">
+                            <a href="{{ route('guest.category.show', $post->category->slug) }}" class="terbaru-category"
+                                style="background-color:{{ $post->category->color }};">{{ $post->category->title }}</a>
+                            <a href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
+                                <h5 class="card-title text-capitalize">{{ $post->title }}</h5>
+                            </a>
+                            <p class="card-text terbaru-info">
+                                <span><i class="fas fa-user"></i> {{ $post->user_author->name }}</span>
+                                <span><i class="far fa-clock"></i> {{ $post->created_at->diffForHumans() }}</span>
+                                <span><i class="far fa-eye"></i>
+                                    {{ ($post->view >= 1000) ? floor($post->view / 1000) . 'k' : $post->view }}</span>
+                            </p>
+                        </div>
                     </div>
-                </div>
+                {{-- </div> --}}
+                @endforeach
             </div>
-            @endforeach
         </div>
 
         <!-- Pagination -->

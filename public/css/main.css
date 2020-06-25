@@ -743,6 +743,12 @@ footer a:hover {
     left: 10px;
 }
 
+@media (min-width: 768px){
+    .card-columns {
+        column-count: 4;
+    }
+}
+
 @media (max-width: 575px) {
 
     .post-detail .detail-title h3{
