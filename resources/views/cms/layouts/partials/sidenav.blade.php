@@ -1,12 +1,8 @@
 <div class="menu_section">
     <h3>General</h3>
     <ul class="nav side-menu">
-        <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
-            <ul class="nav child_menu">
-                <li><a href="{{ route('dashboard.index') }}">Dashboard</a></li>
-            </ul>
-        </li>
-        <li><a><i class="fa fa-edit"></i> News <span class="fa fa-chevron-down"></span></a>
+        <li><a href="{{ route('dashboard.index') }}"><i class="fa fa-home"></i>Dashboard</a></li>
+        <li><a><i class="fa fa-edit"></i>News <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
                 <li><a href="{{ route('post.index') }}">Post</a></li>
                 <li><a href="{{ route('category.index') }}">Category</a></li>
@@ -19,9 +15,9 @@
 <div class="menu_section">
     <h3>Company</h3>
     <ul class="nav side-menu">
-        <li><a><i class="fa fa-users"></i> Employee <span class="fa fa-chevron-down"></span></a>
+        <li><a><i class="fa fa-users"></i>Employee <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
-                <li><a href="#">Reporter</a></li>
+                <li><a href="{{ route('reporter.index') }}">Reporter</a></li>
             </ul>
         </li>
     </ul>

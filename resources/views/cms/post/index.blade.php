@@ -56,11 +56,11 @@
                                                 class="fa fa-picture-o"></i></button>
                                         @endif
                                     </td>
-                                    <td>{{ $post->user_author->name }}</td>
+                                    <td>{{ $post->user_author->firstname }}</td>
                                     <td>@if ($post->editor == null)
                                         ...
                                         @else
-                                        {{ $post->user_editor->name }}
+                                        {{ $post->user_editor->firstname }}
                                         @endif</td>
                                     <td>@if ($post->status == 1)
                                         <span class="badge badge-success">published</span>

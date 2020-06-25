@@ -47,7 +47,7 @@
                                                 class="fa fa-picture-o"></i></button>
                                         @endif
                                     </td>
-                                    <td scope="col">{{ $headline->post->user_author->name }}</td>
+                                    <td scope="col">{{ $headline->post->user_author->firstname }}</td>
                                     <td scope="col" class="text-bold text-info">
                                         @if ($headline->type == 'main')
                                         <span class="badge badge-pill badge-primary">Main</span>

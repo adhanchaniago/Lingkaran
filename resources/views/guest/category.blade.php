@@ -42,7 +42,7 @@
                                 </div>
                                 <a href="{{ route('guest.post.show', [$post->category->slug, $post]) }}" class="post-title">{{ $post->title }}</a>
                                 <div class="post-info my-1">
-                                    <span><i class="fas fa-user"></i> {{ $post->user_author->name }}</span>
+                                    <span><i class="fas fa-user"></i> {{ $post->user_author->firstname }}</span>
                                     <span><i class="far fa-clock"></i> {{ $post->created_at->diffForHumans() }}</span>
                                     <span><i class="far fa-eye"></i> {{ ($post->view >= 1000) ? floor($post->view / 1000) . 'k' : $post->view }} Views</span>
                                 </div>

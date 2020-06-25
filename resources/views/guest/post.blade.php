@@ -29,7 +29,7 @@
                     <h3>{{ $post->title }}</h3>
                 </div>
                 <div class="detail-info">
-                    <span><i class="fas fa-user"></i> {{ $post->user_author->name }}</span>
+                    <span><i class="fas fa-user"></i> {{ $post->user_author->firstname }}</span>
                     <span><i class="far fa-clock"></i> {{ $post->created_at->diffForHumans() }}</span>
                 </div>
                 <figure class="figure mt-3">
@@ -41,7 +41,7 @@
                     {!! $post->content !!}
                     @if($post->editor != 0)
                     <div class="mt-3">
-                        <span class="text-muted small">Editor: {{ $post->user_editor->name }}</span>
+                        <span class="text-muted small">Editor: {{ $post->user_editor->firstname }}</span>
                     </div>
                     @endif
                 </div>

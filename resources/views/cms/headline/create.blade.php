@@ -51,7 +51,7 @@
                                                 class="fa fa-picture-o"></i></button>
                                         @endif
                                     </td>
-                                    <td>{{ $post->user_author->name }}</td>
+                                    <td>{{ $post->user_author->firstname }}</td>
                                     <td class="d-flex justify-content-end">
                                         <button id="btn-set" class="btn btn-sm btn-danger" data-toggle="modal"
                                             data-target="#modal-headline" data-id="{{ $post->id }}"
