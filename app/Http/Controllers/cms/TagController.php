@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\cms;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Tag;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class TagController extends Controller
 {
@@ -18,7 +18,7 @@ class TagController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     /**
      * Display a listing of the resource.
      *

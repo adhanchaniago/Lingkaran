@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\cms;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Post;
 use App\Headline;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class HeadlineController extends Controller
 {

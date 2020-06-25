@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\cms;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Category;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class CategoryController extends Controller
 {
