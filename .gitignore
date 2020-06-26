@@ -76,6 +76,5 @@ $RECYCLE.BIN/
 # My Ignore
 **/images/backup
 lingkaran_localserver.bat
-a_post_content.html
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,visualstudiocode,laravel,git
