@@ -17,7 +17,8 @@ class UserSeeder extends Seeder
             'firstname' => 'Lingkaran',
             'lastname' => 'Webnews',
             'email' => 'superadmin@email.com',
-            'password' => Hash::make('12345678')
+            'password' => Hash::make('12345678'),
+            'status' => 1
         ]);
     }
 }

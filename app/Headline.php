@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Headline extends Model
 {
-    protected $fillable = ['post_id', 'type'];
+    protected $fillable = [
+        'post_id', 'type'
+    ];
 
     public function post()
     {
