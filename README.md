@@ -20,7 +20,7 @@ Instal [Composer](https://getcomposer.org/) pada Sistem Operasi agar command art
 
 ```javascript
 //Download vendor untuk aplikasi
-composer update
+composer install
 ```
 
 Jalankan artisan command untuk generate key baru. Key dapat dilihat pada file ".env", jika file tidak ada rename file ".env.example" menjadi ".env".
