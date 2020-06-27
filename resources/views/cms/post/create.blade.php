@@ -58,7 +58,7 @@
                         <label class="col-form-label col-md-2 col-sm-2 label-align">Image</label>
                         <div class="col-md-9 col-sm-9 d-flex align-items-center">
                             <input type="file" name="image"
-                                class="form-control-file col-md-9 col-sm-9 @error('image') is-invalid @enderror">
+                                class="form-control-file col-md-9 col-sm-9 @error('image') is-invalid @enderror" required>
                             @error('image')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

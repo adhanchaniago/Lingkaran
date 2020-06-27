@@ -59,8 +59,9 @@ class PostController extends Controller
             'title' => 'required|min:10|unique:posts',
             'category' => 'required',
             'content' => 'required|min:100',
-            'image' => 'image'
+            'image' => 'required|image'
         ]);
+
         $post = Post::create([
             'title' => Str::title(request('title')),
             'slug' => Str::slug(request('title')),
@@ -72,18 +73,18 @@ class PostController extends Controller
             'status' => 0,
             'view' => 0
         ]);
+
         $post->tags()->sync($request->tags, false);
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $filename = Str::slug($post->title) . '.' . $image->getClientOriginalExtension();
 
-            $location = public_path('images/'. $filename);
-            Image::make($image->getRealPath())->resize(600, 400)->save($location);
+        $image = $request->file('image');
+        $filename = Str::slug($post->title) . '.' . $image->getClientOriginalExtension();
+        $location = public_path('images/'. $filename);
+        Image::make($image->getRealPath())->resize(600, 400)->save($location);
+        $post->update([
+            'image' => $filename
+        ]);
 
-            $post->update([
-                'image' => $filename
-            ]);
-        }
+
         return redirect(route('post.index'))->withSuccess('New post has been added');
     }
 
