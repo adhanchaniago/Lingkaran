@@ -16,6 +16,19 @@ List package Website Lingkaran, diantaranya adalah:
 - Manipulasi gambar pada website menggunakan [Image Intervension](http://image.intervention.io/).
 
 ### Instalasi
+Instal [Composer](https://getcomposer.org/) pada Sistem Operasi agar command artisan dapat dijalankan. Ketik perintah update pada terminal untuk download vendor yang dibutuhkan.
+
+```javascript
+//Download vendor untuk aplikasi
+composer update
+```
+
+Jalankan artisan command untuk generate key baru. Key dapat dilihat pada file ".env", jika file tidak ada rename file ".env.example" menjadi ".env".
+
+```javascript
+//Generate key baru
+php artisan key:generate
+```
 Jalankan artisan migration dan seeder pada terminal untuk membuat database dan default user.
 
 ```javascript
