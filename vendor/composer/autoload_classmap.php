@@ -22,6 +22,7 @@ return array(
     'App\\Http\\Controllers\\cms\\CategoryController' => $baseDir . '/app/Http/Controllers/cms/CategoryController.php',
     'App\\Http\\Controllers\\cms\\HeadlineController' => $baseDir . '/app/Http/Controllers/cms/HeadlineController.php',
     'App\\Http\\Controllers\\cms\\PostController' => $baseDir . '/app/Http/Controllers/cms/PostController.php',
+    'App\\Http\\Controllers\\cms\\ReporterController' => $baseDir . '/app/Http/Controllers/cms/ReporterController.php',
     'App\\Http\\Controllers\\cms\\TagController' => $baseDir . '/app/Http/Controllers/cms/TagController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',

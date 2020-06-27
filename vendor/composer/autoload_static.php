@@ -512,6 +512,7 @@ class ComposerStaticInitea6009684199eee2dda3dcc97e7ddf69
         'App\\Http\\Controllers\\cms\\CategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/cms/CategoryController.php',
         'App\\Http\\Controllers\\cms\\HeadlineController' => __DIR__ . '/../..' . '/app/Http/Controllers/cms/HeadlineController.php',
         'App\\Http\\Controllers\\cms\\PostController' => __DIR__ . '/../..' . '/app/Http/Controllers/cms/PostController.php',
+        'App\\Http\\Controllers\\cms\\ReporterController' => __DIR__ . '/../..' . '/app/Http/Controllers/cms/ReporterController.php',
         'App\\Http\\Controllers\\cms\\TagController' => __DIR__ . '/../..' . '/app/Http/Controllers/cms/TagController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',

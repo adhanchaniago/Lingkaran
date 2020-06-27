@@ -31,6 +31,10 @@ app/storage/
 public/storage
 public/hot
 
+# Laravel 5 & Lumen specific with changed public path
+public_html/storage
+public_html/hot
+
 storage/*.key
 .env
 Homestead.yaml
@@ -44,6 +48,7 @@ Homestead.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+*.code-workspace
 
 ### VisualStudioCode Patch ###
 # Ignore all local history of files
@@ -52,6 +57,7 @@ Homestead.json
 ### Windows ###
 # Windows thumbnail cache files
 Thumbs.db
+Thumbs.db:encryptable
 ehthumbs.db
 ehthumbs_vista.db
 
@@ -74,8 +80,8 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# My Ignore
+# End of https://www.toptal.com/developers/gitignore/api/windows,visualstudiocode,laravel,git
+
+# Extra
 **/images/backup
 lingkaran_localserver.bat
-
-# End of https://www.toptal.com/developers/gitignore/api/windows,visualstudiocode,laravel,git
