@@ -30,7 +30,7 @@ Lingkaran - {{ $tags->title }}
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="category-image">
-                                    <a href="{{ route('guest.post.show', [$post->category->slug, $post]) }}"><img src="{{ asset('images/'. $post->image) }}" alt="{{ $post->title }}"></a>
+                                    <a href="{{ route('guest.post.show', [$post->category->slug, $post]) }}"><img src="{{ asset('images/post/'. $post->image) }}" alt="{{ $post->title }}"></a>
                                 </div>
                             </div>
                             <div class="col-md-6 mt-md-0 p-4 pt-md-3 pr-md-4">

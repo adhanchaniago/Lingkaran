@@ -33,7 +33,7 @@
                     <span><i class="far fa-clock"></i> {{ $post->created_at->diffForHumans() }}</span>
                 </div>
                 <figure class="figure mt-3">
-                    <img src="{{ asset('images/'.$post->image) }}" class="figure-img" alt="{{ $post->title }}">
+                    <img src="{{ asset('images/post/'.$post->image) }}" class="figure-img" alt="{{ $post->title }}">
                     <figcaption class="figure-caption">Source: Lingkaran.com</figcaption>
                 </figure>
                 <div class="detail-content">
@@ -59,7 +59,7 @@
                         <div class="col-md-3">
                             <div class="berita-lain-content mt-3">
                                 <a href="{{ route('guest.post.show', [$related->category->slug, $related]) }}"><img
-                                        src="{{ asset('images/'.$related->image) }}" alt="{{ $related->title }}"
+                                        src="{{ asset('images/post/'.$related->image) }}" alt="{{ $related->title }}"
                                         class="berita-lain-img"></a>
                                 <a href="{{ route('guest.post.show', [$related->category->slug, $related]) }}"
                                     class="berita-lain-title">{{ $related->title }}</a>

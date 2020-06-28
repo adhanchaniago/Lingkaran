@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\cms;
 
-use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ReporterController extends Controller
 {
@@ -14,7 +15,8 @@ class ReporterController extends Controller
      */
     public function index()
     {
-        return view('cms.reporter.index');
+        $reporters = User::with('profiles', 'roles', 'permissions')->orderBy('firstname', 'ASC')->paginate(12);
+        return view('cms.reporter.index', compact('reporters'));
     }
 
     /**

@@ -78,7 +78,7 @@ class PostController extends Controller
 
         $image = $request->file('image');
         $filename = Str::slug($post->title) . '.' . $image->getClientOriginalExtension();
-        $location = public_path('images/'. $filename);
+        $location = public_path('images/post/'. $filename);
         Image::make($image->getRealPath())->resize(600, 400)->save($location);
         $post->update([
             'image' => $filename
@@ -127,9 +127,9 @@ class PostController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $filename = Str::slug($post->title) . '.' . $image->getClientOriginalExtension();
-            $location = public_path('images/'. $filename);
+            $location = public_path('images/post/'. $filename);
             Image::make($image)->resize(600, 400)->save($location);
-            $oldFilename = $post->image;
+            $oldFilename = 'images/post/'.$post->image;
 
             $post->update([
                 'image' => $filename

@@ -35,7 +35,7 @@
                     <div class="col-md-8 my-3 my-md-0">
                         @if(!empty($headline_main))
                         <div class="headline-wrapper h-3"
-                            style="background-image: url({{ asset('images/'. $headline_main->post->image) }});">
+                            style="background-image: url({{ asset('images/post/'. $headline_main->post->image) }});">
                             <a href="{{ route('guest.post.show', [$headline_main->post->category->slug, $headline_main->post]) }}"
                                 class="headline-link"></a>
                             <div class="headline-body d-flex flex-column justify-content-end align-items-start">
@@ -63,7 +63,7 @@
                     <div class="col-md-4 pl-md-0 pr-lg-4">
                         @if(!empty($headline_secondary[0]))
                         <div class="headline-wrapper h-3"
-                            style="background-image: url({{ asset('images/'. $headline_secondary[0]->post->image) }});">
+                            style="background-image: url({{ asset('images/post/'. $headline_secondary[0]->post->image) }});">
                             <a href="{{ route('guest.post.show', [$headline_secondary[0]->post->category->slug, $headline_secondary[0]->post]) }}"
                                 class="headline-link"></a>
                             <div class="headline-body d-flex flex-column justify-content-end align-items-start">
@@ -93,7 +93,7 @@
                     <div class="col-md-4 mt-3">
                         @if(!empty($headline_secondary[1]))
                         <div class="headline-wrapper h-2"
-                            style="background-image: url({{ asset('images/' . $headline_secondary[1]->post->image) }});">
+                            style="background-image: url({{ asset('images/post/' . $headline_secondary[1]->post->image) }});">
                             <a href="{{ route('guest.post.show', [$headline_secondary[1]->post->category->slug, $headline_secondary[1]->post]) }}"
                                 class="headline-link"></a>
                             <div class="headline-body d-flex flex-column justify-content-end align-items-start">
@@ -122,7 +122,7 @@
                     <div class="col-md-4 mt-3 pl-md-0">
                         @if(!empty($headline_secondary[2]))
                         <div class="headline-wrapper h-2"
-                            style="background-image: url({{ asset('images/' . $headline_secondary[2]->post->image) }});">
+                            style="background-image: url({{ asset('images/post/' . $headline_secondary[2]->post->image) }});">
                             <a href="{{ route('guest.post.show', [$headline_secondary[2]->post->category->slug, $headline_secondary[2]->post]) }}"
                                 class="headline-link"></a>
                             <div class="headline-body d-flex flex-column justify-content-end align-items-start">
@@ -151,7 +151,7 @@
                     <div class="col-md-4 mt-3 pl-md-0 pr-lg-4">
                         @if(!empty($headline_secondary[3]))
                         <div class="headline-wrapper h-2"
-                            style="background-image: url({{ asset('images/' . $headline_secondary[3]->post->image) }});">
+                            style="background-image: url({{ asset('images/post/' . $headline_secondary[3]->post->image) }});">
                             <a href="{{ route('guest.post.show', [$headline_secondary[3]->post->category->slug, $headline_secondary[3]->post]) }}"
                                 class="headline-link"></a>
                             <div class="headline-body d-flex flex-column justify-content-end align-items-start">
@@ -231,7 +231,7 @@
                                                     <div class="col-md-4">
                                                         <a
                                                             href="{{ route('guest.post.show', [$post->category->slug , $post]) }}"><img
-                                                                src="{{ asset('images/'. $post->image) }}"
+                                                                src="{{ asset('images/post/'. $post->image) }}"
                                                                 class="card-img rounded-0" alt="{{ $post->title }}"></a>
                                                     </div>
                                                     <div class="col-md-8">
@@ -275,7 +275,7 @@
                                                     <div class="col-md-4">
                                                         <a
                                                             href="{{ route('guest.post.show', [$post->category->slug , $post]) }}"><img
-                                                                src="{{ asset('images/'. $post->image) }}"
+                                                                src="{{ asset('images/post/'. $post->image) }}"
                                                                 class="card-img rounded-0" alt="{{ $post->title }}"></a>
                                                     </div>
                                                     <div class="col-md-8">
@@ -323,7 +323,7 @@
                                                     <div class="col-md-4">
                                                         <a
                                                             href="{{ route('guest.post.show', [$post->category->slug , $post]) }}"><img
-                                                                src="{{ asset('images/'. $post->image) }}"
+                                                                src="{{ asset('images/post/'. $post->image) }}"
                                                                 class="card-img rounded-0" alt="{{ $post->title }}"></a>
                                                     </div>
                                                     <div class="col-md-8">
@@ -365,7 +365,7 @@
                                                     <div class="col-md-4">
                                                         <a
                                                             href="{{ route('guest.post.show', [$post->category->slug , $post]) }}"><img
-                                                                src="{{ asset('images/'. $post->image) }}"
+                                                                src="{{ asset('images/post/'. $post->image) }}"
                                                                 class="card-img rounded-0" alt="{{ $post->title }}"></a>
                                                     </div>
                                                     <div class="col-md-8">
@@ -413,7 +413,7 @@
                                                     <div class="col-md-4">
                                                         <a
                                                             href="{{ route('guest.post.show', [$post->category->slug , $post]) }}"><img
-                                                                src="{{ asset('images/'. $post->image) }}"
+                                                                src="{{ asset('images/post/'. $post->image) }}"
                                                                 class="card-img rounded-0" alt="{{ $post->title }}"></a>
                                                     </div>
                                                     <div class="col-md-8">
@@ -455,7 +455,7 @@
                                                     <div class="col-md-4">
                                                         <a
                                                             href="{{ route('guest.post.show', [$post->category->slug , $post]) }}"><img
-                                                                src="{{ asset('images/'. $post->image) }}"
+                                                                src="{{ asset('images/post/'. $post->image) }}"
                                                                 class="card-img rounded-0" alt="{{ $post->title }}"></a>
                                                     </div>
                                                     <div class="col-md-8">
@@ -503,7 +503,7 @@
                                                     <div class="col-md-4">
                                                         <a
                                                             href="{{ route('guest.post.show', [$post->category->slug , $post]) }}"><img
-                                                                src="{{ asset('images/'. $post->image) }}"
+                                                                src="{{ asset('images/post/'. $post->image) }}"
                                                                 class="card-img rounded-0" alt="{{ $post->title }}"></a>
                                                     </div>
                                                     <div class="col-md-8">
@@ -545,7 +545,7 @@
                                                     <div class="col-md-4">
                                                         <a
                                                             href="{{ route('guest.post.show', [$post->category->slug , $post]) }}"><img
-                                                                src="{{ asset('images/'. $post->image) }}"
+                                                                src="{{ asset('images/post/'. $post->image) }}"
                                                                 class="card-img rounded-0" alt="{{ $post->title }}"></a>
                                                     </div>
                                                     <div class="col-md-8">
@@ -593,7 +593,7 @@
                                                     <div class="col-md-4">
                                                         <a
                                                             href="{{ route('guest.post.show', [$post->category->slug , $post]) }}"><img
-                                                                src="{{ asset('images/'. $post->image) }}"
+                                                                src="{{ asset('images/post/'. $post->image) }}"
                                                                 class="card-img rounded-0" alt="{{ $post->title }}"></a>
                                                     </div>
                                                     <div class="col-md-8">
@@ -635,7 +635,7 @@
                                                     <div class="col-md-4">
                                                         <a
                                                             href="{{ route('guest.post.show', [$post->category->slug , $post]) }}"><img
-                                                                src="{{ asset('images/'. $post->image) }}"
+                                                                src="{{ asset('images/post/'. $post->image) }}"
                                                                 class="card-img rounded-0" alt="{{ $post->title }}"></a>
                                                     </div>
                                                     <div class="col-md-8">
@@ -683,7 +683,7 @@
                                                     <div class="col-md-4">
                                                         <a
                                                             href="{{ route('guest.post.show', [$post->category->slug , $post]) }}"><img
-                                                                src="{{ asset('images/'. $post->image) }}"
+                                                                src="{{ asset('images/post/'. $post->image) }}"
                                                                 class="card-img rounded-0" alt="{{ $post->title }}"></a>
                                                     </div>
                                                     <div class="col-md-8">
@@ -725,7 +725,7 @@
                                                     <div class="col-md-4">
                                                         <a
                                                             href="{{ route('guest.post.show', [$post->category->slug , $post]) }}"><img
-                                                                src="{{ asset('images/'. $post->image) }}"
+                                                                src="{{ asset('images/post/'. $post->image) }}"
                                                                 class="card-img rounded-0" alt="{{ $post->title }}"></a>
                                                     </div>
                                                     <div class="col-md-8">
@@ -773,7 +773,7 @@
                                                     <div class="col-md-4">
                                                         <a
                                                             href="{{ route('guest.post.show', [$post->category->slug , $post]) }}"><img
-                                                                src="{{ asset('images/'. $post->image) }}"
+                                                                src="{{ asset('images/post/'. $post->image) }}"
                                                                 class="card-img rounded-0" alt="{{ $post->title }}"></a>
                                                     </div>
                                                     <div class="col-md-8">
@@ -815,7 +815,7 @@
                                                     <div class="col-md-4">
                                                         <a
                                                             href="{{ route('guest.post.show', [$post->category->slug , $post]) }}"><img
-                                                                src="{{ asset('images/'. $post->image) }}"
+                                                                src="{{ asset('images/post/'. $post->image) }}"
                                                                 class="card-img rounded-0" alt="{{ $post->title }}"></a>
                                                     </div>
                                                     <div class="col-md-8">
@@ -863,7 +863,7 @@
                                                     <div class="col-md-4">
                                                         <a
                                                             href="{{ route('guest.post.show', [$post->category->slug , $post]) }}"><img
-                                                                src="{{ asset('images/'. $post->image) }}"
+                                                                src="{{ asset('images/post/'. $post->image) }}"
                                                                 class="card-img rounded-0" alt="{{ $post->title }}"></a>
                                                     </div>
                                                     <div class="col-md-8">
@@ -905,7 +905,7 @@
                                                     <div class="col-md-4">
                                                         <a
                                                             href="{{ route('guest.post.show', [$post->category->slug , $post]) }}"><img
-                                                                src="{{ asset('images/'. $post->image) }}"
+                                                                src="{{ asset('images/post/'. $post->image) }}"
                                                                 class="card-img rounded-0" alt="{{ $post->title }}"></a>
                                                     </div>
                                                     <div class="col-md-8">
@@ -973,7 +973,7 @@
                 {{-- <div class="col-md-3 pr-md-0"> --}}
                     <div class="card">
                         <a href="{{ route('guest.post.show', [$post->category->slug , $post]) }}">
-                            <img src="{{ asset('images/'.$post->image) }}" class="card-img-top"
+                            <img src="{{ asset('images/post/'.$post->image) }}" class="card-img-top"
                                 alt="{{ $post->title }}">
                         </a>
                         <div class="card-body">
