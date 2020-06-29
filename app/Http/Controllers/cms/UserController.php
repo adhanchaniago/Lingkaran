@@ -3,9 +3,13 @@
 namespace App\Http\Controllers\cms;
 
 use App\User;
+use App\Profile;
+use Carbon\Carbon;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -16,7 +20,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::with(['profiles', 'roles', 'permissions', 'posts'])->orderBy('firstname', 'ASC')->paginate(12);
+        $users = User::with(['profiles', 'roles', 'permissions', 'posts'])
+        ->orderBy('firstname', 'ASC')
+        ->paginate(12);
+
         $roles = Role::all();
         return view('cms.user.index', compact('users', 'roles'));
     }
@@ -28,7 +35,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('cms.user.create');
+        $roles = Role::all();
+        return view('cms.user.create', compact('roles'));
     }
 
     /**
@@ -39,7 +47,39 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate(request(), [
+            'firstname' => 'required|string',
+            'lastname' => 'required|string',
+            'birth' => 'required|date',
+            'gender' => 'required|max:10',
+            'religion' => 'required|max:20',
+            'status' => 'required|max:50',
+            'address' => 'required|max:50',
+            'phone' => 'required|regex:/(0)[0-9]{9}/',
+            'email' => 'required|string|email|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+            'role' => 'required|string'
+        ]);
+        
+        $user = User::create([
+            'firstname' => Str::Title($request->firstname),
+            'lastname' => Str::Title($request->lastname),
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'status' => 1
+        ]);
+
+        $user->assignRole($request->role);
+        $user->profiles()->create([
+            'birth' => $request->birth,
+            'gender' => $request->gender,
+            'religion' => $request->religion,
+            'status' => $request->status,
+            'address' => $request->address,
+            'phone' => $request->phone
+        ]);
+
+        return redirect()->route('user.index')->withSuccess('New user have been added');
     }
 
     /**

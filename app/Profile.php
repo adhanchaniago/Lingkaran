@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Profile extends Model
 {
     // Menambah kolom yang bisa diinput ke database
-    protected $fillable = [
-        'image', 'address', 'phone'
+    protected $guarded = [
+        'id', 'user_id'
     ];
 
     // Membuat relasi "one to many" antar table profiles dan users

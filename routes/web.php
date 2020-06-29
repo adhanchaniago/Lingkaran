@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Login Routes
 Route::prefix('cms')->namespace('Auth')->group(function () {
     Route::get('/login', 'LoginController@showLoginForm')->name('login');
     Route::post('/login', 'LoginController@login');
@@ -26,13 +27,7 @@ Route::prefix('cms')->namespace('Auth')->group(function () {
     Route::get('/password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
 });
 
-Route::middleware(['auth', 'role:Administrator'])->prefix('cms')->namespace('Auth')->group(function () {
-    // Route for register
-    Route::get('/user/registration', 'RegisterController@showRegistrationForm')->name('register');
-    Route::post('/user/registration', 'RegisterController@register');
-});
-
-// CMS Route
+// CMS Routes
 Route::middleware('auth')->prefix('cms')->namespace('cms')->group(function () {
 
     // Route for dashboard
@@ -48,12 +43,14 @@ Route::middleware('auth')->prefix('cms')->namespace('cms')->group(function () {
     Route::patch('/publish/{id}', 'PostController@publish')->name('post.publish');
     Route::patch('/revoke/{id}', 'PostController@revoke')->name('post.revoke');
 
-    // Route for all user features
-    Route::resource('/user', 'UserController');
-    Route::patch('/user/{user}', 'UserController@changeStatus')->name('user.status');
+    Route::group(['role:Administrator'], function () {
+        // Route for all user features
+        Route::resource('/user', 'UserController');
+        Route::patch('/user/{user}', 'UserController@changeStatus')->name('user.status');
+    });
 });
 
-//Guest Route
+//Guest Routes
 Route::name('guest.')->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
 

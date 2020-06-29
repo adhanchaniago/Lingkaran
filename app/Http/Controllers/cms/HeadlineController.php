@@ -26,7 +26,8 @@ class HeadlineController extends Controller
      */
     public function index()
     {
-        $headlines = Headline::with('post.category', 'post.user_author')->orderBy('type', 'ASC')->get();
+        $headlines = Headline::with('post.category', 'post.user_author')
+                                ->orderBy('type', 'ASC')->get();
         return view('cms.headline.index', compact('headlines'));
     }
 
@@ -38,7 +39,12 @@ class HeadlineController extends Controller
     public function create()
     {
         $headlines = Headline::get('post_id');
-        $posts = Post::with(['category', 'user_author'])->where('status', 1)->whereNotIn('id', $headlines)->latest()->get();
+
+        $posts = Post::with(['category', 'user_author'])
+        ->where('status', 1)
+        ->whereNotIn('id', $headlines)
+        ->latest()->get();
+        
         return view('cms.headline.create', compact('posts'));
     }
 

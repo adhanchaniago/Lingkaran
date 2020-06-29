@@ -116,6 +116,8 @@
     <!-- jQuery Sparklines -->
     <script src="{{ asset('cms/vendors/jquery-sparkline/dist/jquery.sparkline.min.js') }}">
     </script>
+    <!-- jQuery Smart Wizard -->
+    <script src="{{ asset('cms/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js') }}"></script>
     <!-- Switchery -->
     <script src="{{ asset('cms/vendors/switchery/dist/switchery.min.js') }}"></script>
     <!-- Flot -->

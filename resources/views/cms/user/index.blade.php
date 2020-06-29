@@ -5,13 +5,17 @@
     <div class="x_panel">
         <div class="x_title">
             <h2>Users <small>All users list and access</small></h2>
-            <button onclick="location.href='{{ route('register') }}'" class="btn btn-primary btn-sm float-right"><i
-                    class="fa fa-plus"> Reporter</i></button>
+            <button onclick="location.href='{{ route('user.create') }}'" class="btn btn-primary btn-sm float-right"><i
+                    class="fa fa-plus"> User</i></button>
             <div class="clearfix"></div>
         </div>
 
         <div class="x_content">
-
+            @if(session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Success!</strong> {{ session('success') }}.
+            </div>
+            @endif
             @foreach ($users as $user)
             <div class="col-md-3 cold-sm-12">
                 <div class="card mb-3">
