@@ -40,6 +40,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    // Membuat relasi "one to many" antar table users dan posts
+    public function posts()
+    {
+        return $this->hasMany(Post::class, 'author');
+    }
+
+    // Membuat relasi "one to many" antar table users dan profiles
     public function profiles()
     {
         return $this->hasMany(Profile::class);

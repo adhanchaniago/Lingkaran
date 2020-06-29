@@ -4,9 +4,10 @@ namespace App\Http\Controllers\cms;
 
 use App\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 
-class ReporterController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +16,9 @@ class ReporterController extends Controller
      */
     public function index()
     {
-        $reporters = User::with('profiles', 'roles', 'permissions')->orderBy('firstname', 'ASC')->paginate(12);
-        return view('cms.reporter.index', compact('reporters'));
+        $users = User::with(['profiles', 'roles', 'permissions', 'posts'])->orderBy('firstname', 'ASC')->paginate(12);
+        $roles = Role::all();
+        return view('cms.user.index', compact('users', 'roles'));
     }
 
     /**
@@ -26,7 +28,7 @@ class ReporterController extends Controller
      */
     public function create()
     {
-        //
+        return view('cms.user.create');
     }
 
     /**
@@ -48,7 +50,7 @@ class ReporterController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('cms.user.show');
     }
 
     /**
@@ -59,7 +61,7 @@ class ReporterController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('cms.user.edit');
     }
 
     /**
@@ -83,5 +85,18 @@ class ReporterController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function changeStatus(Request $request)
+    {
+        $this->validate(request(), [
+            'status' => 'required'
+        ]);
+
+        $user = User::findOrFail($request->id);
+        $user->update([
+            'status' => $request->status
+        ]);
+        return redirect()->route('user.index');
     }
 }

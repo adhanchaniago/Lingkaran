@@ -12,16 +12,18 @@
         </li>
     </ul>
 </div>
+@role('Administrator')
 <div class="menu_section">
     <h3>Company</h3>
     <ul class="nav side-menu">
         <li><a><i class="fa fa-users"></i>Employee <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
-                <li><a href="{{ route('reporter.index') }}">Reporter</a></li>
+                <li><a href="{{ route('user.index') }}">User</a></li>
             </ul>
         </li>
     </ul>
 </div>
+@endrole
 <div class="menu_section">
     <h3>Other</h3>
     <ul class="nav side-menu">

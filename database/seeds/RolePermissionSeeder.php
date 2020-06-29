@@ -29,6 +29,15 @@ class RolePermissionSeeder extends Seeder
         $permission = Permission::create(['name' => 'edit category']);
         $permission = Permission::create(['name' => 'delete category']);
 
+        // Tag
+        $permission = Permission::create(['name' => 'add tag']);
+        $permission = Permission::create(['name' => 'edit tag']);
+        $permission = Permission::create(['name' => 'delete tag']);
+
+        // Headline
+        $permission = Permission::create(['name' => 'add headline']);
+        $permission = Permission::create(['name' => 'delete headline']);
+        
         //Add or Create role and assigned permission into database
         $role = Role::create([
             'name' => 'Administrator'
@@ -36,10 +45,10 @@ class RolePermissionSeeder extends Seeder
 
         $role = Role::create([
             'name' => 'Editor'
-        ])->syncPermissions(['add post', 'edit post', 'publish post', 'revoke post', 'add category', 'edit category']);
+        ])->syncPermissions(['add post', 'edit post', 'delete post','publish post', 'revoke post', 'add category', 'edit category', 'delete category', 'add tag', 'edit tag', 'delete tag', 'add headline', 'delete headline']);
 
         $role = Role::create([
             'name' => 'Reporter'
-        ])->syncPermissions(['add post', 'edit post','add category', 'edit category']);
+        ])->syncPermissions(['add post', 'edit post','add category', 'edit category', 'add tag', 'edit tag', 'delete tag']);
     }
 }

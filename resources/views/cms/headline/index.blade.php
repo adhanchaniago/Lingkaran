@@ -12,9 +12,11 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>Headline Post List</h2>
+                @can('add headline')
                 <button type="button" class="btn btn-outline-primary btn-sm float-right"
                     onclick="location.href='{{ route('headline.create') }}'"><i class="fa fa-plus"></i>
                     Headline</button>
+                @endcan
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -57,11 +59,13 @@
                                     </td>
                                     <td scope="col">{{ $headline->created_at->diffForHumans() }}</td>
                                     <td scope="col" class="text-center">
+                                        @can('delete headline')
                                         <button class="btn btn-sm btn-danger" data-toggle="modal"
                                             data-target="#modal-delete" data-id="{{ $headline->id }}"
                                             data-title="{{ $headline->post->title }}">
                                             <i class="fa fa-trash"></i>
                                         </button>
+                                        @endcan
                                     </td>
                                 </tr>
                                 @endforeach

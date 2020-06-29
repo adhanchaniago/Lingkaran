@@ -33,17 +33,20 @@
                                         <th scope="row">{{ $loop->index + 1 }}</th>
                                         <td>{{ $tag->title }}</td>
                                         <td class="d-flex justify-content-center">
+                                            @can('edit tag')
                                             <button class="btn btn-info btn-sm" id="btn-edit" data-toggle="modal"
                                                 data-target="#modal-edit" data-id="{{ $tag->id }}"
                                                 data-title="{{ $tag->title }}">
                                                 <i class="fa fa-edit"></i>
                                             </button>
-
+                                            @endcan
+                                            @can('delete tag')
                                             <button class="btn btn-danger btn-sm" id="btn-delete" data-toggle="modal"
                                                 data-target="#modal-delete" data-id="{{ $tag->id }}"
                                                 data-title="{{ $tag->title }}">
                                                 <i class="fa fa-trash"></i>
                                             </button>
+                                            @endcan
                                         </td>
                                     </tr>
                                     @endforeach
@@ -57,6 +60,7 @@
     </div>
 
     <!-- Form Input -->
+    @can('add tag')
     <div class="col-md-4 ">
         <div class="x_panel">
             <div class="x_title">
@@ -78,17 +82,18 @@
                             </span>
                             @enderror
                         </div>
-
+    
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary btn-sm pull-right">Save</button>
                         <button type="reset" class="btn btn-secondary btn-sm pull-right">Reset</button>
                     </div>
-
+    
                 </form>
             </div>
         </div>
     </div>
+    @endcan
 </div>
 
 <!-- Edit modal -->

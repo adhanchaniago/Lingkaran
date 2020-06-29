@@ -12,9 +12,11 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>Post List</h2>
+                @can('add post')
                 <button type="button" class="btn btn-outline-primary btn-sm float-right"
                     onclick="location.href='{{ route('post.create') }}'"><i class="fa fa-plus"></i>
                     post</button>
+                @endcan
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -72,29 +74,37 @@
                                             class="badge badge-dark">{{ ($post->view >= 1000) ? floor($post->view / 1000) . 'k' : $post->view }}</span>
                                     </td>
                                     <td class="d-flex justify-content-end">
+                                        @can('edit post')
                                         <button class="btn btn-sm btn-info"
                                             onclick="location.href='{{ route('post.edit', $post) }}'">
                                             <i class="fa fa-edit"></i>
                                         </button>
+                                        @endcan
 
+                                        @can('delete post')
                                         <button class="btn btn-sm btn-danger" data-toggle="modal"
                                             data-target="#modal-delete" data-id="{{ $post->id }}"
                                             data-title="{{ $post->title }}">
                                             <i class="fa fa-trash"></i>
                                         </button>
+                                        @endcan
 
                                         @if( $post->status == 0 )
+                                        @can('publish post')
                                         <button class="btn btn-success btn-sm" data-toggle="modal"
                                             data-target="#modal-publish" data-id="{{ $post->id }}"
                                             data-title="{{ $post->title }}">
                                             <i class="fa fa-bullhorn"></i>
                                         </button>
+                                        @endcan
                                         @else
+                                        @can('revoke post')
                                         <button class="btn btn-warning btn-sm" data-toggle="modal"
                                             data-target="#modal-revoke" data-id="{{ $post->id }}"
                                             data-title="{{ $post->title }}">
                                             <i class="fa fa-undo"></i>
                                         </button>
+                                        @endcan
                                         @endif
                                     </td>
                                 </tr>

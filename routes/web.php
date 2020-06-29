@@ -26,11 +26,10 @@ Route::prefix('cms')->namespace('Auth')->group(function () {
     Route::get('/password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
 });
 
-Route::middleware('auth')->prefix('cms')->namespace('Auth')->group(function () {
-
+Route::middleware(['auth', 'role:Administrator'])->prefix('cms')->namespace('Auth')->group(function () {
     // Route for register
-    Route::get('/register', 'RegisterController@showRegistrationForm')->name('register');
-    Route::post('/register', 'RegisterController@register');
+    Route::get('/user/registration', 'RegisterController@showRegistrationForm')->name('register');
+    Route::post('/user/registration', 'RegisterController@register');
 });
 
 // CMS Route
@@ -45,12 +44,13 @@ Route::middleware('auth')->prefix('cms')->namespace('cms')->group(function () {
     Route::resource('/tag', 'TagController')->except('create', 'show', 'edit');
     Route::resource('/headline', 'HeadlineController')->except('show', 'edit', 'update');
 
-    // Route for all reporter features
-    Route::resource('/reporter', 'ReporterController');
-
     // Route for publish and revoke post
     Route::patch('/publish/{id}', 'PostController@publish')->name('post.publish');
     Route::patch('/revoke/{id}', 'PostController@revoke')->name('post.revoke');
+
+    // Route for all user features
+    Route::resource('/user', 'UserController');
+    Route::patch('/user/{user}', 'UserController@changeStatus')->name('user.status');
 });
 
 //Guest Route

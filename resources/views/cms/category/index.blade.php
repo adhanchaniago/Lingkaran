@@ -38,16 +38,20 @@
                                         </td>
                                         <td class="d-flex justify-content-center">
 
+                                            @can('edit category')
                                             <button class="btn btn-info btn-sm" id="btn-edit" data-toggle="modal"
                                                 data-target="#modal-edit" data-id="{{ $category->id }}"
                                                 data-title="{{ $category->title }}" data-color="{{ $category->color }}">
                                                 <i class="fa fa-edit"></i></button>
+                                            @endcan
 
+                                            @can('delete category')
                                             <button class="btn btn-danger btn-sm" id="btn-delete" data-toggle="modal"
                                                 data-target="#modal-delete" data-id="{{ $category->id }}"
                                                 data-title="{{ $category->title }}">
                                                 <i class="fa fa-trash"></i>
                                             </button>
+                                            @endcan
                                         </td>
                                     </tr>
                                     @endforeach
@@ -61,6 +65,7 @@
     </div>
 
     <!-- Form Input -->
+    @can('add category')
     <div class="col-md-4 ">
         <div class="x_panel">
             <div class="x_title">
@@ -109,6 +114,7 @@
             </div>
         </div>
     </div>
+    @endcan
 </div>
 
 <!-- Edit modal -->
