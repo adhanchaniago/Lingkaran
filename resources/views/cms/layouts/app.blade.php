@@ -111,6 +111,7 @@
     <script src="{{ asset('cms/vendors/fastclick/lib/fastclick.js') }}"></script>
     <!-- NProgress -->
     <script src="{{ asset('cms/vendors/nprogress/nprogress.js') }}"></script>
+
     <!-- Chart.js -->
     <script src="{{ asset('cms/vendors/Chart.js/dist/Chart.min.js') }}"></script>
     <!-- jQuery Sparklines -->
@@ -138,6 +139,11 @@
     <script src="{{ asset('cms/vendors/moment/min/moment.min.js') }}"></script>
     <script src="{{ asset('cms/vendors/bootstrap-daterangepicker/daterangepicker.js') }}">
     </script>
+    <!-- morris.js -->
+    <script src="{{ asset('cms/vendors/raphael/raphael.min.js') }}"></script>
+    <script src="{{ asset('cms/vendors/morris.js/morris.min.js') }}"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="{{ asset('cms/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js') }}"></script>
     <!-- Bootstrap Colorpicker -->
     <script src="{{ asset('cms/vendors/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js') }}">
     </script>

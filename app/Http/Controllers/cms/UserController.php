@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\cms;
 
+use App\Post;
 use App\User;
 use App\Profile;
 use Carbon\Carbon;
@@ -88,9 +89,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        return view('cms.user.show');
+        $user = User::with(['profiles', 'roles', 'permissions'])->find($user->id);
+        $posts = Post::where('author', $user->id)->latest()->paginate(6);
+        return view('cms.user.show', compact('user', 'posts'));
     }
 
     /**

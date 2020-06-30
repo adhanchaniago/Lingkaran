@@ -80,8 +80,8 @@
 @if(auth()->user())
 <div class="admin-btn action shadow-lg p-2">
     <h6 class="text-center border-bottom pb-1">Action</h6>
-    <button onclick="location.href='{{ route('post.index') }}'" class="btn btn-sm btn-block btn-secondary">
-        <i class="far fa-newspaper"></i> Index
+    <button onclick="location.href='{{ url()->previous() }}'" class="btn btn-sm btn-block btn-secondary">
+        <i class="fas fa-arrow-left"></i> Back
     </button>
     <button onclick="location.href='{{ route('post.edit', $post) }}'" class="btn btn-sm btn-block btn-info">
         <i class="fas fa-edit"></i> Edit

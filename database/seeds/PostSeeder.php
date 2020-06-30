@@ -449,7 +449,7 @@ class PostSeeder extends Seeder
                 vehicula sagittis ut in ante. Sed ut elementum metus, fringilla bibendum massa. Mauris fringilla sagittis faucibus.
                 Aenean volutpat tristique eleifend. Cras vitae nulla eu ex mattis dignissim. Nunc tempor fermentum porttitor.
                 ',
-            'author' => 1,
+            'author' => 2,
             'status' => 1,
             'view' => 69
         ]);
@@ -551,7 +551,7 @@ class PostSeeder extends Seeder
                 vehicula sagittis ut in ante. Sed ut elementum metus, fringilla bibendum massa. Mauris fringilla sagittis faucibus.
                 Aenean volutpat tristique eleifend. Cras vitae nulla eu ex mattis dignissim. Nunc tempor fermentum porttitor.
                 ',
-            'author' => 1,
+            'author' => 2,
             'status' => 1,
             'view' => 2160
         ]);
@@ -585,7 +585,7 @@ class PostSeeder extends Seeder
                 vehicula sagittis ut in ante. Sed ut elementum metus, fringilla bibendum massa. Mauris fringilla sagittis faucibus.
                 Aenean volutpat tristique eleifend. Cras vitae nulla eu ex mattis dignissim. Nunc tempor fermentum porttitor.
                 ',
-            'author' => 1,
+            'author' => 2,
             'status' => 1,
             'view' => 140
         ]);
@@ -619,7 +619,7 @@ class PostSeeder extends Seeder
                 vehicula sagittis ut in ante. Sed ut elementum metus, fringilla bibendum massa. Mauris fringilla sagittis faucibus.
                 Aenean volutpat tristique eleifend. Cras vitae nulla eu ex mattis dignissim. Nunc tempor fermentum porttitor.
                 ',
-            'author' => 1,
+            'author' => 2,
             'status' => 1,
             'view' => 2000
         ]);

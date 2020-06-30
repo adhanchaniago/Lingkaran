@@ -15,26 +15,26 @@ class ProfileSeeder extends Seeder
     {
         Profile::create([
             'user_id' => '1',
-            'image' => 'logo.png',
-            'birth' => Carbon::now(),
-            'gender' => 'Male',
+            'image' => 'p1.jpg',
+            'birth' => '1992-09-01',
+            'gender' => 'Female',
             'religion' => 'Islam',
-            'status' => 'Single',
+            'status' => 'Divorce',
             'address' => 'Jl. bumi, no.123,Palembang',
             'phone' => '087819216658',
-            'about' => 'Asal ada kemauan semua pasti bisa'
+            'about' => 'Salah satu hal terbaik dalam hidup adalah melihat senyum di wajah orang tuamu, dan menyadari bahwa kamulah alasannya.'
         ]);
 
         Profile::create([
             'user_id' => '2',
-            'image' => 'riyan.jpg',
-            'birth' => Carbon::now(),
+            'image' => 'p2.jpg',
+            'birth' => '1992-09-01',
             'gender' => 'Male',
             'religion' => 'Islam',
             'status' => 'Single',
             'address' => 'Jl. bumi, no.123,Palembang',
             'phone' => '087819216658',
-            'about' => 'Asal ada kemauan semua pasti bisa'
+            'about' => 'Untuk setiap manusia di dunia ini, Tuhan telah memberikan sesuatu yang mulia dan baik ke dalam hatinya. Selalu jaga hatimu.'
         ]);
     }
 }
