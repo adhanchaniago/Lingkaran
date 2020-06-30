@@ -7,6 +7,7 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>User Registration Form <small>Please input all its needs</small></h2>
+                <button onclick="location.href='{{ route('user.index') }}'" class="btn btn-secondary btn-sm pull-right">Back</button>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">

@@ -23,8 +23,7 @@
                         <img src="
                         @foreach ($user->profiles as $profile)
                             {{ (!empty($profile->image) ? asset('images/profile/'. $profile->image) : asset('cms/images/user.png')) }}"
-                            @endforeach class="card-img rounded-pill img-fluid"
-                            style="width: 100px;">
+                            @endforeach class="card-img rounded-pill img-fluid" style="width: 100px;">
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">{{ $user->firstname }} {{ $user->lastname }}</h5>
@@ -47,12 +46,15 @@
                                 {{ $user->profiles->first()->phone }}</li>
                         </ul>
                         <div class="mt-2">
-                            <a href="{{ route('user.show', $user) }}" class="card-link text-info"><i class="fa fa-user"> Profile</i></a>
+                            @if ($user->id != auth()->id())
+                            <a href="{{ route('user.show', $user) }}" class="card-link text-info"><i class="fa fa-user">
+                                    Profile</i></a>
                             <a href="#" class="card-link text-primary" id="btn-status" data-toggle="modal"
                                 data-target="#modal-status" data-id="{{ $user->id }}"
                                 data-name="{{ $user->firstname }}"><i class="fa fa-ban"> Status</i></a>
                             @if (empty($user->posts->first()))
                             <a href="#" class="card-link text-danger"><i class="fa fa-trash"></i> Delete</a>
+                            @endif
                             @endif
                         </div>
                     </div>
