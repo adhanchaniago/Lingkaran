@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\cms;
 
-use App\Category;
+use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;

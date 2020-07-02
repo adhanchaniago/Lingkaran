@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\cms;
 
 use Image;
-use App\Tag;
-use App\Post;
-use App\Category;
-use App\Headline;
+use App\Models\Tag;
+use App\Models\Post;
+use App\Models\Category;
+use App\Models\Headline;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -123,7 +123,9 @@ class PostController extends Controller
             'content' => request('content'),
             'editor' => auth()->id()
         ]);
+
         $post->tags()->sync($request->tags);
+
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $filename = Str::slug($post->title) . '.' . $image->getClientOriginalExtension();
@@ -134,8 +136,10 @@ class PostController extends Controller
             $post->update([
                 'image' => $filename
             ]);
+
             Storage::delete($oldFilename);
         }
+
         return redirect(route('post.index'))->withSuccess('The post has been updated');
     }
 
@@ -148,9 +152,8 @@ class PostController extends Controller
     public function destroy(Request $request)
     {
         $post = Post::findOrFail($request->id);
-
         //Delete current post image
-        Storage::delete($post->image);
+        Storage::delete('post/'.$post->image);
         //Delete current post
         $post->delete();
 

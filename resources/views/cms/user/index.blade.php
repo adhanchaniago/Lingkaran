@@ -53,7 +53,9 @@
                                 data-target="#modal-status" data-id="{{ $user->id }}"
                                 data-name="{{ $user->firstname }}"><i class="fa fa-ban"> Status</i></a>
                             @if (empty($user->posts->first()))
-                            <a href="#" class="card-link text-danger"><i class="fa fa-trash"></i> Delete</a>
+                            <a href="#" class="card-link text-danger" data-toggle="modal" data-target="#modal-delete"
+                                data-id="{{ $user->id }}" data-name="{{ $user->firstname }}"><i class="fa fa-trash"></i>
+                                Delete</a>
                             @endif
                             @endif
                         </div>
@@ -69,7 +71,7 @@
     </div>
 </div>
 
-<!-- Modal -->
+<!-- Modal Status -->
 <div class="modal fade" id="modal-status" tabindex="-1" data-backdrop="static" role="dialog"
     aria-labelledby="modal-status" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -100,22 +102,54 @@
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary btn-sm">Save</button>
                     <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-danger btn-sm">Save</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+<!-- Delete modal -->
+<div class="modal fade" id="modal-delete" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Menghapus user</h4>
+            </div>
+            <form action="{{ route('user.destroy', 'id') }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <div class="modal-body">
+                    <p class="text-center">Apa anda yakin ingin menghapus user dengan nama "<span
+                            class="username text-danger"></span>" ?</p>
+                    <input type="hidden" id="form-delete" name="id">
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- /modals -->
 @endsection
 
 @section('script')
 <script>
     $('#modal-status').on('show.bs.modal', function(e){
-            const id = $(e.relatedTarget).data('id');
-            const name = $(e.relatedTarget).data('name');
-            $('.modal-body #id').val(id);
-            $('.modal-body #name').text(name);
-        });
+        const id = $(e.relatedTarget).data('id');
+        const name = $(e.relatedTarget).data('name');
+        $('.modal-body #id').val(id);
+        $('.modal-body #name').text(name);
+    });
+
+    $('#modal-delete').on('show.bs.modal', function (e) {
+        var id = $(e.relatedTarget).data('id');
+        var name = $(e.relatedTarget).data('name');
+        $('.modal-body .username').text(name);
+        $('.modal-body #form-delete').val(id);
+    });
 </script>
 @endsection

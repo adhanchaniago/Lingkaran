@@ -1,7 +1,7 @@
 <?php
 
+use App\Models\Headline;
 use Illuminate\Database\Seeder;
-use App\Headline;
 
 class HeadlineSeeder extends Seeder
 {

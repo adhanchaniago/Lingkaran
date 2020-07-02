@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\cms;
 
-use App\Post;
-use App\Headline;
+use App\Models\Post;
+use App\Models\Headline;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 

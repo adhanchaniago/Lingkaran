@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Tag;
-use App\Post;
-use App\Category;
-use App\Headline;
+use App\Models\Tag;
+use App\Models\Post;
+use App\Models\Category;
+use App\Models\Headline;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller

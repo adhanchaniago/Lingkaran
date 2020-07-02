@@ -21,9 +21,9 @@ class CreateProfilesTable extends Migration
             $table->string('gender', 10);
             $table->string('religion', 20);
             $table->string('status', 50);
-            $table->string('address', 50);
+            $table->string('address');
             $table->string('phone', 15);
-            $table->string('about', 50)->nullable();
+            $table->string('about')->nullable();
             $table->timestamps();
         });
     }

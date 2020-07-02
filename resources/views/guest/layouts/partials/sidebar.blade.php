@@ -18,7 +18,7 @@
     <div class="berita-side-right mb-5">
         <div class="row">
             <div class="col-md-12">
-                <img src="{{ asset('assets/images/post/ads-s.png') }}" alt="ads" class="berita-side-ads img-fluid">
+                <img src="{{ asset('assets/images/ads-s.png') }}" alt="ads" class="berita-side-ads img-fluid">
             </div>
         </div>
     </div>
@@ -41,7 +41,7 @@
                                         <h5 class="card-title">{{ $post->title }}</h5>
                                     </a>
                                     <p class="card-text">
-                                        <span><i class="fas fa-user"></i> {{ $post->user_author->name }}</span>
+                                        <span><i class="fas fa-user"></i> {{ $post->user_author->firstname }}</span>
                                         <span><i class="far fa-clock"></i>
                                             {{ $post->created_at->diffForHumans() }}</span>
                                         <span><i class="fa fa-eye"></i>

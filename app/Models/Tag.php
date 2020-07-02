@@ -1,20 +1,20 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Tag extends Model
 {
     // Menambah kolom yang bisa di input ke database
     protected $fillable = [
-        'title', 'slug', 'color'
+        'title', 'slug'
     ];
 
-    // Membuat relasi "Many to One" antar table categories dan posts
+    // Membuat relasi "many to many" antar table tags dan posts
     public function posts()
     {
-        return $this->hasMany(Post::class);
+        return $this->belongsToMany(Post::class);
     }
 
     // Deklarasi link yang tampil di url

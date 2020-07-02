@@ -46,7 +46,7 @@ Route::middleware('auth')->prefix('cms')->namespace('cms')->group(function () {
     Route::group(['role:Administrator'], function () {
         // Route for all user features
         Route::resource('/user', 'UserController');
-        Route::patch('/user/{user}', 'UserController@changeStatus')->name('user.status');
+        Route::patch('/user/active/{user}', 'UserController@changeStatus')->name('user.status');
     });
 });
 

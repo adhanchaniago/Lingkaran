@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\cms;
 
-use App\Post;
-use App\User;
-use App\Profile;
 use Carbon\Carbon;
+use App\Models\Post;
+use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -54,8 +54,8 @@ class UserController extends Controller
             'birth' => 'required|date',
             'gender' => 'required|max:10',
             'religion' => 'required|max:20',
-            'status' => 'required|max:50',
-            'address' => 'required|max:50',
+            'status' => 'required|max:10',
+            'address' => 'required',
             'phone' => 'required|regex:/(0)[0-9]{9}/',
             'email' => 'required|string|email|unique:users',
             'password' => 'required|string|min:8|confirmed',
@@ -125,9 +125,14 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $user = User::findOrFail($request->id);
+        Storage::delete('profile/'.$user->profiles->first()->image);
+        $user->removeRole($user->roles->first()->name);
+        $user->delete();
+
+        return redirect()->route('user.index')->withSuccess('The user have been deleted');
     }
 
     public function changeStatus(Request $request)
