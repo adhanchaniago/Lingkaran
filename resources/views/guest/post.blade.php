@@ -30,7 +30,7 @@
                 </div>
                 <div class="detail-info">
                     <span><i class="fas fa-user"></i> {{ $post->user_author->firstname }}</span>
-                    <span><i class="far fa-clock"></i> {{ $post->created_at->diffForHumans() }}</span>
+                    <span><i class="far fa-clock"></i> {{ $post->created_at->format('d M Y') }}</span>
                 </div>
                 <figure class="figure mt-3">
                     <img src="{{ asset('images/post/'.$post->image) }}" class="figure-img" alt="{{ $post->title }}">
@@ -86,15 +86,19 @@
     <button onclick="location.href='{{ route('post.edit', $post) }}'" class="btn btn-sm btn-block btn-info">
         <i class="fas fa-edit"></i> Edit
     </button>
+    
     @if($post->status != 1)
-    <button class="btn btn-sm btn-block btn-success" data-toggle="modal" data-target="#modal-confirm"
-        data-key="publish">
-        <i class="fa fa-bullhorn"></i> Publish
-    </button>
+        @can('publish post')
+            <button class="btn btn-sm btn-block btn-success" data-toggle="modal" data-target="#modal-confirm" data-key="publish">
+                <i class="fa fa-bullhorn"></i> Publish
+            </button>
+        @endcan
     @else
-    <button class="btn btn-sm btn-block btn-warning" data-toggle="modal" data-target="#modal-confirm" data-key="revoke">
-        <i class="fa fa-undo"></i> Revoke
-    </button>
+        @can('revoke post')
+            <button class="btn btn-sm btn-block btn-warning" data-toggle="modal" data-target="#modal-confirm" data-key="revoke">
+                <i class="fa fa-undo"></i> Revoke
+            </button>
+        @endcan
     @endif
 </div>
 

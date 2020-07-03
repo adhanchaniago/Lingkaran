@@ -22,11 +22,11 @@ class UserController extends Controller
     public function index()
     {
         $users = User::with(['profiles', 'roles', 'permissions', 'posts'])
-        ->orderBy('firstname', 'ASC')
-        ->paginate(12);
-
-        $roles = Role::all();
-        return view('cms.user.index', compact('users', 'roles'));
+            ->where('id', '<>', auth()->id())
+            ->orderBy('firstname', 'ASC')
+            ->paginate(12);
+            
+        return view('cms.user.index', compact('users'));
     }
 
     /**
@@ -56,7 +56,7 @@ class UserController extends Controller
             'religion' => 'required|max:20',
             'status' => 'required|max:10',
             'address' => 'required',
-            'phone' => 'required|regex:/(0)[0-9]{9}/',
+            'phone' => 'required|unique:profiles|regex:/(0)[0-9]{9}/',
             'email' => 'required|string|email|unique:users',
             'password' => 'required|string|min:8|confirmed',
             'role' => 'required|string'

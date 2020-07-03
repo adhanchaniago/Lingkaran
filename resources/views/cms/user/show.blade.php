@@ -21,21 +21,48 @@
                     </div>
                 </div>
                 <h3>{{ $user->firstname. ' ' . $user->lastname }}</h3>
-
-                <ul class="list-unstyled user_data">
-                    <li><i class="fa fa-birthday-cake user-profile-icon"></i> {{ date('d M Y', strToTime($user->profiles->first()->birth)) }}</li>
-                    <li>
-                        @if ($user->profiles->first()->gender == 'Male')
-                        <i class="fa fa-male user-profile-icon"></i> Male
-                        @elseif ($user->profiles->first()->gender == 'Female')
-                        <i class="fa fa-female user-profile-icon"></i> Female
-                        @endif
-                    </li>
-                    <li><i class="fa fa-user user-profile-icon"></i> {{ $user->profiles->first()->religion }}</li>
-                    <li><i class="fa fa-heart user-profile-icon"></i> {{ $user->profiles->first()->status }}</li>
-                    <li><i class="fa fa-map-marker user-profile-icon"></i> {{ $user->profiles->first()->address }}</li>
-                    <li><i class="fa fa-phone user-profile-icon"></i> {{ $user->profiles->first()->phone }}</li>
-                </ul>
+                <span class="badge badge-info my-2">{{ $user->roles->first()->name }}</span>
+                <div class="row mt-1">
+                    <div class="col-1 d-flex justify-content-center pt-1"><i class="fa fa-user user-profile-icon"></i>
+                    </div>
+                    <div class="col-10 pl-0">{{ date('d M Y', strToTime($user->profiles->first()->birth)) }}</div>
+                </div>
+                <div class="row mt-1">
+                    @if ($user->profiles->first()->gender == 'Male')
+                    <div class="col-1 d-flex justify-content-center pt-1"><i class="fa fa-male user-profile-icon"></i>
+                    </div>
+                    <div class="col-10 pl-0">Male</div>
+                    @else
+                    <div class="col-1 d-flex justify-content-center pt-1"><i class="fa fa-female user-profile-icon"></i>
+                    </div>
+                    <div class="col-10 pl-0">Female</div>
+                    @endif
+                </div>
+                <div class="row mt-1">
+                    <div class="col-1 d-flex justify-content-center pt-1"><i class="fa fa-user user-profile-icon"></i>
+                    </div>
+                    <div class="col-10 pl-0">{{ $user->profiles->first()->religion }}</div>
+                </div>
+                <div class="row mt-1">
+                    <div class="col-1 d-flex justify-content-center pt-1"><i class="fa fa-heart user-profile-icon"></i>
+                    </div>
+                    <div class="col-10 pl-0">{{ $user->profiles->first()->status }}</div>
+                </div>
+                <div class="row mt-1">
+                    <div class="col-1 d-flex justify-content-center pt-1"><i
+                            class="fa fa-map-marker user-profile-icon"></i></div>
+                    <div class="col-10 pl-0">{{ $user->profiles->first()->address }}</div>
+                </div>
+                <div class="row mt-1">
+                    <div class="col-1 d-flex justify-content-center pt-1"><i class="fa fa-phone user-profile-icon"></i>
+                    </div>
+                    <div class="col-10 pl-0">{{ $user->profiles->first()->phone }}</div>
+                </div>
+                <div class="row mt-1">
+                    <div class="col-1 d-flex justify-content-center pt-1"><i class="fa fa-envelope user-profile-icon"></i>
+                    </div>
+                    <div class="col-10 pl-0">{{ $user->email }}</div>
+                </div>
                 <br />
             </div>
 

@@ -22,8 +22,7 @@ class UserSeeder extends Seeder
             'status' => 1
         ]);
         $user->profiles()->create([
-            'user_id' => '1',
-            'image' => 'amanda-nasution.jpg',
+            'image' => '087819216658-1.jpg',
             'birth' => '1992-09-01',
             'gender' => 'Female',
             'religion' => 'Islam',
@@ -43,8 +42,7 @@ class UserSeeder extends Seeder
             'status' => 1
         ]);
         $user->profiles()->create([
-            'user_id' => '2',
-            'image' => 'riyan-amanda.jpg',
+            'image' => '087819216658-2.jpg',
             'birth' => '1992-09-01',
             'gender' => 'Male',
             'religion' => 'Islam',
@@ -63,8 +61,7 @@ class UserSeeder extends Seeder
             'status' => 1
         ]);
         $user->profiles()->create([
-            'user_id' => '2',
-            'image' => 'vio-amanda.jpg',
+            'image' => '087819216658-3.jpg',
             'birth' => '1992-09-01',
             'gender' => 'Female',
             'religion' => 'Islam',

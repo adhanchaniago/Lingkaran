@@ -39,14 +39,7 @@
                             <span class="badge badge-secondary">{{ $permission->name }}</span>
                             @endforeach
                         </p>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item pl-0"><i class="fa fa-home"></i>
-                                {{ $user->profiles->first()->address }}</li>
-                            <li class="list-group-item pl-0"><i class="fa fa-phone"></i>
-                                {{ $user->profiles->first()->phone }}</li>
-                        </ul>
                         <div class="mt-2">
-                            @if ($user->id != auth()->id())
                             <a href="{{ route('user.show', $user) }}" class="card-link text-info"><i class="fa fa-user">
                                     Profile</i></a>
                             <a href="#" class="card-link text-primary" id="btn-status" data-toggle="modal"
@@ -56,7 +49,6 @@
                             <a href="#" class="card-link text-danger" data-toggle="modal" data-target="#modal-delete"
                                 data-id="{{ $user->id }}" data-name="{{ $user->firstname }}"><i class="fa fa-trash"></i>
                                 Delete</a>
-                            @endif
                             @endif
                         </div>
                     </div>

@@ -231,8 +231,8 @@
                                 <div class="col-md-6 col-sm-6 ">
                                     <input type="password" id="password-confirm" name="password_confirmation"
                                         required="required" autocomplete="new-password"
-                                        class="form-control form-control-sm @error('password_confirm') is-invalid @enderror">
-                                    @error('password_confirm')
+                                        class="form-control form-control-sm @error('password_confirmation') is-invalid @enderror">
+                                    @error('password_confirmation')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

@@ -11,7 +11,8 @@
                     {{ auth()->user()->firstname }} {{ auth()->user()->lastname }}
                 </a>
                 <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="javascript:;"> Profile</a>
+                    <a class="dropdown-item" href="{{ route('profile.show', auth()->id()) }}"> Profile</a>
+                    <a class="dropdown-item" href="{{ route('password.edit', auth()->id()) }}"> Change Password</a>
                     <a class="dropdown-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                         <i class="fa fa-sign-out pull-right"></i>

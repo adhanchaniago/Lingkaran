@@ -39,9 +39,17 @@ Route::middleware('auth')->prefix('cms')->namespace('cms')->group(function () {
     Route::resource('/tag', 'TagController')->except('create', 'show', 'edit');
     Route::resource('/headline', 'HeadlineController')->except('show', 'edit', 'update');
 
-    // Route for publish and revoke post
-    Route::patch('/publish/{id}', 'PostController@publish')->name('post.publish');
-    Route::patch('/revoke/{id}', 'PostController@revoke')->name('post.revoke');
+    // Route for personal profile
+    Route::resource('/profile', 'ProfileController')->only(['show', 'update']);
+    Route::patch('/profile/image/{id}', 'ProfileController@changeImage')->name('profile.image');
+    Route::get('/profile/password/{id}', 'ProfileController@passwordEdit')->name('password.edit');
+    Route::patch('/profile/password/{id}', 'ProfileController@passwordUpdate')->name('password.update');
+
+    Route::group(['role:Administrator|Editor'], function () {
+        // Route for publish and revoke post
+        Route::patch('/publish/{id}', 'PostController@publish')->name('post.publish');
+        Route::patch('/revoke/{id}', 'PostController@revoke')->name('post.revoke');
+    });
 
     Route::group(['role:Administrator'], function () {
         // Route for all user features

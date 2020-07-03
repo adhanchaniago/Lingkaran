@@ -130,7 +130,7 @@ class PostController extends Controller
             $image = $request->file('image');
             $filename = Str::slug($post->title) . '.' . $image->getClientOriginalExtension();
             $location = public_path('images/post/'. $filename);
-            Image::make($image)->resize(600, 400)->save($location);
+            Image::make($image)->fit(600, 400)->save($location);
             $oldFilename = 'images/post/'.$post->image;
 
             $post->update([

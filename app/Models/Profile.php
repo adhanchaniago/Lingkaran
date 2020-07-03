@@ -12,7 +12,7 @@ class Profile extends Model
     ];
 
     // Membuat relasi "one to many" antar table profiles dan users
-    public function users()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
