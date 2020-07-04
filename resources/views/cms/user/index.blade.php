@@ -43,8 +43,8 @@
                             <a href="{{ route('user.show', $user) }}" class="card-link text-info"><i class="fa fa-user">
                                     Profile</i></a>
                             <a href="#" class="card-link text-primary" id="btn-status" data-toggle="modal"
-                                data-target="#modal-status" data-id="{{ $user->id }}"
-                                data-name="{{ $user->firstname }}"><i class="fa fa-ban"> Status</i></a>
+                                data-target="#modal-status" data-id="{{ $user->id }}" data-name="{{ $user->firstname }}"
+                                data-status="{{ $user->status }}" data-role="{{ $user->roles->first()->name }}"><i class="fa fa-ban"> Status</i></a>
                             @if (empty($user->posts->first()))
                             <a href="#" class="card-link text-danger" data-toggle="modal" data-target="#modal-delete"
                                 data-id="{{ $user->id }}" data-name="{{ $user->firstname }}"><i class="fa fa-trash"></i>
@@ -75,7 +75,8 @@
                 @csrf
                 @method('PATCH')
                 <div class="modal-body">
-                    <p class="text-center">Anda akan mengubah status <span class="text-info" id="name">null</span></p>
+                    <p class="text-center">Anda akan mengubah status dan Role <span class="text-info"
+                            id="name">null</span></p>
                     <input type="hidden" id="id" name="id">
 
                     <div class="form-group">
@@ -87,6 +88,22 @@
                             <option value="0">Suspend</option>
                         </select>
                         @error('status')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="role">User Role</label>
+                        <select class="form-control form-control-sm @error('role') is-invalid @enderror" id="role"
+                            name="role">
+                            <option></option>
+                            @foreach ($roles as $role)
+                            <option value="{{ $role->name }}">{{ $role->name }}</option>
+                            @endforeach
+                        </select>
+                        @error('role')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -133,8 +150,13 @@
     $('#modal-status').on('show.bs.modal', function(e){
         const id = $(e.relatedTarget).data('id');
         const name = $(e.relatedTarget).data('name');
+        const status = $(e.relatedTarget).data('status');
+        const role = $(e.relatedTarget).data('role');
         $('.modal-body #id').val(id);
         $('.modal-body #name').text(name);
+        $('.modal-body #status').val(status);
+        $('.modal-body #role').val(role);
+        console.log(role);
     });
 
     $('#modal-delete').on('show.bs.modal', function (e) {

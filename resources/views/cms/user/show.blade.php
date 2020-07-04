@@ -5,7 +5,7 @@
         <div class="x_title">
             <h2>User Profile <small>All about this user and its information</small></h2>
             <div class="pull-right">
-                <button onclick="location.href='{{ route('user.index') }}'"
+                <button onclick="location.href='{{ url()->previous() }}'"
                     class="btn btn-secondary btn-sm">Back</button>
             </div>
             <div class="clearfix"></div>

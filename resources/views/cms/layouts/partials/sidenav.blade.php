@@ -7,7 +7,9 @@
                 <li><a href="{{ route('post.index') }}">Post</a></li>
                 <li><a href="{{ route('category.index') }}">Category</a></li>
                 <li><a href="{{ route('tag.index') }}">Tag</a></li>
-                <li><a href="{{ route('headline.index') }}">Headline</a></li>
+                @role(['Administrator|Editor'])
+                    <li><a href="{{ route('headline.index') }}">Headline</a></li>
+                @endrole
             </ul>
         </li>
     </ul>

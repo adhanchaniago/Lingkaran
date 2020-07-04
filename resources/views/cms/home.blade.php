@@ -2,441 +2,152 @@
 @section('content')
 <div class="tile_count">
     <div class="col-md-2 col-sm-4  tile_stats_count">
-        <span class="count_top"><i class="fa fa-user"></i> Total Users</span>
-        <div class="count">2500</div>
-        <span class="count_bottom"><i class="green">4% </i> From last Week</span>
-    </div>
-    <div class="col-md-2 col-sm-4  tile_stats_count">
-        <span class="count_top"><i class="fa fa-clock-o"></i> Average Time</span>
-        <div class="count">123.50</div>
-        <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span>
+        <span class="count_top"><i class="fa fa-users"></i> Total Users</span>
+        <div class="count">{{ $users }}</div>
     </div>
     <div class="col-md-2 col-sm-4  tile_stats_count">
         <span class="count_top"><i class="fa fa-user"></i> Total Males</span>
-        <div class="count green">2,500</div>
-        <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+        <div class="count">{{ $userMale }}</div>
     </div>
     <div class="col-md-2 col-sm-4  tile_stats_count">
         <span class="count_top"><i class="fa fa-user"></i> Total Females</span>
-        <div class="count">4,567</div>
-        <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> From last Week</span>
+        <div class="count">{{ $userFemale }}</div>
     </div>
     <div class="col-md-2 col-sm-4  tile_stats_count">
-        <span class="count_top"><i class="fa fa-user"></i> Total Collections</span>
-        <div class="count">2,315</div>
-        <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+        <span class="count_top"><i class="fa fa-newspaper-o"></i> Total Posts</span>
+        <div class="count">{{ $posts }}</div>
     </div>
     <div class="col-md-2 col-sm-4  tile_stats_count">
-        <span class="count_top"><i class="fa fa-user"></i> Total Connections</span>
-        <div class="count">7,325</div>
-        <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+        <span class="count_top"><i class="fa fa-bars"></i> Total Categories</span>
+        <div class="count">{{ $categories }}</div>
+    </div>
+    <div class="col-md-2 col-sm-4  tile_stats_count">
+        <span class="count_top"><i class="fa fa-tags"></i> Total Tags</span>
+        <div class="count">{{ $tags }}</div>
     </div>
 </div>
 
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-4 col-sm-4 ">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Transaction Summary <small>Weekly progress</small></h2>
+                <h2>Recent Posts</h2>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                <div class="col-md-9 col-sm-12 ">
-                    <div class="demo-container" style="height:280px">
-                        <div id="chart_plot_02" class="demo-placeholder"></div>
-                    </div>
-                    <div class="tiles">
-                        <div class="col-md-4 tile">
-                            <span>Total Sessions</span>
-                            <h2>231,809</h2>
-                            <span class="sparkline11 graph" style="height: 160px;">
-                                <canvas width="200" height="60"
-                                    style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
-                            </span>
-                        </div>
-                        <div class="col-md-4 tile">
-                            <span>Total Revenue</span>
-                            <h2>$231,809</h2>
-                            <span class="sparkline22 graph" style="height: 160px;">
-                                <canvas width="200" height="60"
-                                    style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
-                            </span>
-                        </div>
-                        <div class="col-md-4 tile">
-                            <span>Total Sessions</span>
-                            <h2>231,809</h2>
-                            <span class="sparkline11 graph" style="height: 160px;">
-                                <canvas width="200" height="60"
-                                    style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3 col-sm-12 ">
-                    <div>
-                        <div class="x_title">
-                            <h2>Top Profiles</h2>
-                            <ul class="nav navbar-right panel_toolbox">
-                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                        aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="#">Settings 1</a>
-                                        <a class="dropdown-item" href="#">Settings 2</a>
+                <div class="dashboard-widget-content">
+                    <ul class="list-unstyled timeline widget">
+                        @foreach ($recentPosts as $post)
+                        <li>
+                            <div class="block">
+                                <div class="block_content">
+                                    <h2 class="title">
+                                        <a href="{{ route('guest.post.show', [$post->category->slug, $post]) }}">{{ $post->title }}</a>
+                                    </h2>
+                                    <div class="byline">
+                                        <span><i class="fa fa-user"></i> {{ $post->user_author->firstname }}</span> - <i class="fa fa-clock-o"></i> {{ $post->created_at->diffForHumans() }}
                                     </div>
-                                </li>
-                                <li><a class="close-link"><i class="fa fa-close"></i></a>
-                                </li>
-                            </ul>
-                            <div class="clearfix"></div>
-                        </div>
-                        <ul class="list-unstyled top_profiles scroll-view">
-                            <li class="media event">
-                                <a class="pull-left border-aero profile_thumb">
-                                    <i class="fa fa-user aero"></i>
-                                </a>
-                                <div class="media-body">
-                                    <a class="title" href="#">Ms. Mary Jane</a>
-                                    <p><strong>$2300. </strong> Agent Avarage Sales </p>
-                                    <p> <small>12 Sales Today</small>
-                                    </p>
+                                    <p class="excerpt">{!! Str::limit($post->content, 147, '...') !!}</p>
                                 </div>
-                            </li>
-                            <li class="media event">
-                                <a class="pull-left border-green profile_thumb">
-                                    <i class="fa fa-user green"></i>
-                                </a>
-                                <div class="media-body">
-                                    <a class="title" href="#">Ms. Mary Jane</a>
-                                    <p><strong>$2300. </strong> Agent Avarage Sales </p>
-                                    <p> <small>12 Sales Today</small>
-                                    </p>
-                                </div>
-                            </li>
-                            <li class="media event">
-                                <a class="pull-left border-blue profile_thumb">
-                                    <i class="fa fa-user blue"></i>
-                                </a>
-                                <div class="media-body">
-                                    <a class="title" href="#">Ms. Mary Jane</a>
-                                    <p><strong>$2300. </strong> Agent Avarage Sales </p>
-                                    <p> <small>12 Sales Today</small>
-                                    </p>
-                                </div>
-                            </li>
-                            <li class="media event">
-                                <a class="pull-left border-aero profile_thumb">
-                                    <i class="fa fa-user aero"></i>
-                                </a>
-                                <div class="media-body">
-                                    <a class="title" href="#">Ms. Mary Jane</a>
-                                    <p><strong>$2300. </strong> Agent Avarage Sales </p>
-                                    <p> <small>12 Sales Today</small>
-                                    </p>
-                                </div>
-                            </li>
-                            <li class="media event">
-                                <a class="pull-left border-green profile_thumb">
-                                    <i class="fa fa-user green"></i>
-                                </a>
-                                <div class="media-body">
-                                    <a class="title" href="#">Ms. Mary Jane</a>
-                                    <p><strong>$2300. </strong> Agent Avarage Sales </p>
-                                    <p> <small>12 Sales Today</small>
-                                    </p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+                            </div>
+                        </li>
+                        @endforeach
+                    </ul>
                 </div>
-
             </div>
         </div>
     </div>
-</div>
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="x_panel">
-            <div class="x_title">
-                <h2>Weekly Summary <small>Activity shares</small></h2>
-                <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                            aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Settings 1</a>
-                            <a class="dropdown-item" href="#">Settings 2</a>
-                        </div>
-                    </li>
-                    <li><a class="close-link"><i class="fa fa-close"></i></a>
-                    </li>
-                </ul>
-                <div class="clearfix"></div>
-            </div>
-            <div class="x_content">
 
-                <div class="row" style="border-bottom: 1px solid #E0E0E0; padding-bottom: 5px; margin-bottom: 5px;">
-                    <div class="col-md-7" style="overflow:hidden;">
-                        <span class="sparkline_one" style="height: 160px; padding: 10px 25px;">
-                            <canvas width="200" height="60"
-                                style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
-                        </span>
-                        <h4 style="margin:18px">Weekly sales progress</h4>
+    <div class="col-md-8 col-sm-8 ">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Visitors location</h2>
+                        <div class="clearfix"></div>
                     </div>
+                    <div class="x_content">
+                        <div class="dashboard-widget-content">
+                            <div class="col-md-4 hidden-small">
+                                <h2 class="line_30">125.7k Views from 60 countries</h2>
 
-                    <div class="col-md-5">
-                        <div class="row" style="text-align: center;">
-                            <div class="col-md-4">
-                                <canvas class="canvasDoughnut" height="110" width="110"
-                                    style="margin: 5px 10px 10px 0"></canvas>
-                                <h4 style="margin:0">Bounce Rates</h4>
+                                <table class="countries_list">
+                                    <tbody>
+                                        <tr>
+                                            <td>United States</td>
+                                            <td class="fs15 fw700 text-right">33%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>France</td>
+                                            <td class="fs15 fw700 text-right">27%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Germany</td>
+                                            <td class="fs15 fw700 text-right">16%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Spain</td>
+                                            <td class="fs15 fw700 text-right">11%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Britain</td>
+                                            <td class="fs15 fw700 text-right">10%</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                            <div class="col-md-4">
-                                <canvas class="canvasDoughnut" height="110" width="110"
-                                    style="margin: 5px 10px 10px 0"></canvas>
-                                <h4 style="margin:0">New Traffic</h4>
-                            </div>
-                            <div class="col-md-4">
-                                <canvas class="canvasDoughnut" height="110" width="110"
-                                    style="margin: 5px 10px 10px 0"></canvas>
-                                <h4 style="margin:0">Device Share</h4>
-                            </div>
+                            <div id="world-map-gdp" class="col-md-8 col-sm-12 " style="height:230px;"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
 
-<div class="row">
-    <div class="col-md-4">
-        <div class="x_panel">
-            <div class="x_title">
-                <h2>Top Profiles <small>Sessions</small></h2>
-                <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                            aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Settings 1</a>
-                            <a class="dropdown-item" href="#">Settings 2</a>
-                        </div>
-                    </li>
-                    <li><a class="close-link"><i class="fa fa-close"></i></a>
-                    </li>
-                </ul>
-                <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-6 col-sm-6 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Populer Posts</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        @foreach ($populers as $populer)
+                            <article class="media event">
+                                <a class="pull-left date">
+                                    <p class="month">{{ $populer->created_at->format('M') }}</p>
+                                    <p class="day">{{ $populer->created_at->format('d') }}</p>
+                                </a>
+                                <div class="media-body">
+                                    <a class="title" href="{{ route('guest.post.show', [$populer->category->slug, $populer]) }}">{{ $populer->title }}</a>
+                                    <p><i class="fa fa-user"></i> {{ $populer->user_author->firstname }} - {{ $populer->view }} views</p>
+                                </div>
+                            </article>
+                        @endforeach
+                    </div>
+                </div>
             </div>
-            <div class="x_content">
-                <article class="media event">
-                    <a class="pull-left date">
-                        <p class="month">April</p>
-                        <p class="day">23</p>
-                    </a>
-                    <div class="media-body">
-                        <a class="title" href="#">Item One Title</a>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </div>
-                </article>
-                <article class="media event">
-                    <a class="pull-left date">
-                        <p class="month">April</p>
-                        <p class="day">23</p>
-                    </a>
-                    <div class="media-body">
-                        <a class="title" href="#">Item Two Title</a>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </div>
-                </article>
-                <article class="media event">
-                    <a class="pull-left date">
-                        <p class="month">April</p>
-                        <p class="day">23</p>
-                    </a>
-                    <div class="media-body">
-                        <a class="title" href="#">Item Two Title</a>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </div>
-                </article>
-                <article class="media event">
-                    <a class="pull-left date">
-                        <p class="month">April</p>
-                        <p class="day">23</p>
-                    </a>
-                    <div class="media-body">
-                        <a class="title" href="#">Item Two Title</a>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </div>
-                </article>
-                <article class="media event">
-                    <a class="pull-left date">
-                        <p class="month">April</p>
-                        <p class="day">23</p>
-                    </a>
-                    <div class="media-body">
-                        <a class="title" href="#">Item Three Title</a>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </div>
 
-    <div class="col-md-4">
-        <div class="x_panel">
-            <div class="x_title">
-                <h2>Top Profiles <small>Sessions</small></h2>
-                <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                            aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Settings 1</a>
-                            <a class="dropdown-item" href="#">Settings 2</a>
-                        </div>
-                    </li>
-                    <li><a class="close-link"><i class="fa fa-close"></i></a>
-                    </li>
-                </ul>
-                <div class="clearfix"></div>
-            </div>
-            <div class="x_content">
-                <article class="media event">
-                    <a class="pull-left date">
-                        <p class="month">April</p>
-                        <p class="day">23</p>
-                    </a>
-                    <div class="media-body">
-                        <a class="title" href="#">Item One Title</a>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <div class="col-md-6 col-sm-6 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>User Has The Most Posts</h2>
+                        <div class="clearfix"></div>
                     </div>
-                </article>
-                <article class="media event">
-                    <a class="pull-left date">
-                        <p class="month">April</p>
-                        <p class="day">23</p>
-                    </a>
-                    <div class="media-body">
-                        <a class="title" href="#">Item Two Title</a>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <div class="x_content">
+                        @foreach ($userMostPosts as $item)
+                            <article class="media event">
+                                <a class="pull-left date">
+                                    <img src="{{ (!empty($item->profiles->first()->image)) ? asset('images/profile/'.$item->profiles->first()->image) : asset('cms/images/user.png') }}" alt="" class="img-fluid">
+                                </a>
+                                <div class="media-body">
+                                    <a class="title" @role('Administrator')href="{{ route('user.show', $item) }}"@endrole>{{ $item->firstname . ' ' . $item->lastname }}</a>
+                                    <p>Have {{ $item->posts->count() }} Posts</p>
+                                </div>
+                            </article>
+                        @endforeach
                     </div>
-                </article>
-                <article class="media event">
-                    <a class="pull-left date">
-                        <p class="month">April</p>
-                        <p class="day">23</p>
-                    </a>
-                    <div class="media-body">
-                        <a class="title" href="#">Item Two Title</a>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </div>
-                </article>
-                <article class="media event">
-                    <a class="pull-left date">
-                        <p class="month">April</p>
-                        <p class="day">23</p>
-                    </a>
-                    <div class="media-body">
-                        <a class="title" href="#">Item Two Title</a>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </div>
-                </article>
-                <article class="media event">
-                    <a class="pull-left date">
-                        <p class="month">April</p>
-                        <p class="day">23</p>
-                    </a>
-                    <div class="media-body">
-                        <a class="title" href="#">Item Three Title</a>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-4">
-        <div class="x_panel">
-            <div class="x_title">
-                <h2>Top Profiles <small>Sessions</small></h2>
-                <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                            aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Settings 1</a>
-                            <a class="dropdown-item" href="#">Settings 2</a>
-                        </div>
-                    </li>
-                    <li><a class="close-link"><i class="fa fa-close"></i></a>
-                    </li>
-                </ul>
-                <div class="clearfix"></div>
-            </div>
-            <div class="x_content">
-                <article class="media event">
-                    <a class="pull-left date">
-                        <p class="month">April</p>
-                        <p class="day">23</p>
-                    </a>
-                    <div class="media-body">
-                        <a class="title" href="#">Item One Title</a>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </div>
-                </article>
-                <article class="media event">
-                    <a class="pull-left date">
-                        <p class="month">April</p>
-                        <p class="day">23</p>
-                    </a>
-                    <div class="media-body">
-                        <a class="title" href="#">Item Two Title</a>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </div>
-                </article>
-                <article class="media event">
-                    <a class="pull-left date">
-                        <p class="month">April</p>
-                        <p class="day">23</p>
-                    </a>
-                    <div class="media-body">
-                        <a class="title" href="#">Item Two Title</a>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </div>
-                </article>
-                <article class="media event">
-                    <a class="pull-left date">
-                        <p class="month">April</p>
-                        <p class="day">23</p>
-                    </a>
-                    <div class="media-body">
-                        <a class="title" href="#">Item Two Title</a>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </div>
-                </article>
-                <article class="media event">
-                    <a class="pull-left date">
-                        <p class="month">April</p>
-                        <p class="day">23</p>
-                    </a>
-                    <div class="media-body">
-                        <a class="title" href="#">Item Three Title</a>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </div>
-                </article>
+                </div>
             </div>
         </div>
     </div>

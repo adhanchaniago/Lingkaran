@@ -34,6 +34,8 @@
     <!-- Bootstrap Colorpicker -->
     <link href="{{ asset('cms/vendors/mjolnic-bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css') }}"
         rel="stylesheet">
+    <!-- JQVMap -->
+    <link href="{{ asset('cms/vendors/jqvmap/dist/jqvmap.min.css') }}" rel="stylesheet" />
     <!-- Datatables -->
     <link href="{{ asset('cms/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('cms/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css') }}" rel="stylesheet">
@@ -175,7 +177,10 @@
     <script src="{{ asset('cms/vendors/jszip/dist/jszip.min.js') }}"></script>
     <script src="{{ asset('cms/vendors/pdfmake/build/pdfmake.min.js') }}"></script>
     <script src="{{ asset('cms/vendors/pdfmake/build/vfs_fonts.js') }}"></script>
-
+    <!-- JQVMap -->
+    <script src="{{ asset('cms/vendors/jqvmap/dist/jquery.vmap.js') }}"></script>
+    <script src="{{ asset('cms/vendors/jqvmap/dist/maps/jquery.vmap.world.js') }}"></script>
+    <script src="{{ asset('cms/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js') }}"></script>
     <!-- Select2 -->
     <script src="{{ asset('cms/select2/js/select2.min.js') }}"></script>
 

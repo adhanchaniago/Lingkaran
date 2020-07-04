@@ -25,8 +25,8 @@ class UserController extends Controller
             ->where('id', '<>', auth()->id())
             ->orderBy('firstname', 'ASC')
             ->paginate(12);
-            
-        return view('cms.user.index', compact('users'));
+        $roles = Role::all();
+        return view('cms.user.index', compact('users', 'roles'));
     }
 
     /**
@@ -138,13 +138,16 @@ class UserController extends Controller
     public function changeStatus(Request $request)
     {
         $this->validate(request(), [
-            'status' => 'required'
+            'status' => 'required',
+            'role' => 'required'
         ]);
 
         $user = User::findOrFail($request->id);
         $user->update([
             'status' => $request->status
         ]);
+        $user->removeRole($user->roles->first()->name);
+        $user->assignRole($request->role);
         return redirect()->route('user.index');
     }
 }

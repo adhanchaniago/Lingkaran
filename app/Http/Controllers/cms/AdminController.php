@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers\cms;
 
-use App\Http\Controllers\Controller;
+use App\Models\Tag;
+use App\Models\Post;
+use App\Models\User;
+use App\Models\Profile;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class AdminController extends Controller
 {
@@ -24,7 +29,16 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('cms.home');
+        $users = User::count();
+        $userMale = Profile::where('gender', 'Male')->count();
+        $userFemale = Profile::where('gender', 'Female')->count();
+        $posts = Post::count();
+        $categories = Category::count();
+        $tags = Tag::count();
+        $recentPosts = Post::with('user_author', 'category')->latest()->take(4)->get();
+        $populers = Post::with('user_author', 'category')->latest('view')->take(5)->get();
+        $userMostPosts = User::with('posts', 'profiles')->take(5)->get();
+        return view('cms.home', compact('users', 'userMale', 'userFemale', 'posts', 'categories', 'tags', 'recentPosts', 'populers', 'userMostPosts'));
     }
 
     /**
