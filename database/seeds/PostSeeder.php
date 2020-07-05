@@ -43,7 +43,7 @@ class PostSeeder extends Seeder
                 ',
             'author' => 1,
             'status' => 1,
-            'view' => 1
+            
         ]);
 
         Post::create([
@@ -77,7 +77,7 @@ class PostSeeder extends Seeder
                 ',
             'author' => 1,
             'status' => 1,
-            'view' => 1
+            
         ]);
 
         Post::create([
@@ -111,7 +111,7 @@ class PostSeeder extends Seeder
                 ',
             'author' => 1,
             'status' => 1,
-            'view' => 1
+            
         ]);
 
         Post::create([
@@ -145,7 +145,7 @@ class PostSeeder extends Seeder
                 ',
             'author' => 1,
             'status' => 1,
-            'view' => 1
+            
         ]);
 
         Post::create([
@@ -179,7 +179,7 @@ class PostSeeder extends Seeder
                 ',
             'author' => 1,
             'status' => 1,
-            'view' => 1
+            
         ]);
 
         Post::create([
@@ -213,7 +213,7 @@ class PostSeeder extends Seeder
                 ',
             'author' => 1,
             'status' => 1,
-            'view' => 1
+            
         ]);
 
         Post::create([
@@ -247,7 +247,7 @@ class PostSeeder extends Seeder
                 ',
             'author' => 1,
             'status' => 1,
-            'view' => 1
+            
         ]);
 
         Post::create([
@@ -281,7 +281,7 @@ class PostSeeder extends Seeder
                 ',
             'author' => 1,
             'status' => 1,
-            'view' => 1
+            
         ]);
 
         Post::create([
@@ -315,7 +315,7 @@ class PostSeeder extends Seeder
                 ',
             'author' => 1,
             'status' => 1,
-            'view' => 1
+            
         ]);
 
         Post::create([
@@ -349,7 +349,7 @@ class PostSeeder extends Seeder
                 ',
             'author' => 1,
             'status' => 1,
-            'view' => 1
+            
         ]);
 
         Post::create([
@@ -383,7 +383,7 @@ class PostSeeder extends Seeder
                 ',
             'author' => 1,
             'status' => 1,
-            'view' => 1
+            
         ]);
 
         Post::create([
@@ -417,7 +417,7 @@ class PostSeeder extends Seeder
                 ',
             'author' => 1,
             'status' => 1,
-            'view' => 1
+            
         ]);
 
         Post::create([
@@ -451,7 +451,7 @@ class PostSeeder extends Seeder
                 ',
             'author' => 2,
             'status' => 1,
-            'view' => 1
+            
         ]);
 
         Post::create([
@@ -485,7 +485,7 @@ class PostSeeder extends Seeder
                 ',
             'author' => 1,
             'status' => 1,
-            'view' => 1
+            
         ]);
 
         Post::create([
@@ -519,7 +519,7 @@ class PostSeeder extends Seeder
                 ',
             'author' => 1,
             'status' => 1,
-            'view' => 1
+            
         ]);
 
         Post::create([
@@ -553,7 +553,7 @@ class PostSeeder extends Seeder
                 ',
             'author' => 2,
             'status' => 1,
-            'view' => 1
+            
         ]);
 
         Post::create([
@@ -587,7 +587,7 @@ class PostSeeder extends Seeder
                 ',
             'author' => 2,
             'status' => 1,
-            'view' => 1
+            
         ]);
 
         Post::create([
@@ -621,7 +621,7 @@ class PostSeeder extends Seeder
                 ',
             'author' => 2,
             'status' => 1,
-            'view' => 1
+            
         ]);
     }
 }

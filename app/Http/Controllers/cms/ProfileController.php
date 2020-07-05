@@ -53,15 +53,17 @@ class ProfileController extends Controller
     public function show($id)
     {
         $profile = Profile::with('user.roles')
-            ->where('user_id', $id)
-            ->get()
-            ->first();
+                            ->where('user_id', $id)
+                            ->get()
+                            ->first();
 
         $posts = Post::where('author', $id)
-            ->latest()
-            ->paginate(6);
+                            ->latest()
+                            ->paginate(6);
 
-        return view('cms.profile.show', compact('profile', 'posts'));
+        return view('cms.profile.show', compact([
+            'profile', 'posts'
+        ]));
     }
 
     /**

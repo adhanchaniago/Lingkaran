@@ -416,7 +416,7 @@
                             <span><i class="fas fa-user"></i> {{ $post->user_author->firstname }}</span>
                             <span><i class="far fa-clock"></i> {{ $post->created_at->diffForHumans() }}</span>
                             <span><i class="far fa-eye"></i>
-                                {{ ($post->view >= 1000) ? floor($post->view / 1000) . 'k' : $post->view }}</span>
+                                {{ ($post->view>= 1000) ? floor($post->view / 1000) . 'k' : $post->view }}</span>
                         </p>
                     </div>
                 </div>

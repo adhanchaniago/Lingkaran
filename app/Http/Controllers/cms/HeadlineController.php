@@ -28,6 +28,7 @@ class HeadlineController extends Controller
     {
         $headlines = Headline::with('post.category', 'post.user_author')
                                 ->orderBy('type', 'ASC')->get();
+
         return view('cms.headline.index', compact('headlines'));
     }
 
@@ -41,9 +42,9 @@ class HeadlineController extends Controller
         $headlines = Headline::get('post_id');
 
         $posts = Post::with(['category', 'user_author'])
-        ->where('status', 1)
-        ->whereNotIn('id', $headlines)
-        ->latest()->get();
+                    ->where('status', 1)
+                    ->whereNotIn('id', $headlines)
+                    ->latest()->get();
         
         return view('cms.headline.create', compact('posts'));
     }
@@ -86,6 +87,7 @@ class HeadlineController extends Controller
     {
         $headline = Headline::findOrFail($request->id);
         $headline->delete();
+        
         return redirect(route('headline.index'))->withSuccess('Headline has been deleted');
     }
 }

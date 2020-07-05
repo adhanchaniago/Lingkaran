@@ -3,9 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use CyrildeWit\EloquentViewable\InteractsWithViews;
+use CyrildeWit\EloquentViewable\Contracts\Viewable;
 
-class Post extends Model
+class Post extends Model implements Viewable
 {
+    use InteractsWithViews;
+
+    protected $removeViewsOnDelete = true;
+
     // Menambah kolom yang tidak bisa di input ke database
     protected $guarded = [
         'id'

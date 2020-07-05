@@ -34,6 +34,7 @@
                 <div class="detail-info">
                     <span><i class="fas fa-user"></i> {{ $post->user_author->firstname }}</span>
                     <span><i class="far fa-clock"></i> {{ $post->created_at->format('d M Y') }}</span>
+                    <span><i class="far fa-clock"></i> {{ ($post->view>= 1000) ? floor($post->view / 1000) . 'k' : $post->view }} views</span>
                 </div>
                 <figure class="figure mt-3">
                     <img src="{{ asset('images/post/'.$post->image) }}" class="figure-img" alt="{{ $post->title }}">
@@ -154,7 +155,6 @@
     const waktu = setTimeout(function(){
         const id = '{{ $post->id }}';
         const url = "{{ route('guest.add.visitor') }}";
-        const postUrl = "{{ url()->current() }}";
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -165,8 +165,8 @@
             type: 'POST',
             data: {
                 id:id,
-                postUrl:postUrl,
-        },success:function(data){
+            }
+            ,success:function(data){
                 console.log(data);
             }
         });

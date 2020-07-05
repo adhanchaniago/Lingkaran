@@ -22,10 +22,12 @@ class UserController extends Controller
     public function index()
     {
         $users = User::with(['profiles', 'roles', 'permissions', 'posts'])
-            ->where('id', '<>', auth()->id())
-            ->orderBy('firstname', 'ASC')
-            ->paginate(12);
+                        ->where('id', '<>', auth()->id())
+                        ->orderBy('firstname', 'ASC')
+                        ->paginate(12);
+
         $roles = Role::all();
+
         return view('cms.user.index', compact('users', 'roles'));
     }
 
@@ -37,6 +39,7 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::all();
+        
         return view('cms.user.create', compact('roles'));
     }
 

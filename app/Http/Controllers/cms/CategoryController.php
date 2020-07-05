@@ -58,6 +58,7 @@ class CategoryController extends Controller
             'slug' => Str::slug(request('title')),
             'color' => request('color')
         ]);
+
         return redirect(route('category.index'))->withSuccess('New category has been added');
     }
 
@@ -81,6 +82,7 @@ class CategoryController extends Controller
             'slug' => Str::slug(request('title')),
             'color' => request('color')
         ]);
+
         return redirect(route('category.index'))->withSuccess('Category has been updated');
     }
 
@@ -94,6 +96,7 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($request->id);
         $category->delete();
+        
         return redirect(route('category.index'))->withSuccess('Category has been deleted');
     }
 }

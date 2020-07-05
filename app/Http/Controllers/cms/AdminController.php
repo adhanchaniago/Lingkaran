@@ -35,10 +35,24 @@ class AdminController extends Controller
         $posts = Post::count();
         $categories = Category::count();
         $tags = Tag::count();
-        $recentPosts = Post::with('user_author', 'category')->latest()->take(4)->get();
-        $populers = Post::with('user_author', 'category')->latest('view')->take(5)->get();
-        $userMostPosts = User::with('posts', 'profiles')->take(5)->get();
-        return view('cms.home', compact('users', 'userMale', 'userFemale', 'posts', 'categories', 'tags', 'recentPosts', 'populers', 'userMostPosts'));
+
+        $recentPosts = Post::with('user_author', 'category')
+                            ->latest()
+                            ->take(4)
+                            ->get();
+
+        $populers = Post::with('user_author', 'category')
+                            ->latest('view')
+                            ->take(5)
+                            ->get();
+
+        $userMostPosts = User::with('posts', 'profiles')
+                            ->take(5)
+                            ->get();
+        
+        return view('cms.home', compact([
+            'users', 'userMale', 'userFemale', 'posts', 'categories', 'tags', 'recentPosts', 'populers', 'userMostPosts'
+        ]));
     }
 
     /**
