@@ -11,7 +11,9 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('guest.home') }}"><i class="fa fa-home"></i>
                     Home</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('guest.category.show', $post->category->slug) }}">{{ $post->category->title }}</a></li>
+            <li class="breadcrumb-item"><a
+                    href="{{ route('guest.category.show', $post->category->slug) }}">{{ $post->category->title }}</a>
+            </li>
             <li class="breadcrumb-item active" aria-current="page">{{ $post->title }}</li>
         </ol>
     </div>
@@ -23,7 +25,8 @@
             <!-- Post Detail -->
             <div class="col-md-8">
                 <div class="detail-category">
-                    <a href="{{ route('guest.category.show', $post->category->slug) }}" style="background-color: {{ $post->category->color }};">{{ $post->category->title }}</a>
+                    <a href="{{ route('guest.category.show', $post->category->slug) }}"
+                        style="background-color: {{ $post->category->color }};">{{ $post->category->title }}</a>
                 </div>
                 <div class="detail-title mt-3">
                     <h3>{{ $post->title }}</h3>
@@ -86,19 +89,20 @@
     <button onclick="location.href='{{ route('post.edit', $post) }}'" class="btn btn-sm btn-block btn-info">
         <i class="fas fa-edit"></i> Edit
     </button>
-    
+
     @if($post->status != 1)
-        @can('publish post')
-            <button class="btn btn-sm btn-block btn-success" data-toggle="modal" data-target="#modal-confirm" data-key="publish">
-                <i class="fa fa-bullhorn"></i> Publish
-            </button>
-        @endcan
+    @can('publish post')
+    <button class="btn btn-sm btn-block btn-success" data-toggle="modal" data-target="#modal-confirm"
+        data-key="publish">
+        <i class="fa fa-bullhorn"></i> Publish
+    </button>
+    @endcan
     @else
-        @can('revoke post')
-            <button class="btn btn-sm btn-block btn-warning" data-toggle="modal" data-target="#modal-confirm" data-key="revoke">
-                <i class="fa fa-undo"></i> Revoke
-            </button>
-        @endcan
+    @can('revoke post')
+    <button class="btn btn-sm btn-block btn-warning" data-toggle="modal" data-target="#modal-confirm" data-key="revoke">
+        <i class="fa fa-undo"></i> Revoke
+    </button>
+    @endcan
     @endif
 </div>
 
@@ -145,7 +149,27 @@
             $('.modal-footer #action').attr('class', 'btn btn-warning btn-sm');
             $('#url').attr('action', '{{ route("post.revoke", "id") }}');
         }
-    })
+    });
 
+    const waktu = setTimeout(function(){
+        const id = '{{ $post->id }}';
+        const url = "{{ route('guest.add.visitor') }}";
+        const postUrl = "{{ url()->current() }}";
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: {
+                id:id,
+                postUrl:postUrl,
+        },success:function(data){
+                console.log(data);
+            }
+        });
+    }, 10000);
 </script>
 @endsection

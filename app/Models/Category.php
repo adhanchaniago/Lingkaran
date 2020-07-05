@@ -17,6 +17,16 @@ class Category extends Model
         return $this->hasMany(Post::class);
     }
 
+    // Membuat relasi "Many to One" antar table categories dan posts dan ambil post berdasarkan view terbanyak
+    public function populerPosts()
+    {
+        return $this->hasMany(Post::class)
+        ->where('status', '>=', 1)
+        ->where('view', '>=', 1)
+        ->latest('view')
+        ->take(5);
+    }
+
     // Deklarasi link yang tampil di url
     public function getRouteKeyName()
     {
