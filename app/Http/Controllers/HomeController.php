@@ -27,7 +27,8 @@ class HomeController extends Controller
 
         // Headline
         $headline_main = Headline::with(['post', 'post.category', 'post.user_author'])
-                                    ->firstWhere('type', 'main');
+                                    ->where('type', 'main')
+                                    ->get();
 
         $headline_secondary = Headline::with(['post.category', 'post.user_author'])
                                     ->where('type', 'secondary')

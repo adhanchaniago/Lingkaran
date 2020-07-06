@@ -184,6 +184,14 @@ a:hover {
     height: 200px;
 }
 
+/* Headline Carousel custom */
+.carousel-indicators li {
+    width: 5px;
+    height: 5px;
+    border-radius: 100%;
+}
+/* End Headline Carousel Custom */
+
 .headline .headline-wrapper {
     background-position: center center;
     background-size: cover;
@@ -709,7 +717,7 @@ footer a:hover {
     left: 10px;
 }
 
-@media (min-width: 768px){
+@media (min-width: 768px) {
     .card-columns {
         column-count: 4;
     }
@@ -717,7 +725,7 @@ footer a:hover {
 
 @media (max-width: 575px) {
 
-    .post-detail .detail-title h3{
+    .post-detail .detail-title h3 {
         font-size: 24px;
     }
 
@@ -760,5 +768,8 @@ footer a:hover {
     .post-detail .load-more::before,
     .post-detail .load-more::after {
         width: 35%;
+    }
+    .carousel-indicators li {
+        display: none;
     }
 }

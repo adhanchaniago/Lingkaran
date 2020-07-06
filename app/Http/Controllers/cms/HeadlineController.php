@@ -27,7 +27,8 @@ class HeadlineController extends Controller
     public function index()
     {
         $headlines = Headline::with('post.category', 'post.user_author')
-                                ->orderBy('type', 'ASC')->get();
+                                ->orderBy('type', 'ASC')
+                                ->get();
 
         return view('cms.headline.index', compact('headlines'));
     }
@@ -44,7 +45,8 @@ class HeadlineController extends Controller
         $posts = Post::with(['category', 'user_author'])
                     ->where('status', 1)
                     ->whereNotIn('id', $headlines)
-                    ->latest()->get();
+                    ->latest()
+                    ->get();
         
         return view('cms.headline.create', compact('posts'));
     }
@@ -63,10 +65,10 @@ class HeadlineController extends Controller
         ]);
 
         $check = Headline::where('type', $request->type)->count();
-        if ($request->type == 'main' && $check > 0) {
-            return redirect(route('headline.create'))->withDanger('Headline dengan type "Main" telah ada');
+        if ($request->type == 'main' && $check >= 5) {
+            return redirect(route('headline.create'))->withDanger('Headline dengan type "Main" tidak boleh melebihi 5');
         } elseif ($request->type == 'secondary' && $check >= 4) {
-            return redirect(route('headline.create'))->withDanger('Headline dengan type "Secondary" tidak melebihi 4');
+            return redirect(route('headline.create'))->withDanger('Headline dengan type "Secondary" tidak boleh melebihi 4');
         } else {
             Headline::create([
                 'post_id' => $request->post_id,
