@@ -56,7 +56,7 @@
 
     <!-- Here's our js code -->
     <script src="{{ asset('js/main.js') }}"></script>
-    @section('script')
+    @section('b-script')
     @show
 </body>
 

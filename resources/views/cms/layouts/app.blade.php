@@ -25,25 +25,22 @@
     <!-- Switchery -->
     <link href="{{ asset('cms/vendors/switchery/dist/switchery.min.css') }}" rel="stylesheet">
     <!-- bootstrap-progressbar -->
-    <link href="{{ asset('cms/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css') }}"
-        rel="stylesheet">
+    <link href="{{ asset('cms/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css') }}" rel="stylesheet">
     <!-- JQVMap -->
     <link href="{{ asset('cms/vendors/jqvmap/dist/jqvmap.min.css') }}" rel="stylesheet" />
     <!-- bootstrap-daterangepicker -->
     <link href="{{ asset('cms/vendors/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet">
     <!-- Bootstrap Colorpicker -->
-    <link href="{{ asset('cms/vendors/mjolnic-bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css') }}"
-        rel="stylesheet">
+    <link href="{{ asset('cms/vendors/mjolnic-bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css') }}" rel="stylesheet">
     <!-- JQVMap -->
     <link href="{{ asset('cms/vendors/jqvmap/dist/jqvmap.min.css') }}" rel="stylesheet" />
     <!-- Datatables -->
     <link href="{{ asset('cms/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('cms/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('cms/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css') }}"
-        rel="stylesheet">
-    <link href="{{ asset('cms/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css') }}"
-        rel="stylesheet">
+    <link href="{{ asset('cms/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('cms/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('cms/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css') }}" rel="stylesheet">
+
     <!-- Custom Theme Style -->
     <link href="{{ asset('cms/build/css/custom.min.css') }}" rel="stylesheet">
     <!-- Select2 -->
@@ -51,6 +48,10 @@
 
     <!-- CKeditor -->
     <script src="{{ asset('cms/ckeditor/ckeditor.js') }}"></script>
+
+    <!-- other links -->
+    @section('t-script')
+    @show
 </head>
 
 <body class="nav-md">
@@ -187,14 +188,15 @@
     <!-- Custom Theme Scripts -->
     <script src="{{ asset('cms/build/js/custom.min.js') }}"></script>
     <script>
-        window.setTimeout(function () {
-            $(".alert").fadeTo(500, 0).slideUp(500, function () {
+        window.setTimeout(function() {
+            $(".alert").fadeTo(500, 0).slideUp(500, function() {
                 $(this).remove();
             });
         }, 2000);
 
     </script>
-    @section('script')
+
+    @section('b-script')
     @show
 </body>
 

@@ -212,7 +212,7 @@
 </div>
 @endsection
 
-@section('script')
+@section('b-script')
 <script>
     $('.table').DataTable();
     $('.modal-image').on('show.bs.modal', function (e) {

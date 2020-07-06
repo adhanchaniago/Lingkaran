@@ -130,7 +130,7 @@
 </div>
 @endsection
 
-@section('script')
+@section('b-script')
 <script>
     $('.table').DataTable();
 

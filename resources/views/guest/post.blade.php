@@ -133,7 +133,7 @@
 @endif
 @endsection
 
-@section('script')
+@section('b-script')
 <script>
     $('#modal-confirm').on('show.bs.modal', function (e) {
         const key = $(e.relatedTarget).data('key');

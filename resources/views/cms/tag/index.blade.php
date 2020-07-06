@@ -164,7 +164,7 @@
 
 @endsection
 
-@section('script')
+@section('b-script')
 <script>
     $('.table').DataTable();
     $('#modal-edit').on('show.bs.modal', function (e) {

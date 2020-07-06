@@ -145,7 +145,7 @@
 <!-- /modals -->
 @endsection
 
-@section('script')
+@section('b-script')
 <script>
     $('#modal-status').on('show.bs.modal', function(e){
         const id = $(e.relatedTarget).data('id');

@@ -121,7 +121,7 @@
 </div>
 @endsection
 
-@section('script')
+@section('b-script')
 <script>
     $('.modal-image').on('show.bs.modal', function (e) {
         var img = $(e.relatedTarget).data('image-url');

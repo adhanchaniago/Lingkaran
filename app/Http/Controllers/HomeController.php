@@ -37,9 +37,9 @@ class HomeController extends Controller
         $populer_category_all = Post::with(['category', 'user_author'])
                                     ->where('status', 1)
                                     ->where('view', '>=', 1)
+                                    ->latest('view')
                                     ->take(5)
                                     ->get();
-        // dd($populer_category_all);
 
         $terbaru_category_all = Post::with(['category', 'user_author'])
                                     ->where('status', 1)
