@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="{{ asset('css/all.min.css') }}">
     <!-- Main CSS -->
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <livewire:styles>
 </head>
 
 <body>
@@ -43,7 +44,7 @@
             @include('guest.layouts.partials.footer')
         </div>
     </footer>
-
+    
     <!-- Back to top -->
     <div id="back-top" class="btn-back-top d-flex justify-content-center align-items-center rounded-circle">
         <i class="fas fa-arrow-up"></i>
@@ -58,6 +59,7 @@
     <script src="{{ asset('js/main.js') }}"></script>
     @section('b-script')
     @show
+    <livewire:scripts>
 </body>
 
 </html>

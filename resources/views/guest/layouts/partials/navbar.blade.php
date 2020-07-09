@@ -4,8 +4,7 @@
             <img src="{{ asset('assets/logo/logo.png') }}" alt="Logo Lingkaran" class="logo mr-2">
         </a>
         <a class="navbar-brand" href="{{ route('guest.home') }}">Lingkar<span>an</span></a>
-        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
-            aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
             <i class="fas fa-bars nav-icon"></i>
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavId">
@@ -27,14 +26,7 @@
                 </li>
                 @endif
             </ul>
-            <form class="ml-auto my-2 my-lg-0" action="#">
-                <div class="input-group input-group-sm">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-search"></i></span>
-                    </div>
-                    <input type="text" class="form-control" placeholder="Pencarian" aria-label="pencarian">
-                </div>
-            </form>
+            <livewire:search>
         </div>
     </div>
 </nav>

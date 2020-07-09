@@ -149,6 +149,28 @@ a:hover {
     box-shadow: none;
 }
 
+.search-result ul{
+    list-style: none;
+}
+
+.search-result ul a{
+    color: var(--hitam);
+    font-family: barlow-medium;
+}
+.search-result ul a:hover{
+    color: var(--hijau);
+}
+
+.search-result {
+    font-size: 12px;
+    position: absolute;
+    background-color: #fff;
+    z-index: 10;
+    padding: 10px;
+    width: 100%;
+    max-height: 500px;
+    overflow-y: scroll;
+}
 
 /* TRENDING TEXT TOP */
 .trending .trending-header {

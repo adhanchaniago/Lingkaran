@@ -25,7 +25,7 @@ try {
         $('html, body').animate({
             scrollTop: 0
         }, 300);
-    })
+    });
 } catch (error) {
     console.log(error);
 }
