@@ -15,6 +15,7 @@ List package Website Lingkaran, diantaranya adalah:
 - Hak akses dan Level User menggunakan [Spatie Laravel Permission](https://github.com/spatie/laravel-permission).
 - Manipulasi gambar pada website menggunakan [Image Intervension](http://image.intervention.io/).
 - Handle viewer menggunakan [Eloquent-Viewable](https://github.com/cyrildewit/eloquent-viewable) v5.2.
+- Search post menggunakan [Livewire](https://laravel-livewire.com/).
 
 ### Instalasi
 Instal [Composer](https://getcomposer.org/) pada Sistem Operasi agar command artisan dapat dijalankan. Masuk ke folder root aplikasi dan jalankan perintah instal pada terminal untuk download vendor yang dibutuhkan.
