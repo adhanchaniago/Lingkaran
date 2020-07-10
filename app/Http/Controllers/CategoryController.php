@@ -65,6 +65,7 @@ class CategoryController extends Controller
     {
         $posts = Post::with(['category', 'tags'])
                         ->where('category_id', $category->id)
+                        ->where('status', 1)
                         ->paginate(10);
 
         $populerPosts = Post::where('status', 1)

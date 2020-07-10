@@ -139,13 +139,13 @@ Lingkaran - {{ $post->title }}
         const key = $(e.relatedTarget).data('key');
         if (key !== 'revoke') {
             $('.modal-body #title').text('Apakah anda ingin publish post ini?');
-            $('.modal-body #form-confirm').val({{$post -> id}});
+            $('.modal-body #form-confirm').val('{{encrypt($post->id)}}');
             $('.modal-footer #action').text('Publish');
             $('.modal-footer #action').attr('class', 'btn btn-success btn-sm');
             $('#url').attr('action', '{{ route("post.publish", "id") }}');
         } else {
             $('.modal-body #title').text('Apakah anda ingin tarik kembali post ini?');
-            $('.modal-body #form-confirm').val({{$post -> id}});
+            $('.modal-body #form-confirm').val('{{encrypt($post->id)}}');
             $('.modal-footer #action').text('Revoke');
             $('.modal-footer #action').attr('class', 'btn btn-warning btn-sm');
             $('#url').attr('action', '{{ route("post.revoke", "id") }}');
@@ -153,7 +153,7 @@ Lingkaran - {{ $post->title }}
     });
 
     const waktu = setTimeout(function(){
-        const id = '{{ $post->id }}';
+        const id = '{{ encrypt($post->id) }}';
         const url = "{{ route('guest.add.visitor') }}";
         $.ajaxSetup({
             headers: {

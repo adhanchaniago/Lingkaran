@@ -99,7 +99,7 @@ class HomeController extends Controller
 
     public function addVisitor(Request $request)
     {
-        $post = Post::findOrFail($request->id);
+        $post = Post::findOrFail(decrypt($request->id));
 
         $expiresAt = now()->addHours(6);
         $visit = views($post)
@@ -110,9 +110,9 @@ class HomeController extends Controller
             $post->update([
                 'view' => views($post)->count()
             ]);
-            $data = 'Expires At '.$expiresAt;
+            $data = 'Visitor has been recorded';
         } else {
-            $data = 'in countdown';
+            $data = 'In countdown';
         }
 
         return response()->json(array($msg = 'Message: '.$data), 200);

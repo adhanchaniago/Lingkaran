@@ -171,7 +171,11 @@ class PostController extends Controller
      */
     public function publish(Request $request)
     {
-        $post = Post::findOrFail($request->id);
+        (!is_int($request->id))
+            ? $id = decrypt($request->id)
+            : $id = $request->id;
+
+        $post = Post::findOrFail($id);
         $post->update([
             'status' => 1
         ]);
@@ -186,11 +190,15 @@ class PostController extends Controller
      */
     public function revoke(Request $request)
     {
-        $post = Post::findOrFail($request->id);
+        (!is_int($request->id))
+            ? $id = decrypt($request->id)
+            : $id = $request->id;
+
+        $post = Post::findOrFail($id);
         $post->update([
             'status' => 0
         ]);
-        $headline = Headline::where('post_id', $request->id)->get();
+        $headline = Headline::where('post_id', $id)->get();
         if (!empty($headline[0])) {
             $headline[0]->delete();
         }

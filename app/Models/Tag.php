@@ -14,7 +14,8 @@ class Tag extends Model
     // Membuat relasi "many to many" antar table tags dan posts
     public function posts()
     {
-        return $this->belongsToMany(Post::class);
+        return $this->belongsToMany(Post::class)
+            ->where('status', 1);
     }
 
     // Deklarasi link yang tampil di url
