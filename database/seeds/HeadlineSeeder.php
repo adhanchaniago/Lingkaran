@@ -17,6 +17,18 @@ class HeadlineSeeder extends Seeder
             'type' => 'main'
         ]);
         Headline::create([
+            'post_id' => 7,
+            'type' => 'main'
+        ]);
+        Headline::create([
+            'post_id' => 2,
+            'type' => 'main'
+        ]);
+        Headline::create([
+            'post_id' => 1,
+            'type' => 'main'
+        ]);
+        Headline::create([
             'post_id' => 6,
             'type' => 'secondary'
         ]);
