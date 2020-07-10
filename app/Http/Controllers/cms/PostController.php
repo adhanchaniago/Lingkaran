@@ -171,14 +171,15 @@ class PostController extends Controller
      */
     public function publish(Request $request)
     {
-        (!is_int($request->id))
+        (Str::length($request->id) >= 188)
             ? $id = decrypt($request->id)
             : $id = $request->id;
-
+            
         $post = Post::findOrFail($id);
         $post->update([
             'status' => 1
         ]);
+        
         return redirect(route('post.index'))->withSuccess('Post has been published');
     }
 
@@ -190,7 +191,7 @@ class PostController extends Controller
      */
     public function revoke(Request $request)
     {
-        (!is_int($request->id))
+        (Str::length($request->id) >= 188)
             ? $id = decrypt($request->id)
             : $id = $request->id;
 
@@ -198,10 +199,13 @@ class PostController extends Controller
         $post->update([
             'status' => 0
         ]);
+
         $headline = Headline::where('post_id', $id)->get();
+
         if (!empty($headline[0])) {
             $headline[0]->delete();
         }
+
         return redirect(route('post.index'))->withSuccess('Post has been revoked');
     }
 }
