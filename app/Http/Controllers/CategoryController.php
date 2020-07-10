@@ -13,9 +13,25 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Category $category)
+    public function index()
     {
-        //
+        $categories = Category::all();
+
+        $populerPosts = Post::where('status', 1)
+                        ->where('view', '>=', 1)
+                        ->latest('view')
+                        ->take(4)
+                        ->get();
+
+        $terbaruPosts = Post::with('user_author')
+                        ->where('status', 1)
+                        ->latest()
+                        ->take(5)
+                        ->get();
+
+        return view('guest.category.index', compact([
+            'categories', 'populerPosts', 'terbaruPosts'
+        ]));
     }
 
     /**
@@ -63,8 +79,8 @@ class CategoryController extends Controller
                         ->take(5)
                         ->get();
 
-        return view('guest.category', compact([
-            'posts', 'populerPosts', 'terbaruPosts'
+        return view('guest.category.show', compact([
+            'category', 'posts', 'populerPosts', 'terbaruPosts'
         ]));
     }
 

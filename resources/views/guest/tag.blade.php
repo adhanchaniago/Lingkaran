@@ -22,9 +22,6 @@ Lingkaran - {{ $tag->title }}
             <!-- Category -->
             <div class="col-md-8">
                 <div class="col-md-12 px-0">
-                    <div class="category-header">
-                        <span class="category-title">Tag : {{ $tag->title }}</span>
-                    </div>
                     @foreach ($posts as $post)
                     <div class="category-body mt-4 shadow">
                         <div class="row">

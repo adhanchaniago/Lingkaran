@@ -67,6 +67,7 @@
                                 <i class="fa fa-chevron-right" aria-hidden="true"></i>
                                 <span class="sr-only">Next</span>
                             </a>
+
                         </div>
                     </div>
 
@@ -173,7 +174,7 @@
                         <a class="nav-item nav-link" id="nav-{{ $category->slug }}-tab" data-toggle="tab" href="#nav-{{ $category->slug }}" role="tab" aria-controls="nav-{{ $category->slug }}" aria-selected="true">{{ $category->title }}</a>
                         @endforeach
 
-                        <a href="#" class="nav-item nav-link">Lainnya</a>
+                        <a href="{{ route('guest.category.index') }}" class="nav-item nav-link">Lainnya</a>
                     </div>
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
@@ -365,7 +366,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="card-columns my-3 p-3 pr-md-0 pl-md-3">
+            <div class="card-columns p-3 pr-md-0 pl-md-3">
                 @foreach($berita_terbaru as $post)
                 {{-- <div class="col-md-3 pr-md-0"> --}}
                 <div class="card">

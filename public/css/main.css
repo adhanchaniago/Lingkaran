@@ -212,6 +212,15 @@ a:hover {
     height: 5px;
     border-radius: 100%;
 }
+
+.carousel-control-prev,
+.carousel-control-next {
+    position: absolute;
+    background-color: var(--abu);
+    color: #fff;
+    height: 40px;
+    width: 30px;
+}
 /* End Headline Carousel Custom */
 
 .headline .headline-wrapper {
@@ -575,6 +584,7 @@ a:hover {
 }
 
 .post-detail .detail-tag a,
+.detail-category a,
 .post-tag .tag-item {
     display: inline-block;
     color: var(--abu);
@@ -586,6 +596,7 @@ a:hover {
 }
 
 .post-detail .detail-tag a:hover,
+.detail-category a:hover,
 .post-tag .tag-item:hover {
     background-color: var(--merah);
     border-color: var(--merah);
@@ -648,14 +659,6 @@ a:hover {
 }
 
 /* Post Detail Category Page */
-.post-detail .category-header .category-title {
-    position: relative;
-    color: var(--abu);
-    padding: 5px 0 5px 10px;
-    font-weight: 600;
-    border-left: 2px solid var(--abu);
-}
-
 .post-detail .category-body {
     border-radius: 10px;
 }

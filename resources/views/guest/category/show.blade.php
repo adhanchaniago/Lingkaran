@@ -1,7 +1,7 @@
 @extends('guest.layouts.app')
 
 @section('title')
-{{ (!empty($posts[0])) ? $posts[0]->category->title : 'Lingkaran' }}
+Lingkaran - {{ $category->title }}
 @endsection
 
 @section('content')
@@ -11,7 +11,8 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('guest.home') }}"><i class="fa fa-home"></i>
                     Home</a></li>
-            <li class="breadcrumb-item">{{ (!empty($posts[0])) ? $posts[0]->category->title : 'Lingkaran' }}</li>
+            <li class="breadcrumb-item">{{ $category->title }}</li>
+
         </ol>
     </div>
 </nav>
@@ -22,10 +23,6 @@
             <!-- Category -->
             <div class="col-md-8">
                 <div class="col-md-12 px-0">
-                    <div class="category-header">
-                        <span class="category-title">Category : <span
-                                style="color: {{ (!empty($posts[0])) ? $posts[0]->category->color : '' }}">{{ (!empty($posts[0])) ? $posts[0]->category->title : 'Berita belum ada' }}</span></span>
-                    </div>
                     @foreach ($posts as $post)
                     <div class="category-body mt-4 shadow">
                         <div class="row">
@@ -37,7 +34,7 @@
                             <div class="col-md-9 mt-md-0 p-4 pt-md-3 pr-md-4">
                                 <div class="post-tag">
                                     @foreach ($post->tags as $tag)
-                                        <a href="{{ route('guest.tag.show', $tag->slug) }}" class="tag-item">{{ $tag->title }}</a>
+                                    <a href="{{ route('guest.tag.show', $tag->slug) }}" class="tag-item">{{ $tag->title }}</a>
                                     @endforeach
                                 </div>
                                 <a href="{{ route('guest.post.show', [$post->category->slug, $post]) }}" class="post-title">{{ $post->title }}</a>

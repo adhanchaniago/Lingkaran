@@ -1,7 +1,7 @@
 @extends('guest.layouts.app')
 
 @section('title')
-{{ $post->title }}
+Lingkaran - {{ $post->title }}
 @endsection
 
 @section('content')
