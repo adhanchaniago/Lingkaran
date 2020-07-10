@@ -59,7 +59,7 @@
     <script src="{{ asset('js/main.js') }}"></script>
     @section('b-script')
     @show
-    <livewire:scripts>
+    <livewire:scripts />
 </body>
 
 </html>

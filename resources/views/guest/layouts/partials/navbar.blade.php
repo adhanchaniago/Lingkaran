@@ -15,7 +15,7 @@
                 </li>
 
                 @foreach($navbar as $nav)
-                <li class="nav-item {{ (request()->segment(1) == $nav->slug) ? 'active' : '' }}">
+                <li class="nav-item {{ (request()->segment(2) == $nav->slug) ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('guest.category.show', $nav) }}">{{ $nav->title }}</a>
                 </li>
                 @endforeach
@@ -26,7 +26,7 @@
                 </li>
                 @endif
             </ul>
-            <livewire:search>
+            <livewire:search />
         </div>
     </div>
 </nav>

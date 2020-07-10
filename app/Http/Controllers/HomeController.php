@@ -97,72 +97,11 @@ class HomeController extends Controller
         ]));
     }
 
-    /**
-     * Undocumented function
-     *
-     * @param Category $category
-     * @return void
-     */
-    public function category(Category $category)
-    {
-        $posts = Post::with(['category', 'tags'])
-                        ->where('category_id', $category->id)
-                        ->paginate(10);
-
-        $populerPosts = Post::where('status', 1)
-                        ->where('view', '>=', 1)
-                        ->latest('view')
-                        ->take(4)
-                        ->get();
-
-        $terbaruPosts = Post::with('user_author')
-                        ->where('status', 1)
-                        ->latest()
-                        ->take(5)
-                        ->get();
-
-        return view('guest.category', compact([
-            'posts', 'populerPosts', 'terbaruPosts'
-        ]));
-    }
-
-    /**
-     * Undocumented function
-     *
-     * @param Tag $tag
-     * @return void
-     */
-    public function tag(Tag $tag)
-    {
-        $tag = Tag::with('posts')
-                    ->where('id', $tag->id)
-                    ->get()
-                    ->first();
-
-        $posts = $tag->posts()->latest()->paginate(10);
-
-        $populerPosts = Post::where('status', 1)
-                            ->where('view', '>=', 1)
-                            ->latest('view')
-                            ->take(4)
-                            ->get();
-
-        $terbaruPosts = Post::with('user_author')
-                            ->where('status', 1)
-                            ->latest()
-                            ->take(5)
-                            ->get();
-
-        return view('guest.tag', compact([
-            'tag', 'posts', 'populerPosts', 'terbaruPosts'
-        ]));
-    }
-
     public function addVisitor(Request $request)
     {
         $post = Post::findOrFail($request->id);
 
-        $expiresAt = now()->addHours(2);
+        $expiresAt = now()->addHours(6);
         $visit = views($post)
                 ->cooldown($expiresAt)
                 ->record();

@@ -51,13 +51,13 @@ Route::middleware('auth')->prefix('cms')->namespace('cms')->group(function () {
 //Guest Routes
 Route::name('guest.')->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/category/{category}', 'CategoryController@show')->name('category.show');
+    Route::get('/tag/{tag}', 'TagController@show')->name('tag.show');
     Route::get('/{category}/{post}', 'HomeController@show')->name('post.show');
-    Route::get('/{category}', 'HomeController@category')->name('category.show');
-    Route::get('/{tag}', 'HomeController@tag')->name('tag.show');
 
+    // Route for record visitor
     Route::post('/addvisitor', 'HomeController@addVisitor')->name('add.visitor');
 });
-
 
 // Return 404
 Route::fallback(function () {
