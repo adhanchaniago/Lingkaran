@@ -584,7 +584,6 @@ a:hover {
 }
 
 .post-detail .detail-tag a,
-.detail-category a,
 .post-tag .tag-item {
     display: inline-block;
     color: var(--abu);
@@ -596,7 +595,6 @@ a:hover {
 }
 
 .post-detail .detail-tag a:hover,
-.detail-category a:hover,
 .post-tag .tag-item:hover {
     background-color: var(--merah);
     border-color: var(--merah);
