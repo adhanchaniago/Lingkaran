@@ -39,6 +39,14 @@ php artisan migrate --seed
 
 ```
 
+Jalankan artisan serve pada terminal untuk jalankan server default laravel.
+
+```javascript
+//Local server default laravel
+php artisan serve
+
+```
+
 ### User Default Akses
 
 ```javascript
@@ -50,4 +58,3 @@ superadmin@email.com
 ```
 
 <hr/>
-<p align="center">NOTE: Website ini masih dalam pengembangan. 2020</p>
