@@ -13,14 +13,15 @@
         @show
     </title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <!-- Fontawesome -->
+    <link href="{{ asset('css/all.min.css') }}" rel="stylesheet">
+
     <!-- Main CSS -->
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <livewire:styles>
@@ -39,7 +40,7 @@
             @include('guest.layouts.partials.footer')
         </div>
     </footer>
-    
+
     <!-- Back to top -->
     <div id="back-top" class="btn-back-top d-flex justify-content-center align-items-center rounded-circle">
         <i class="fas fa-arrow-up"></i>
@@ -47,11 +48,8 @@
 
     <!-- Main JS assets -->
     <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('js/all.min.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
 
-    <!-- Here's our js code -->
-    <script src="{{ asset('js/main.js') }}"></script>
     @section('b-script')
     @show
     <livewire:scripts />
