@@ -48,23 +48,23 @@ class TagController extends Controller
     public function show(Tag $tag)
     {
         $tag = Tag::with('posts')
-                    ->where('id', $tag->id)
-                    ->get()
-                    ->first();
+            ->where('id', $tag->id)
+            ->get()
+            ->first();
 
         $posts = $tag->posts()->latest()->paginate(10);
 
         $populerPosts = Post::where('status', 1)
-                            ->where('view', '>=', 1)
-                            ->latest('view')
-                            ->take(4)
-                            ->get();
+            ->where('view', '>=', 1)
+            ->latest('view')
+            ->take(4)
+            ->get();
 
         $terbaruPosts = Post::with('user_author')
-                            ->where('status', 1)
-                            ->latest()
-                            ->take(5)
-                            ->get();
+            ->where('status', 1)
+            ->latest()
+            ->take(5)
+            ->get();
 
         return view('guest.tag', compact([
             'tag', 'posts', 'populerPosts', 'terbaruPosts'

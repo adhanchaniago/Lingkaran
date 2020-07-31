@@ -27,25 +27,32 @@ Lingkaran - {{ $tag->title }}
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="category-image">
-                                    <a href="{{ route('guest.post.show', [$post->category->slug, $post]) }}"><img src="{{ asset('images/post/'. $post->image) }}" alt="{{ $post->title }}"></a>
+                                    <a href="{{ route('guest.post.show', [$post->category->slug, $post]) }}"><img
+                                            src="{{ asset('images/post/'. $post->image) }}"
+                                            alt="{{ $post->title }}"></a>
                                 </div>
                             </div>
                             <div class="col-md-9 mt-md-0 p-4 pt-md-3 pr-md-4">
                                 <div class="post-tag">
                                     @foreach ($post->tags as $tag)
-                                        <a href="{{ route('guest.tag.show', $tag->slug) }}" class="tag-item">{{ $tag->title }}</a>
+                                    <a href="{{ route('guest.tag.show', $tag->slug) }}"
+                                        class="tag-item">{{ $tag->title }}</a>
                                     @endforeach
                                 </div>
-                                <a href="{{ route('guest.post.show', [$post->category->slug, $post]) }}" class="post-title">{{ $post->title }}</a>
+                                <a href="{{ route('guest.post.show', [$post->category->slug, $post]) }}"
+                                    class="post-title">{{ $post->title }}</a>
                                 <div class="post-info my-1">
                                     <span><i class="fas fa-user"></i> {{ $post->user_author->firstname }}</span>
                                     <span><i class="far fa-clock"></i> {{ $post->created_at->diffForHumans() }}</span>
-                                    <span><i class="far fa-eye"></i> {{ ($post->view >= 1000) ? floor($post->view / 1000) . 'k' : $post->view }} Views</span>
+                                    <span><i class="far fa-eye"></i>
+                                        {{ ($post->view >= 1000) ? floor($post->view / 1000) . 'k' : $post->view }}
+                                        Views</span>
                                 </div>
                                 <div class="post-content">
                                     {{ $post->content }}
                                 </div>
-                                <a href="{{ route('guest.post.show', [$post->category->slug, $post]) }}" class="post-readmore">Read More <i class="fa fa-arrow-right"></i></a>
+                                <a href="{{ route('guest.post.show', [$post->category->slug, $post]) }}"
+                                    class="post-readmore">Read More <i class="fa fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>

@@ -34,7 +34,8 @@ Lingkaran - {{ $post->title }}
                 <div class="detail-info">
                     <span><i class="fas fa-user"></i> {{ $post->user_author->firstname }}</span>
                     <span><i class="far fa-clock"></i> {{ $post->created_at->format('d M Y') }}</span>
-                    <span><i class="far fa-eye"></i> {{ ($post->view>= 1000) ? floor($post->view / 1000) . 'k' : $post->view }} views</span>
+                    <span><i class="far fa-eye"></i>
+                        {{ ($post->view>= 1000) ? floor($post->view / 1000) . 'k' : $post->view }} views</span>
                 </div>
                 <figure class="figure mt-3">
                     <img src="{{ asset('images/post/'.$post->image) }}" class="figure-img" alt="{{ $post->title }}">

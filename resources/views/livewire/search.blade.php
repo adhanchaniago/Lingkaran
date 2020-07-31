@@ -9,9 +9,10 @@
             <ul class="pl-0">
                 @foreach($results as $result)
                 <li>
-                    <a href="{{ route('guest.post.show', [$result->category->slug, $result]) }}">{{ $result['title'] }}</a>
+                    <a
+                        href="{{ route('guest.post.show', [$result->category->slug, $result]) }}">{{ $result['title'] }}</a>
                 </li>
-                <hr/>
+                <hr />
                 @endforeach
             </ul>
         </div>
