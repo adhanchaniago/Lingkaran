@@ -42,10 +42,12 @@
                             <div class="block">
                                 <div class="block_content">
                                     <h2 class="title">
-                                        <a href="{{ route('guest.post.show', [$post->category->slug, $post]) }}">{{ $post->title }}</a>
+                                        <a
+                                            href="{{ route('guest.post.show', [$post->category->slug, $post]) }}">{{ $post->title }}</a>
                                     </h2>
                                     <div class="byline">
-                                        <span><i class="fa fa-user"></i> {{ $post->user_author->firstname }}</span> - <i class="fa fa-clock-o"></i> {{ $post->created_at->diffForHumans() }}
+                                        <span><i class="fa fa-user"></i> {{ $post->user_author->firstname }}</span> - <i
+                                            class="fa fa-clock-o"></i> {{ $post->created_at->diffForHumans() }}
                                     </div>
                                     <p class="excerpt">{!! Str::limit($post->content, 147, '...') !!}</p>
                                 </div>
@@ -111,16 +113,18 @@
                     </div>
                     <div class="x_content">
                         @foreach ($populers as $populer)
-                            <article class="media event">
-                                <a class="pull-left date">
-                                    <p class="month">{{ $populer->created_at->format('M') }}</p>
-                                    <p class="day">{{ $populer->created_at->format('d') }}</p>
-                                </a>
-                                <div class="media-body">
-                                    <a class="title" href="{{ route('guest.post.show', [$populer->category->slug, $populer]) }}">{{ $populer->title }}</a>
-                                    <p><i class="fa fa-user"></i> {{ $populer->user_author->firstname }} - {{ $populer->view }} views</p>
-                                </div>
-                            </article>
+                        <article class="media event mb-1">
+                            <a class="pull-left date">
+                                <p class="month">{{ $populer->created_at->format('M') }}</p>
+                                <p class="day">{{ $populer->created_at->format('d') }}</p>
+                            </a>
+                            <div class="media-body">
+                                <a class="title"
+                                    href="{{ route('guest.post.show', [$populer->category->slug, $populer]) }}">{{ $populer->title }}</a>
+                                <p><i class="fa fa-user"></i> {{ $populer->user_author->firstname }} -
+                                    {{ $populer->view }} views</p>
+                            </div>
+                        </article>
                         @endforeach
                     </div>
                 </div>
@@ -134,15 +138,17 @@
                     </div>
                     <div class="x_content">
                         @foreach ($userMostPosts as $item)
-                            <article class="media event">
-                                <a class="pull-left date">
-                                    <img src="{{ (!empty($item->profiles->first()->image)) ? asset('images/profile/'.$item->profiles->first()->image) : asset('cms/images/user.png') }}" alt="" class="img-fluid">
-                                </a>
-                                <div class="media-body">
-                                    <a class="title" @role('Administrator')href="{{ route('user.show', $item) }}"@endrole>{{ $item->firstname . ' ' . $item->lastname }}</a>
-                                    <p>Have {{ $item->posts->count() }} Posts</p>
-                                </div>
-                            </article>
+                        <article class="media event mb-1">
+                            <a class="pull-left date">
+                                <img src="{{ (!empty($item->profiles->first()->image)) ? asset('images/profile/'.$item->profiles->first()->image) : asset('cms/images/user.png') }}"
+                                    alt="" class="img-fluid">
+                            </a>
+                            <div class="media-body">
+                                <a class="title" @role('Administrator')href="{{ route('user.show', $item) }}"
+                                    @endrole>{{ $item->firstname . ' ' . $item->lastname }}</a>
+                                <p>Have {{ $item->posts->count() }} Posts</p>
+                            </div>
+                        </article>
                         @endforeach
                     </div>
                 </div>

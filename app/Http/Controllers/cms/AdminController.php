@@ -42,6 +42,7 @@ class AdminController extends Controller
                             ->get();
 
         $populers = Post::with('user_author', 'category')
+                            ->where('view', '>', 0)
                             ->latest('view')
                             ->take(5)
                             ->get();
