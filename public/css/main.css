@@ -149,15 +149,16 @@ a:hover {
     box-shadow: none;
 }
 
-.search-result ul{
+.search-result ul {
     list-style: none;
 }
 
-.search-result ul a{
+.search-result ul a {
     color: var(--hitam);
     font-family: barlow-medium;
 }
-.search-result ul a:hover{
+
+.search-result ul a:hover {
     color: var(--hijau);
 }
 
@@ -198,6 +199,10 @@ a:hover {
 }
 
 /* HEADLINE */
+.h-4 {
+    height: 400px;
+}
+
 .h-3 {
     height: 300px;
 }
@@ -221,6 +226,7 @@ a:hover {
     height: 40px;
     width: 30px;
 }
+
 /* End Headline Carousel Custom */
 
 .headline .headline-wrapper {
@@ -334,6 +340,7 @@ a:hover {
 
 .berita-terkini .terkini-category,
 .berita-lain-header,
+.sebaran-berita-header,
 .berita-side-header {
     font-size: 14px;
     font-weight: 600;
@@ -341,6 +348,7 @@ a:hover {
 
 .berita-terkini .terkini-category::before,
 .post-detail .berita-lain-header::before,
+.post-detail .sebaran-berita-header::before,
 .post-detail .berita-side-header::before {
     content: '';
     border-left: 2px solid var(--hijau);
@@ -792,6 +800,7 @@ footer a:hover {
     .post-detail .load-more::after {
         width: 35%;
     }
+
     .carousel-indicators li {
         display: none;
     }

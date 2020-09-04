@@ -57,6 +57,11 @@ Lingkaran - {{ $post->title }}
                     @endforeach
                 </div>
 
+                <div class="sebaran-berita mt-3">
+                    <div class="sebaran-berita-header">Sebaran Berita</div>
+                    <div class="mt-3 h-4" id="network-graph"></div>
+                </div>
+
                 <div class="berita-lain mt-3">
                     <div class="berita-lain-header">Berita Lainnya</div>
                     <div class="row">
@@ -172,5 +177,42 @@ Lingkaran - {{ $post->title }}
             }
         });
     }, 10000);
+</script>
+
+<script>
+    anychart.onDocumentReady(function () {
+            anychart.data.loadJsonFile(
+                // The data used in this sample can be obtained from the CDN
+                'https://cdn.anychart.com/samples-data/graph/knowledge_graph/data.json',
+                function (data) {
+                    // create graph chart
+                    var chart = anychart.graph(data);
+
+                    // set settings for each group
+                    for (var i = 0; i < 8; i++) {
+                        // get group
+                        var group = chart.group(i);
+
+                        // set group labels settings
+                        group
+                            .labels()
+                            .enabled(true)
+                            .anchor('left-center')
+                            .position('right-center')
+                            .padding(0, -5)
+                            .fontColor(anychart.palettes.defaultPalette[i]);
+
+                        // set group nodes stroke and fill
+                        group.stroke(anychart.palettes.defaultPalette[i]);
+                        group.fill(anychart.palettes.defaultPalette[i]);
+                    }
+
+                    // set container id for the chart
+                    chart.container('network-graph');
+                    // initiate chart drawing
+                    chart.draw();
+                }
+            );
+        });
 </script>
 @endsection

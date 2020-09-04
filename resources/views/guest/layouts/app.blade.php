@@ -25,6 +25,9 @@
     <!-- Main CSS -->
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <livewire:styles>
+        <script src="https://cdn.anychart.com/releases/8.8.0/js/anychart-core.min.js"></script>
+        <script src="https://cdn.anychart.com/releases/8.8.0/js/anychart-graph.min.js"></script>
+        <script src="https://cdn.anychart.com/releases/8.8.0/js/anychart-data-adapter.min.js"></script>
 </head>
 
 <body>
