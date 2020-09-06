@@ -33,6 +33,7 @@
 
 body {
     font-family: Roboto-Reguler;
+    background-color: #fff;
 }
 
 a,
@@ -312,8 +313,14 @@ a:hover {
     border: unset;
 }
 
+.berita-terkini .nav .nav-item.nav-link:hover {
+    color: var(--hijau);
+    transition: all 0.3s;
+}
+
 .berita-terkini .nav .nav-item.nav-link.active {
     color: var(--hijau);
+    background-color: transparent;
     border-bottom: 1px solid var(--hijau);
 }
 
