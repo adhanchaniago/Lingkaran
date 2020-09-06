@@ -36,6 +36,7 @@ Lingkaran - {{ $post->title }}
                     <span><i class="far fa-clock"></i> {{ $post->created_at->format('d M Y') }}</span>
                     <span><i class="far fa-eye"></i>
                         {{ ($post->view>= 1000) ? floor($post->view / 1000) . 'k' : $post->view }} views</span>
+
                 </div>
                 <figure class="figure mt-3">
                     <img src="{{ asset('images/post/'.$post->image) }}" class="figure-img" alt="{{ $post->title }}">
@@ -180,39 +181,43 @@ Lingkaran - {{ $post->title }}
 </script>
 
 <script>
-    anychart.onDocumentReady(function () {
-            anychart.data.loadJsonFile(
-                // The data used in this sample can be obtained from the CDN
-                'https://cdn.anychart.com/samples-data/graph/knowledge_graph/data.json',
-                function (data) {
-                    // create graph chart
-                    var chart = anychart.graph(data);
+    anychart.onDocumentReady(function() {
 
-                    // set settings for each group
-                    for (var i = 0; i < 8; i++) {
-                        // get group
-                        var group = chart.group(i);
+        // create data
+        var data= {
+        "nodes":[
+            {id:'Motor Bebek Ini Laris Dipasan Internasional, Inilah Beberapa Kelebihannya', height: '30', fill: '#008000'},
+            {id:'Australia', fill:'red'},
+            {id:'Indonesia', fill:'red'},
+            {id:'Singapora', fill:'red'},
+            {id:'Malaysia', fill:'red'},
+        ],
 
-                        // set group labels settings
-                        group
-                            .labels()
-                            .enabled(true)
-                            .anchor('left-center')
-                            .position('right-center')
-                            .padding(0, -5)
-                            .fontColor(anychart.palettes.defaultPalette[i]);
+        "edges":[
+            {from: 'Australia', to:'Motor Bebek Ini Laris Dipasan Internasional, Inilah Beberapa Kelebihannya'},
+            {from: 'Indonesia', to:'Motor Bebek Ini Laris Dipasan Internasional, Inilah Beberapa Kelebihannya'},
+            {from: 'Singapora', to:'Motor Bebek Ini Laris Dipasan Internasional, Inilah Beberapa Kelebihannya'},
+            {from: 'Malaysia', to:'Motor Bebek Ini Laris Dipasan Internasional, Inilah Beberapa Kelebihannya'},
+        ]}
 
-                        // set group nodes stroke and fill
-                        group.stroke(anychart.palettes.defaultPalette[i]);
-                        group.fill(anychart.palettes.defaultPalette[i]);
-                    }
+        var chart = anychart.graph(data);
 
-                    // set container id for the chart
-                    chart.container('network-graph');
-                    // initiate chart drawing
-                    chart.draw();
-                }
-            );
-        });
+        // configure nodes
+        chart.nodes().labels().enabled(true);
+        chart.nodes().labels().fontSize(12);
+
+        chart.nodes().normal().fill("white");
+        chart.nodes().normal().stroke("1 black");
+        chart.nodes().shape('circle');
+
+        chart.nodes().hovered().fill("white");
+        chart.nodes().hovered().stroke("2 black");
+        chart.nodes().hovered().shape('circle');
+
+        chart.layout().type('force');
+
+        // initiate drawing the chart
+        chart.container('network-graph').draw();
+    });
 </script>
 @endsection

@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tag;
 use App\Models\Post;
-use App\Models\Visitor;
 use App\Models\Category;
 use App\Models\Headline;
 use Illuminate\Http\Request;
@@ -106,13 +104,16 @@ class HomeController extends Controller
             ->cooldown($expiresAt)
             ->record();
 
+        // $visit = views($post)
+        //         ->record();
+
         if ($visit) {
             $post->update([
                 'view' => views($post)->count()
             ]);
             $data = 'Visitor has been recorded';
         } else {
-            $data = 'In countdown';
+            $data = 'In cooldown';
         }
 
         return response()->json(array($msg = 'Message: ' . $data), 200);
