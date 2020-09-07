@@ -16,6 +16,7 @@ List package Website Lingkaran, diantaranya adalah:
 - Manipulasi gambar pada website menggunakan [Image Intervension](http://image.intervention.io/).
 - Handle viewer menggunakan [Eloquent-Viewable](https://github.com/cyrildewit/eloquent-viewable) v5.2.
 - Search post menggunakan [Livewire](https://laravel-livewire.com/).
+- Deteksi lokasi berdasarkan IP menggunakan [Location](https://github.com/stevebauman/location) dari Stevebauman.
 
 ### Instalasi
 Instal [Composer](https://getcomposer.org/) pada Sistem Operasi agar command artisan dapat dijalankan. Masuk ke folder root aplikasi dan jalankan perintah instal pada terminal untuk download vendor yang dibutuhkan.
