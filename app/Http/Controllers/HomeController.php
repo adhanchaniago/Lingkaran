@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\Category;
 use App\Models\Headline;
 use Illuminate\Http\Request;
+use Stevebauman\Location\Facades\Location;
 
 class HomeController extends Controller
 {
@@ -22,7 +23,7 @@ class HomeController extends Controller
             ->latest('view')
             ->take(5)
             ->get();
-
+            
         // Headline
         $headline_main = Headline::with(['post', 'post.category', 'post.user_author'])
             ->where('type', 'main')
@@ -89,6 +90,7 @@ class HomeController extends Controller
             ->latest()
             ->take(5)
             ->get();
+            
 
         return view('guest.post', compact([
             'post', 'relatedPosts', 'populerPosts', 'terbaruPosts'

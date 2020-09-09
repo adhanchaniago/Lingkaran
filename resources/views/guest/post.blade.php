@@ -43,7 +43,7 @@ Lingkaran - {{ $post->title }}
                     <figcaption class="figure-caption">Source: Lingkaran.com</figcaption>
                 </figure>
                 <div class="detail-content">
-                    <span class="first-content-text">Lingkaran.com - </span>
+                    <span class="first-content-text">Lingkaran.com</span> -
                     {!! $post->content !!}
                     @if($post->editor != 0)
                     <div class="mt-3">
@@ -186,28 +186,26 @@ Lingkaran - {{ $post->title }}
         // create data
         var data= {
         "nodes":[
-            {id:'Motor Bebek Ini Laris Dipasan Internasional, Inilah Beberapa Kelebihannya', height: '30', fill: '#008000'},
-            {id:'Australia', fill:'red'},
-            {id:'Indonesia', fill:'red'},
-            {id:'Singapora', fill:'red'},
-            {id:'Malaysia', fill:'red'},
+            {id:'{{ $post->title }}', height: '20', fill: '#FDE725'},
+            {id:'Jakarta'},
+            {id:'East Java'},
+            {id:'West Java'},
         ],
 
         "edges":[
-            {from: 'Australia', to:'Motor Bebek Ini Laris Dipasan Internasional, Inilah Beberapa Kelebihannya'},
-            {from: 'Indonesia', to:'Motor Bebek Ini Laris Dipasan Internasional, Inilah Beberapa Kelebihannya'},
-            {from: 'Singapora', to:'Motor Bebek Ini Laris Dipasan Internasional, Inilah Beberapa Kelebihannya'},
-            {from: 'Malaysia', to:'Motor Bebek Ini Laris Dipasan Internasional, Inilah Beberapa Kelebihannya'},
+            {from: 'Jakarta', to:'{{ $post->title }}'},
+            {from: 'East Java', to:'{{ $post->title }}'},
+            {from: 'West Java', to:'{{ $post->title }}'},
         ]}
 
         var chart = anychart.graph(data);
 
         // configure nodes
+        chart.background().stroke("rgb(143, 143, 143)");
         chart.nodes().labels().enabled(true);
-        chart.nodes().labels().fontSize(12);
+        chart.nodes().labels().fontSize(11);
 
-        chart.nodes().normal().fill("white");
-        chart.nodes().normal().stroke("1 black");
+        chart.nodes().normal().fill("#31B57B");
         chart.nodes().shape('circle');
 
         chart.nodes().hovered().fill("white");
