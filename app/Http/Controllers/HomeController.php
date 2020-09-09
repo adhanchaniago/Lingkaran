@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\Headline;
+use CyrildeWit\EloquentViewable\View;
 use Illuminate\Http\Request;
 use Stevebauman\Location\Facades\Location;
 
@@ -91,9 +92,14 @@ class HomeController extends Controller
             ->take(5)
             ->get();
             
+        $visitors = View::where('viewable_id', $post->id)->get();
+        $positions = [];
+        foreach ($visitors as $visitor) {
+            $positions[] = Location::get($visitor->ip_address);
+        }
 
         return view('guest.post', compact([
-            'post', 'relatedPosts', 'populerPosts', 'terbaruPosts'
+            'post', 'relatedPosts', 'populerPosts', 'terbaruPosts', 'positions'
         ]));
     }
 
@@ -106,12 +112,12 @@ class HomeController extends Controller
             ->cooldown($expiresAt)
             ->record();
 
-        // $visit = views($post)
-        //         ->record();
-
         if ($visit) {
             $post->update([
                 'view' => views($post)->count()
+            ]);
+            $visit->update([
+                'ip_address' => request()->ip()
             ]);
             $data = 'Visitor has been recorded';
         } else {

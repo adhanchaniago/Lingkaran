@@ -45,6 +45,7 @@ class CreateViewsTable extends Migration
             $table->bigIncrements('id');
             $table->morphs('viewable');
             $table->text('visitor')->nullable();
+            $table->string('ip_address');
             $table->string('collection')->nullable();
             $table->timestamp('viewed_at')->useCurrent();
         });

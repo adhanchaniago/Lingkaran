@@ -187,15 +187,15 @@ Lingkaran - {{ $post->title }}
         var data= {
         "nodes":[
             {id:'{{ $post->title }}', height: '20', fill: '#FDE725'},
-            {id:'Jakarta'},
-            {id:'East Java'},
-            {id:'West Java'},
+            @for ($i = 0; $i < count($positions); $i++)
+                {id:'{{ $positions[$i]->regionName }}'},
+            @endfor
         ],
 
         "edges":[
-            {from: 'Jakarta', to:'{{ $post->title }}'},
-            {from: 'East Java', to:'{{ $post->title }}'},
-            {from: 'West Java', to:'{{ $post->title }}'},
+            @for ($i = 0; $i < count($positions); $i++)
+            {from: '{{ $positions[$i]->regionName }}', to:'{{ $post->title }}'},
+            @endfor
         ]}
 
         var chart = anychart.graph(data);
