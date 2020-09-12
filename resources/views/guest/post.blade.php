@@ -186,7 +186,7 @@ Lingkaran - {{ $post->title }}
         // create data
         var data= {
         "nodes":[
-            {id:'{{ $post->title }}', height: '20', fill: '#FDE725'},
+            {id:'{{ $post->title }}', height: '20', fill: '{{ $post->category->color }}'},
             @for ($i = 0; $i < count($positions); $i++)
                 {id:'{{ $positions[$i]->regionName }}'},
             @endfor

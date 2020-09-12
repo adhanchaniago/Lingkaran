@@ -5,9 +5,9 @@
 
 ## Tentang Lingkaran
 
-Lingkaran adalah website untuk memberikan berita-berita terbaru yang ada di Indonesia. Website ini dibangun menggunakan Framework Laravel dan terdapat beberapa package untuk mendukung jalannya website ini. List package yang terdapat pada website lingkaran dapat dilihat pada link dibawah.
+Lingkaran adalah website untuk memberikan berita-berita terbaru yang ada di Indonesia. Website ini dibangun menggunakan Framework Laravel dan terdapat beberapa package untuk mendukung jalannya website ini. List package yang terdapat pada website lingkaran dapat dilihat pada link dibawah.  
 
-List package Website Lingkaran, diantaranya adalah:
+List package Website Lingkaran, diantaranya adalah:  
 
 - Framework [Laravel](https://laravel.com/) v7.
 - Design website menggunakan Framework [Bootstrap](https://getbootstrap.com/) v4.5.
@@ -26,7 +26,13 @@ Instal [Composer](https://getcomposer.org/) pada Sistem Operasi agar command art
 composer install
 ```
 
-Jalankan artisan command untuk generate key baru. Key dapat dilihat pada file ".env", jika file tidak ada buat file baru dengan nama ".env" atau rename file ".env.example" menjadi ".env". Jangan lupa setting database sesuai dengan local server.
+Jalankan perintah berikut untuk copy file `.env`, atau bisa juga copy secara manual. Sesuaikan pengaturan DATABASE dengan local sistem anda pada file `.env` ini.
+
+```javascript
+cp .env.example .env
+```
+
+Jalankan artisan command untuk generate key untuk keamanan aplikasi.
 
 ```javascript
 //Generate key baru
