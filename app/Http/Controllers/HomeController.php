@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Headline;
 use CyrildeWit\EloquentViewable\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Stevebauman\Location\Facades\Location;
 
 class HomeController extends Controller
@@ -92,7 +93,9 @@ class HomeController extends Controller
             ->take(5)
             ->get();
             
-        $visitors = View::where('viewable_id', $post->id)->get();
+        $visitors = View::where('viewable_id', $post->id)
+            ->whereNotIn('ip_address', ['127.0.0.1'])
+            ->get();
         $positions = [];
         foreach ($visitors as $visitor) {
             $positions[] = Location::get($visitor->ip_address);
@@ -105,25 +108,20 @@ class HomeController extends Controller
 
     public function addVisitor(Request $request)
     {
-        $post = Post::findOrFail(decrypt($request->id));
+        if (Auth::check() != true) {
+            $post = Post::findOrFail(decrypt($request->id));
 
-        $expiresAt = now()->addHours(6);
-        $visit = views($post)
-            ->cooldown($expiresAt)
-            ->record();
+            $expiresAt = now()->addHours(6);
+            $visit = views($post)
+                ->cooldown($expiresAt)
+                ->record();
 
-        if ($visit) {
-            $post->update([
-                'view' => views($post)->count()
-            ]);
-            $visit->update([
-                'ip_address' => request()->ip()
-            ]);
-            $data = 'Visitor has been recorded';
-        } else {
-            $data = 'In cooldown';
+            if ($visit) {
+                $post->increment('view');
+                $visit->update([
+                    'ip_address' => request()->ip()
+                ]);
+            }
         }
-
-        return response()->json(array($msg = 'Message: ' . $data), 200);
     }
 }
