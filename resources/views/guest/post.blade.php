@@ -89,6 +89,7 @@ Lingkaran - {{ $post->title }}
 
 <!-- Admin Button -->
 @if(auth()->user())
+@hasrole('Administrator|Editor|Reporter')
 <div class="admin-btn action shadow-lg p-2">
     <h6 class="text-center border-bottom pb-1">Action</h6>
     <button onclick="location.href='{{ url()->previous() }}'" class="btn btn-sm btn-block btn-secondary">
@@ -97,7 +98,6 @@ Lingkaran - {{ $post->title }}
     <button onclick="location.href='{{ route('post.edit', $post) }}'" class="btn btn-sm btn-block btn-info">
         <i class="fas fa-edit"></i> Edit
     </button>
-
     @if($post->status != 1)
     @can('publish post')
     <button class="btn btn-sm btn-block btn-success" data-toggle="modal" data-target="#modal-confirm"
@@ -113,6 +113,7 @@ Lingkaran - {{ $post->title }}
     @endcan
     @endif
 </div>
+@endhasrole
 
 <!-- Modal -->
 <div class="modal fade" id="modal-confirm" tabindex="-1" role="dialog">
@@ -159,7 +160,7 @@ Lingkaran - {{ $post->title }}
         }
     });
 
-    const waktu = setTimeout(function(){
+    const waktu = setTimeout(function () {
         const id = '{{ encrypt($post->id) }}';
         const url = "{{ route('guest.add.visitor') }}";
         $.ajaxSetup({
@@ -171,32 +172,40 @@ Lingkaran - {{ $post->title }}
             url: url,
             type: 'POST',
             data: {
-                id:id,
-            }
-            ,success:function(data){
+                id: id,
+            },
+            success: function (data) {
                 console.log(data);
             }
         });
     }, 10000);
+
 </script>
 
 <script>
-    anychart.onDocumentReady(function() {
+    anychart.onDocumentReady(function () {
 
         // create data
-        var data= {
-        "nodes":[
-            {id:'{{ $post->title }}', height: '20', fill: '{{ $post->category->color }}'},
-            @for ($i = 0; $i < count($positions); $i++)
-                {id:'{{ $positions[$i]->regionName }}'},
-            @endfor
-        ],
+        var data = {
+            "nodes": [{
+                    id: '{{ $post->title }}',
+                    height: '20',
+                    fill: '{{ $post->category->color }}'
+                },
+                @for($i = 0; $i < count($positions); $i++) {
+                    id: '{{ $positions[$i]->regionName }}'
+                },
+                @endfor
+            ],
 
-        "edges":[
-            @for ($i = 0; $i < count($positions); $i++)
-            {from: '{{ $positions[$i]->regionName }}', to:'{{ $post->title }}'},
-            @endfor
-        ]}
+            "edges": [
+                @for($i = 0; $i < count($positions); $i++) {
+                    from: '{{ $positions[$i]->regionName }}',
+                    to: '{{ $post->title }}'
+                },
+                @endfor
+            ]
+        }
 
         var chart = anychart.graph(data);
 
@@ -217,5 +226,6 @@ Lingkaran - {{ $post->title }}
         // initiate drawing the chart
         chart.container('network-graph').draw();
     });
+
 </script>
 @endsection

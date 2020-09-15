@@ -47,7 +47,10 @@ class AdminController extends Controller
                             ->take(5)
                             ->get();
 
-        $userMostPosts = User::with('posts', 'profiles')
+        $userMostPosts = User::with('posts', 'profiles', 'roles')
+                            ->whereHas('roles', function ($query) {
+                                $query->whereNotIn('name', ['Writer']);
+                            })
                             ->take(5)
                             ->get();
         
