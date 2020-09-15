@@ -1,39 +1,44 @@
-@extends('auth.layouts.app')
+@extends('guest.layouts.app')
 
 @section('content')
-<section class="login_content">
-    @if (session('status'))
-    <div class="alert alert-success" role="alert">
-        {{ session('status') }}
-    </div>
-    @elseif (session('danger'))
-    <div class="alert alert-danger" role="alert">
-        {{ session('danger') }}
-    </div>
-    @endif
-    <form method="POST" action="{{ route('password.email') }}">
-        @csrf
-        <h1><a href="{{ route('guest.home') }}" style="text-decoration: none;"><img
-                    src="{{ asset('assets/logo/logo.png') }}" alt="Logo Lingkaran" style="width: 30px;">
-                Lingkaran</a></h1>
-        <div class="form-group row">
-            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email"
-                value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Email">
+<section class="login-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mx-auto my-5">
+                @if (session('status'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('status') }}
+                </div>
+                @elseif (session('danger'))
+                <div class="alert alert-danger" role="alert">
+                    {{ session('danger') }}
+                </div>
+                @endif
+                <div class="login-wrapper px-4 py-3 rounded border shadow">
+                    <div class="login-title text-center">Reset Password</div>
+                    <div class="login-description text-center text-muted my-3">
+                        We'll send link to your registered email.
+                    </div>
 
-            @error('email')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-            @enderror
+                    <form action="{{ route('password.email') }}" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                                name="email" value="{{ old('email') }}">
+                            @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                        <button type="submit" class="btn btn-login btn-sm btn-block mt-3">
+                            Send Password Reset Link
+                        </button>
+                    </form>
+                </div>
+            </div>
         </div>
-        <div class="form-group row mb-0">
-            <button type="submit" class="btn btn-success btn-sm btn-block">
-                {{ __('Send Password Reset Link') }}
-            </button>
-        </div>
-        <div class="separator">
-            <p>©2020 All Rights Reserved. Lingkaran web news.</p>
-        </div>
-    </form>
+    </div>
 </section>
 @endsection

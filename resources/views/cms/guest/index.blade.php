@@ -4,9 +4,7 @@
 <div class="row">
     <div class="x_panel">
         <div class="x_title">
-            <h2>Users <small>All users list and access</small></h2>
-            <button onclick="location.href='{{ route('user.create') }}'" class="btn btn-primary btn-sm float-right"><i
-                    class="fa fa-plus"> User</i></button>
+            <h2>Guest Users <small>All guest users list and access</small></h2>
             <div class="clearfix"></div>
         </div>
 
@@ -72,12 +70,11 @@
             <div class="modal-header">
                 <h5 class="modal-title">Ubah Status User</h5>
             </div>
-            <form action="{{ route('user.update', 'id') }}" method="POST">
+            <form action="{{ route('guestuser.update', 'id') }}" method="POST">
                 @csrf
                 @method('PATCH')
                 <div class="modal-body">
-                    <p class="text-center">Anda akan mengubah status dan Role <span class="text-info"
-                            id="name">null</span></p>
+                    <p class="text-center">Anda akan mengubah status <span class="text-info" id="name">null</span></p>
                     <input type="hidden" id="id" name="id">
 
                     <div class="form-group">
@@ -89,22 +86,6 @@
                             <option value="0">Suspend</option>
                         </select>
                         @error('status')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div>
-
-                    <div class="form-group">
-                        <label for="role">User Role</label>
-                        <select class="form-control form-control-sm @error('role') is-invalid @enderror" id="role"
-                            name="role">
-                            <option></option>
-                            @foreach ($roles as $role)
-                            <option value="{{ $role->name }}">{{ $role->name }}</option>
-                            @endforeach
-                        </select>
-                        @error('role')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -152,12 +133,9 @@
         const id = $(e.relatedTarget).data('id');
         const name = $(e.relatedTarget).data('name');
         const status = $(e.relatedTarget).data('status');
-        const role = $(e.relatedTarget).data('role');
         $('.modal-body #id').val(id);
         $('.modal-body #name').text(name);
         $('.modal-body #status').val(status);
-        $('.modal-body #role').val(role);
-        console.log(role);
     });
 
     $('#modal-delete').on('show.bs.modal', function (e) {

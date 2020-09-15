@@ -8,7 +8,7 @@
                 <li><a href="{{ route('category.index') }}">Category</a></li>
                 <li><a href="{{ route('tag.index') }}">Tag</a></li>
                 @role(['Administrator|Editor'])
-                    <li><a href="{{ route('headline.index') }}">Headline</a></li>
+                <li><a href="{{ route('headline.index') }}">Headline</a></li>
                 @endrole
             </ul>
         </li>
@@ -21,6 +21,13 @@
         <li><a><i class="fa fa-users"></i>Employee <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
                 <li><a href="{{ route('user.index') }}">User</a></li>
+            </ul>
+        </li>
+    </ul>
+    <ul class="nav side-menu">
+        <li><a><i class="fa fa-user"></i>Guest <span class="fa fa-chevron-down"></span></a>
+            <ul class="nav child_menu">
+                <li><a href="{{ route('guestuser.index') }}">User</a></li>
             </ul>
         </li>
     </ul>

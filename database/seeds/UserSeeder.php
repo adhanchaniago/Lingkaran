@@ -71,5 +71,24 @@ class UserSeeder extends Seeder
             'about' => 'Untuk setiap manusia di dunia ini, Tuhan telah memberikan sesuatu yang mulia dan baik ke dalam hatinya. Selalu jaga hatimu.'
         ]);
         $user->assignRole('Editor');
+
+        $user = User::create([
+            'firstname' => 'Nanda',
+            'lastname' => 'Fitria',
+            'email' => 'nanda@email.com',
+            'password' => Hash::make('12345678'),
+            'status' => 1
+        ]);
+        $user->profiles()->create([
+            'image' => '081279415586-4.jpg',
+            'birth' => '1992-09-01',
+            'gender' => 'Female',
+            'religion' => 'Islam',
+            'status' => 'Single',
+            'address' => 'Jl. bumi, no.123,Palembang',
+            'phone' => '087819216658',
+            'about' => 'Untuk setiap manusia di dunia ini, Tuhan telah memberikan sesuatu yang mulia dan baik ke dalam hatinya. Selalu jaga hatimu.'
+        ]);
+        $user->assignRole('Writer');
     }
 }

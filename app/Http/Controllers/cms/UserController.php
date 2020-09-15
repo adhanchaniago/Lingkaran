@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\cms;
 
-use Carbon\Carbon;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Str;
@@ -23,6 +22,9 @@ class UserController extends Controller
     {
         $users = User::with(['profiles', 'roles', 'permissions', 'posts'])
                         ->where('id', '<>', auth()->id())
+                        ->whereHas("roles", function ($query) {
+                            $query->whereNotIn('name', ['Writer']);
+                        })
                         ->orderBy('firstname', 'ASC')
                         ->paginate(12);
 
@@ -117,9 +119,20 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $this->validate(request(), [
+            'status' => 'required',
+            'role' => 'required'
+        ]);
+
+        $user = User::findOrFail($request->id);
+        $user->update([
+            'status' => $request->status
+        ]);
+        $user->removeRole($user->roles->first()->name);
+        $user->assignRole($request->role);
+        return redirect()->route('user.index');
     }
 
     /**
@@ -136,21 +149,5 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->route('user.index')->withSuccess('The user have been deleted');
-    }
-
-    public function changeStatus(Request $request)
-    {
-        $this->validate(request(), [
-            'status' => 'required',
-            'role' => 'required'
-        ]);
-
-        $user = User::findOrFail($request->id);
-        $user->update([
-            'status' => $request->status
-        ]);
-        $user->removeRole($user->roles->first()->name);
-        $user->assignRole($request->role);
-        return redirect()->route('user.index');
     }
 }

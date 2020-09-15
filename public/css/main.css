@@ -92,37 +92,12 @@ a:hover {
     transition: all 0.3s;
 }
 
-.navbar-nav .nav-item .nav-link::after {
-    content: '';
-    width: 0;
-    display: block;
-    border-bottom: 2px solid var(--hijau);
-    margin: auto;
-    transition: all 0.3s;
-}
-
 .navbar-nav .nav-item.active .nav-link {
     color: var(--hijau) !important;
 }
 
-.navbar-nav .nav-item.active .nav-link::after {
-    content: '';
-    display: block;
-    width: 50%;
-    border-bottom: 2px solid var(--hijau);
-    margin: auto;
-    transition: all 0.3s;
-}
-
 .navbar-nav .nav-item .nav-link:hover {
     color: var(--hijau);
-}
-
-.navbar-nav .nav-item .nav-link:hover::after {
-    content: '';
-    width: 100%;
-    display: block;
-    border-bottom: 2px solid var(--hijau);
 }
 
 .navbar .navbar-toggler {
@@ -718,6 +693,25 @@ footer a {
 
 footer a:hover {
     color: #000;
+}
+
+/* User Login Form */
+.login-section {
+    min-height: 90vh;
+}
+
+.login-wrapper .login-title {
+    font-family: Barlow-Medium;
+    font-size: 24px;
+    color: var(--abu);
+    border-bottom: 2px solid var(--hijau);
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.login-wrapper .btn-login {
+    background-image: var(--gradasi);
+    color: #fff;
 }
 
 /* Tombol Back to Top */

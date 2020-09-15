@@ -27,7 +27,15 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    // Check if the user is admin or not
+    protected function authenticated(Request $request, $user)
+    {
+        if ($user->hasRole('Administrator|Editor|Reporter')) {
+            return redirect('/cms/dashboard');
+        } else {
+            return redirect(RouteServiceProvider::HOME);
+        }
+    }
 
     /**
      * Create a new controller instance.

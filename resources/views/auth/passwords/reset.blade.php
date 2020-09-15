@@ -1,4 +1,4 @@
-@extends('auth.layouts.app')
+@extends('guest.layouts.app')
 
 @section('content')
 
@@ -28,8 +28,8 @@
         </div>
 
         <div class="form-group row">
-            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password"
-                required autocomplete="new-password" placeholder="New Password">
+            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
+                name="password" required autocomplete="new-password" placeholder="New Password">
 
             @error('password')
             <span class="invalid-feedback" role="alert">
@@ -39,8 +39,9 @@
         </div>
 
         <div class="form-group row">
-            <input id="password-confirm" type="password" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" required
-                autocomplete="new-password" placeholder="Password Confirm">
+            <input id="password-confirm" type="password"
+                class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation"
+                required autocomplete="new-password" placeholder="Password Confirm">
 
             @error('password_confirmation')
             <span class="invalid-feedback" role="alert">

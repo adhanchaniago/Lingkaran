@@ -1,55 +1,50 @@
-@extends('auth.layouts.app')
+@extends('guest.layouts.app')
 
 @section('content')
-<section class="login_content">
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
-        <h1><a href="{{ route('guest.home') }}" style="text-decoration: none;"><img
-                    src="{{ asset('assets/logo/logo.png') }}" alt="Logo Lingkaran" style="width: 30px;">
-                Lingkaran</a></h1>
-        <div class="form-group row">
-            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email"
-                value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Email">
-
-            @error('email')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-            @enderror
-        </div>
-        <div class="form-group row">
-            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
-                name="password" required autocomplete="current-password" placeholder="Password">
-
-            @error('password')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-            @enderror
-        </div>
-        <div class="form-group row">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="remember" id="remember"
-                    {{ old('remember') ? 'checked' : '' }}>
-
-                <label class="form-check-label" for="remember">
-                    {{ __('Remember Me') }}
-                </label>
+<section class="login-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mx-auto my-5">
+                <div class="login-wrapper px-4 py-3 rounded border shadow">
+                    <div class="login-title text-center">Login</div>
+                    <div class="login-description text-center text-muted">
+                        Please login to create contents and make comments
+                    </div>
+                    <form href="{{ route('login') }}" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
+                                id="email" value="{{ old('email') }}" required>
+                            @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                name="password" id="password" required>
+                            @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" name="remember" id="remember">
+                            <label class="form-check-label" for="remember">Remember</label>
+                        </div>
+                        <a href="{{ route('password.request') }}">Forgot Password?</a>
+                        <button type="submit" class="btn btn-login btn-sm btn-block mt-3">Login</button>
+                        <div class="mt-3 d-flex justify-content-center">
+                            Don't have any account yet? <span class="ml-1"><a href="#">Sign up</a></span>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-        <div class="form-group row mb-0">
-            <button type="submit" class="btn btn-success btn-sm btn-block">
-                {{ __('Login') }}
-            </button>
-            @if (Route::has('password.request'))
-            <a class="btn btn-link btn-sm" href="{{ route('password.request') }}">
-                {{ __('Forgot Your Password?') }}
-            </a>
-            @endif
-        </div>
-        <div class="separator">
-            <p>©2020 All Rights Reserved. Lingkaran web news.</p>
-        </div>
-    </form>
+    </div>
 </section>
 @endsection

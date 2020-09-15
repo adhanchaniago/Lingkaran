@@ -4,12 +4,12 @@
             <img src="{{ asset('assets/logo/logo.png') }}" alt="Logo Lingkaran" class="logo mr-2">
         </a>
         <a class="navbar-brand" href="{{ route('guest.home') }}">Lingkar<span>an</span></a>
-        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
             <i class="fas fa-bars nav-icon"></i>
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavId">
-            <ul class="navbar-nav mt-2 mt-lg-0 ml-auto">
-
+            <ul class="navbar-nav mt-2 mt-lg-0 mx-auto">
                 <li class="nav-item {{ (request()->segment(1) == '') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('guest.home') }}">Home</a>
                 </li>
@@ -19,14 +19,48 @@
                     <a class="nav-link" href="{{ route('guest.category.show', $nav) }}">{{ $nav->title }}</a>
                 </li>
                 @endforeach
-
-                @if(auth()->user())
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('dashboard.index') }}" style="color: red">Admin Panel</a>
-                </li>
-                @endif
             </ul>
             <livewire:search />
+            @if (auth()->user())
+            @hasrole(['Administrator|Editor|Reporter'])
+            <div class="dropdown ml-2">
+                <button type="button" class="btn btn-danger btn-sm dropdown-toggle" id="dropdownMenuOffset"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+                    Options
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+                    <a class="dropdown-item" href="{{ route('dashboard.index') }}">Admin Panel</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="post" style="display: none">
+                        @csrf
+                    </form>
+                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">Log out</a>
+                </div>
+            </div>
+            @endhasrole
+            @hasrole('Writer')
+            <div class="dropdown mt-2 mt-md-0 ml-2">
+                <button class="btn btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <img src="{{ (!empty(auth()->user()->profiles->first()->image)) ? asset('images/profile/'.auth()->user()->profiles->first()->image) : asset('cms/images/user.png') }}"
+                        class="rounded-circle" style="width: 35px;height: 35px;">
+                </button>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#"><i class="fas fa-home"></i> Dashboard</a>
+                    <div class="dropdown-divider"></div>
+                    <form id="logout-form" action="{{ route('logout') }}" method="post" style="display: none">
+                        @csrf
+                    </form>
+                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i> Log out</a>
+                </div>
+            </div>
+            @endhasrole
+            @else
+            <button onclick="document.location='{{ route('login') }}'"
+                class="btn btn-outline-success btn-sm mt-2 mt-md-0 ml-2">Login</button>
+            @endif
         </div>
     </div>
 </nav>

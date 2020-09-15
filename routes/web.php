@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 // Login Routes
-Route::prefix('cms')->namespace('Auth')->group(function () {
+Route::namespace('Auth')->group(function () {
     Route::get('/login', 'LoginController@showLoginForm')->name('login');
     Route::post('/login', 'LoginController@login');
     Route::post('/logout', 'LoginController@logout')->name('logout');
@@ -17,7 +17,7 @@ Route::prefix('cms')->namespace('Auth')->group(function () {
 });
 
 // CMS Routes
-Route::middleware('auth')->prefix('cms')->namespace('cms')->group(function () {
+Route::middleware(['auth', 'role:Administrator|Editor|Reporter'])->prefix('cms')->namespace('cms')->group(function () {
 
     // Route for dashboard
     Route::resource('/dashboard', 'AdminController')->only('index');
@@ -44,7 +44,7 @@ Route::middleware('auth')->prefix('cms')->namespace('cms')->group(function () {
     Route::group(['middleware' => ['role:Administrator']], function () {
         // Route for all user features
         Route::resource('/user', 'UserController');
-        Route::patch('/user/active/{user}', 'UserController@changeStatus')->name('user.status');
+        Route::resource('/guestuser', 'GuestUserController')->except('create', 'edit', 'show');
     });
 });
 
