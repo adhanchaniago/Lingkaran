@@ -44,6 +44,7 @@
                     aria-haspopup="true" aria-expanded="false">
                     <img src="{{ (!empty(auth()->user()->profiles->first()->image)) ? asset('images/profile/'.auth()->user()->profiles->first()->image) : asset('cms/images/user.png') }}"
                         class="rounded-circle" style="width: 35px;height: 35px;">
+                    <span class="ml-1">{{ auth()->user()->firstname }}</span>
                 </button>
 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">

@@ -39,7 +39,8 @@
                         <a href="{{ route('password.request') }}">Forgot Password?</a>
                         <button type="submit" class="btn btn-login btn-sm btn-block mt-3">Login</button>
                         <div class="mt-3 d-flex justify-content-center">
-                            Don't have any account yet? <span class="ml-1"><a href="#">Sign up</a></span>
+                            Don't have any account yet? <span class="ml-1"><a href="{{ route('register') }}">Sign
+                                    up</a></span>
                         </div>
                     </form>
                 </div>

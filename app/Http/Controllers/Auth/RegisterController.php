@@ -30,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = 'cms/reporter';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -39,7 +39,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('guest');
     }
 
     /**
@@ -66,12 +66,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'firstname' => Str::Title($data['firstname']),
             'lastname' => Str::Title($data['lastname']),
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'status' => 1
         ]);
+
+        return $user->assignRole('Writer');
     }
 }

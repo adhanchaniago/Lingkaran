@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 // Login Routes
-Auth::Routes();
+Auth::routes();
 
 // CMS Routes
 Route::middleware(['auth', 'role:Administrator|Editor|Reporter'])->prefix('cms')->namespace('cms')->group(function () {
