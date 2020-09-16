@@ -17,18 +17,20 @@
                     <strong>FAIL!</strong> {{ session('danger') }}.
                 </div>
                 @endif
-                <form action="{{ route('password.update', auth()->id()) }}" method="POST">
+                <form action="{{ route('admin.password.update', auth()->id()) }}" method="POST">
                     @csrf
                     @method('PATCH')
                     <div class="row">
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="current_password">Current Password</label>
-                                <input type="password" class="form-control form-control-sm @error('current_password') is-invalid @enderror" name="current_password" id="current_password" required>
+                                <input type="password"
+                                    class="form-control form-control-sm @error('current_password') is-invalid @enderror"
+                                    name="current_password" id="current_password" required>
                                 @error('current_password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>
@@ -37,23 +39,27 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="password">New Password</label>
-                                <input type="password" class="form-control form-control-sm @error('password') is-invalid @enderror" name="password" id="password" required>
+                                <input type="password"
+                                    class="form-control form-control-sm @error('password') is-invalid @enderror"
+                                    name="password" id="password" required>
                                 @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="password_confirm">New Password Confirmation</label>
-                                <input type="password" class="form-control form-control-sm" name="password_confirmation" id="password_confirm" required>
+                                <input type="password" class="form-control form-control-sm" name="password_confirmation"
+                                    id="password_confirm" required>
                             </div>
                         </div>
                     </div>
                     <div class="ln_solid"></div>
-                    <button type="button" onclick="location.href='{{ url()->previous() }}'" class="btn btn-secondary btn-sm pull-right">Cancel</button>
+                    <button type="button" onclick="location.href='{{ url()->previous() }}'"
+                        class="btn btn-secondary btn-sm pull-right">Cancel</button>
                     <button type="submit" class="btn btn-primary btn-sm pull-right">Save</button>
                 </form>
             </div>

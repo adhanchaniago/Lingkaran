@@ -3,18 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 // Login Routes
-Route::namespace('Auth')->group(function () {
-    Route::get('/login', 'LoginController@showLoginForm')->name('login');
-    Route::post('/login', 'LoginController@login');
-    Route::post('/logout', 'LoginController@logout')->name('logout');
-
-    Route::get('/password/confirm', 'ConfirmPasswordController@showConfirmForm')->name('password.confirm');
-    Route::post('/password/confirm', 'ConfirmPasswordController@confirm');
-    Route::get('/password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('password.request');
-    Route::post('/password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-    Route::post('/password/reset', 'ResetPasswordController@reset')->name('password.update');
-    Route::get('/password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
-});
+Auth::Routes();
 
 // CMS Routes
 Route::middleware(['auth', 'role:Administrator|Editor|Reporter'])->prefix('cms')->namespace('cms')->group(function () {
@@ -27,11 +16,11 @@ Route::middleware(['auth', 'role:Administrator|Editor|Reporter'])->prefix('cms')
     Route::resource('/category', 'CategoryController')->except('create', 'show', 'edit');
     Route::resource('/tag', 'TagController')->except('create', 'show', 'edit');
 
-    // Route for personal profile
+    // Route for admin personal profile
     Route::resource('/profile', 'ProfileController')->only(['show', 'update']);
     Route::patch('/profile/image/{id}', 'ProfileController@changeImage')->name('profile.image');
     Route::get('/profile/password/{id}', 'ProfileController@passwordEdit')->name('password.edit');
-    Route::patch('/profile/password/{id}', 'ProfileController@passwordUpdate')->name('password.update');
+    Route::patch('/profile/password/{id}', 'ProfileController@passwordUpdate')->name('admin.password.update');
 
     Route::group(['middleware' => ['role:Administrator|Editor']], function () {
         Route::resource('/headline', 'HeadlineController')->except('show', 'edit', 'update');

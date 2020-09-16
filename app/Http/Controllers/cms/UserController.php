@@ -28,7 +28,7 @@ class UserController extends Controller
                         ->orderBy('firstname', 'ASC')
                         ->paginate(12);
 
-        $roles = Role::all();
+        $roles = Role::where('name', '!=', 'Writer')->get();
 
         return view('cms.user.index', compact('users', 'roles'));
     }
@@ -40,7 +40,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = Role::all();
+        $roles = Role::where('name', '!=', 'Writer')->get();
         
         return view('cms.user.create', compact('roles'));
     }
