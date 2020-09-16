@@ -95,11 +95,13 @@ class HomeController extends Controller
             
         $visitors = View::where('viewable_id', $post->id)
             ->whereNotIn('ip_address', ['127.0.0.1'])
-            ->get();
-        $positions = [];
-        foreach ($visitors as $visitor) {
-            $positions[] = Location::get($visitor->ip_address);
+            ->get('ip_address');
+            
+        $collection = [];
+        foreach ($visitors->unique('ip_address') as $visitor) {
+            $collection[] = Location::get($visitor->ip_address);
         }
+        $positions = collect($collection)->unique('cityName');
 
         return view('guest.post', compact([
             'post', 'relatedPosts', 'populerPosts', 'terbaruPosts', 'positions'

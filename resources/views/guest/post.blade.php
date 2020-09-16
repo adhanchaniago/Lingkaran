@@ -192,18 +192,18 @@ Lingkaran - {{ $post->title }}
                     height: '20',
                     fill: '{{ $post->category->color }}'
                 },
-                @for($i = 0; $i < count($positions); $i++) {
-                    id: '{{ $positions[$i]->regionName }}'
+                @foreach($positions as $position) {
+                    id: '{{ $position->cityName }}'
                 },
-                @endfor
+                @endforeach
             ],
 
             "edges": [
-                @for($i = 0; $i < count($positions); $i++) {
-                    from: '{{ $positions[$i]->regionName }}',
+                @foreach($positions as $position) {
+                    from: '{{ $position->cityName }}',
                     to: '{{ $post->title }}'
                 },
-                @endfor
+                @endforeach
             ]
         }
 
