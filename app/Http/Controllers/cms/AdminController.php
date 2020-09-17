@@ -33,7 +33,7 @@ class AdminController extends Controller
         $userMale = Profile::where('gender', 'Male')->count();
         $userFemale = Profile::where('gender', 'Female')->count();
         $posts = Post::count();
-        $categories = Category::count();
+        $cats = Category::count();
         $tags = Tag::count();
 
         $recentPosts = Post::with('user_author', 'category')
@@ -55,7 +55,7 @@ class AdminController extends Controller
                             ->get();
         
         return view('cms.home', compact([
-            'users', 'userMale', 'userFemale', 'posts', 'categories', 'tags', 'recentPosts', 'populers', 'userMostPosts'
+            'users', 'userMale', 'userFemale', 'posts', 'cats', 'tags', 'recentPosts', 'populers', 'userMostPosts'
         ]));
     }
 

@@ -20,7 +20,8 @@ class HomeController extends Controller
     public function index()
     {
         // Trending
-        $trending = Post::where('status', 1)
+        $trending = Post::with(['category', 'user_author'])
+            ->where('status', 1)
             ->where('view', '>=', 1)
             ->latest('view')
             ->take(5)
@@ -31,7 +32,7 @@ class HomeController extends Controller
             ->where('type', 'main')
             ->get();
 
-        $headline_secondary = Headline::with(['post.category', 'post.user_author'])
+        $headline_secondary = Headline::with(['post', 'post.category', 'post.user_author'])
             ->where('type', 'secondary')
             ->get();
 
@@ -42,10 +43,6 @@ class HomeController extends Controller
             ->take(5)
             ->get();
 
-        $categories = Category::with(['posts', 'posts.user_author'])
-            ->take(9)
-            ->get();
-
         // Berita Terbaru
         $berita_terbaru = Post::with(['category', 'user_author'])
             ->where('status', 1)
@@ -53,8 +50,7 @@ class HomeController extends Controller
             ->paginate(16);
 
         return view('guest.home', compact([
-            'trending', 'headline_main', 'headline_secondary', 'terbaru_category_all',
-            'categories', 'berita_terbaru'
+            'trending', 'headline_main', 'headline_secondary', 'terbaru_category_all', 'berita_terbaru'
         ]));
     }
 
@@ -65,22 +61,24 @@ class HomeController extends Controller
      */
     public function show(Category $category, Post $post)
     {
-        $post = Post::with('tags')->find($post->id);
+        $post = Post::with('category', 'user_author', 'user_editor', 'tags')->find($post->id);
 
-        $relatedPosts = Post::where('category_id', $category->id)
+        $relatedPosts = Post::with('category')
+            ->where('category_id', $category->id)
             ->where('id', '<>', $post->id)
             ->where('status', 1)
             ->orderByRaw('RAND()')
             ->take(8)
             ->get();
 
-        $populerPosts = Post::where('status', 1)
+        $populerPosts = Post::with('category')
+            ->where('status', 1)
             ->where('view', '>=', 1)
             ->latest('view')
             ->take(4)
             ->get();
 
-        $terbaruPosts = Post::with('user_author')
+        $terbaruPosts = Post::with('category', 'user_author')
             ->where('status', 1)
             ->latest()
             ->take(5)

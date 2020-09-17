@@ -249,7 +249,6 @@
                         </div>
                     </div>
 
-                    {{-- Category fashion --}}
                     @foreach ($categories as $category)
                     <div class="tab-pane fade show" id="nav-{{ $category->slug }}" role="tabpanel"
                         aria-labelledby="nav-{{ $category->slug }}-tab">

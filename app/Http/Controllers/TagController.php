@@ -47,20 +47,20 @@ class TagController extends Controller
      */
     public function show(Tag $tag)
     {
-        $tag = Tag::with('posts')
-            ->where('id', $tag->id)
+        $tag = Tag::where('id', $tag->id)
             ->get()
             ->first();
 
         $posts = $tag->posts()->latest()->paginate(10);
 
-        $populerPosts = Post::where('status', 1)
+        $populerPosts = Post::with('category')
+            ->where('status', 1)
             ->where('view', '>=', 1)
             ->latest('view')
             ->take(4)
             ->get();
 
-        $terbaruPosts = Post::with('user_author')
+        $terbaruPosts = Post::with(['category', 'user_author'])
             ->where('status', 1)
             ->latest()
             ->take(5)

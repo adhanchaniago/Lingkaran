@@ -22,8 +22,9 @@ Lingkaran - All Categories
             <!-- Category -->
             <div class="col-md-8">
                 <div class="detail-category mt-3">
-                    @foreach($categories as $category)
-                    <a href="{{ route('guest.category.show', $category) }}" class="mb-2 border-0" style="background-color:{{ $category->color }};">{{ $category->title }}</a>
+                    @foreach($cats as $cat)
+                    <a href="{{ route('guest.category.show', $cat) }}" class="mb-2 border-0"
+                        style="background-color:{{ $cat->color }};">{{ $cat->title }}</a>
                     @endforeach
                 </div>
 

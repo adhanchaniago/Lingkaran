@@ -8,7 +8,7 @@ Auth::routes();
 // CMS Routes
 Route::middleware(['auth', 'role:Administrator|Editor|Reporter'])->prefix('cms')->namespace('cms')->group(function () {
 
-    // Route for dashboard
+    // Route for admin dashboard
     Route::resource('/dashboard', 'AdminController')->only('index');
 
     // Route for all news features
@@ -22,7 +22,7 @@ Route::middleware(['auth', 'role:Administrator|Editor|Reporter'])->prefix('cms')
     Route::get('/profile/password/{id}', 'ProfileController@passwordEdit')->name('password.edit');
     Route::patch('/profile/password/{id}', 'ProfileController@passwordUpdate')->name('admin.password.update');
 
-    Route::group(['middleware' => ['role:Administrator|Editor']], function () {
+    Route::middleware('role:Administrator|Editor')->group(function () {
         Route::resource('/headline', 'HeadlineController')->except('show', 'edit', 'update');
 
         // Route for publish and revoke post
@@ -30,11 +30,18 @@ Route::middleware(['auth', 'role:Administrator|Editor|Reporter'])->prefix('cms')
         Route::patch('/revoke/{id}', 'PostController@revoke')->name('post.revoke');
     });
 
-    Route::group(['middleware' => ['role:Administrator']], function () {
+    Route::middleware('role:Administrator')->group(function () {
         // Route for all user features
         Route::resource('/user', 'UserController');
         Route::resource('/guestuser', 'GuestUserController')->except('create', 'edit', 'show');
     });
+});
+
+// Guestuser Dashboard
+Route::middleware(['auth', 'role:Writer'])->prefix('guestuser')->name('guestuser.')->group(function () {
+    Route::get('/dashboard', function () {
+        return view('guest.dashboard.index');
+    })->name('dashboard');
 });
 
 //Guest Routes

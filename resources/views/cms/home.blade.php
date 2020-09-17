@@ -19,7 +19,7 @@
     </div>
     <div class="col-md-2 col-sm-4  tile_stats_count">
         <span class="count_top"><i class="fa fa-bars"></i> Total Categories</span>
-        <div class="count">{{ $categories }}</div>
+        <div class="count">{{ $cats }}</div>
     </div>
     <div class="col-md-2 col-sm-4  tile_stats_count">
         <span class="count_top"><i class="fa fa-tags"></i> Total Tags</span>
@@ -76,23 +76,31 @@
                                     <tbody>
                                         <tr>
                                             <td>United States</td>
-                                            <td class="fs15 fw700 text-right">33%</td>
+                                            <td class="fs15 fw700 text-right">33</td>
                                         </tr>
                                         <tr>
                                             <td>France</td>
-                                            <td class="fs15 fw700 text-right">27%</td>
+                                            <td class="fs15 fw700 text-right">27</td>
                                         </tr>
                                         <tr>
                                             <td>Germany</td>
-                                            <td class="fs15 fw700 text-right">16%</td>
+                                            <td class="fs15 fw700 text-right">16</td>
                                         </tr>
                                         <tr>
                                             <td>Spain</td>
-                                            <td class="fs15 fw700 text-right">11%</td>
+                                            <td class="fs15 fw700 text-right">11</td>
                                         </tr>
                                         <tr>
-                                            <td>Britain</td>
-                                            <td class="fs15 fw700 text-right">10%</td>
+                                            <td>Canada</td>
+                                            <td class="fs15 fw700 text-right">100</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Indonesia</td>
+                                            <td class="fs15 fw700 text-right">10</td>
+                                        </tr>
+                                        <tr>
+                                            <td>UK</td>
+                                            <td class="fs15 fw700 text-right">10</td>
                                         </tr>
                                     </tbody>
                                 </table>

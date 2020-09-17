@@ -14,9 +14,9 @@
                     <a class="nav-link" href="{{ route('guest.home') }}">Home</a>
                 </li>
 
-                @foreach($navbar as $nav)
-                <li class="nav-item {{ (request()->segment(2) == $nav->slug) ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('guest.category.show', $nav) }}">{{ $nav->title }}</a>
+                @foreach($categories->slice(0,7) as $category)
+                <li class="nav-item {{ (request()->segment(2) == $category->slug) ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('guest.category.show', $category) }}">{{ $category->title }}</a>
                 </li>
                 @endforeach
             </ul>
@@ -40,15 +40,16 @@
             @endhasrole
             @hasrole('Writer')
             <div class="dropdown mt-2 mt-md-0 ml-2">
-                <button class="btn btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
+                <button class="btn btn-sm dropdown-toggle btn-user" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img src="{{ (!empty(auth()->user()->profiles->first()->image)) ? asset('images/profile/'.auth()->user()->profiles->first()->image) : asset('cms/images/user.png') }}"
-                        class="rounded-circle" style="width: 35px;height: 35px;">
+                        class="user-image rounded-circle">
                     <span class="ml-1">{{ auth()->user()->firstname }}</span>
                 </button>
 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#"><i class="fas fa-home"></i> Dashboard</a>
+                    <a class="dropdown-item" href="{{ route('guestuser.dashboard') }}"><i class="fas fa-home"></i>
+                        Dashboard</a>
                     <div class="dropdown-divider"></div>
                     <form id="logout-form" action="{{ route('logout') }}" method="post" style="display: none">
                         @csrf

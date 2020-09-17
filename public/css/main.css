@@ -121,7 +121,8 @@ a:hover {
     font-size: 12px;
 }
 
-.navbar .form-control:focus {
+.navbar .form-control:focus,
+.btn-user:focus {
     box-shadow: none;
 }
 
@@ -147,6 +148,11 @@ a:hover {
     width: 100%;
     max-height: 500px;
     overflow-y: scroll;
+}
+
+.navbar .user-image {
+    width: 35px;
+    height: 35px;
 }
 
 /* TRENDING TEXT TOP */

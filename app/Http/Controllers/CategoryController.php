@@ -15,22 +15,23 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $cats = Category::take(100)->get();
 
-        $populerPosts = Post::where('status', 1)
+        $populerPosts = Post::with('category')
+            ->where('status', 1)
             ->where('view', '>=', 1)
             ->latest('view')
             ->take(4)
             ->get();
 
-        $terbaruPosts = Post::with('user_author')
+        $terbaruPosts = Post::with(['category', 'user_author'])
             ->where('status', 1)
             ->latest()
             ->take(5)
             ->get();
 
         return view('guest.category.index', compact([
-            'categories', 'populerPosts', 'terbaruPosts'
+            'cats', 'populerPosts', 'terbaruPosts'
         ]));
     }
 
@@ -63,18 +64,19 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        $posts = Post::with(['category', 'tags'])
+        $posts = Post::with(['category', 'user_author', 'tags'])
             ->where('category_id', $category->id)
             ->where('status', 1)
             ->paginate(10);
 
-        $populerPosts = Post::where('status', 1)
+        $populerPosts = Post::with('category')
+            ->where('status', 1)
             ->where('view', '>=', 1)
             ->latest('view')
             ->take(4)
             ->get();
 
-        $terbaruPosts = Post::with('user_author')
+        $terbaruPosts = Post::with(['category', 'user_author'])
             ->where('status', 1)
             ->latest()
             ->take(5)

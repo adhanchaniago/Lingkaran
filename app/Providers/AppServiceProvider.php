@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer('*', function ($view) {
-            $view->with('navbar', Category::take(7)->get());
+            $view->with('categories', Category::with(['populerPosts', 'populerPosts.user_author'])->take(8)->get());
         });
     }
 }

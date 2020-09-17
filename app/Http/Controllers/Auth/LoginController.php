@@ -33,7 +33,7 @@ class LoginController extends Controller
         if ($user->hasRole('Administrator|Editor|Reporter')) {
             return redirect('/cms/dashboard');
         } else {
-            return redirect(RouteServiceProvider::HOME);
+            return redirect()->route('guestuser.dashboard');
         }
     }
 
