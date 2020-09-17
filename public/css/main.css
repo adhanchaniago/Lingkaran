@@ -294,6 +294,7 @@ a:hover {
 
 .berita-terkini .nav .nav-item.nav-link.active {
     color: var(--hijau);
+    background-color: transparent;
     border-bottom: 1px solid var(--hijau);
 }
 

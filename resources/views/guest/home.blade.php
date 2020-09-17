@@ -79,106 +79,54 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4 pl-md-0 pr-lg-4">
-                        @if(!empty($headline_secondary[0]))
+                    <div class="col-md-4">
                         <div class="headline-wrapper h-3"
-                            style="background-image: url({{ asset('images/post/'. $headline_secondary[0]->post->image) }});">
-                            <a href="{{ route('guest.post.show', [$headline_secondary[0]->post->category->slug, $headline_secondary[0]->post]) }}"
+                            style="background-image: url({{ asset('images/post/'. $headline_secondary->first()->post->image) }});">
+                            <a href="{{ route('guest.post.show', [$headline_secondary->first()->post->category->slug, $headline_secondary->first()->post]) }}"
                                 class="headline-link"></a>
                             <div class="headline-body d-flex flex-column justify-content-end align-items-start">
-                                <a href="{{ route('guest.category.show', $headline_secondary[0]->post->category->slug) }}"
+                                <a href="{{ route('guest.category.show', $headline_secondary->first()->post->category->slug) }}"
                                     class="headline-category px-2"
-                                    style="background-color: {{ $headline_secondary[0]->post->category->color }};">{{ $headline_secondary[0]->post->category->title }}</a>
+                                    style="background-color: {{ $headline_secondary->first()->post->category->color }};">{{ $headline_secondary->first()->post->category->title }}</a>
                                 <h3 class="headline-title-wrap mt-2 mb-1">
-                                    <a href="{{ route('guest.post.show', [$headline_secondary[0]->post->category->slug, $headline_secondary[0]->post]) }}"
-                                        class="headline-title">{{ $headline_secondary[0]->post->title }}</a>
+                                    <a href="{{ route('guest.post.show', [$headline_secondary->first()->post->category->slug, $headline_secondary->first()->post]) }}"
+                                        class="headline-title">{{ $headline_secondary->first()->post->title }}</a>
                                 </h3>
                                 <span class="headline-info">
                                     <span><i class="fas fa-user"></i>
-                                        {{ $headline_secondary[0]->post->user_author->firstname }}</span>
+                                        {{ $headline_secondary->first()->post->user_author->firstname }}</span>
                                     <span><i class="far fa-clock"></i>
-                                        {{ $headline_secondary[0]->post->created_at->diffForHumans() }}</span>
+                                        {{ $headline_secondary->first()->post->created_at->diffForHumans() }}</span>
                                 </span>
                             </div>
                         </div>
-                        @endif
                     </div>
                 </div>
                 <div class="row">
+                    @foreach ($headline_secondary->slice(1) as $i => $post)
                     <div class="col-md-4 mt-3">
-                        @if(!empty($headline_secondary[1]))
                         <div class="headline-wrapper h-2"
-                            style="background-image: url({{ asset('images/post/' . $headline_secondary[1]->post->image) }});">
-                            <a href="{{ route('guest.post.show', [$headline_secondary[1]->post->category->slug, $headline_secondary[1]->post]) }}"
+                            style="background-image: url({{ asset('images/post/' . $post->post->image) }});">
+                            <a href="{{ route('guest.post.show', [$post->post->category->slug, $post->post]) }}"
                                 class="headline-link"></a>
                             <div class="headline-body d-flex flex-column justify-content-end align-items-start">
-                                <a href="{{ route('guest.category.show', $headline_secondary[1]->post->category->slug) }}"
+                                <a href="{{ route('guest.category.show', $post->post->category->slug) }}"
                                     class="headline-category px-2"
-                                    style="background-color: {{ $headline_secondary[1]->post->category->color }};">{{ $headline_secondary[1]->post->category->title }}</a>
+                                    style="background-color: {{ $post->post->category->color }};">{{ $post->post->category->title }}</a>
                                 <h3 class="headline-title-wrap mt-2 mb-1">
-                                    <a href="{{ route('guest.post.show', [$headline_secondary[1]->post->category->slug, $headline_secondary[1]->post]) }}"
-                                        class="headline-title">{{ $headline_secondary[1]->post->title }}</a>
+                                    <a href="{{ route('guest.post.show', [$post->post->category->slug, $post->post]) }}"
+                                        class="headline-title">{{ $post->post->title }}</a>
                                 </h3>
                                 <span class="headline-info">
                                     <span><i class="fas fa-user"></i>
-                                        {{ $headline_secondary[1]->post->user_author->firstname }}</span>
+                                        {{ $post->post->user_author->firstname }}</span>
                                     <span><i class="far fa-clock"></i>
-                                        {{ $headline_secondary[1]->post->created_at->diffForHumans() }}</span>
+                                        {{ $post->post->created_at->diffForHumans() }}</span>
                                 </span>
                             </div>
                         </div>
-                        @endif
                     </div>
-
-                    <div class="col-md-4 mt-3 pl-md-0">
-                        @if(!empty($headline_secondary[2]))
-                        <div class="headline-wrapper h-2"
-                            style="background-image: url({{ asset('images/post/' . $headline_secondary[2]->post->image) }});">
-                            <a href="{{ route('guest.post.show', [$headline_secondary[2]->post->category->slug, $headline_secondary[2]->post]) }}"
-                                class="headline-link"></a>
-                            <div class="headline-body d-flex flex-column justify-content-end align-items-start">
-                                <a href="{{ route('guest.category.show', $headline_secondary[2]->post->category->slug) }}"
-                                    class="headline-category px-2"
-                                    style="background-color: {{ $headline_secondary[2]->post->category->color }};">{{ $headline_secondary[2]->post->category->title }}</a>
-                                <h3 class="headline-title-wrap mt-2 mb-1">
-                                    <a href="{{ route('guest.post.show', [$headline_secondary[2]->post->category->slug, $headline_secondary[2]->post]) }}"
-                                        class="headline-title">{{ $headline_secondary[2]->post->title }}</a>
-                                </h3>
-                                <span class="headline-info">
-                                    <span><i class="fas fa-user"></i>
-                                        {{ $headline_secondary[2]->post->user_author->firstname }}</span>
-                                    <span><i class="far fa-clock"></i>
-                                        {{ $headline_secondary[2]->post->created_at->diffForHumans() }}</span>
-                                </span>
-                            </div>
-                        </div>
-                        @endif
-                    </div>
-
-                    <div class="col-md-4 mt-3 pl-md-0 pr-lg-4">
-                        @if(!empty($headline_secondary[3]))
-                        <div class="headline-wrapper h-2"
-                            style="background-image: url({{ asset('images/post/' . $headline_secondary[3]->post->image) }});">
-                            <a href="{{ route('guest.post.show', [$headline_secondary[3]->post->category->slug, $headline_secondary[3]->post]) }}"
-                                class="headline-link"></a>
-                            <div class="headline-body d-flex flex-column justify-content-end align-items-start">
-                                <a href="{{ route('guest.category.show', $headline_secondary[3]->post->category->slug) }}"
-                                    class="headline-category px-2"
-                                    style="background-color: {{ $headline_secondary[3]->post->category->color }};">{{ $headline_secondary[3]->post->category->title }}</a>
-                                <h3 class="headline-title-wrap mt-2 mb-1">
-                                    <a href="{{ route('guest.post.show', [$headline_secondary[3]->post->category->slug, $headline_secondary[3]->post]) }}"
-                                        class="headline-title">{{ $headline_secondary[3]->post->title }}</a>
-                                </h3>
-                                <span class="headline-info">
-                                    <span><i class="fas fa-user"></i>
-                                        {{ $headline_secondary[3]->post->user_author->firstname }}</span>
-                                    <span><i class="far fa-clock"></i>
-                                        {{ $headline_secondary[3]->post->created_at->diffForHumans() }}</span>
-                                </span>
-                            </div>
-                        </div>
-                        @endif
-                    </div>
+                    @endforeach
                 </div>
             </div>
             <div class="col-lg-2 d-none d-lg-block pl-0 bg-secondary">
@@ -216,7 +164,7 @@
                             <div class="col-md-6 mt-3">
                                 <span class="terkini-category">Berita Populer</span>
                                 <div class="terkini-body">
-                                    @foreach($populer_category_all as $post)
+                                    @foreach($trending as $post)
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="card mt-3 rounded-0">

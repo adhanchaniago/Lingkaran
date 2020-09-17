@@ -36,13 +36,6 @@ class HomeController extends Controller
             ->get();
 
         // Berita Terkini
-        $populer_category_all = Post::with(['category', 'user_author'])
-            ->where('status', 1)
-            ->where('view', '>=', 1)
-            ->latest('view')
-            ->take(5)
-            ->get();
-
         $terbaru_category_all = Post::with(['category', 'user_author'])
             ->where('status', 1)
             ->latest()
@@ -60,7 +53,7 @@ class HomeController extends Controller
             ->paginate(16);
 
         return view('guest.home', compact([
-            'trending', 'headline_main', 'headline_secondary', 'populer_category_all', 'terbaru_category_all',
+            'trending', 'headline_main', 'headline_secondary', 'terbaru_category_all',
             'categories', 'berita_terbaru'
         ]));
     }
