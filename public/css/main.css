@@ -721,6 +721,41 @@ footer a:hover {
     color: #fff;
 }
 
+/* Guest User Dashboard */
+.guest-dashboard .dashboard {
+    min-height: 80vh;
+}
+
+.guest-dashboard .dashboard .card-header {
+    background-color: #fff !important;
+    font-family: Viga;
+    font-size: 18px;
+    border-bottom: 0;
+}
+
+.guest-dashboard .dashboard .card-header::before {
+    content: '';
+    border-left: 2px solid var(--hijau);
+    margin-right: 5px;
+}
+
+/* Nav */
+.guest-dashboard .dashboard .dashboard-nav {
+    border-right: 1px solid var(--abu);
+    /* padding-right: 20px; */
+}
+
+.guest-dashboard .dashboard .dashboard-nav .nav-link {
+    color: var(--hitam);
+    font-family: Barlow-Reguler;
+}
+
+.guest-dashboard .dashboard .dashboard-nav .nav-link.active {
+    background-color: var(--hijau);
+    color: #fff;
+    clip-path: polygon(0% 0%, 75% 0%, 80% 50%, 75% 100%, 0% 100%);
+}
+
 /* Tombol Back to Top */
 .btn-back-top {
     position: fixed;

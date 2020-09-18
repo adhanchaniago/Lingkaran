@@ -38,10 +38,10 @@ Route::middleware(['auth', 'role:Administrator|Editor|Reporter'])->prefix('cms')
 });
 
 // Guestuser Dashboard
-Route::middleware(['auth', 'role:Writer'])->prefix('guestuser')->name('guestuser.')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('guest.dashboard.index');
-    })->name('dashboard');
+Route::middleware(['auth', 'role:Writer'])->prefix('guestuser')->name('guestuser.')->namespace('GuestUser')->group(function () {
+    Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+    Route::get('/dashboard/post', 'PostController@index')->name('post');
+    Route::get('/dashboard/profile', 'ProfileController@index')->name('profile');
 });
 
 //Guest Routes
