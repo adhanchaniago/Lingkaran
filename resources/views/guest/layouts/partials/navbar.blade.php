@@ -50,6 +50,8 @@
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="{{ route('guestuser.dashboard') }}"><i class="fas fa-home"></i>
                         Dashboard</a>
+                    <a class="dropdown-item" href="#"><i class="fas fa-key"></i>
+                        Change Password</a>
                     <div class="dropdown-divider"></div>
                     <form id="logout-form" action="{{ route('logout') }}" method="post" style="display: none">
                         @csrf

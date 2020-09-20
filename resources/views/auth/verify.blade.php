@@ -1,5 +1,9 @@
 @extends('cms.layouts.app')
 
+@section('title')
+{{ config('app.name', 'Lingkaran') }}
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">

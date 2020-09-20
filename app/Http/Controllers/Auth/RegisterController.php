@@ -55,6 +55,8 @@ class RegisterController extends Controller
             'lastname' => ['required', 'string', 'max:15'],
             'email' => ['required', 'string', 'email', 'max:50', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'birth' => ['required', 'string'],
+            'phone' => ['required', 'regex:/(0)[0-9]{9}/'],
         ]);
     }
 
@@ -72,6 +74,11 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'status' => 1
+        ]);
+
+        $user->profiles()->create([
+            'birth' => $data['birth'],
+            'phone' => $data['phone']
         ]);
 
         return $user->assignRole('Writer');

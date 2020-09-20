@@ -185,7 +185,7 @@
     </div>
     <!-- /modals -->
 
-    <!-- Publish Modal -->
+    <!-- Revoke Modal -->
     <div class="modal fade" id="modal-revoke" data-backdrop="static" tabindex="-1" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">

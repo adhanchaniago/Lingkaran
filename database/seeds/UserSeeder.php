@@ -80,7 +80,7 @@ class UserSeeder extends Seeder
             'status' => 1
         ]);
         $user->profiles()->create([
-            'image' => '081279415586-4.jpg',
+            'image' => '087819216658-4.jpg',
             'birth' => '1992-09-01',
             'gender' => 'Female',
             'religion' => 'Islam',

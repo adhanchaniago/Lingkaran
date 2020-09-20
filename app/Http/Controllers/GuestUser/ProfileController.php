@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers\GuestUser;
 
-use App\Http\Controllers\Controller;
+use Image;
+use App\Models\User;
+use App\Models\Profile;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -12,8 +18,74 @@ class ProfileController extends Controller
         $this->middleware('role:Writer');
     }
 
-    public function index()
+    public function show(Request $request)
     {
-        return view('guest.dashboard.profiles.index');
+        $profile = Profile::with('user')
+            ->where('user_id', decrypt($request->id))
+            ->get()
+            ->first();
+
+        return view('guest.dashboard.profiles.show', compact('profile'));
+    }
+
+    public function update(Request $request)
+    {
+        $this->validate($request, [
+            'firstname' => 'required|string',
+            'lastname' => 'required|string',
+            'email' => 'required|string|email|max:50',
+            'password' => 'required|string|min:8|confirmed',
+            'birth' => 'required',
+            'gender' => 'required',
+            'religion' => 'required|string',
+            'status' => 'required|string',
+            'address' => 'required|string',
+            'phone' => 'required|regex:/(0)[0-9]{9}/',
+            'about' => 'required|string'
+        ]);
+        
+        $userId = decrypt($request->id);
+        $user = User::findOrFail($userId);
+        $user->update([
+            'firstname' => Str::title($request->firstname),
+            'lastname' => Str::title($request->lastname),
+            'email' => $request->email
+        ]);
+
+        $profile = Profile::where('user_id', $user->id);
+        $profile->update([
+            'birth' => $request->birth,
+            'gender' => $request->gender,
+            'religion' => $request->religion,
+            'status' => $request->status,
+            'address' => $request->address,
+            'phone' => $request->phone,
+            'about' => $request->about
+        ]);
+        
+        return redirect()->route('guestuser.profile', encrypt($user->id))->withSuccess('Data has been updated');
+    }
+
+    public function changeImage(Request $request)
+    {
+        $this->validate(request(), [
+            'image' => 'required|image'
+        ]);
+        
+        $id = decrypt($request->id);
+        $profile = Profile::findOrFail($id);
+        $image = $request->file('image');
+        $filename = $profile->phone.'-'.$profile->id . '.' . $image->getClientOriginalExtension();
+        $location = public_path('images/profile/'. $filename);
+        Image::make($image)->fit(200, 200)->save($location);
+        $oldFilename = 'images/profile/'.$profile->image;
+
+        $profile->update([
+                'image' => $filename
+            ]);
+
+        Storage::delete($oldFilename);
+
+        return redirect()->route('guestuser.profile', encrypt($profile->id))->withSuccess('Image has been changed');
     }
 }

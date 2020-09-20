@@ -4,5 +4,5 @@
     <a class="nav-link {{ (request()->segment(3) == 'post') ? 'active' : '' }}"
         href="{{ route('guestuser.post') }}">Posts</a>
     <a class="nav-link {{ (request()->segment(3) == 'profile') ? 'active' : '' }}"
-        href="{{ route('guestuser.profile') }}">Profile</a>
+        href="{{ route('guestuser.profile', encrypt(auth()->user()->id)) }}">Profile</a>
 </nav>

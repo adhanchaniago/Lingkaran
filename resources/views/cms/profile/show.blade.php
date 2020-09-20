@@ -22,7 +22,7 @@
                         <!-- Current avatar -->
                         <img class="img-responsive avatar-view img-fluid rounded-lg"
                             src="{{ (!empty($profile->image)) ? asset('images/profile/'. $profile->image) : asset('cms/images/user.png') }}"
-                            alt="Avatar" title="">
+                            alt="Avatar">
                     </div>
                 </div>
                 <form action="{{ route('profile.image', $profile) }}" method="POST" enctype="multipart/form-data"

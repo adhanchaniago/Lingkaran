@@ -1,5 +1,9 @@
 @extends('guest.layouts.app')
 
+@section('title')
+{{ config('app.name', 'Lingkaran') }}
+@endsection
+
 @section('content')
 <section class="login-section">
     <div class="container">

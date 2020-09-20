@@ -1,4 +1,5 @@
 @extends('guest.layouts.dashboard')
+
 @section('page')
 <nav>
     <div class="nav nav-fill nav-tabs" id="nav-tab" role="tablist">
@@ -18,8 +19,17 @@
 </nav>
 <div class="tab-content" id="nav-tabContent">
     <div class="tab-pane fade show active" id="nav-myposts" role="tabpanel" aria-labelledby="nav-myposts-tab">
-        Disini tab post
 
+        <div class="row">
+            <div class="col-md-12 d-flex justify-content-end mt-3">
+                <button class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Post</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                Disini tab post
+            </div>
+        </div>
 
         <nav aria-label="...">
             <ul class="pagination pagination-sm mt-5">

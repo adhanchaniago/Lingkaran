@@ -41,7 +41,9 @@ Route::middleware(['auth', 'role:Administrator|Editor|Reporter'])->prefix('cms')
 Route::middleware(['auth', 'role:Writer'])->prefix('guestuser')->name('guestuser.')->namespace('GuestUser')->group(function () {
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
     Route::get('/dashboard/post', 'PostController@index')->name('post');
-    Route::get('/dashboard/profile', 'ProfileController@index')->name('profile');
+    Route::get('/dashboard/profile/{id}', 'ProfileController@show')->name('profile');
+    Route::patch('/dashboard/profile/{id}/update', 'ProfileController@update')->name('profile.update');
+    Route::patch('/dashboard/profile/{id}', 'ProfileController@changeImage')->name('profile.changeImage');
 });
 
 //Guest Routes

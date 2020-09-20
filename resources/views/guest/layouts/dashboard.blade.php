@@ -1,5 +1,9 @@
 @extends('guest.layouts.app')
 
+@section('title')
+{{ config('app.name', 'Lingkaran') }}
+@endsection
+
 @section('content')
 <section class="guest-dashboard">
     <div class="container my-3">
@@ -8,10 +12,10 @@
                 <div class="card-header">Dashboard</div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-2 pr-0">
                             @include('guest.layouts.partials.nav')
                         </div>
-                        <div class="dashboard-page col-md-9 mt-3 mt-md-0">
+                        <div class="dashboard-page col-md-10 mt-3 mt-md-0">
                             @section('page')
                             @show
                         </div>
@@ -21,4 +25,14 @@
         </div>
     </div>
 </section>
+@endsection
+
+@section('b-script')
+<script>
+    window.setTimeout(function() {
+        $(".alert").fadeTo(500, 0).slideUp(500, function() {
+            $(this).remove();
+        });
+    }, 2000);
+</script>
 @endsection
