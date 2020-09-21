@@ -42,7 +42,7 @@ class PostSeeder extends Seeder
                 Aenean volutpat tristique eleifend. Cras vitae nulla eu ex mattis dignissim. Nunc tempor fermentum porttitor.
                 ',
             'author' => 1,
-            'status' => 1,
+            'is_published' => 1,
             
         ]);
 
@@ -76,7 +76,7 @@ class PostSeeder extends Seeder
                 Aenean volutpat tristique eleifend. Cras vitae nulla eu ex mattis dignissim. Nunc tempor fermentum porttitor.
                 ',
             'author' => 1,
-            'status' => 1,
+            'is_published' => 1,
             
         ]);
 
@@ -110,7 +110,7 @@ class PostSeeder extends Seeder
                 Aenean volutpat tristique eleifend. Cras vitae nulla eu ex mattis dignissim. Nunc tempor fermentum porttitor.
                 ',
             'author' => 1,
-            'status' => 1,
+            'is_published' => 1,
             
         ]);
 
@@ -144,7 +144,7 @@ class PostSeeder extends Seeder
                 Aenean volutpat tristique eleifend. Cras vitae nulla eu ex mattis dignissim. Nunc tempor fermentum porttitor.
                 ',
             'author' => 1,
-            'status' => 1,
+            'is_published' => 1,
             
         ]);
 
@@ -178,7 +178,7 @@ class PostSeeder extends Seeder
                 Aenean volutpat tristique eleifend. Cras vitae nulla eu ex mattis dignissim. Nunc tempor fermentum porttitor.
                 ',
             'author' => 1,
-            'status' => 1,
+            'is_published' => 1,
             
         ]);
 
@@ -212,7 +212,7 @@ class PostSeeder extends Seeder
                 Aenean volutpat tristique eleifend. Cras vitae nulla eu ex mattis dignissim. Nunc tempor fermentum porttitor.
                 ',
             'author' => 1,
-            'status' => 1,
+            'is_published' => 1,
             
         ]);
 
@@ -245,8 +245,8 @@ class PostSeeder extends Seeder
                 vehicula sagittis ut in ante. Sed ut elementum metus, fringilla bibendum massa. Mauris fringilla sagittis faucibus.
                 Aenean volutpat tristique eleifend. Cras vitae nulla eu ex mattis dignissim. Nunc tempor fermentum porttitor.
                 ',
-            'author' => 1,
-            'status' => 1,
+            'author' => 4,
+            'is_published' => 0,
             
         ]);
 
@@ -279,8 +279,8 @@ class PostSeeder extends Seeder
                 vehicula sagittis ut in ante. Sed ut elementum metus, fringilla bibendum massa. Mauris fringilla sagittis faucibus.
                 Aenean volutpat tristique eleifend. Cras vitae nulla eu ex mattis dignissim. Nunc tempor fermentum porttitor.
                 ',
-            'author' => 1,
-            'status' => 1,
+            'author' => 3,
+            'is_published' => 1,
             
         ]);
 
@@ -314,7 +314,7 @@ class PostSeeder extends Seeder
                 Aenean volutpat tristique eleifend. Cras vitae nulla eu ex mattis dignissim. Nunc tempor fermentum porttitor.
                 ',
             'author' => 1,
-            'status' => 1,
+            'is_published' => 1,
             
         ]);
 
@@ -347,8 +347,8 @@ class PostSeeder extends Seeder
                 vehicula sagittis ut in ante. Sed ut elementum metus, fringilla bibendum massa. Mauris fringilla sagittis faucibus.
                 Aenean volutpat tristique eleifend. Cras vitae nulla eu ex mattis dignissim. Nunc tempor fermentum porttitor.
                 ',
-            'author' => 1,
-            'status' => 1,
+            'author' => 4,
+            'is_published' => 1,
             
         ]);
 
@@ -382,7 +382,7 @@ class PostSeeder extends Seeder
                 Aenean volutpat tristique eleifend. Cras vitae nulla eu ex mattis dignissim. Nunc tempor fermentum porttitor.
                 ',
             'author' => 1,
-            'status' => 1,
+            'is_published' => 1,
             
         ]);
 
@@ -415,8 +415,8 @@ class PostSeeder extends Seeder
                 vehicula sagittis ut in ante. Sed ut elementum metus, fringilla bibendum massa. Mauris fringilla sagittis faucibus.
                 Aenean volutpat tristique eleifend. Cras vitae nulla eu ex mattis dignissim. Nunc tempor fermentum porttitor.
                 ',
-            'author' => 1,
-            'status' => 1,
+            'author' => 4,
+            'is_rejected' => 1,
             
         ]);
 
@@ -450,7 +450,7 @@ class PostSeeder extends Seeder
                 Aenean volutpat tristique eleifend. Cras vitae nulla eu ex mattis dignissim. Nunc tempor fermentum porttitor.
                 ',
             'author' => 2,
-            'status' => 1,
+            'is_published' => 1,
             
         ]);
 
@@ -484,7 +484,7 @@ class PostSeeder extends Seeder
                 Aenean volutpat tristique eleifend. Cras vitae nulla eu ex mattis dignissim. Nunc tempor fermentum porttitor.
                 ',
             'author' => 1,
-            'status' => 1,
+            'is_published' => 1,
             
         ]);
 
@@ -518,7 +518,7 @@ class PostSeeder extends Seeder
                 Aenean volutpat tristique eleifend. Cras vitae nulla eu ex mattis dignissim. Nunc tempor fermentum porttitor.
                 ',
             'author' => 1,
-            'status' => 1,
+            'is_published' => 1,
             
         ]);
 
@@ -552,7 +552,7 @@ class PostSeeder extends Seeder
                 Aenean volutpat tristique eleifend. Cras vitae nulla eu ex mattis dignissim. Nunc tempor fermentum porttitor.
                 ',
             'author' => 2,
-            'status' => 1,
+            'is_published' => 1,
             
         ]);
 
@@ -586,7 +586,7 @@ class PostSeeder extends Seeder
                 Aenean volutpat tristique eleifend. Cras vitae nulla eu ex mattis dignissim. Nunc tempor fermentum porttitor.
                 ',
             'author' => 2,
-            'status' => 1,
+            'is_published' => 1,
             
         ]);
 
@@ -620,7 +620,7 @@ class PostSeeder extends Seeder
                 Aenean volutpat tristique eleifend. Cras vitae nulla eu ex mattis dignissim. Nunc tempor fermentum porttitor.
                 ',
             'author' => 2,
-            'status' => 1,
+            'is_published' => 1,
             
         ]);
     }

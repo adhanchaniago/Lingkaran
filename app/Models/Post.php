@@ -13,10 +13,7 @@ class Post extends Model implements Viewable
 
     protected $removeViewsOnDelete = true;
 
-    // Menambah kolom yang tidak bisa di input ke database
-    protected $guarded = [
-        'id'
-    ];
+    protected $guarded = ['id'];
 
     // Membuat relasi "one to many inverse" antar table posts dan categories
     public function category()

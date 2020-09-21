@@ -73,7 +73,7 @@ class RegisterController extends Controller
             'lastname' => Str::Title($data['lastname']),
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'status' => 1
+            'is_active' => true
         ]);
 
         $user->profiles()->create([

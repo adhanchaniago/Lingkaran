@@ -26,7 +26,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ $user->firstname }} {{ $user->lastname }}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">{{ $user->roles->first()->name }} |
-                            @if ($user->status == 1)
+                            @if ($user->is_active == true)
                             <span class="text-success">Active</span>
                             @else
                             <span class="text-danger">Suspended</span>
@@ -42,7 +42,7 @@
                                     Profile</i></a>
                             <a href="#" class="card-link text-primary" id="btn-status" data-toggle="modal"
                                 data-target="#modal-status" data-id="{{ $user->id }}" data-name="{{ $user->firstname }}"
-                                data-status="{{ $user->status }}" data-role="{{ $user->roles->first()->name }}"><i
+                                data-status="{{ $user->is_active }}" data-role="{{ $user->roles->first()->name }}"><i
                                     class="fa fa-ban"> Status</i></a>
                             @if (empty($user->posts->first()))
                             <a href="#" class="card-link text-danger" data-toggle="modal" data-target="#modal-delete"

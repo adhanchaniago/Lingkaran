@@ -18,8 +18,7 @@ class UserSeeder extends Seeder
             'firstname' => 'Amanda',
             'lastname' => 'Nasution',
             'email' => 'superadmin@email.com',
-            'password' => Hash::make('12345678'),
-            'status' => 1
+            'password' => Hash::make('12345678')
         ]);
         $user->profiles()->create([
             'image' => '087819216658-1.jpg',
@@ -38,8 +37,7 @@ class UserSeeder extends Seeder
             'firstname' => 'Riyan',
             'lastname' => 'Amanda',
             'email' => 'ryant.n92@gmail.com',
-            'password' => Hash::make('12345678'),
-            'status' => 1
+            'password' => Hash::make('12345678')
         ]);
         $user->profiles()->create([
             'image' => '087819216658-2.jpg',
@@ -57,8 +55,7 @@ class UserSeeder extends Seeder
             'firstname' => 'Vio',
             'lastname' => 'Amanda',
             'email' => 'vio.m@gmail.com',
-            'password' => Hash::make('12345678'),
-            'status' => 1
+            'password' => Hash::make('12345678')
         ]);
         $user->profiles()->create([
             'image' => '087819216658-3.jpg',
@@ -76,8 +73,7 @@ class UserSeeder extends Seeder
             'firstname' => 'Nanda',
             'lastname' => 'Fitria',
             'email' => 'nanda@email.com',
-            'password' => Hash::make('12345678'),
-            'status' => 1
+            'password' => Hash::make('12345678')
         ]);
         $user->profiles()->create([
             'image' => '087819216658-4.jpg',

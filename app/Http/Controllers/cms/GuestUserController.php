@@ -18,7 +18,6 @@ class GuestUserController extends Controller
     public function index()
     {
         $users = User::with(['profiles', 'roles', 'permissions', 'posts'])
-                        ->where('id', '<>', auth()->id())
                         ->whereHas("roles", function ($query) {
                             $query->where('name', 'Writer');
                         })
@@ -53,10 +52,10 @@ class GuestUserController extends Controller
         $this->validate(request(), [
             'status' => 'required'
         ]);
-
+        
         $user = User::findOrFail($request->id);
         $user->update([
-            'status' => $request->status
+            'is_active' => $request->status
         ]);
         return redirect()->route('guestuser.index');
     }

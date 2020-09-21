@@ -126,7 +126,7 @@
                                         </blockquote>
                                         <br />
                                         <p class="url">
-                                            @if ($post->status == 1)
+                                            @if ($post->is_published == true)
                                             Status : <span class="badge badge-success">Publish</span>
                                             @else
                                             Status : <span class="badge badge-warning">unpublish</span>

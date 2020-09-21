@@ -128,7 +128,7 @@ class UserController extends Controller
 
         $user = User::findOrFail($request->id);
         $user->update([
-            'status' => $request->status
+            'is_active' => $request->status
         ]);
         $user->removeRole($user->roles->first()->name);
         $user->assignRole($request->role);

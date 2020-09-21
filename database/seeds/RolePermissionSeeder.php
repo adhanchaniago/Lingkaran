@@ -59,6 +59,6 @@ class RolePermissionSeeder extends Seeder
 
         $role = Role::create([
             'name' => 'Writer'
-        ])->syncPermissions(['add post', 'edit post']);
+        ])->syncPermissions(['add post', 'edit post', 'delete post']);
     }
 }

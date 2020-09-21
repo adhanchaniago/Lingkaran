@@ -43,7 +43,7 @@ class HeadlineController extends Controller
         $headlines = Headline::get('post_id');
 
         $posts = Post::with(['category', 'user_author'])
-                    ->where('status', 1)
+                    ->where('is_published', true)
                     ->whereNotIn('id', $headlines)
                     ->latest()
                     ->get();

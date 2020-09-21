@@ -18,14 +18,14 @@ class CategoryController extends Controller
         $cats = Category::take(100)->get();
 
         $populerPosts = Post::with('category')
-            ->where('status', 1)
+            ->where('is_published', true)
             ->where('view', '>=', 1)
             ->latest('view')
             ->take(4)
             ->get();
 
         $terbaruPosts = Post::with(['category', 'user_author'])
-            ->where('status', 1)
+            ->where('is_published', true)
             ->latest()
             ->take(5)
             ->get();
@@ -66,18 +66,18 @@ class CategoryController extends Controller
     {
         $posts = Post::with(['category', 'user_author', 'tags'])
             ->where('category_id', $category->id)
-            ->where('status', 1)
+            ->where('is_published', true)
             ->paginate(10);
 
         $populerPosts = Post::with('category')
-            ->where('status', 1)
+            ->where('is_published', true)
             ->where('view', '>=', 1)
             ->latest('view')
             ->take(4)
             ->get();
 
         $terbaruPosts = Post::with(['category', 'user_author'])
-            ->where('status', 1)
+            ->where('is_published', true)
             ->latest()
             ->take(5)
             ->get();

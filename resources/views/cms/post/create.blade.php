@@ -16,13 +16,17 @@
                 <div class="clearfix"></div>
             </div>
             <div class="x_content mt-3">
-                <form data-parsley-validate class="form-horizontal form-label-left" action="{{ route('post.store') }}" method="POST" enctype="multipart/form-data">
+                <form data-parsley-validate class="form-horizontal form-label-left" action="{{ route('post.store') }}"
+                    method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="item form-group">
-                        <label class="col-form-label col-md-2 col-sm-2 label-align" for="title">Title <span class="required">*</span>
+                        <label class="col-form-label col-md-2 col-sm-2 label-align" for="title">Title <span
+                                class="required">*</span>
                         </label>
                         <div class="col-md-9 col-sm-9 ">
-                            <input type="text" id="title" name="title" class="form-control form-control-sm @error('title') is-invalid @enderror" value="{{ old('title') }}">
+                            <input type="text" id="title" name="title"
+                                class="form-control form-control-sm @error('title') is-invalid @enderror"
+                                value="{{ old('title') }}">
                             @error('title')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -31,9 +35,11 @@
                         </div>
                     </div>
                     <div class="item form-group">
-                        <label class="col-form-label col-md-2 col-sm-2 label-align" for="category">Category <span class="required">*</span></label>
+                        <label class="col-form-label col-md-2 col-sm-2 label-align" for="category">Category <span
+                                class="required">*</span></label>
                         <div class="col-md-9 col-sm-9 ">
-                            <select id="category" name="category" class="form-control form-control-sm @error('category') is-invalid @enderror">
+                            <select id="category" name="category"
+                                class="form-control form-control-sm @error('category') is-invalid @enderror">
                                 <option></option>
                                 @foreach($categories as $category)
                                 <option value="{{ $category->id }}" @if (old('category')==$category->id)
@@ -51,7 +57,9 @@
                     <div class="item form-group">
                         <label class="col-form-label col-md-2 col-sm-2 label-align">Image</label>
                         <div class="col-md-9 col-sm-9 d-flex align-items-center">
-                            <input type="file" name="image" class="form-control-file col-md-9 col-sm-9 @error('image') is-invalid @enderror" required>
+                            <input type="file" name="image"
+                                class="form-control-file col-md-9 col-sm-9 @error('image') is-invalid @enderror"
+                                required>
                             @error('image')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -62,9 +70,12 @@
                     <div class="item form-group">
                         <label for="tag" class="col-form-label col-md-2 col-sm-2 label-align">Tag</label>
                         <div class="col-md-9 col-sm-9 ">
-                            <select name="tags[]" class="form-control form-control-sm @error('tag') is-invalid @enderror select-tag" multiple>
+                            <select name="tags[]"
+                                class="form-control form-control-sm @error('tag') is-invalid @enderror select-tag"
+                                multiple>
                                 @foreach($tags as $tag)
-                                <option value="{{ $tag->id }}">{{ $tag->title }}</option>
+                                <option value="{{ $tag->id }}">
+                                    {{ $tag->title }}</option>
                                 @endforeach
                             </select>
                             @error('tag')
@@ -75,10 +86,12 @@
                         </div>
                     </div>
                     <div class="item form-group">
-                        <label class="col-form-label col-md-2 col-sm-2 label-align" for="content">Content <span class="required">*</span>
+                        <label class="col-form-label col-md-2 col-sm-2 label-align" for="content">Content <span
+                                class="required">*</span>
                         </label>
                         <div class="col-md-9 col-sm-9 ">
-                            <textarea id="content" name="content" class="form-control @error('content') is-invalid @enderror">{{ old('content') }}</textarea>
+                            <textarea id="content" name="content"
+                                class="form-control @error('content') is-invalid @enderror">{{ old('content') }}</textarea>
                             @error('content')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -92,7 +105,8 @@
                             <div class="pull-right">
                                 <button type="submit" class="btn btn-primary btn-sm">Create</button>
                                 <button class="btn btn-warning btn-sm" type="reset">Reset</button>
-                                <button type="button" onclick="location.href='{{ route('post.index') }}'" class="btn btn-secondary btn-sm">Cancel</button>
+                                <button type="button" onclick="location.href='{{ route('post.index') }}'"
+                                    class="btn btn-secondary btn-sm">Cancel</button>
                             </div>
                         </div>
                     </div>

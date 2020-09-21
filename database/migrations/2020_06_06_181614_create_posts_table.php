@@ -22,8 +22,9 @@ class CreatePostsTable extends Migration
             $table->text('content');
             $table->foreignId('author')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('editor')->nullable()->constrained('users')->cascadeOnUpdate();
-            $table->boolean('status');
-            $table->integer('view');
+            $table->boolean('is_published')->unsigned()->default(0);
+            $table->boolean('is_rejected')->unsigned()->default(0);
+            $table->integer('view')->unsigned();
             $table->timestamps();
         });
     }

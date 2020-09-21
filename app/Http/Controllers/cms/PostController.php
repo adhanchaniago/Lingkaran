@@ -69,12 +69,8 @@ class PostController extends Controller
             'title' => Str::title(request('title')),
             'slug' => Str::slug(request('title')),
             'category_id' => request('category'),
-            'image' => null,
             'content' => request('content'),
-            'author' => auth()->id(),
-            'editor' => null,
-            'status' => 0,
-            'view' => 0
+            'author' => auth()->id()
         ]);
 
         $post->tags()->sync($request->tags, false);
@@ -177,7 +173,7 @@ class PostController extends Controller
             
         $post = Post::findOrFail($id);
         $post->update([
-            'status' => 1
+            'is_published' => true
         ]);
         
         return redirect(route('post.index'))->withSuccess('Post has been published');
@@ -197,7 +193,7 @@ class PostController extends Controller
 
         $post = Post::findOrFail($id);
         $post->update([
-            'status' => 0
+            'is_published' => false
         ]);
 
         $headline = Headline::where('post_id', $id)->get();

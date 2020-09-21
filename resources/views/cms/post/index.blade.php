@@ -64,11 +64,17 @@
                                         @else
                                         {{ $post->user_editor->firstname }}
                                         @endif</td>
-                                    <td>@if ($post->status == 1)
-                                        <span class="badge badge-success">published</span>
+                                    <td>
+                                        @if ($post->is_rejected == true)
+                                        <span class="badge badge-danger">Rejected</span>
                                         @else
-                                        <span class="badge badge-warning">unpublish</span>
-                                        @endif</td>
+                                        @if ($post->is_published == true)
+                                        <span class="badge badge-success">Published</span>
+                                        @else
+                                        <span class="badge badge-warning">Unpublish</span>
+                                        @endif
+                                        @endif
+                                    </td>
                                     <td>
                                         <span
                                             class="badge badge-dark">{{ ($post->view >= 1000) ? floor($post->view / 1000) . 'k' : $post->view }}</span>
@@ -89,7 +95,8 @@
                                         </button>
                                         @endcan
 
-                                        @if( $post->status == 0 )
+                                        @if ($post->is_rejected == false)
+                                        @if( $post->is_published == false )
                                         @can('publish post')
                                         <button class="btn btn-success btn-sm" data-toggle="modal"
                                             data-target="#modal-publish" data-id="{{ $post->id }}"
@@ -105,6 +112,7 @@
                                             <i class="fa fa-undo"></i>
                                         </button>
                                         @endcan
+                                        @endif
                                         @endif
                                     </td>
                                 </tr>

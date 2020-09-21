@@ -5,8 +5,7 @@
         <div class="x_title">
             <h2>User Profile <small>All about this user and its information</small></h2>
             <div class="pull-right">
-                <button onclick="location.href='{{ url()->previous() }}'"
-                    class="btn btn-secondary btn-sm">Back</button>
+                <button onclick="location.href='{{ url()->previous() }}'" class="btn btn-secondary btn-sm">Back</button>
             </div>
             <div class="clearfix"></div>
         </div>
@@ -59,7 +58,8 @@
                     <div class="col-10 pl-0">{{ $user->profiles->first()->phone }}</div>
                 </div>
                 <div class="row mt-1">
-                    <div class="col-1 d-flex justify-content-center pt-1"><i class="fa fa-envelope user-profile-icon"></i>
+                    <div class="col-1 d-flex justify-content-center pt-1"><i
+                            class="fa fa-envelope user-profile-icon"></i>
                     </div>
                     <div class="col-10 pl-0">{{ $user->email }}</div>
                 </div>
@@ -92,15 +92,21 @@
                                         <p class="month">{{ $post->created_at->format('M') }}</p>
                                     </div>
                                     <div class="message_wrapper">
-                                        <a href="{{ route('guest.post.show', [$post->category->slug, $post]) }}"><h4 class="heading">{{ $post->title }}</h4></a>
+                                        <a href="{{ route('guest.post.show', [$post->category->slug, $post]) }}">
+                                            <h4 class="heading">{{ $post->title }}</h4>
+                                        </a>
                                         <blockquote class="message">{{ Str::limit($post->content, 147, '...') }}
                                         </blockquote>
                                         <br />
                                         <p class="url">
-                                            @if ($post->status == 1)
+                                            @if ($post->is_rejected == true)
+                                            Status : <span class="badge badge-danger">Rejected</span>
+                                            @else
+                                            @if ($post->is_published == true)
                                             Status : <span class="badge badge-success">Publish</span>
                                             @else
                                             Status : <span class="badge badge-warning">unpublish</span>
+                                            @endif
                                             @endif
                                         </p>
                                     </div>

@@ -39,8 +39,18 @@ Route::middleware(['auth', 'role:Administrator|Editor|Reporter'])->prefix('cms')
 
 // Guestuser Dashboard
 Route::middleware(['auth', 'role:Writer'])->prefix('guestuser')->name('guestuser.')->namespace('GuestUser')->group(function () {
+    // Guestuser Dashboard
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+
+    // Guestuser Post
+    Route::get('/dashboard/post/preview/{slug}', 'PostController@preview')->name('post.preview');
     Route::get('/dashboard/post', 'PostController@index')->name('post');
+    Route::get('/dashboard/post/unpublished', 'PostController@getUnpublished')->name('post.getUnpublished');
+    Route::get('/dashboard/post/Rejected', 'PostController@getRejected')->name('post.getRejected');
+    Route::get('/dashboard/post/Published', 'PostController@getPublished')->name('post.getPublished');
+    Route::delete('/dashboard/post', 'PostController@destroy')->name('post.destroy');
+
+    // Guestuser Profile
     Route::get('/dashboard/profile/{id}', 'ProfileController@show')->name('profile');
     Route::patch('/dashboard/profile/{id}/update', 'ProfileController@update')->name('profile.update');
     Route::patch('/dashboard/profile/{id}', 'ProfileController@changeImage')->name('profile.changeImage');

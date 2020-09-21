@@ -54,14 +54,14 @@ class TagController extends Controller
         $posts = $tag->posts()->latest()->paginate(10);
 
         $populerPosts = Post::with('category')
-            ->where('status', 1)
+            ->where('is_published', true)
             ->where('view', '>=', 1)
             ->latest('view')
             ->take(4)
             ->get();
 
         $terbaruPosts = Post::with(['category', 'user_author'])
-            ->where('status', 1)
+            ->where('is_published', true)
             ->latest()
             ->take(5)
             ->get();
