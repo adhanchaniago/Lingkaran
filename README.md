@@ -17,6 +17,7 @@ List package Website Lingkaran, diantaranya adalah:
 - Handle viewer menggunakan [Eloquent-Viewable](https://github.com/cyrildewit/eloquent-viewable) v5.2.
 - Search post menggunakan [Livewire](https://laravel-livewire.com/).
 - Deteksi lokasi berdasarkan IP menggunakan [Location](https://github.com/stevebauman/location) dari Stevebauman.
+- Data table menggunakan [Yajra DataTables](https://datatables.yajrabox.com/).
 
 ### Instalasi
 Instal [Composer](https://getcomposer.org/) pada Sistem Operasi agar command artisan dapat dijalankan. Masuk ke folder root aplikasi dan jalankan perintah instal pada terminal untuk download vendor yang dibutuhkan.
