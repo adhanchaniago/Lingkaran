@@ -43,12 +43,10 @@ Route::middleware(['auth', 'role:Writer'])->prefix('guestuser')->name('guestuser
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
     // Guestuser Post
-    Route::get('/dashboard/post/preview/{slug}', 'PostController@preview')->name('post.preview');
-    Route::get('/dashboard/post', 'PostController@index')->name('post');
     Route::get('/dashboard/post/unpublished', 'PostController@getUnpublished')->name('post.getUnpublished');
     Route::get('/dashboard/post/Rejected', 'PostController@getRejected')->name('post.getRejected');
     Route::get('/dashboard/post/Published', 'PostController@getPublished')->name('post.getPublished');
-    Route::delete('/dashboard/post', 'PostController@destroy')->name('post.destroy');
+    Route::resource('/dashboard/post', 'PostController');
 
     // Guestuser Profile
     Route::get('/dashboard/profile/{id}', 'ProfileController@show')->name('profile');

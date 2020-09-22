@@ -62,6 +62,7 @@ class PostController extends Controller
             'title' => 'required|min:10|unique:posts',
             'category' => 'required',
             'content' => 'required|min:100',
+            'tags' => 'required|string',
             'image' => 'required|image'
         ]);
 
@@ -113,8 +114,9 @@ class PostController extends Controller
             'title' => 'required|min:10',
             'category' => 'required',
             'content' => 'required|min:100',
-            'image' => 'image'
+            'tags' => 'required|string'
         ]);
+
         $post->update([
             'title' => Str::title(request('title')),
             'slug' => Str::slug(request('title')),

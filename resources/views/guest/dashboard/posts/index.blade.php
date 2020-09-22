@@ -1,6 +1,11 @@
 @extends('guest.layouts.dashboard')
 
 @section('page')
+@if(session('success'))
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>Success!</strong> {{ session('success') }}.
+</div>
+@endif
 <nav>
     <div class="nav nav-fill nav-tabs" id="nav-tab" role="tablist">
         <a class="nav-link active" id="nav-myposts-tab" data-toggle="tab" href="#nav-myposts" role="tab"
@@ -54,7 +59,6 @@
                                 <th>Category</th>
                                 <th>Image</th>
                                 <th>Status</th>
-                                <th>Action</th>
                             </tr>
                         </thead>
                     </table>
@@ -75,7 +79,6 @@
                                 <th>Category</th>
                                 <th>Image</th>
                                 <th>Status</th>
-                                <th>Action</th>
                             </tr>
                         </thead>
                     </table>
@@ -155,7 +158,7 @@
             processing : true,
             serverSide : true,
             ajax: {
-                url: "{{ route('guestuser.post') }}",
+                url: "{{ route('guestuser.post.index') }}",
                 type: 'GET'
             },
             columns : [
@@ -183,7 +186,6 @@
                 {data:'category.title', name:'category.category'},
                 {data:'image', name:'image'},
                 {data:'status', name:'posts.is_published'},
-                {data:'action', name:'action'},
             ],
         });
 
@@ -201,7 +203,6 @@
                 {data:'category.title', name:'category.category'},
                 {data:'image', name:'image'},
                 {data:'status', name:'posts.is_published'},
-                {data:'action', name:'action'},
             ],
         });
 

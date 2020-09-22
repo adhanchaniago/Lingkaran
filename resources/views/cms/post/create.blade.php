@@ -125,6 +125,5 @@
         });
         CKEDITOR.replace('content');
     });
-
 </script>
 @endsection
