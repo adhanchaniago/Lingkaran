@@ -54,6 +54,11 @@ Route::middleware(['auth', 'role:Writer'])->prefix('guestuser')->name('guestuser
     Route::patch('/dashboard/profile/{id}', 'ProfileController@changeImage')->name('profile.changeImage');
 });
 
+// Comment Route
+Route::middleware('auth')->group(function () {
+    Route::resource('/comments', 'CommentController')->except(['index', 'create', 'show', 'edit']);
+});
+
 //Guest Routes
 Route::name('guest.')->group(function () {
     Route::get('/', 'HomeController@index')->name('home');

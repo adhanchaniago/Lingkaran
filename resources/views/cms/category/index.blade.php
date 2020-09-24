@@ -205,9 +205,9 @@
 <script>
     $('.table').DataTable();
     $('#modal-edit').on('show.bs.modal', function (e) {
-        var id = $(e.relatedTarget).data('id');
-        var title = $(e.relatedTarget).data('title');
-        var color = $(e.relatedTarget).data('color');
+        const id = $(e.relatedTarget).data('id');
+        const title = $(e.relatedTarget).data('title');
+        const color = $(e.relatedTarget).data('color');
         $('.modal-header .category-title').text(title);
         $('.modal-body #form-id').val(id);
         $('.modal-body #title').val(title);
@@ -215,8 +215,8 @@
     });
 
     $('#modal-delete').on('show.bs.modal', function (e) {
-        var id = $(e.relatedTarget).data('id');
-        var title = $(e.relatedTarget).data('title');
+        const id = $(e.relatedTarget).data('id');
+        const title = $(e.relatedTarget).data('title');
         $('.modal-header .category-title').text(title);
         $('.modal-body #form-id').val(id);
     });

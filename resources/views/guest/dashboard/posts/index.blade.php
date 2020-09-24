@@ -224,15 +224,15 @@
         });
         
         $('.modal-image').on('show.bs.modal', function (e) {
-            var img = $(e.relatedTarget).data('image-url');
-            var title = $(e.relatedTarget).data('title');
+            const img = $(e.relatedTarget).data('image-url');
+            const title = $(e.relatedTarget).data('title');
             $('.modal-header .modal-title').text(title);
             $('.modal-body .img-fluid').attr('src', img);
         });
 
         $('.modal-delete').on('show.bs.modal', function (e) {
-            var id = $(e.relatedTarget).data('id');
-            var title = $(e.relatedTarget).data('title');
+            const id = $(e.relatedTarget).data('id');
+            const title = $(e.relatedTarget).data('title');
             $('.modal-body #id').val(id);
             $('.modal-body .title').text(title);
         });

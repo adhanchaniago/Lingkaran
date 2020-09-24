@@ -79,6 +79,75 @@ Lingkaran - {{ $post->title }}
                         @endforeach
                     </div>
                 </div>
+
+                <div class="post-comment mt-5 mb-3">
+                    <div class="post-comment-header my-3">Komentar</div>
+                    <div class="post-comment-body">
+                        @if (auth()->user())
+                        <form action="{{ route('comments.store') }}" method="POST" class="mb-5">
+                            @csrf
+                            <input type="hidden" name="post_id" value="{{ encrypt($post->id) }}">
+                            <div class="media mt-3">
+                                <img src="{{ asset('images/profile/thumbnails/'.auth()->user()->profiles->first()->image) }}"
+                                    class="mr-3 rounded-circle">
+                                <div class="media-body">
+                                    <div class="form-group">
+                                        <textarea name="comment" class="form-control form-control-sm"
+                                            placeholder="Add a comment" required></textarea>
+                                    </div>
+                                    <div class="btn-submit float-right">
+                                        <button id="cancel" type="reset"
+                                            class="btn btn-secondary btn-sm">Cancel</button>
+                                        <button id="comment" type="submit" class="btn btn-sm">Comment</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                        @else
+                        <div class="login-order">
+                            Please <a href="{{ route('login') }}" class="login-order-link">Login</a> to make comments.
+                        </div>
+                        @endif
+
+                        @foreach ($post->comments->sortByDesc('created_at') as $comment)
+                        <div class="media my-3">
+                            <img src="{{ asset('images/profile/thumbnails/'.$comment->user->profiles->first()->image) }}"
+                                class="mr-3 rounded-circle">
+                            <div class="media-body">
+                                <div class="post-comment-title">{{ $comment->user->firstname }}
+                                    <span>{{ $comment->created_at->diffForHumans() }}</span>
+                                </div>
+                                {{ $comment->body }}
+
+                                @auth
+                                <div class="post-comment-reply">
+                                    @if ($comment->user_id != auth()->user()->id)
+                                    <span><a href="#">Reply</a></span>
+                                    @endif
+                                    @if ($comment->user_id == auth()->user()->id)
+                                    <form id="form-delete-comment" action="{{ route('comments.destroy', $comment) }}"
+                                        method="post" style="display: none">
+                                        @csrf
+                                        @method('DELETE')
+                                    </form>
+                                    <span>
+                                        <a href="#" class="text-danger" onclick="event.preventDefault();
+                                        document.getElementById('form-delete-comment').submit();">Delete</a>
+                                    </span>
+                                    @endif
+                                </div>
+                                @endauth
+
+                                {{-- Comment Reply --}}
+                                @include('guest.components._nesting_comments', ['replies' => $comment->replies])
+                                {{-- End Comment Reply --}}
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+
             </div>
 
             <!-- Sidebar -->
@@ -98,7 +167,7 @@ Lingkaran - {{ $post->title }}
     <button onclick="location.href='{{ route('post.edit', $post) }}'" class="btn btn-sm btn-block btn-info">
         <i class="fas fa-edit"></i> Edit
     </button>
-    @if($post->status != 1)
+    @if($post->is_published != true)
     @can('publish post')
     <button class="btn btn-sm btn-block btn-success" data-toggle="modal" data-target="#modal-confirm"
         data-key="publish">
@@ -143,6 +212,26 @@ Lingkaran - {{ $post->title }}
 
 @section('b-script')
 <script>
+    const field = document.querySelector('textarea');
+    const backup = field.getAttribute('placeholder');
+    const btn = document.querySelector('.btn-submit');
+    const clear = document.getElementById('cancel');
+    
+    field.onfocus = function(){
+        btn.style.display = 'block';
+    }
+
+    field.onblur = function(){
+        this.setAttribute('placeholder', backup);
+    }
+
+    clear.onclick = function(){
+        btn.style.display = 'none';
+    }
+
+</script>
+
+<script>
     $('#modal-confirm').on('show.bs.modal', function (e) {
         const key = $(e.relatedTarget).data('key');
         if (key !== 'revoke') {
@@ -179,14 +268,12 @@ Lingkaran - {{ $post->title }}
             }
         });
     }, 10000);
-
 </script>
 
 <script>
     anychart.onDocumentReady(function () {
-
         // create data
-        var data = {
+        const data = {
             "nodes": [{
                     id: '{{ $post->title }}',
                     height: '20',
@@ -207,7 +294,7 @@ Lingkaran - {{ $post->title }}
             ]
         }
 
-        var chart = anychart.graph(data);
+        const chart = anychart.graph(data);
 
         // configure nodes
         chart.background().stroke("rgb(143, 143, 143)");
@@ -226,6 +313,5 @@ Lingkaran - {{ $post->title }}
         // initiate drawing the chart
         chart.container('network-graph').draw();
     });
-
 </script>
 @endsection

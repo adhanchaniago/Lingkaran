@@ -42,7 +42,7 @@
             <div class="dropdown mt-2 mt-md-0 ml-2">
                 <button class="btn btn-sm dropdown-toggle btn-user" type="button" id="dropdownMenuButton"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img src="{{ (!empty(auth()->user()->profiles->first()->image)) ? asset('images/profile/'.auth()->user()->profiles->first()->image) : asset('cms/images/user.png') }}"
+                    <img src="{{ (!empty(auth()->user()->profiles->first()->image)) ? asset('images/profile/thumbnails/'.auth()->user()->profiles->first()->image) : asset('cms/images/user.png') }}"
                         class="user-image rounded-circle">
                     <span class="ml-1">{{ auth()->user()->firstname }}</span>
                 </button>

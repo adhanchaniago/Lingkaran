@@ -139,8 +139,8 @@
     });
 
     $('#modal-delete').on('show.bs.modal', function (e) {
-        var id = $(e.relatedTarget).data('id');
-        var name = $(e.relatedTarget).data('name');
+        const id = $(e.relatedTarget).data('id');
+        const name = $(e.relatedTarget).data('name');
         $('.modal-body .username').text(name);
         $('.modal-body #form-delete').val(id);
     });

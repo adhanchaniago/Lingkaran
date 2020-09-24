@@ -142,15 +142,26 @@ class ProfileController extends Controller
         $profile = Profile::findOrFail($id);
         $image = $request->file('image');
         $filename = $profile->phone.'-'.$profile->id . '.' . $image->getClientOriginalExtension();
+
         $location = public_path('images/profile/'. $filename);
-        Image::make($image)->fit(200, 200)->save($location);
+        $thumbLocation = public_path('images/profile/thumbnails/'. $filename);
+
+        $profileLoc = Image::make($image)->fit(200, 200)->save($location);
+        $profileLoc == true
+            ? Image::make($image)->fit(50, 50)->save($thumbLocation)
+            : false;
+
         $oldFilename = 'images/profile/'.$profile->image;
+        $oldThumbFilename = 'images/profile/thumbnails/'.$profile->image;
 
         $profile->update([
                 'image' => $filename
             ]);
 
-        Storage::delete($oldFilename);
+        $deleteFile = Storage::delete($oldFilename);
+        $deleteFile == true
+            ? Storage::delete($oldThumbFilename)
+            : false;
 
         return redirect()->route('profile.show', $profile)->withSuccess('Image has been changed');
     }

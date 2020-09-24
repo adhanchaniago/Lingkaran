@@ -328,13 +328,15 @@ a:hover {
 .berita-terkini .terkini-category,
 .berita-lain-header,
 .sebaran-berita-header,
-.berita-side-header {
+.berita-side-header,
+.post-comment-header {
     font-size: 14px;
     font-weight: 600;
 }
 
 .berita-terkini .terkini-category::before,
 .post-detail .berita-lain-header::before,
+.post-detail .post-comment-header::before,
 .post-detail .sebaran-berita-header::before,
 .post-detail .berita-side-header::before {
     content: '';
@@ -622,6 +624,82 @@ a:hover {
 .post-detail .berita-lain-title:hover,
 .post-detail .berita-side-populer-title:hover {
     color: var(--hijau);
+}
+
+/* Post Detail Comment */
+.post-detail .post-comment .post-comment-body .login-order {
+    background-color: #E2E3E5;
+    color: #4C5255;
+    padding: 10px 20px;
+    border: 1px solid #D6D8DB;
+    border-radius: 5px;
+}
+
+.post-detail .post-comment .post-comment-body .login-order .login-order-link {
+    color: #202326;
+    font-weight: 700;
+}
+
+.post-detail .post-comment .post-comment-body .login-order .login-order-link:hover {
+    color: var(--hijau);
+    transition: all .3s;
+}
+
+.post-detail .post-comment .post-comment-body .media img {
+    width: 50px;
+    height: 50px;
+}
+
+.post-detail .post-comment .post-comment-body .media img.reply {
+    width: 35px;
+    height: 35px;
+}
+
+.post-detail .post-comment .post-comment-body .media .media-body .post-comment-title {
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.post-detail .post-comment .post-comment-body .media .media-body .post-comment-title span {
+    font-size: 12px;
+    font-weight: normal;
+    color: var(--abu);
+    margin-left: 5px;
+}
+
+.post-detail .post-comment .post-comment-body .media .media-body .post-comment-reply span a {
+    color: var(--abu);
+    font-size: 12px;
+    margin-right: 10px;
+}
+
+.post-detail .post-comment .post-comment-body .media .media-body {
+    font-size: 14px;
+}
+
+.post-detail .post-comment .post-comment-body .media .media-body textarea {
+    height: 30px;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid var(--abu);
+    background-color: transparent !important;
+    resize: none;
+    outline: none;
+    overflow-y: hidden;
+}
+
+.post-detail .post-comment .post-comment-body .media .media-body textarea:focus {
+    box-shadow: none !important;
+}
+
+.post-detail .post-comment .post-comment-body .media .media-body .btn-submit {
+    display: none;
+    transition: display 2s ease;
+}
+
+.post-detail .post-comment .post-comment-body .media .media-body .btn-submit #comment {
+    background-image: var(--gradasi);
+    color: #fff;
 }
 
 /* Post Detail Side */

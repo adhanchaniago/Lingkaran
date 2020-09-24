@@ -8,7 +8,7 @@
                 <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown"
                     data-toggle="dropdown" aria-expanded="false">
                     <img
-                        src="{{ (!empty(auth()->user()->profiles->first()->image)) ? asset('images/profile/'.auth()->user()->profiles->first()->image) : asset('cms/images/user.png') }}">
+                        src="{{ (!empty(auth()->user()->profiles->first()->image)) ? asset('images/profile/thumbnails/'.auth()->user()->profiles->first()->image) : asset('cms/images/user.png') }}">
                     {{ auth()->user()->firstname }} {{ auth()->user()->lastname }}
                 </a>
                 <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">

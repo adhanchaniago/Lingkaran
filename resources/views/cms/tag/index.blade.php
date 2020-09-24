@@ -82,13 +82,13 @@
                             </span>
                             @enderror
                         </div>
-    
+
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary btn-sm pull-right">Save</button>
                         <button type="reset" class="btn btn-secondary btn-sm pull-right">Reset</button>
                     </div>
-    
+
                 </form>
             </div>
         </div>
@@ -168,16 +168,16 @@
 <script>
     $('.table').DataTable();
     $('#modal-edit').on('show.bs.modal', function (e) {
-        var id = $(e.relatedTarget).data('id');
-        var title = $(e.relatedTarget).data('title');
+        const id = $(e.relatedTarget).data('id');
+        const title = $(e.relatedTarget).data('title');
         $('.modal-header .tag-title').text(title);
         $('.modal-body #form-id').val(id);
         $('.modal-body #title').val(title);
     });
 
     $('#modal-delete').on('show.bs.modal', function (e) {
-        var id = $(e.relatedTarget).data('id');
-        var title = $(e.relatedTarget).data('title');
+        const id = $(e.relatedTarget).data('id');
+        const title = $(e.relatedTarget).data('title');
         $('.modal-header .tag-title').text(title);
         $('.modal-body #form-id').val(id);
     });

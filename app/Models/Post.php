@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Comment;
 
-use CyrildeWit\EloquentViewable\InteractsWithViews;
+use Illuminate\Database\Eloquent\Model;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
+use CyrildeWit\EloquentViewable\InteractsWithViews;
 
 class Post extends Model implements Viewable
 {
@@ -36,6 +37,12 @@ class Post extends Model implements Viewable
     public function tags()
     {
         return $this->belongsToMany(Tag::class);
+    }
+
+    // Membuat relasi polymorphic antar table posts dan comments
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable')->whereNull('parent_id');
     }
 
     // Deklarasi link yang tampil di url

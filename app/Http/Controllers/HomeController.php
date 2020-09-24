@@ -61,7 +61,7 @@ class HomeController extends Controller
      */
     public function show(Category $category, Post $post)
     {
-        $post = Post::with('category', 'user_author', 'user_editor', 'tags')->find($post->id);
+        $post = Post::with('category', 'user_author', 'user_editor', 'tags', 'comments')->find($post->id);
 
         $relatedPosts = Post::with('category')
             ->where('category_id', $category->id)
