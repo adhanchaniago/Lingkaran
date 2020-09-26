@@ -238,9 +238,7 @@
                             <div class="form-group">
                                 <label for="address">Address</label>
                                 <textarea class="form-control form-control-sm @error('address') is-invalid @enderror"
-                                    name="address" id="address" required>
-                                    {{ $profile->address }}
-                                </textarea>
+                                    name="address" id="address" required>{{ $profile->address }}</textarea>
                                 @error('address')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -251,9 +249,7 @@
                             <div class="form-group">
                                 <label for="about">About</label>
                                 <textarea class="form-control form-control-sm @error('about') is-invalid @enderror"
-                                    name="about" id="about" required>
-                                    {{ $profile->about }}
-                                </textarea>
+                                    name="about" id="about" required>{{ $profile->about }}</textarea>
                                 @error('about')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

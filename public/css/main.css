@@ -692,12 +692,11 @@ a:hover {
     box-shadow: none !important;
 }
 
-.post-detail .post-comment .post-comment-body .media .media-body .btn-submit {
+.post-detail .post-comment .post-comment-body .media .media-body #btn-comment-wrapper {
     display: none;
-    transition: display 2s ease;
 }
 
-.post-detail .post-comment .post-comment-body .media .media-body .btn-submit #comment {
+.post-detail .post-comment .post-comment-body .media .media-body #btn-comment-submit {
     background-image: var(--gradasi);
     color: #fff;
 }

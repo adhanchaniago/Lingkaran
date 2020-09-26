@@ -30,7 +30,7 @@ class CommentController extends Controller
         $post = Post::findOrFail($postId);
         $post->comments()->save($comment);
 
-        return back();
+        return redirect()->back();
     }
 
     /**
@@ -42,7 +42,18 @@ class CommentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'body' => 'required|string|max:300'
+        ]);
+
+        $comment_id = decrypt($id);
+        $comment = Comment::findOrFail($comment_id);
+
+        $comment->update([
+            'body' => $request->body
+        ]);
+        
+        return redirect()->back();
     }
 
     /**
@@ -51,8 +62,44 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        dd($id);
+        $id = decrypt($request->id);
+
+        $comment = Comment::where('id', $id)
+            ->get()
+            ->first();
+            
+        $reply = Comment::where('parent_id', $id)
+            ->get()
+            ->first();
+            
+        if ($reply) {
+            $reply->delete();
+        }
+
+        $comment->delete();
+
+        return redirect()->back();
+    }
+
+    public function replyComment(Request $request)
+    {
+        $this->validate($request, [
+            'comment' => 'required|string|max:300',
+            'parent_id' => 'required|string'
+        ]);
+        
+        $reply = Comment::create([
+            'body' => $request->comment,
+            'user_id' => auth()->user()->id,
+            'parent_id' => decrypt($request->parent_id)
+        ]);
+
+        $postId = decrypt($request->post_id);
+        $post = Post::findOrFail($postId);
+        $post->comments()->save($reply);
+
+        return redirect()->back();
     }
 }

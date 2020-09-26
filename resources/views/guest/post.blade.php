@@ -86,24 +86,27 @@ Lingkaran - {{ $post->title }}
                         @if (auth()->user())
                         <form action="{{ route('comments.store') }}" method="POST" class="mb-5">
                             @csrf
-                            <input type="hidden" name="post_id" value="{{ encrypt($post->id) }}">
                             <div class="media mt-3">
                                 <img src="{{ asset('images/profile/thumbnails/'.auth()->user()->profiles->first()->image) }}"
                                     class="mr-3 rounded-circle">
                                 <div class="media-body">
                                     <div class="form-group">
-                                        <textarea name="comment" class="form-control form-control-sm"
-                                            placeholder="Add a comment" required></textarea>
+                                        <input type="hidden" name="post_id" value="{{ encrypt($post->id) }}">
+                                        <textarea id="input-comment-form" name="comment"
+                                            class="form-control form-control-sm" placeholder="Add a comment"
+                                            required></textarea>
                                     </div>
-                                    <div class="btn-submit float-right">
-                                        <button id="cancel" type="reset"
-                                            class="btn btn-secondary btn-sm">Cancel</button>
-                                        <button id="comment" type="submit" class="btn btn-sm">Comment</button>
+                                    <div id="btn-comment-wrapper" class="float-right">
+                                        <button id="btn-comment-cancel" type="reset" class="btn btn-secondary btn-sm">
+                                            Cancel
+                                        </button>
+                                        <button id="btn-comment-submit" type="submit" class="btn btn-sm">
+                                            Comment
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                         </form>
-
                         @else
                         <div class="login-order">
                             Please <a href="{{ route('login') }}" class="login-order-link">Login</a> to make comments.
@@ -116,31 +119,40 @@ Lingkaran - {{ $post->title }}
                                 class="mr-3 rounded-circle">
                             <div class="media-body">
                                 <div class="post-comment-title">{{ $comment->user->firstname }}
-                                    <span>{{ $comment->created_at->diffForHumans() }}</span>
+                                    <span>
+                                        {{ $comment->created_at->diffForHumans() }}
+                                    </span>
                                 </div>
                                 {{ $comment->body }}
 
                                 @auth
                                 <div class="post-comment-reply">
                                     @if ($comment->user_id != auth()->user()->id)
-                                    <span><a href="#">Reply</a></span>
-                                    @endif
-                                    @if ($comment->user_id == auth()->user()->id)
-                                    <form id="form-delete-comment" action="{{ route('comments.destroy', $comment) }}"
-                                        method="post" style="display: none">
-                                        @csrf
-                                        @method('DELETE')
-                                    </form>
                                     <span>
-                                        <a href="#" class="text-danger" onclick="event.preventDefault();
-                                        document.getElementById('form-delete-comment').submit();">Delete</a>
+                                        <a onclick="reply({{ $comment->id }})" style="cursor: pointer">Reply</a>
+                                    </span>
+                                    {{-- Reply form --}}
+                                    @include('guest.components._reply_form', ['comments' => $comment])
+                                    {{-- End Reply Form --}}
+                                    @endif
+
+                                    @if ($comment->user_id == auth()->user()->id)
+                                    <span>
+                                        <a href="#" class="text-info">Edit</a>
+                                    </span>
+                                    <span>
+                                        <a href="#" class="text-danger" data-toggle="modal"
+                                            data-target="#modal-delete-comment" data-id="{{ encrypt($comment->id) }}"
+                                            data-title="{{ $comment->body }}">
+                                            delete
+                                        </a>
                                     </span>
                                     @endif
                                 </div>
                                 @endauth
 
                                 {{-- Comment Reply --}}
-                                @include('guest.components._nesting_comments', ['replies' => $comment->replies])
+                                @include('guest.components._nesting_comments')
                                 {{-- End Comment Reply --}}
                             </div>
                         </div>
@@ -207,30 +219,64 @@ Lingkaran - {{ $post->title }}
     </div>
 </div>
 <!-- /modals -->
+
+<!-- Delete modal -->
+<div class="modal fade" id="modal-delete-comment" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Menghapus Komentar</h4>
+            </div>
+            <form action="{{ route('comments.destroy', 'id') }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <div class="modal-body">
+                    <p class="text-center">Apa anda yakin ingin menghapus komentar "<span
+                            class="comment-body text-danger"></span>" ?</p>
+                    <input type="hidden" id="form-delete" name="id">
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- /modals -->
 @endif
 @endsection
 
 @section('b-script')
+{{-- Comment Form --}}
 <script>
-    const field = document.querySelector('textarea');
-    const backup = field.getAttribute('placeholder');
-    const btn = document.querySelector('.btn-submit');
-    const clear = document.getElementById('cancel');
-    
-    field.onfocus = function(){
-        btn.style.display = 'block';
+    const inputCommentForm = document.getElementById('input-comment-form');
+    const btnCommentWrapper = document.getElementById('btn-comment-wrapper');
+    const btnCommentCancel = document.getElementById('btn-comment-cancel');
+
+    inputCommentForm.onfocus = function () {
+        btnCommentWrapper.style.display = 'block';
     }
 
-    field.onblur = function(){
-        this.setAttribute('placeholder', backup);
+    btnCommentCancel.onclick = function () {
+        btnCommentWrapper.style.display = 'none';
     }
-
-    clear.onclick = function(){
-        btn.style.display = 'none';
-    }
-
 </script>
 
+{{-- Reply Form --}}
+<script>
+    function reply(replyId) {
+        const formReply = document.querySelector('.reply-form-' + replyId);
+        formReply.style.display = 'block';
+    }
+
+    function cancelReply(replyId) {
+        const formReply = document.querySelector('.reply-form-' + replyId);
+        formReply.style.display = 'none';
+    }
+</script>
+
+{{-- Modal --}}
 <script>
     $('#modal-confirm').on('show.bs.modal', function (e) {
         const key = $(e.relatedTarget).data('key');
@@ -247,6 +293,13 @@ Lingkaran - {{ $post->title }}
             $('.modal-footer #action').attr('class', 'btn btn-warning btn-sm');
             $('#url').attr('action', '{{ route("post.revoke", "id") }}');
         }
+    });
+
+    $('#modal-delete-comment').on('show.bs.modal', function (e) {
+        const id = $(e.relatedTarget).data('id');
+        const comment = $(e.relatedTarget).data('title');
+        $('.modal-body .comment-body').text(comment);
+        $('.modal-body #form-delete').val(id);
     });
 
     const waktu = setTimeout(function () {
@@ -270,6 +323,7 @@ Lingkaran - {{ $post->title }}
     }, 10000);
 </script>
 
+{{-- Graph --}}
 <script>
     anychart.onDocumentReady(function () {
         // create data

@@ -56,6 +56,7 @@ Route::middleware(['auth', 'role:Writer'])->prefix('guestuser')->name('guestuser
 
 // Comment Route
 Route::middleware('auth')->group(function () {
+    Route::post('/comments/reply', 'CommentController@replyComment')->name('comments.reply');
     Route::resource('/comments', 'CommentController')->except(['index', 'create', 'show', 'edit']);
 });
 
