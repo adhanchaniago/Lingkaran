@@ -41,8 +41,9 @@ class PostSeeder extends Seeder
                 vehicula sagittis ut in ante. Sed ut elementum metus, fringilla bibendum massa. Mauris fringilla sagittis faucibus.
                 Aenean volutpat tristique eleifend. Cras vitae nulla eu ex mattis dignissim. Nunc tempor fermentum porttitor.
                 ',
-            'author' => 1,
+            'author' => 4,
             'is_published' => 1,
+            'created_at' => '2020-08-20 18:05:34'
             
         ]);
 
@@ -75,9 +76,9 @@ class PostSeeder extends Seeder
                 vehicula sagittis ut in ante. Sed ut elementum metus, fringilla bibendum massa. Mauris fringilla sagittis faucibus.
                 Aenean volutpat tristique eleifend. Cras vitae nulla eu ex mattis dignissim. Nunc tempor fermentum porttitor.
                 ',
-            'author' => 1,
+            'author' => 4,
             'is_published' => 1,
-            
+            'created_at' => '2020-08-21 18:05:34'
         ]);
 
         Post::create([
@@ -109,9 +110,9 @@ class PostSeeder extends Seeder
                 vehicula sagittis ut in ante. Sed ut elementum metus, fringilla bibendum massa. Mauris fringilla sagittis faucibus.
                 Aenean volutpat tristique eleifend. Cras vitae nulla eu ex mattis dignissim. Nunc tempor fermentum porttitor.
                 ',
-            'author' => 1,
+            'author' => 4,
             'is_published' => 1,
-            
+            'created_at' => '2020-08-1 18:05:34'
         ]);
 
         Post::create([
@@ -211,9 +212,9 @@ class PostSeeder extends Seeder
                 vehicula sagittis ut in ante. Sed ut elementum metus, fringilla bibendum massa. Mauris fringilla sagittis faucibus.
                 Aenean volutpat tristique eleifend. Cras vitae nulla eu ex mattis dignissim. Nunc tempor fermentum porttitor.
                 ',
-            'author' => 1,
+            'author' => 4,
             'is_published' => 1,
-            
+            'created_at' => '2020-09-3 18:05:34'
         ]);
 
         Post::create([
@@ -247,7 +248,7 @@ class PostSeeder extends Seeder
                 ',
             'author' => 4,
             'is_published' => 0,
-            
+            'created_at' => '2020-06-1 18:05:34'
         ]);
 
         Post::create([
@@ -349,7 +350,7 @@ class PostSeeder extends Seeder
                 ',
             'author' => 4,
             'is_published' => 1,
-            
+            'created_at' => '2020-08-1 18:05:34'
         ]);
 
         Post::create([
@@ -417,7 +418,7 @@ class PostSeeder extends Seeder
                 ',
             'author' => 4,
             'is_rejected' => 1,
-            
+            'created_at' => '2020-06-1 18:05:34'
         ]);
 
         Post::create([
@@ -619,9 +620,9 @@ class PostSeeder extends Seeder
                 vehicula sagittis ut in ante. Sed ut elementum metus, fringilla bibendum massa. Mauris fringilla sagittis faucibus.
                 Aenean volutpat tristique eleifend. Cras vitae nulla eu ex mattis dignissim. Nunc tempor fermentum porttitor.
                 ',
-            'author' => 2,
+            'author' => 4,
             'is_published' => 1,
-            
+            'created_at' => '2020-06-1 18:05:34'
         ]);
     }
 }
