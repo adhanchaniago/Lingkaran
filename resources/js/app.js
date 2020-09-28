@@ -1,34 +1,33 @@
+/**
+ * First we will load all of this project's JavaScript dependencies which
+ * includes Vue and other libraries. It is a great starting point when
+ * building robust, powerful web applications using Vue and Laravel.
+ */
+
 require('./bootstrap');
-require('datatables.net-bs4');
+require('./main');
 
-try {
-    // Mengambil tinggi body pada browser
-    const tinggi = $(window).height() / 2;
+window.Vue = require('vue');
 
-    // Membuat fungsi scroll ditampilkan navbar sticky-top
-    $(window).on('scroll', function () {
-        if ($(this).scrollTop() > tinggi) {
-            $('#nav-sticky').addClass('sticky-top');
-        } else {
-            $('#nav-sticky').removeClass('sticky-top');
-        }
-    });
+/**
+ * The following block of code may be used to automatically register your
+ * Vue components. It will recursively scan this directory for the Vue
+ * components and automatically register them with their "basename".
+ *
+ * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
+ */
 
-    // Membuat fungsi scroll ditampilkan Tombol Back-top
-    $(window).on('scroll', function () {
-        if ($(this).scrollTop() > tinggi) {
-            $('#back-top').addClass('active');
-        } else {
-            $('#back-top').removeClass('active');
-        }
-    });
+// const files = require.context('./', true, /\.vue$/i)
+// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-    // Membuat fungsi scroll to top
-    $('#back-top').on('click', function () {
-        $('html, body').animate({
-            scrollTop: 0
-        }, 300);
-    });
-} catch (error) {
-    console.log(error);
-}
+// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+
+/**
+ * Next, we will create a fresh Vue application instance and attach it to
+ * the page. Then, you may begin adding components to this application
+ * or customize the JavaScript scaffolding to fit your unique needs.
+ */
+
+// const app = new Vue({
+//     el: '#app',
+// });

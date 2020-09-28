@@ -1,4 +1,4 @@
-@foreach ($comment->comments as $reply)
+@foreach ($comment->replies as $reply)
 <div class="media my-3">
     <img src="{{ asset('images/profile/thumbnails/'.$reply->user->profiles->first()->image) }}"
         class="reply mr-3 rounded-circle">

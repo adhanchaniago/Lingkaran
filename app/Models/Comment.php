@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,8 +20,13 @@ class Comment extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function comments()
+    public function replies()
     {
         return $this->hasMany(Comment::class, 'parent_id');
+    }
+
+    public function getCreatedAtAttribute($date)
+    {
+        return Carbon::parse($date)->diffForHumans();
     }
 }

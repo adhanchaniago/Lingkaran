@@ -82,81 +82,49 @@ Lingkaran - {{ $post->title }}
 
                 <div class="post-comment mt-5 mb-3">
                     <div class="post-comment-header my-3">Komentar</div>
-                    <div class="post-comment-body">
+                    <div id="app" class="post-comment-body">
                         @if (auth()->user())
-                        <form action="{{ route('comments.store') }}" method="POST" class="mb-5">
-                            @csrf
-                            <div class="media mt-3">
-                                <img src="{{ asset('images/profile/thumbnails/'.auth()->user()->profiles->first()->image) }}"
-                                    class="mr-3 rounded-circle">
-                                <div class="media-body">
-                                    <div class="form-group">
-                                        <input type="hidden" name="post_id" value="{{ encrypt($post->id) }}">
-                                        <textarea id="input-comment-form" name="comment"
-                                            class="form-control form-control-sm" placeholder="Add a comment"
-                                            required></textarea>
-                                    </div>
-                                    <div id="btn-comment-wrapper" class="float-right">
-                                        <button id="btn-comment-cancel" type="reset" class="btn btn-secondary btn-sm">
-                                            Cancel
-                                        </button>
-                                        <button id="btn-comment-submit" type="submit" class="btn btn-sm">
-                                            Comment
-                                        </button>
-                                    </div>
+                        <div class="media mt-3">
+                            <img src="{{ asset('images/profile/thumbnails/'.auth()->user()->profiles->first()->image) }}"
+                                class="mr-3 rounded-circle">
+                            <div class="media-body">
+                                <div class="form-group">
+                                    <textarea id="input-comment-form" name="body" class="form-control form-control-sm"
+                                        v-model="commentForm" placeholder="Add a comment" required></textarea>
+                                </div>
+                                <div id="btn-comment-wrapper" class="float-right">
+                                    <button id="btn-comment-cancel" type="reset" class="btn btn-secondary btn-sm">
+                                        Cancel
+                                    </button>
+                                    <button id="btn-comment-submit" class="btn btn-sm" @click.prevent="postComment">
+                                        Comment
+                                    </button>
                                 </div>
                             </div>
-                        </form>
+                        </div>
                         @else
                         <div class="login-order">
-                            Please <a href="{{ route('login') }}" class="login-order-link">Login</a> to make comments.
+                            Please <a href="{{ route('login') }}" class="login-order-link">Login</a> to make
+                            comments.
                         </div>
                         @endif
 
-                        @foreach ($post->comments->sortByDesc('created_at') as $comment)
-                        <div class="media my-3">
-                            <img src="{{ asset('images/profile/thumbnails/'.$comment->user->profiles->first()->image) }}"
-                                class="mr-3 rounded-circle">
+                        <div class="media my-3" v-for="comment in comments">
+                            <img :src="'/images/profile/' + comment.user.profiles[0].image" class="mr-3
+                            rounded-circle">
                             <div class="media-body">
-                                <div class="post-comment-title">{{ $comment->user->firstname }}
+                                <div class="post-comment-title">@{{ comment.user.firstname }}
                                     <span>
-                                        {{ $comment->created_at->diffForHumans() }}
+                                        @{{ comment.created_at }}
                                     </span>
                                 </div>
-                                {{ $comment->body }}
-
-                                @auth
-                                <div class="post-comment-reply">
-                                    @if ($comment->user_id != auth()->user()->id)
-                                    <span>
-                                        <a onclick="reply({{ $comment->id }})" style="cursor: pointer">Reply</a>
-                                    </span>
-                                    {{-- Reply form --}}
-                                    @include('guest.components._reply_form', ['comments' => $comment])
-                                    {{-- End Reply Form --}}
-                                    @endif
-
-                                    @if ($comment->user_id == auth()->user()->id)
-                                    <span>
-                                        <a href="#" class="text-info">Edit</a>
-                                    </span>
-                                    <span>
-                                        <a href="#" class="text-danger" data-toggle="modal"
-                                            data-target="#modal-delete-comment" data-id="{{ encrypt($comment->id) }}"
-                                            data-title="{{ $comment->body }}">
-                                            delete
-                                        </a>
-                                    </span>
-                                    @endif
-                                </div>
-                                @endauth
+                                @{{ comment.body }}
 
                                 {{-- Comment Reply --}}
-                                @include('guest.components._nesting_comments')
+
                                 {{-- End Comment Reply --}}
                             </div>
                         </div>
-                        @endforeach
                     </div>
                 </div>
 
@@ -227,7 +195,7 @@ Lingkaran - {{ $post->title }}
             <div class="modal-header">
                 <h4 class="modal-title">Menghapus Komentar</h4>
             </div>
-            <form action="{{ route('comments.destroy', 'id') }}" method="POST">
+            <form action="#" method="POST">
                 @csrf
                 @method('DELETE')
                 <div class="modal-body">
@@ -248,6 +216,43 @@ Lingkaran - {{ $post->title }}
 @endsection
 
 @section('b-script')
+{{-- Comment Methods --}}
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            comments: {},
+            commentForm: ''
+        },
+        mounted() {
+            this.getComments();
+        },
+        methods: {
+            getComments() {
+                axios.get('/post/{{ encrypt($post->id) }}/comments')
+                .then((response) => {
+                    this.comments = response.data;
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+            },
+            postComment() {
+                axios.post('/post/{{ encrypt($post->id) }}/comment', {
+                    body: this.commentForm
+                })
+                .then((response) => {
+                    this.comments.unshift(response.data);
+                    this.commentForm = '';
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+            }            
+        }
+    });
+</script>
+
 {{-- Comment Form --}}
 <script>
     const inputCommentForm = document.getElementById('input-comment-form');
@@ -263,20 +268,7 @@ Lingkaran - {{ $post->title }}
     }
 </script>
 
-{{-- Reply Form --}}
-<script>
-    function reply(replyId) {
-        const formReply = document.querySelector('.reply-form-' + replyId);
-        formReply.style.display = 'block';
-    }
-
-    function cancelReply(replyId) {
-        const formReply = document.querySelector('.reply-form-' + replyId);
-        formReply.style.display = 'none';
-    }
-</script>
-
-{{-- Modal --}}
+{{-- Modal Confirm --}}
 <script>
     $('#modal-confirm').on('show.bs.modal', function (e) {
         const key = $(e.relatedTarget).data('key');

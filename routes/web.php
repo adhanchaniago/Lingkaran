@@ -55,9 +55,10 @@ Route::middleware(['auth', 'role:Writer'])->prefix('guestuser')->name('guestuser
 });
 
 // Comment Route
+Route::get('/post/{slug}/comments', 'CommentController@index');
+
 Route::middleware('auth')->group(function () {
-    Route::post('/comments/reply', 'CommentController@replyComment')->name('comments.reply');
-    Route::resource('/comments', 'CommentController')->except(['index', 'create', 'show', 'edit']);
+    Route::post('/post/{slug}/comment', 'CommentController@store');
 });
 
 //Guest Routes
