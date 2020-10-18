@@ -55,10 +55,12 @@ Route::middleware(['auth', 'role:Writer'])->prefix('guestuser')->name('guestuser
 });
 
 // Comment Route
-Route::get('/post/{slug}/comments', 'CommentController@index');
+Route::get('/post/{id}/comments', 'CommentController@index');
 
 Route::middleware('auth')->group(function () {
-    Route::post('/post/{slug}/comment', 'CommentController@store');
+    Route::post('/post/{id}/comment', 'CommentController@store');
+    Route::post('/post/{id}/comment/reply', 'CommentController@reply');
+    Route::delete('/post/{id}/comment/destroy', 'CommentController@destroy');
 });
 
 //Guest Routes

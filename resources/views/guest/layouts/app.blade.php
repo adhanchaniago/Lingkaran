@@ -45,8 +45,10 @@
     <!-- Navbar -->
     @include('guest.layouts.partials.navbar')
 
-    @section('content')
-    @show
+    <section id="apps">
+        @section('content')
+        @show
+    </section>
 
     <!-- Footer -->
     <footer class="mt-4">

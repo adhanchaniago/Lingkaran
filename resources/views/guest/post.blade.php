@@ -82,9 +82,9 @@ Lingkaran - {{ $post->title }}
 
                 <div class="post-comment mt-5 mb-3">
                     <div class="post-comment-header my-3">Komentar</div>
-                    <div id="app" class="post-comment-body">
+                    <div class="post-comment-body">
                         @if (auth()->user())
-                        <div class="media mt-3">
+                        <div class="media mt-3 mb-5">
                             <img src="{{ asset('images/profile/thumbnails/'.auth()->user()->profiles->first()->image) }}"
                                 class="mr-3 rounded-circle">
                             <div class="media-body">
@@ -109,7 +109,7 @@ Lingkaran - {{ $post->title }}
                         </div>
                         @endif
 
-                        <div class="media my-3" v-for="comment in comments">
+                        <div class="media my-3" v-for="comment in comments" :key="comment.id">
                             <img :src="'/images/profile/' + comment.user.profiles[0].image" class="mr-3
                             rounded-circle">
                             <div class="media-body">
@@ -120,9 +120,18 @@ Lingkaran - {{ $post->title }}
                                 </div>
                                 @{{ comment.body }}
 
-                                {{-- Comment Reply --}}
+                                @auth
+                                <div class="post-comment-reply">
+                                    <div v-if="comment.user.id === {!! auth()->user()->id !!}">
+                                        <span>
+                                            <a href="#" class="text-danger" @click.prevent="deleteComment(comment.id)">
+                                                Delete
+                                            </a>
+                                        </span>
+                                    </div>
 
-                                {{-- End Comment Reply --}}
+                                </div>
+                                @endauth
                             </div>
                         </div>
                     </div>
@@ -188,30 +197,6 @@ Lingkaran - {{ $post->title }}
 </div>
 <!-- /modals -->
 
-<!-- Delete modal -->
-<div class="modal fade" id="modal-delete-comment" tabindex="-1" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Menghapus Komentar</h4>
-            </div>
-            <form action="#" method="POST">
-                @csrf
-                @method('DELETE')
-                <div class="modal-body">
-                    <p class="text-center">Apa anda yakin ingin menghapus komentar "<span
-                            class="comment-body text-danger"></span>" ?</p>
-                    <input type="hidden" id="form-delete" name="id">
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<!-- /modals -->
 @endif
 @endsection
 
@@ -219,10 +204,10 @@ Lingkaran - {{ $post->title }}
 {{-- Comment Methods --}}
 <script>
     const app = new Vue({
-        el: '#app',
+        el: '#apps',
         data: {
             comments: {},
-            commentForm: ''
+            commentForm: ""
         },
         mounted() {
             this.getComments();
@@ -243,12 +228,25 @@ Lingkaran - {{ $post->title }}
                 })
                 .then((response) => {
                     this.comments.unshift(response.data);
-                    this.commentForm = '';
+                    this.commentForm = "";
                 })
                 .catch((error) => {
                     console.log(error);
                 });
-            }            
+            },
+            deleteComment(commentId) {
+                axios.delete('/post/{{ encrypt($post->id) }}/comment/destroy', {
+                    params: {
+                        commentId: commentId
+                    }
+                })
+                .then((response) => {
+                    this.comments = response.data;
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+            },
         }
     });
 </script>
@@ -265,6 +263,7 @@ Lingkaran - {{ $post->title }}
 
     btnCommentCancel.onclick = function () {
         btnCommentWrapper.style.display = 'none';
+        inputCommentForm.value = '';
     }
 </script>
 
