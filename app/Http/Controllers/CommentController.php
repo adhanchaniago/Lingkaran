@@ -42,19 +42,20 @@ class CommentController extends Controller
     public function reply(Request $request, $id)
     {
         $this->validate($request, [
+            'parentId' => 'required',
             'body' => 'required|string|max:300'
         ]);
         
         $post = Post::findOrFail(decrypt($id));
         $comment = $post->comments()->create([
-            'parent_id' => $request->parent_id,
-            'body' => $request->body,
-            'user_id' => auth()->user()->id
+            'user_id' => auth()->user()->id,
+            'parent_id' => $request->parentId,
+            'body' => $request->body
           ]);
-      
-        $comment = Comment::where('id', $comment->id)->with('replies', 'user.profiles')->first();
-      
-        return $comment->toJson();
+          
+        $comment = $post->comments()->with('replies.user.profiles', 'user.profiles')->latest()->get();
+  
+        return response()->json($comment);
     }
 
     public function destroy(Request $request, $id)

@@ -85,7 +85,7 @@ Lingkaran - {{ $post->title }}
                     <div class="post-comment-body">
                         @if (auth()->user())
                         <div class="media mt-3 mb-5">
-                            <img src="{{ asset('images/profile/thumbnails/'.auth()->user()->profiles->first()->image) }}"
+                            <img src="{{ !empty(auth()->user()->profiles->first()->image) ? asset('images/profile/thumbnails/'.auth()->user()->profiles->first()->image) : '/cms/images/user.png' }}"
                                 class="mr-3 rounded-circle">
                             <div class="media-body">
                                 <div class="form-group">
@@ -109,9 +109,11 @@ Lingkaran - {{ $post->title }}
                         </div>
                         @endif
 
-                        <div class="media my-3" v-for="comment in comments" :key="comment.id">
-                            <img :src="'/images/profile/' + comment.user.profiles[0].image" class="mr-3
-                            rounded-circle">
+                        <div class="media my-3" v-for="(comment, index) in comments" :key="comment.id">
+                            <img v-if="comment.user.profiles[0].image === null" src="/cms/images/user.png"
+                                class="mr-3 rounded-circle">
+                            <img v-else :src="'/images/profile/' + comment.user.profiles[0].image"
+                                class="mr-3 rounded-circle">
                             <div class="media-body">
                                 <div class="post-comment-title">@{{ comment.user.firstname }}
                                     <span>
@@ -122,6 +124,14 @@ Lingkaran - {{ $post->title }}
 
                                 @auth
                                 <div class="post-comment-reply">
+                                    <div v-if="comment.user.id !== {!! auth()->user()->id !!}">
+                                        <span>
+                                            <a href="#" class="text-secondary"
+                                                @click.prevent="showFormReply(comment.id)">
+                                                Reply
+                                            </a>
+                                        </span>
+                                    </div>
                                     <div v-if="comment.user.id === {!! auth()->user()->id !!}">
                                         <span>
                                             <a href="#" class="text-danger" @click.prevent="deleteComment(comment.id)">
@@ -129,9 +139,79 @@ Lingkaran - {{ $post->title }}
                                             </a>
                                         </span>
                                     </div>
-
+                                    <div v-show="comment.id === isFormActive">
+                                        <div class="form-group">
+                                            <textarea name="body" placeholder="Add reply" required v-model="replyForm"
+                                                required></textarea>
+                                        </div>
+                                        <div id="btn-reply-wrapper" class="form-group float-right">
+                                            <button type="reset" class="btn btn-outline-secondary btn-sm"
+                                                @click.prevent="cancelFormReply">
+                                                Cancel
+                                            </button>
+                                            <button class="btn btn-outline-info btn-sm"
+                                                @click.prevent="postReply(comment.id)">
+                                                Reply
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                                 @endauth
+
+                                {{-- Comment Reply --}}
+                                <div class="media my-3" v-for="(reply, i) in comment.replies" :key="reply.id">
+                                    <img v-if="reply.user.profiles[0].image === null" src="/cms/images/user.png"
+                                        class="mr-3 rounded-circle">
+                                    <img v-else :src="'/images/profile/' + reply.user.profiles[0].image"
+                                        class="mr-3 rounded-circle">
+                                    <div class="media-body">
+                                        <div class="post-comment-title">@{{ reply.user.firstname }}
+                                            <span>
+                                                @{{ reply.created_at }}
+                                            </span>
+                                        </div>
+                                        @{{ reply.body }}
+
+                                        @auth
+                                        <div class="post-comment-reply">
+                                            <div v-if="reply.user.id !== {!! auth()->user()->id !!}">
+                                                <span>
+                                                    <a href="#" class="text-secondary"
+                                                        @click.prevent="showFormReply(reply.id)">
+                                                        Reply
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div v-if="reply.user.id === {!! auth()->user()->id !!}">
+                                                <span>
+                                                    <a href="#" class="text-danger"
+                                                        @click.prevent="deleteComment(reply.id)">
+                                                        Delete
+                                                    </a>
+                                                </span>
+                                            </div>
+
+                                        </div>
+                                        <div v-show="reply.id === isFormActive">
+                                            <div class="form-group">
+                                                <textarea name="body" placeholder="Add reply" required
+                                                    v-model="replyForm" required></textarea>
+                                            </div>
+                                            <div id="btn-reply-wrapper" class="form-group float-right">
+                                                <button type="reset" class="btn btn-outline-secondary btn-sm"
+                                                    @click.prevent="cancelFormReply">
+                                                    Cancel
+                                                </button>
+                                                <button class="btn btn-outline-info btn-sm"
+                                                    @click.prevent="postReply(comment.id)">
+                                                    Reply
+                                                </button>
+                                            </div>
+                                        </div>
+                                        @endauth
+                                    </div>
+                                </div>
+                                {{-- End Comment Reply --}}
                             </div>
                         </div>
                     </div>
@@ -207,12 +287,22 @@ Lingkaran - {{ $post->title }}
         el: '#apps',
         data: {
             comments: {},
-            commentForm: ""
+            commentForm: "",
+            replyForm: "",
+            isFormActive: false
         },
         mounted() {
             this.getComments();
         },
         methods: {
+            showFormReply(index){
+                this.replyForm = "";
+                this.isFormActive = index
+            },
+            cancelFormReply(){
+                this.replyForm = "";
+                this.isFormActive = false
+            },
             getComments() {
                 axios.get('/post/{{ encrypt($post->id) }}/comments')
                 .then((response) => {
@@ -223,26 +313,46 @@ Lingkaran - {{ $post->title }}
                 });
             },
             postComment() {
-                axios.post('/post/{{ encrypt($post->id) }}/comment', {
-                    body: this.commentForm
-                })
-                .then((response) => {
-                    this.comments.unshift(response.data);
-                    this.commentForm = "";
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
+                if (this.commentForm !== "") {
+                    axios.post('/post/{{ encrypt($post->id) }}/comment', {
+                            body: this.commentForm
+                        })
+                        .then((response) => {
+                            this.comments.unshift(response.data);
+                            this.commentForm = "";
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+                }
+            },
+            postReply(parentId) {
+                if (this.replyForm !== "") {
+                    axios.post('/post/{{ encrypt($post->id) }}/comment/reply', {
+                            parentId: parentId,
+                            body: this.replyForm
+                        })
+                        .then((response) => {
+                            this.comments = response.data;
+                            this.replyForm = "";
+                            this.isFormActive = false;
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+                }
             },
             deleteComment(commentId) {
                 Swal.fire({
                     title: 'Anda yakin ingin menghapus komentar?',
                     icon: 'warning',
                     showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
                     confirmButtonText: 'Hapus',
                     cancelButtonText: 'Batal'
                 }).then((result) => {
-                    if (result.value) {
+                    if (result.isConfirmed) {
                         axios.delete('/post/{{ encrypt($post->id) }}/comment/destroy', {
                                 params: {
                                     commentId: commentId
