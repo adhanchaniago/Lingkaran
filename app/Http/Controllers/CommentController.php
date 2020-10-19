@@ -47,15 +47,15 @@ class CommentController extends Controller
         ]);
         
         $post = Post::findOrFail(decrypt($id));
-        $comment = $post->comments()->create([
-            'user_id' => auth()->user()->id,
+        $post->comments()->create([
+            'body' => $request->body,
             'parent_id' => $request->parentId,
-            'body' => $request->body
+            'user_id' => auth()->user()->id
           ]);
           
-        $comment = $post->comments()->with('replies.user.profiles', 'user.profiles')->latest()->get();
+        $reply = $post->comments()->with('replies.user.profiles', 'user.profiles')->latest()->get();
   
-        return response()->json($comment);
+        return response()->json($reply);
     }
 
     public function destroy(Request $request, $id)
