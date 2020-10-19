@@ -235,16 +235,31 @@ Lingkaran - {{ $post->title }}
                 });
             },
             deleteComment(commentId) {
-                axios.delete('/post/{{ encrypt($post->id) }}/comment/destroy', {
-                    params: {
-                        commentId: commentId
+                Swal.fire({
+                    title: 'Anda yakin ingin menghapus komentar?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Hapus',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.value) {
+                        axios.delete('/post/{{ encrypt($post->id) }}/comment/destroy', {
+                                params: {
+                                    commentId: commentId
+                                }
+                            })
+                            .then((response) => {
+                                this.comments = response.data;
+                                Swal.fire(
+                                    'Berhasil!',
+                                    'Komentar berhasil dihapus!',
+                                    'success'
+                                );
+                            })
+                            .catch((error) => {
+                                console.log(error);
+                            });
                     }
-                })
-                .then((response) => {
-                    this.comments = response.data;
-                })
-                .catch((error) => {
-                    console.log(error);
                 });
             },
         }

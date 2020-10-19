@@ -23,6 +23,7 @@
     },
     "dependencies": {
         "axios": "^0.19.2",
-        "datatables.net-bs4": "^1.10.22"
+        "datatables.net-bs4": "^1.10.22",
+        "sweetalert2": "^10.6.1"
     }
 }
